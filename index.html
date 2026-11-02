@@ -2,475 +2,613 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Forever My Beloved Yuuka</title>
+<title>Forever My Beloved Yuuka</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
 
-  <script src="https://unpkg.com/lucide@latest"></script>
+<style>
+* {
+    box-sizing: border-box;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+body {
+    margin: 0;
+    padding: 0 20px 60px;
+    background: #FBF8F3;
+    color: #806B5A;
+    font-family: 'Noto Serif JP', serif;
+    text-align: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+/* 首頁照片 */
+
+.cover-photo {
+    width: 100%;
+    max-width: 680px;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    margin: 30px auto;
+}
+
+/* 標題 */
+
+.site-title {
+    margin: 35px 0 12px;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 1.6;
+}
+
+.subtitle {
+    font-size: 15px;
+    color: #A18D7B;
+    letter-spacing: 2px;
+    margin: 8px 0;
+}
+
+.description {
+    font-size: 13px;
+    color: #A18D7B;
+    letter-spacing: 1px;
+    margin: 15px 0 45px;
+}
+
+/* 倒數工具 */
+
+.countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 35px 0 55px;
+}
+
+.countdown-card {
+    background: #F3E8E1;
+    border-radius: 12px;
+    padding: 25px 12px;
+}
+
+.countdown-label {
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    color: #947B66;
+}
+
+.countdown-number {
+    font-size: 34px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 1.3;
+    font-variant-numeric: tabular-nums;
+}
+
+.countdown-unit {
+    font-size: 12px;
+    margin-top: 8px;
+    color: #A18D7B;
+}
+
+/* 相遇時間：奶油風四欄 */
+
+.meeting-time-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    align-items: center;
+    justify-items: center;
+    gap: 2px;
+}
+
+.meeting-time-item {
+    min-width: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.meeting-time-number {
+    font-family: 'Noto Serif JP', serif;
+    color: #806B5A;
+    font-size: clamp(20px, 5.5vw, 34px);
+    font-weight: 500;
+    line-height: 1.5;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.meeting-time-label {
+    font-family: 'Noto Serif JP', serif;
+    color: #A18D7B;
+    font-size: 9px;
+    font-weight: 500;
+    margin-top: 7px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.meeting-footer {
+    font-family: 'Noto Serif JP', serif;
+    color: #A18D7B;
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-top: 15px;
+}
+
+/* 天氣區域 */
+
+.weather-section {
+    margin: 45px 0 60px;
+    padding: 25px 15px;
+    background: #F3E8E1;
+    border-radius: 12px;
+}
+
+.section-title {
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.section-subtitle {
+    font-size: 12px;
+    color: #A18D7B;
+    letter-spacing: 1px;
+}
+
+.weather-placeholder {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #A18D7B;
+}
+
+/* 收藏分類 */
+
+.memories-section {
+    margin-top: 60px;
+}
+
+.memories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 30px;
+}
+
+.memory-card {
+    min-height: 125px;
+    padding: 20px 8px;
+    background: #F3E8E1;
+    border-radius: 12px;
+    color: #806B5A;
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.memory-card:hover {
+    transform: translateY(-4px);
+    background: #EDE0D7;
+}
+
+.memory-card i {
+    width: 25px;
+    height: 25px;
+    stroke-width: 1.3;
+    color: #947B66;
+}
+
+.memory-name {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+
+.memory-japanese {
+    font-size: 10px;
+    color: #A18D7B;
+    margin-top: -7px;
+}
+
+/* 頁尾 */
+
+footer {
+    margin-top: 65px;
+    font-size: 11px;
+    color: #B5A393;
+    letter-spacing: 1px;
+    line-height: 2;
+}
+
+/* 手機版 */
+
+@media (max-width: 480px) {
 
     body {
-      margin: 0;
-      padding: 0 20px 60px;
-      background: #FBF8F3;
-      color: #806B5A;
-      font-family: 'Noto Serif JP', serif;
-      text-align: center;
+        padding: 0 15px 45px;
     }
-
-    .container {
-      width: 100%;
-      max-width: 760px;
-      margin: 0 auto;
-    }
-
-    /* 封面照片 */
 
     .cover-photo {
-      width: 100%;
-      max-width: 680px;
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-      border-radius: 12px;
-      display: block;
-      margin: 30px auto;
+        margin-top: 20px;
     }
-
-    /* 網站標題 */
 
     .site-title {
-      margin: 35px 0 12px;
-      font-size: 28px;
-      font-weight: 500;
-      letter-spacing: 1px;
-      line-height: 1.6;
+        font-size: 23px;
     }
-
-    .subtitle {
-      font-size: 15px;
-      color: #A18D7B;
-      letter-spacing: 2px;
-      margin: 8px 0;
-    }
-
-    .description {
-      font-size: 13px;
-      color: #A18D7B;
-      letter-spacing: 1px;
-      margin: 15px 0 45px;
-    }
-
-    /* 倒數卡片 */
 
     .countdown-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin: 35px 0 55px;
+        gap: 10px;
     }
 
     .countdown-card {
-      background: #F3E8E1;
-      border-radius: 12px;
-      padding: 25px 12px;
-    }
-
-    .countdown-label {
-      font-size: 13px;
-      letter-spacing: 1px;
-      margin-bottom: 16px;
-      color: #947B66;
+        padding: 22px 8px;
     }
 
     .countdown-number {
-      font-size: 34px;
-      font-weight: 500;
-      letter-spacing: 1px;
-      line-height: 1.3;
+        font-size: 28px;
     }
 
-    .countdown-unit {
-      font-size: 12px;
-      margin-top: 8px;
-      color: #A18D7B;
+    .meeting-time-number {
+        font-size: clamp(19px, 5.5vw, 26px);
     }
 
-    /* 天氣區域 */
-
-    .weather-section {
-      margin: 45px 0 60px;
-      padding: 25px 15px;
-      background: #F3E8E1;
-      border-radius: 12px;
-    }
-
-    .section-title {
-      font-size: 19px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      margin-bottom: 12px;
-    }
-
-    .section-subtitle {
-      font-size: 12px;
-      color: #A18D7B;
-      letter-spacing: 1px;
-    }
-
-    .weather-placeholder {
-      margin-top: 18px;
-      font-size: 13px;
-      color: #A18D7B;
-    }
-
-    /* 收藏分類 */
-
-    .memories-section {
-      margin-top: 60px;
+    .meeting-time-label {
+        font-size: 8px;
     }
 
     .memories-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 30px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
 
     .memory-card {
-      min-height: 125px;
-      padding: 20px 8px;
-      background: #F3E8E1;
-      border-radius: 12px;
-      color: #806B5A;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      transition: transform 0.25s ease,
-                  background 0.25s ease;
-    }
-
-    .memory-card:hover {
-      transform: translateY(-4px);
-      background: #EDE0D7;
-    }
-
-    .memory-card i {
-      width: 25px;
-      height: 25px;
-      stroke-width: 1.3;
-      color: #947B66;
-    }
-
-    .memory-name {
-      font-size: 13px;
-      letter-spacing: 0.5px;
-    }
-
-    .memory-japanese {
-      font-size: 10px;
-      color: #A18D7B;
-      margin-top: -7px;
-    }
-
-    /* 頁尾 */
-
-    footer {
-      margin-top: 65px;
-      font-size: 11px;
-      color: #B5A393;
-      letter-spacing: 1px;
-      line-height: 2;
-    }
-
-    /* 手機版 */
-
-    @media (max-width: 480px) {
-
-      body {
-        padding: 0 15px 45px;
-      }
-
-      .cover-photo {
-        margin-top: 20px;
-      }
-
-      .site-title {
-        font-size: 23px;
-      }
-
-      .countdown-grid {
-        gap: 10px;
-      }
-
-      .countdown-card {
-        padding: 22px 8px;
-      }
-
-      .countdown-number {
-        font-size: 28px;
-      }
-
-      .memories-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
-
-      .memory-card {
         min-height: 118px;
-      }
+    }
+}
+
+@media (min-width: 600px) {
+    .meeting-time-grid {
+        column-gap: 12px;
     }
 
-  </style>
+    .meeting-time-number {
+        font-size: 34px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-  <main class="container">
+<main class="container">
 
-    <!-- 封面照片 -->
-
+    <!-- 首頁代表照片 -->
     <img
-      src="images/cover.jpg"
-      alt="Wen & Yuuka"
-      class="cover-photo"
+        src="images/cover.jpg"
+        alt="Wen & Yuuka"
+        class="cover-photo"
     >
 
     <!-- 網站標題 -->
-
     <h1 class="site-title">
-      Forever My Beloved Yuuka
+        Forever My Beloved Yuuka
     </h1>
 
     <p class="subtitle">
-      Wen & Yuuka ♡
+        Wen & Yuuka ♡
     </p>
 
     <p class="description">
-      ふたりの大切な思い出を、ひとつずつ。
+        ふたりの大切な思い出を、ひとつずつ。
     </p>
 
-
-    <!-- 倒數與相遇天數 -->
-
+    <!-- 倒數工具 -->
     <section class="countdown-grid">
 
-      <div class="countdown-card">
+        <!-- 下次約會倒數 -->
+        <div class="countdown-card">
 
-        <div class="countdown-label">
-          次のデートまで
+            <div class="countdown-label">
+                次のデートまで
+            </div>
+
+            <div
+                class="countdown-number"
+                id="date-countdown"
+            >
+                --
+            </div>
+
+            <div class="countdown-unit">
+                DAYS
+            </div>
+
         </div>
 
-        <div class="countdown-number" id="date-countdown">
-          --
+        <!-- 相遇天數與時間 -->
+        <div class="countdown-card">
+
+            <div class="countdown-label">
+                優花と出会った日
+            </div>
+
+            <div class="meeting-time-grid">
+
+                <div class="meeting-time-item">
+                    <div
+                        class="meeting-time-number"
+                        id="meeting-days"
+                    >
+                        --
+                    </div>
+                    <div class="meeting-time-label">
+                        DAYS
+                    </div>
+                </div>
+
+                <div class="meeting-time-item">
+                    <div
+                        class="meeting-time-number"
+                        id="meeting-hours"
+                    >
+                        00
+                    </div>
+                    <div class="meeting-time-label">
+                        HOURS
+                    </div>
+                </div>
+
+                <div class="meeting-time-item">
+                    <div
+                        class="meeting-time-number"
+                        id="meeting-minutes"
+                    >
+                        00
+                    </div>
+                    <div class="meeting-time-label">
+                        MINUTES
+                    </div>
+                </div>
+
+                <div class="meeting-time-item">
+                    <div
+                        class="meeting-time-number"
+                        id="meeting-seconds"
+                    >
+                        00
+                    </div>
+                    <div class="meeting-time-label">
+                        SECONDS
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="meeting-footer">
+                2024.06.29 — これからも一緒に
+            </div>
+
         </div>
-
-        <div class="countdown-unit">
-          DAYS
-        </div>
-
-      </div>
-
-
-      <div class="countdown-card">
-
-        <div class="countdown-label">
-          優花と出会った日
-        </div>
-
-        <div class="countdown-number" id="meeting-days">
-          --
-        </div>
-
-        <div class="countdown-unit">
-          DAYS
-        </div>
-
-      </div>
 
     </section>
 
-
-    <!-- 大阪天氣 -->
-
+    <!-- 天氣區域 -->
     <section class="weather-section">
 
-      <h2 class="section-title">
-        Weather in Osaka
-      </h2>
+        <div class="section-title">
+            大阪の天気
+        </div>
 
-      <p class="section-subtitle">
-        大阪府 │ 東大阪市
-      </p>
+        <div class="section-subtitle">
+            大阪府 │ 東大阪市
+        </div>
 
-      <div class="weather-placeholder">
-        天気情報を準備中です。
-      </div>
+        <div class="weather-placeholder">
+            Weather
+        </div>
 
     </section>
 
-
-    <!-- 回憶收藏 -->
-
+    <!-- 12 個回憶收藏分類 -->
     <section class="memories-section">
 
-      <h2 class="section-title">
-        Our Memories
-      </h2>
+        <div class="section-title">
+            MEMORIES COLLECTION
+        </div>
 
-      <p class="section-subtitle">
-        ふたりの大切なコレクション
-      </p>
+        <div class="section-subtitle">
+            ふたりの大切な記録
+        </div>
 
+        <div class="memories-grid">
 
-      <div class="memories-grid">
+            <a href="photos.html" class="memory-card">
+                <i data-lucide="camera"></i>
+                <span class="memory-name">Photos</span>
+                <span class="memory-japanese">ふたりの写真</span>
+            </a>
 
-        <a href="photos.html" class="memory-card">
-          <i data-lucide="camera"></i>
-          <span class="memory-name">Photos</span>
-          <span class="memory-japanese">ふたりの写真</span>
-        </a>
+            <a href="gifts.html" class="memory-card">
+                <i data-lucide="gift"></i>
+                <span class="memory-name">Illustrations & Gifts</span>
+                <span class="memory-japanese">イラストと贈り物</span>
+            </a>
 
-        <a href="gifts.html" class="memory-card">
-          <i data-lucide="gift"></i>
-          <span class="memory-name">Illustrations & Gifts</span>
-          <span class="memory-japanese">イラストと贈り物</span>
-        </a>
+            <a href="movies.html" class="memory-card">
+                <i data-lucide="clapperboard"></i>
+                <span class="memory-name">Movies</span>
+                <span class="memory-japanese">映画</span>
+            </a>
 
-        <a href="movies.html" class="memory-card">
-          <i data-lucide="clapperboard"></i>
-          <span class="memory-name">Movies</span>
-          <span class="memory-japanese">映画</span>
-        </a>
+            <a href="games.html" class="memory-card">
+                <i data-lucide="gamepad-2"></i>
+                <span class="memory-name">Games</span>
+                <span class="memory-japanese">ふたりのゲーム</span>
+            </a>
 
-        <a href="games.html" class="memory-card">
-          <i data-lucide="gamepad-2"></i>
-          <span class="memory-name">Games</span>
-          <span class="memory-japanese">ふたりのゲーム</span>
-        </a>
+            <a href="important-days.html" class="memory-card">
+                <i data-lucide="calendar-heart"></i>
+                <span class="memory-name">Important Days</span>
+                <span class="memory-japanese">大切な記念日</span>
+            </a>
 
-        <a href="important-days.html" class="memory-card">
-          <i data-lucide="calendar-heart"></i>
-          <span class="memory-name">Important Days</span>
-          <span class="memory-japanese">大切な記念日</span>
-        </a>
+            <a href="little-things.html" class="memory-card">
+                <i data-lucide="heart"></i>
+                <span class="memory-name">Little Things</span>
+                <span class="memory-japanese">小さな日常</span>
+            </a>
 
-        <a href="little-things.html" class="memory-card">
-          <i data-lucide="coffee"></i>
-          <span class="memory-name">Little Things</span>
-          <span class="memory-japanese">小さな日常</span>
-        </a>
+            <a href="music.html" class="memory-card">
+                <i data-lucide="music-2"></i>
+                <span class="memory-name">Music</span>
+                <span class="memory-japanese">ふたりの音楽</span>
+            </a>
 
-        <a href="music.html" class="memory-card">
-          <i data-lucide="music-2"></i>
-          <span class="memory-name">Music</span>
-          <span class="memory-japanese">ふたりの音楽</span>
-        </a>
+            <a href="letters.html" class="memory-card">
+                <i data-lucide="mail"></i>
+                <span class="memory-name">Letters</span>
+                <span class="memory-japanese">手紙とメッセージ</span>
+            </a>
 
-        <a href="letters.html" class="memory-card">
-          <i data-lucide="mail"></i>
-          <span class="memory-name">Letters</span>
-          <span class="memory-japanese">手紙とメッセージ</span>
-        </a>
+            <a href="places.html" class="memory-card">
+                <i data-lucide="map-pin"></i>
+                <span class="memory-name">Places</span>
+                <span class="memory-japanese">ふたりで行った場所</span>
+            </a>
 
-        <a href="places.html" class="memory-card">
-          <i data-lucide="map-pin"></i>
-          <span class="memory-name">Places</span>
-          <span class="memory-japanese">ふたりで行った場所</span>
-        </a>
+            <a href="timeline.html" class="memory-card">
+                <i data-lucide="clock-3"></i>
+                <span class="memory-name">Timeline</span>
+                <span class="memory-japanese">ふたりの時間軸</span>
+            </a>
 
-        <a href="timeline.html" class="memory-card">
-          <i data-lucide="clock-3"></i>
-          <span class="memory-name">Timeline</span>
-          <span class="memory-japanese">ふたりの時間軸</span>
-        </a>
+            <a href="food.html" class="memory-card">
+                <i data-lucide="utensils"></i>
+                <span class="memory-name">Food</span>
+                <span class="memory-japanese">ふたりのごはん</span>
+            </a>
 
-        <a href="food.html" class="memory-card">
-          <i data-lucide="utensils"></i>
-          <span class="memory-name">Food</span>
-          <span class="memory-japanese">ふたりのごはん</span>
-        </a>
+            <a href="wishlist.html" class="memory-card">
+                <i data-lucide="sparkles"></i>
+                <span class="memory-name">Wishlist</span>
+                <span class="memory-japanese">いつか叶えたいこと</span>
+            </a>
 
-        <a href="wishlist.html" class="memory-card">
-          <i data-lucide="heart"></i>
-          <span class="memory-name">Wishlist</span>
-          <span class="memory-japanese">いつか叶えたいこと</span>
-        </a>
-
-      </div>
+        </div>
 
     </section>
 
-
     <!-- 頁尾 -->
-
     <footer>
-      Made with love, for Yuuka ♡
-      <br>
-      Wen & Yuuka
+        Made with love, for Yuuka ♡
+        <br>
+        Wen & Yuuka
     </footer>
 
-  </main>
+</main>
 
+<script>
 
-  <!-- 倒數計算 -->
+/* 下次約會倒數 */
+function updateDateCountdown() {
 
-  <script>
+    const today = new Date();
 
-    function updateDays() {
-
-      const today = new Date();
-
-      const todayDate = new Date(
+    const todayDate = new Date(
         today.getFullYear(),
         today.getMonth(),
         today.getDate()
-      );
+    );
 
-      // 下次約會日期
+    const dateTarget = new Date(2027, 0, 31);
 
-      const dateTarget = new Date(2027, 0, 31);
+    const dateDifference = Math.ceil(
+        (dateTarget - todayDate) / 86400000
+    );
 
-      const dateDifference = Math.ceil(
-        (dateTarget - todayDate) / (1000 * 60 * 60 * 24)
-      );
-
-      document.getElementById("date-countdown").textContent =
+    document.getElementById("date-countdown").textContent =
         dateDifference >= 0 ? dateDifference : 0;
+}
 
 
-      // 與優花相遇的天數
+/* 優花と出会った日：天、時、分、秒 */
+function updateMeetingCounter() {
 
-      const meetingDate = new Date(2024, 5, 29);
+    const start = new Date("2024-06-29T00:00:00+09:00");
 
-      const meetingDifference = Math.floor(
-        (todayDate - meetingDate) / (1000 * 60 * 60 * 24)
-      ) + 1;
+    const now = new Date();
 
-      document.getElementById("meeting-days").textContent =
-        meetingDifference;
+    let diff = Math.max(
+        0,
+        now.getTime() - start.getTime()
+    );
 
-    }
+    const days = Math.floor(diff / 86400000);
 
-    updateDays();
+    const hours = Math.floor(
+        (diff % 86400000) / 3600000
+    );
 
-    // 細線圖示
+    const minutes = Math.floor(
+        (diff % 3600000) / 60000
+    );
 
-    lucide.createIcons();
+    const seconds = Math.floor(
+        (diff % 60000) / 1000
+    );
 
-  </script>
+    document.getElementById("meeting-days").textContent = days;
+
+    document.getElementById("meeting-hours").textContent =
+        String(hours).padStart(2, "0");
+
+    document.getElementById("meeting-minutes").textContent =
+        String(minutes).padStart(2, "0");
+
+    document.getElementById("meeting-seconds").textContent =
+        String(seconds).padStart(2, "0");
+}
+
+
+/* 啟動 */
+updateDateCountdown();
+updateMeetingCounter();
+
+setInterval(updateMeetingCounter, 1000);
+
+setInterval(updateDateCountdown, 60000);
+
+
+/* 線條圖示 */
+lucide.createIcons();
+
+</script>
 
 </body>
 </html>
