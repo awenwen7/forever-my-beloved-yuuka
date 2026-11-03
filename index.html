@@ -85,7 +85,7 @@ body {
     grid-template-columns: 34px minmax(0, 1fr) 38px;
     align-items: center;
     gap: 8px;
-    margin: 8px 0 10px;
+    margin: 8px 0 3px;
 }
 
 .player-time,
@@ -134,7 +134,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    margin-top: 5px;
+    margin-top: 0px;
 }
 
 .player-controls button {
@@ -932,15 +932,17 @@ function previousTrack() {
 /* 播放與暫停圖示 */
 
 audio.addEventListener("play", () => {
+    document.getElementById("play-button").innerHTML =
+        '<i data-lucide="pause"></i>';
 
-    document.getElementById("play-button").textContent = "Ⅱ";
-
+    lucide.createIcons();
 });
 
 audio.addEventListener("pause", () => {
+    document.getElementById("play-button").innerHTML =
+        '<i data-lucide="play"></i>';
 
-    document.getElementById("play-button").textContent = "▶";
-
+    lucide.createIcons();
 });
 
 
