@@ -14,6 +14,15 @@
 
 <script src="https://unpkg.com/lucide@latest"></script>
 
+/* 歌曲資訊全部粗體 */
+
+.now-playing,
+.song-title,
+.song-artist {
+    font-weight: 700;
+    color: #806B5A;
+}
+    
 <style>
 
 /* 基本設定 */
@@ -82,11 +91,30 @@ body {
 /* 播放進度與時間 */
 
 .player-progress-row {
-    display: grid;
-    grid-template-columns: 34px minmax(0, 1fr) 38px;
-    align-items: center;
-    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
     margin: 8px 0 3px;
+}
+
+.progress-bar {
+    order: 1;
+    width: 100%;
+    height: 3px;
+    appearance: none;
+    -webkit-appearance: none;
+    background: #E5D8CC;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+}
+
+.player-time-row {
+    order: 2;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .player-time,
@@ -95,10 +123,6 @@ body {
     color: #A18D7B;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
-}
-
-.remaining-time {
-    text-align: right;
 }
 
 .progress-bar {
@@ -424,11 +448,6 @@ footer {
         font-size: 9px;
     }
 
-    .player-progress-row {
-        grid-template-columns: 32px minmax(0, 1fr) 36px;
-        gap: 6px;
-    }
-
     .player-controls {
         gap: 18px;
     }
@@ -520,27 +539,30 @@ footer {
 
         <div class="player-progress-row">
 
-            <span class="player-time" id="player-time">
-                0:00
-            </span>
+            <div class="player-progress-row">
 
-            <input
-                type="range"
-                class="progress-bar"
-                id="progress-bar"
-                min="0"
-                max="100"
-                value="0"
-                step="0.1"
-                aria-label="播放進度"
-            >
+    <input
+        type="range"
+        class="progress-bar"
+        id="progress-bar"
+        min="0"
+        max="100"
+        value="0"
+        step="0.1"
+        aria-label="播放進度"
+    >
 
-            <span class="remaining-time" id="remaining-time">
-                -0:00
-            </span>
+    <div class="player-time-row">
 
-        </div>
+        <span class="player-time" id="player-time">
+            0:00
+        </span>
 
+        <span class="remaining-time" id="remaining-time">
+            -0:00
+        </span>
+
+    </div>
 
         <!-- 播放控制 -->
 
