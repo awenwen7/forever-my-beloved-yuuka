@@ -129,26 +129,53 @@ body {
 
 /* 播放控制 */
 
+/* 圓形線條播放按鈕 */
+
 .player-controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 18px;
     margin-top: 0px;
 }
 
 .player-controls button {
-    border: none;
-    background: none;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #D8C8BA;
+    border-radius: 50%;
+    background: transparent;
+
     color: #806B5A;
-    font-size: 19px;
     cursor: pointer;
-    padding: 2px;
-    font-family: inherit;
+    padding: 0;
+
+    transition: background 0.2s ease;
+}
+
+.player-controls button:hover {
+    background: #F3E8E1;
+}
+
+.player-controls button i {
+    width: 15px;
+    height: 15px;
+    stroke-width: 1.4;
 }
 
 .player-controls .play-button {
-    font-size: 22px;
+    width: 40px;
+    height: 40px;
+}
+
+.player-controls .play-button i {
+    width: 18px;
+    height: 18px;
+    stroke-width: 1.4;
 }
 
 
@@ -514,29 +541,28 @@ footer {
 
         <!-- 播放控制 -->
 
-        <div class="player-controls">
+       <!-- 播放控制 -->
 
-            <button onclick="previousTrack()">
-                ‹
-            </button>
+<div class="player-controls">
 
-            <button
-                class="play-button"
-                id="play-button"
-                onclick="togglePlay()"
-            >
-                ▶
-            </button>
+    <button onclick="previousTrack()" aria-label="Previous track">
+        <i data-lucide="skip-back"></i>
+    </button>
 
-            <button onclick="nextTrack()">
-                ›
-            </button>
+    <button
+        class="play-button"
+        id="play-button"
+        onclick="togglePlay()"
+        aria-label="Play"
+    >
+        <i data-lucide="play"></i>
+    </button>
 
-        </div>
+    <button onclick="nextTrack()" aria-label="Next track">
+        <i data-lucide="skip-forward"></i>
+    </button>
 
-        <audio id="audio-player"></audio>
-
-    </div>
+</div>
 
 
     <!-- 首頁代表照片 -->
