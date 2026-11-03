@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, nofollow"> 
+<meta name="robots" content="noindex, nofollow">
 
 <title>Forever My Beloved Yuuka</title>
 
@@ -15,6 +14,9 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
+
+/* 基本設定 */
+
 * {
     box-sizing: border-box;
 }
@@ -34,6 +36,122 @@ body {
     margin: 0 auto;
 }
 
+
+/* 音樂播放器 */
+
+.music-player {
+    width: 100%;
+    max-width: 680px;
+    margin: 15px auto 20px;
+    padding: 10px 12px;
+    font-family: 'Noto Serif JP', serif;
+    color: #806B5A;
+}
+
+/* 歌曲資訊 */
+
+.player-top {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.now-playing {
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.song-title {
+    font-size: 12px;
+    color: #A18D7B;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.song-artist {
+    font-size: 10px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* 播放進度與時間 */
+
+.player-progress-row {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr) 38px;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0 10px;
+}
+
+.player-time,
+.remaining-time {
+    font-size: 10px;
+    color: #A18D7B;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.remaining-time {
+    text-align: right;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 3px;
+    appearance: none;
+    -webkit-appearance: none;
+    background: #E5D8CC;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+}
+
+.progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #A18D7B;
+}
+
+.progress-bar::-moz-range-thumb {
+    width: 9px;
+    height: 9px;
+    border: none;
+    border-radius: 50%;
+    background: #A18D7B;
+}
+
+/* 播放控制 */
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 5px;
+}
+
+.player-controls button {
+    border: none;
+    background: none;
+    color: #806B5A;
+    font-size: 19px;
+    cursor: pointer;
+    padding: 2px;
+    font-family: inherit;
+}
+
+.player-controls .play-button {
+    font-size: 22px;
+}
+
+
 /* 首頁照片 */
 
 .cover-photo {
@@ -45,6 +163,7 @@ body {
     display: block;
     margin: 30px auto;
 }
+
 
 /* 標題 */
 
@@ -69,6 +188,7 @@ body {
     letter-spacing: 1px;
     margin: 15px 0 45px;
 }
+
 
 /* 倒數工具 */
 
@@ -105,6 +225,7 @@ body {
     margin-top: 8px;
     color: #A18D7B;
 }
+
 
 /* 相遇時間：奶油風四欄 */
 
@@ -154,6 +275,7 @@ body {
     margin-top: 15px;
 }
 
+
 /* 天氣區域 */
 
 .weather-section {
@@ -181,6 +303,7 @@ body {
     font-size: 13px;
     color: #A18D7B;
 }
+
 
 /* 收藏分類 */
 
@@ -237,6 +360,7 @@ body {
     margin-top: -7px;
 }
 
+
 /* 頁尾 */
 
 footer {
@@ -247,12 +371,39 @@ footer {
     line-height: 2;
 }
 
+
 /* 手機版 */
 
 @media (max-width: 480px) {
 
     body {
         padding: 0 15px 45px;
+    }
+
+    .music-player {
+        padding: 8px 5px;
+    }
+
+    .player-top {
+        grid-template-columns: 1fr 1.5fr 1fr;
+        gap: 4px;
+    }
+
+    .song-title {
+        font-size: 11px;
+    }
+
+    .song-artist {
+        font-size: 9px;
+    }
+
+    .player-progress-row {
+        grid-template-columns: 32px minmax(0, 1fr) 36px;
+        gap: 6px;
+    }
+
+    .player-controls {
+        gap: 18px;
     }
 
     .cover-photo {
@@ -294,6 +445,7 @@ footer {
 }
 
 @media (min-width: 600px) {
+
     .meeting-time-grid {
         column-gap: 12px;
     }
@@ -302,165 +454,102 @@ footer {
         font-size: 34px;
     }
 }
- /* 音樂播放器 */
 
-.music-player {
-    width: 100%;
-    max-width: 680px;
-    margin: 15px auto 20px;
-    padding: 10px 12px;
-    font-family: 'Noto Serif JP', serif;
-    color: #806B5A;
-}
-
-.player-top,
-.player-bottom {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr;
-    align-items: center;
-    gap: 8px;
-}
-
-.player-top {
-    margin-bottom: 8px;
-}
-
-.now-playing {
-    font-size: 9px;
-    letter-spacing: 1px;
-    text-align: left;
-    white-space: nowrap;
-}
-
-.song-title {
-    font-size: 12px;
-    color: #A18D7B;
-    text-align: center;
-    white-space: nowrap;
-}
-
-.song-artist {
-    font-size: 10px;
-    text-align: right;
-    white-space: nowrap;
-}
-
-.player-time {
-    font-size: 10px;
-    text-align: left;
-    font-variant-numeric: tabular-nums;
-}
-
-.player-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-}
-
-.player-controls button {
-    border: none;
-    background: none;
-    color: #806B5A;
-    font-size: 17px;
-    cursor: pointer;
-    padding: 2px;
-    font-family: inherit;
-}
-
-.player-controls .play-button {
-    font-size: 21px;
-}
-
-.player-volume {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 5px;
-}
-
-.player-volume input {
-    width: 48px;
-    accent-color: #A18D7B;
-}
-
-@media (max-width: 480px) {
-    .music-player {
-        padding: 8px 5px;
-    }
-
-    .player-top,
-    .player-bottom {
-        grid-template-columns: 1fr 1.5fr 1fr;
-        gap: 4px;
-    }
-
-    .song-title {
-        font-size: 11px;
-    }
-
-    .song-artist {
-        font-size: 9px;
-    }
-
-    .player-controls {
-        gap: 11px;
-    }
-
-    .player-volume input {
-        width: 38px;
-    }
-}   
 </style>
 </head>
+
 
 <body>
 
 <main class="container">
-<!-- 音樂播放器 -->
-<div class="music-player">
 
-    <div class="player-top">
-        <span class="now-playing">NOW PLAYING</span>
-        <span class="song-title" id="song-title">梅雨</span>
-        <span class="song-artist" id="song-artist">ゲシュタルト乙女</span>
-    </div>
 
-    <div class="player-bottom">
+    <!-- 音樂播放器 -->
 
-        <span class="player-time" id="player-time">0:00</span>
+    <div class="music-player">
 
-        <div class="player-controls">
-            <button onclick="previousTrack()">‹</button>
-            <button class="play-button" id="play-button" onclick="togglePlay()">▶</button>
-            <button onclick="nextTrack()">›</button>
+        <!-- 歌曲資訊 -->
+
+        <div class="player-top">
+
+            <span class="now-playing">
+                NOW PLAYING
+            </span>
+
+            <span class="song-title" id="song-title">
+                梅雨
+            </span>
+
+            <span class="song-artist" id="song-artist">
+                ゲシュタルト乙女
+            </span>
+
         </div>
 
-        <div class="player-volume">
-            <span>♪</span>
+
+        <!-- 播放進度與時間 -->
+
+        <div class="player-progress-row">
+
+            <span class="player-time" id="player-time">
+                0:00
+            </span>
+
             <input
                 type="range"
+                class="progress-bar"
+                id="progress-bar"
                 min="0"
-                max="1"
-                step="0.01"
-                value="0.7"
-                id="volume-control"
+                max="100"
+                value="0"
+                step="0.1"
             >
+
+            <span class="remaining-time" id="remaining-time">
+                -0:00
+            </span>
+
         </div>
+
+
+        <!-- 播放控制 -->
+
+        <div class="player-controls">
+
+            <button onclick="previousTrack()">
+                ‹
+            </button>
+
+            <button
+                class="play-button"
+                id="play-button"
+                onclick="togglePlay()"
+            >
+                ▶
+            </button>
+
+            <button onclick="nextTrack()">
+                ›
+            </button>
+
+        </div>
+
+        <audio id="audio-player"></audio>
 
     </div>
 
-    <audio id="audio-player"></audio>
 
-</div>
     <!-- 首頁代表照片 -->
+
     <img
         src="images/cover.jpg"
         alt="Wen & Yuuka"
         class="cover-photo"
     >
 
+
     <!-- 網站標題 -->
+
     <h1 class="site-title">
         Forever My Beloved Yuuka
     </h1>
@@ -473,10 +562,14 @@ footer {
         ふたりの大切な思い出を、ひとつずつ。
     </p>
 
+
     <!-- 倒數工具 -->
+
     <section class="countdown-grid">
 
+
         <!-- 下次約會倒數 -->
+
         <div class="countdown-card">
 
             <div class="countdown-label">
@@ -496,7 +589,9 @@ footer {
 
         </div>
 
+
         <!-- 相遇天數與時間 -->
+
         <div class="countdown-card">
 
             <div class="countdown-label">
@@ -506,51 +601,66 @@ footer {
             <div class="meeting-time-grid">
 
                 <div class="meeting-time-item">
+
                     <div
                         class="meeting-time-number"
                         id="meeting-days"
                     >
                         --
                     </div>
+
                     <div class="meeting-time-label">
                         DAYS
                     </div>
+
                 </div>
 
+
                 <div class="meeting-time-item">
+
                     <div
                         class="meeting-time-number"
                         id="meeting-hours"
                     >
                         00
                     </div>
+
                     <div class="meeting-time-label">
                         HOURS
                     </div>
+
                 </div>
 
+
                 <div class="meeting-time-item">
+
                     <div
                         class="meeting-time-number"
                         id="meeting-minutes"
                     >
                         00
                     </div>
+
                     <div class="meeting-time-label">
                         MINUTES
                     </div>
+
                 </div>
 
+
                 <div class="meeting-time-item">
+
                     <div
                         class="meeting-time-number"
                         id="meeting-seconds"
                     >
                         00
                     </div>
+
                     <div class="meeting-time-label">
                         SECONDS
                     </div>
+
                 </div>
 
             </div>
@@ -563,7 +673,9 @@ footer {
 
     </section>
 
+
     <!-- 天氣區域 -->
+
     <section class="weather-section">
 
         <div class="section-title">
@@ -580,7 +692,9 @@ footer {
 
     </section>
 
+
     <!-- 12 個回憶收藏分類 -->
+
     <section class="memories-section">
 
         <div class="section-title">
@@ -593,11 +707,13 @@ footer {
 
         <div class="memories-grid">
 
+
             <a href="photos.html" class="memory-card">
                 <i data-lucide="camera"></i>
                 <span class="memory-name">Photos</span>
                 <span class="memory-japanese">ふたりの写真</span>
             </a>
+
 
             <a href="gifts.html" class="memory-card">
                 <i data-lucide="gift"></i>
@@ -605,11 +721,13 @@ footer {
                 <span class="memory-japanese">イラストと贈り物</span>
             </a>
 
+
             <a href="movies.html" class="memory-card">
                 <i data-lucide="clapperboard"></i>
                 <span class="memory-name">Movies</span>
                 <span class="memory-japanese">映画</span>
             </a>
+
 
             <a href="games.html" class="memory-card">
                 <i data-lucide="gamepad-2"></i>
@@ -617,11 +735,13 @@ footer {
                 <span class="memory-japanese">ふたりのゲーム</span>
             </a>
 
+
             <a href="important-days.html" class="memory-card">
                 <i data-lucide="calendar-heart"></i>
                 <span class="memory-name">Important Days</span>
                 <span class="memory-japanese">大切な記念日</span>
             </a>
+
 
             <a href="little-things.html" class="memory-card">
                 <i data-lucide="heart"></i>
@@ -629,11 +749,13 @@ footer {
                 <span class="memory-japanese">小さな日常</span>
             </a>
 
+
             <a href="music.html" class="memory-card">
                 <i data-lucide="music-2"></i>
                 <span class="memory-name">Music</span>
                 <span class="memory-japanese">ふたりの音楽</span>
             </a>
+
 
             <a href="letters.html" class="memory-card">
                 <i data-lucide="mail"></i>
@@ -641,11 +763,13 @@ footer {
                 <span class="memory-japanese">手紙とメッセージ</span>
             </a>
 
+
             <a href="places.html" class="memory-card">
                 <i data-lucide="map-pin"></i>
                 <span class="memory-name">Places</span>
                 <span class="memory-japanese">ふたりで行った場所</span>
             </a>
+
 
             <a href="timeline.html" class="memory-card">
                 <i data-lucide="clock-3"></i>
@@ -653,11 +777,13 @@ footer {
                 <span class="memory-japanese">ふたりの時間軸</span>
             </a>
 
+
             <a href="food.html" class="memory-card">
                 <i data-lucide="utensils"></i>
                 <span class="memory-name">Food</span>
                 <span class="memory-japanese">ふたりのごはん</span>
             </a>
+
 
             <a href="wishlist.html" class="memory-card">
                 <i data-lucide="sparkles"></i>
@@ -665,22 +791,218 @@ footer {
                 <span class="memory-japanese">いつか叶えたいこと</span>
             </a>
 
+
         </div>
 
     </section>
 
+
     <!-- 頁尾 -->
+
     <footer>
         Made with love, for Yuuka ♡
         <br>
         Wen & Yuuka
     </footer>
 
+
 </main>
+
 
 <script>
 
+
+/* 音樂播放器 */
+
+const audio = document.getElementById("audio-player");
+
+const progressBar = document.getElementById("progress-bar");
+
+
+/* 歌曲清單 */
+
+const tracks = [
+
+    {
+        title: "梅雨",
+        artist: "ゲシュタルト乙女",
+        src: "music/梅雨.mp3"
+    },
+
+    {
+        title: "21",
+        artist: "Gracie Abrams",
+        src: "music/21.mp3"
+    }
+
+];
+
+let currentTrack = 0;
+
+
+/* 時間格式 */
+
+function formatTime(seconds) {
+
+    if (!Number.isFinite(seconds) || seconds < 0) {
+        seconds = 0;
+    }
+
+    const minutes = Math.floor(seconds / 60);
+
+    const remainingSeconds = Math.floor(seconds % 60);
+
+    return minutes + ":" +
+        String(remainingSeconds).padStart(2, "0");
+
+}
+
+
+/* 載入歌曲 */
+
+function loadTrack() {
+
+    audio.src = tracks[currentTrack].src;
+
+    document.getElementById("song-title").textContent =
+        tracks[currentTrack].title;
+
+    document.getElementById("song-artist").textContent =
+        tracks[currentTrack].artist;
+
+    document.getElementById("player-time").textContent = "0:00";
+
+    document.getElementById("remaining-time").textContent = "-0:00";
+
+    progressBar.value = 0;
+
+}
+
+
+/* 播放與暫停 */
+
+function togglePlay() {
+
+    if (audio.paused) {
+
+        audio.play().catch(error => {
+            console.log("無法播放音樂：", error);
+        });
+
+    } else {
+
+        audio.pause();
+
+    }
+
+}
+
+
+/* 下一首 */
+
+function nextTrack() {
+
+    currentTrack = (currentTrack + 1) % tracks.length;
+
+    loadTrack();
+
+    audio.play().catch(error => {
+        console.log("無法播放音樂：", error);
+    });
+
+}
+
+
+/* 上一首 */
+
+function previousTrack() {
+
+    currentTrack =
+        (currentTrack - 1 + tracks.length) % tracks.length;
+
+    loadTrack();
+
+    audio.play().catch(error => {
+        console.log("無法播放音樂：", error);
+    });
+
+}
+
+
+/* 播放與暫停圖示 */
+
+audio.addEventListener("play", () => {
+
+    document.getElementById("play-button").textContent = "Ⅱ";
+
+});
+
+audio.addEventListener("pause", () => {
+
+    document.getElementById("play-button").textContent = "▶";
+
+});
+
+
+/* 取得歌曲長度 */
+
+audio.addEventListener("loadedmetadata", () => {
+
+    progressBar.max = Number.isFinite(audio.duration)
+        ? audio.duration
+        : 100;
+
+});
+
+
+/* 更新播放進度 */
+
+audio.addEventListener("timeupdate", () => {
+
+    const duration = Number.isFinite(audio.duration)
+        ? audio.duration
+        : 0;
+
+    const currentTime = audio.currentTime;
+
+    const remaining = Math.max(0, duration - currentTime);
+
+    document.getElementById("player-time").textContent =
+        formatTime(currentTime);
+
+    document.getElementById("remaining-time").textContent =
+        "-" + formatTime(remaining);
+
+    progressBar.value = currentTime;
+
+});
+
+
+/* 拖曳播放進度 */
+
+progressBar.addEventListener("input", () => {
+
+    if (Number.isFinite(audio.duration)) {
+
+        audio.currentTime = Number(progressBar.value);
+
+    }
+
+});
+
+
+/* 歌曲播放完畢，自動下一首 */
+
+audio.addEventListener("ended", nextTrack);
+
+
+/* 初始化播放器 */
+
+loadTrack();
+
+
 /* 下次約會倒數 */
+
 function updateDateCountdown() {
 
     const today = new Date();
@@ -699,10 +1021,12 @@ function updateDateCountdown() {
 
     document.getElementById("date-countdown").textContent =
         dateDifference >= 0 ? dateDifference : 0;
+
 }
 
 
 /* 優花と出会った日：天、時、分、秒 */
+
 function updateMeetingCounter() {
 
     const start = new Date("2024-06-29T00:00:00+09:00");
@@ -738,102 +1062,25 @@ function updateMeetingCounter() {
 
     document.getElementById("meeting-seconds").textContent =
         String(seconds).padStart(2, "0");
+
 }
 
 
-/* 啟動 */
+/* 啟動倒數 */
+
 updateDateCountdown();
+
 updateMeetingCounter();
 
 setInterval(updateMeetingCounter, 1000);
 
 setInterval(updateDateCountdown, 60000);
 
-/* 音樂播放器 */
 
-const audio = document.getElementById("audio-player");
-
-const tracks = [
-    {
-        title: "梅雨",
-        artist: "ゲシュタルト乙女",
-        src: "music/梅雨.mp3"
-    },
-    {
-        title: "21",
-        artist: "Gracie Abrams",
-        src: "music/21.mp3"
-    }
-];
-
-let currentTrack = 0;
-
-function loadTrack() {
-    audio.src = tracks[currentTrack].src;
-
-    document.getElementById("song-title").textContent =
-        tracks[currentTrack].title;
-
-    document.getElementById("song-artist").textContent =
-        tracks[currentTrack].artist;
-
-    document.getElementById("player-time").textContent = "0:00";
-}
-
-function togglePlay() {
-    if (audio.paused) {
-        audio.play();
-        document.getElementById("play-button").textContent = "Ⅱ";
-    } else {
-        audio.pause();
-        document.getElementById("play-button").textContent = "▶";
-    }
-}
-
-function nextTrack() {
-    currentTrack = (currentTrack + 1) % tracks.length;
-    loadTrack();
-    audio.play();
-    document.getElementById("play-button").textContent = "Ⅱ";
-}
-
-function previousTrack() {
-    currentTrack =
-        (currentTrack - 1 + tracks.length) % tracks.length;
-
-    loadTrack();
-    audio.play();
-    document.getElementById("play-button").textContent = "Ⅱ";
-}
-
-audio.addEventListener("timeupdate", () => {
-    const minutes = Math.floor(audio.currentTime / 60);
-    const seconds = Math.floor(audio.currentTime % 60);
-
-    document.getElementById("player-time").textContent =
-        minutes + ":" + String(seconds).padStart(2, "0");
-});
-
-audio.addEventListener("ended", nextTrack);
-
-audio.addEventListener("play", () => {
-    document.getElementById("play-button").textContent = "Ⅱ";
-});
-
-audio.addEventListener("pause", () => {
-    document.getElementById("play-button").textContent = "▶";
-});
-
-document.getElementById("volume-control").addEventListener("input", (e) => {
-    audio.volume = Number(e.target.value);
-});
-
-audio.volume = 0.7;
-
-loadTrack();
-    
 /* 線條圖示 */
+
 lucide.createIcons();
+
 
 </script>
 
