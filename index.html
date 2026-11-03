@@ -302,13 +302,157 @@ footer {
         font-size: 34px;
     }
 }
+ /* 音樂播放器 */
+
+.music-player {
+    width: 100%;
+    max-width: 680px;
+    margin: 15px auto 20px;
+    padding: 10px 12px;
+    font-family: 'Noto Serif JP', serif;
+    color: #806B5A;
+}
+
+.player-top,
+.player-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    align-items: center;
+    gap: 8px;
+}
+
+.player-top {
+    margin-bottom: 8px;
+}
+
+.now-playing {
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.song-title {
+    font-size: 12px;
+    color: #A18D7B;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.song-artist {
+    font-size: 10px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.player-time {
+    font-size: 10px;
+    text-align: left;
+    font-variant-numeric: tabular-nums;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.player-controls button {
+    border: none;
+    background: none;
+    color: #806B5A;
+    font-size: 17px;
+    cursor: pointer;
+    padding: 2px;
+    font-family: inherit;
+}
+
+.player-controls .play-button {
+    font-size: 21px;
+}
+
+.player-volume {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+}
+
+.player-volume input {
+    width: 48px;
+    accent-color: #A18D7B;
+}
+
+@media (max-width: 480px) {
+    .music-player {
+        padding: 8px 5px;
+    }
+
+    .player-top,
+    .player-bottom {
+        grid-template-columns: 1fr 1.5fr 1fr;
+        gap: 4px;
+    }
+
+    .song-title {
+        font-size: 11px;
+    }
+
+    .song-artist {
+        font-size: 9px;
+    }
+
+    .player-controls {
+        gap: 11px;
+    }
+
+    .player-volume input {
+        width: 38px;
+    }
+}   
 </style>
 </head>
 
 <body>
 
 <main class="container">
+<!-- 音樂播放器 -->
+<div class="music-player">
 
+    <div class="player-top">
+        <span class="now-playing">NOW PLAYING</span>
+        <span class="song-title" id="song-title">梅雨</span>
+        <span class="song-artist" id="song-artist">ゲシュタルト乙女</span>
+    </div>
+
+    <div class="player-bottom">
+
+        <span class="player-time" id="player-time">0:00</span>
+
+        <div class="player-controls">
+            <button onclick="previousTrack()">‹</button>
+            <button class="play-button" id="play-button" onclick="togglePlay()">▶</button>
+            <button onclick="nextTrack()">›</button>
+        </div>
+
+        <div class="player-volume">
+            <span>♪</span>
+            <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.7"
+                id="volume-control"
+            >
+        </div>
+
+    </div>
+
+    <audio id="audio-player"></audio>
+
+</div>
     <!-- 首頁代表照片 -->
     <img
         src="images/cover.jpg"
@@ -605,7 +749,89 @@ setInterval(updateMeetingCounter, 1000);
 
 setInterval(updateDateCountdown, 60000);
 
+/* 音樂播放器 */
 
+const audio = document.getElementById("audio-player");
+
+const tracks = [
+    {
+        title: "梅雨",
+        artist: "ゲシュタルト乙女",
+        src: "music/梅雨.mp3"
+    },
+    {
+        title: "21",
+        artist: "Gracie Abrams",
+        src: "music/21.mp3"
+    }
+];
+
+let currentTrack = 0;
+
+function loadTrack() {
+    audio.src = tracks[currentTrack].src;
+
+    document.getElementById("song-title").textContent =
+        tracks[currentTrack].title;
+
+    document.getElementById("song-artist").textContent =
+        tracks[currentTrack].artist;
+
+    document.getElementById("player-time").textContent = "0:00";
+}
+
+function togglePlay() {
+    if (audio.paused) {
+        audio.play();
+        document.getElementById("play-button").textContent = "Ⅱ";
+    } else {
+        audio.pause();
+        document.getElementById("play-button").textContent = "▶";
+    }
+}
+
+function nextTrack() {
+    currentTrack = (currentTrack + 1) % tracks.length;
+    loadTrack();
+    audio.play();
+    document.getElementById("play-button").textContent = "Ⅱ";
+}
+
+function previousTrack() {
+    currentTrack =
+        (currentTrack - 1 + tracks.length) % tracks.length;
+
+    loadTrack();
+    audio.play();
+    document.getElementById("play-button").textContent = "Ⅱ";
+}
+
+audio.addEventListener("timeupdate", () => {
+    const minutes = Math.floor(audio.currentTime / 60);
+    const seconds = Math.floor(audio.currentTime % 60);
+
+    document.getElementById("player-time").textContent =
+        minutes + ":" + String(seconds).padStart(2, "0");
+});
+
+audio.addEventListener("ended", nextTrack);
+
+audio.addEventListener("play", () => {
+    document.getElementById("play-button").textContent = "Ⅱ";
+});
+
+audio.addEventListener("pause", () => {
+    document.getElementById("play-button").textContent = "▶";
+});
+
+document.getElementById("volume-control").addEventListener("input", (e) => {
+    audio.volume = Number(e.target.value);
+});
+
+audio.volume = 0.7;
+
+loadTrack();
+    
 /* 線條圖示 */
 lucide.createIcons();
 
