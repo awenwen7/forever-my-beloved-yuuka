@@ -16,29 +16,19 @@
 
 <style>
 
-/* ==============================
-   全站基本設定
-============================== */
+/* 基本設定 */
 
 * {
     box-sizing: border-box;
-}
-
-html {
-    font-family: 'Noto Serif JP', serif;
 }
 
 body {
     margin: 0;
     padding: 0 20px 60px;
     background: #FBF8F3;
-    font-family: 'Noto Serif JP', serif;
     color: #806B5A;
-}
-
-button,
-input {
-    font-family: inherit;
+    font-family: 'Noto Serif JP', serif;
+    text-align: center;
 }
 
 .container {
@@ -48,427 +38,170 @@ input {
 }
 
 
-/* ==============================
-   音樂播放器
-============================== */
+/* 音樂播放器 */
 
 .music-player {
     width: 100%;
     max-width: 100%;
     margin: 15px auto 20px;
-    padding: 12px 14px;
+    padding: 10px 12px;
     font-family: 'Noto Serif JP', serif;
     color: #806B5A;
-    border: 1px solid #E5DED6;
-    border-radius: 12px;
-    background: transparent;
 }
 
 
-/* 播放器上半部 */
+/* 音樂封面與黑膠唱片 */
 
-.player-main {
-    display: grid;
-    grid-template-columns: 120px minmax(0, 1fr) auto;
+.player-artwork {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 11px;
     width: 100%;
+    height: 86px;
+    margin: 0 auto 12px;
 }
 
-
-/* ==============================
-   專輯封面 + 黑膠唱片組合
-============================== */
-
-.record-composition {
-    width: 108px;
-    height: 62px;
+.album-cover {
     position: relative;
-    flex-shrink: 0;
-}
-
-
-/* 正方形專輯封面 */
-
-.album-sleeve {
-    width: 62px;
-    height: 62px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    overflow: hidden;
-    border-radius: 2px;
-    background: #E9DED2;
-    box-shadow: 0 2px 6px rgba(80, 60, 45, 0.2);
-    z-index: 4;
-}
-
-.album-sleeve img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-}
-
-.album-sleeve::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border: 1px solid rgba(255,255,255,0.35);
-    border-radius: 2px;
-    pointer-events: none;
-}
-
-
-/* ==============================
-   黑膠唱片
-============================== */
-
-.record-area {
-    width: 62px;
-    height: 62px;
-    position: absolute;
-    left: 46px;
-    top: 0;
     z-index: 2;
+    display: block;
+    width: 86px;
+    height: 86px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 3px 9px rgba(91, 68, 48, 0.18);
 }
 
-.cd-disc {
-    width: 62px;
-    height: 62px;
-    position: absolute;
-    left: 0;
-    top: 0;
+.vinyl-record {
+    position: relative;
+    flex: 0 0 86px;
+    width: 86px;
+    height: 86px;
+    margin-left: -14px;
     border-radius: 50%;
-    overflow: hidden;
 
     background:
         repeating-radial-gradient(
-            circle,
-            #171717 0px,
-            #242424 1px,
-            #111111 2px,
-            #292929 3px,
-            #151515 4px
+            circle at center,
+            #493A30 0px,
+            #493A30 1px,
+            #30251F 2px,
+            #30251F 3px,
+            #594638 4px,
+            #30251F 5px
         );
 
-    box-shadow:
-        0 2px 5px rgba(0,0,0,0.25),
-        inset 0 0 5px rgba(255,255,255,0.12);
+    box-shadow: 0 3px 9px rgba(91, 68, 48, 0.2);
+
+    animation: vinyl-spin 5s linear infinite;
+    animation-play-state: paused;
 }
 
+/* 黑膠唱片中央標籤 */
 
-/* 唱片表面反光 */
-
-.cd-disc::before {
+.vinyl-record::before {
     content: "";
     position: absolute;
-    inset: 0;
+    width: 30px;
+    height: 30px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 50%;
+
     background:
         radial-gradient(
             circle,
-            transparent 0 27%,
-            rgba(255,255,255,0.08) 28%,
-            transparent 30% 58%,
-            rgba(255,255,255,0.06) 59%,
-            transparent 61%
+            #806B5A 0%,
+            #806B5A 18%,
+            #D8C3AA 19%,
+            #D8C3AA 68%,
+            #A88D73 69%,
+            #A88D73 100%
         );
-    pointer-events: none;
-    z-index: 2;
+
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
+/* 黑膠唱片中央圓孔 */
 
-/* 唱片中央照片 */
-
-.record-label {
+.vinyl-record::after {
+    content: "";
     position: absolute;
-    width: 18px;
-    height: 18px;
+    width: 5px;
+    height: 5px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.65);
-    background: #D8C8BA;
-    z-index: 3;
+    background: #FBF8F3;
+    border: 1px solid #806B5A;
 }
 
-.record-label img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
+/* 播放時旋轉 */
+
+.vinyl-record.is-playing {
+    animation-play-state: running;
 }
 
-
-/* 唱片中心小孔 */
-
-.cd-center {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background: #F5EDE5;
-    box-shadow: 0 0 1px rgba(0,0,0,0.8);
-    z-index: 4;
-}
-
-
-/* 播放時黑膠旋轉 */
-
-.cd-disc.is-playing {
-    animation: cd-rotate 12s linear infinite;
-}
-
-@keyframes cd-rotate {
+@keyframes vinyl-spin {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
 }
 
 
-/* ==============================
-   奶油香檳金唱針臂
-============================== */
+/* 歌曲資訊 */
 
-.tonearm {
-    position: absolute;
-    width: 108px;
-    height: 80px;
-    left: 0;
-    top: -18px;
-    z-index: 5;
-    overflow: visible;
-    pointer-events: none;
-}
-
-
-/* 旋轉中心：唱片右上方固定座 */
-
-.tonearm .tonearm-group {
-    transform-box: view-box;
-    transform-origin: 101px 9px;
-
-    /* 未播放：停留在右側 */
-    transform: rotate(-30deg);
-
-    transition:
-        transform 0.7s ease;
-}
-
-
-/* 播放：往左移動 30 度 */
-
-.tonearm.is-playing .tonearm-group {
-    transform: rotate(0deg);
-}
-
-
-/* 唱臂陰影 */
-
-.tonearm .arm-shadow {
-    fill: none;
-    stroke: #92775E;
-    stroke-width: 3.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-
-/* 香檳金唱臂 */
-
-.tonearm .arm-silver {
-    fill: none;
-    stroke: #C5A98A;
-    stroke-width: 2.3;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-
-/* 奶油白反光 */
-
-.tonearm .arm-highlight {
-    fill: none;
-    stroke: #F8EFE3;
-    stroke-width: 0.7;
-    stroke-linecap: round;
-    opacity: 0.95;
-}
-
-
-/* 唱頭外框 */
-
-.tonearm .headshell-shadow {
-    fill: #92775E;
-    stroke: #806B5A;
-    stroke-width: 0.8;
-    stroke-linejoin: round;
-}
-
-
-/* 奶茶棕唱頭 */
-
-.tonearm .headshell-silver {
-    fill: #C5A98A;
-    stroke: #A88C72;
-    stroke-width: 0.7;
-    stroke-linejoin: round;
-}
-
-
-/* 唱針 */
-
-.tonearm .stylus {
-    stroke: #806B5A;
-    stroke-width: 1.2;
-    stroke-linecap: round;
-}
-
-.tonearm .stylus-tip {
-    fill: #806B5A;
-}
-
-
-/* 固定座 */
-
-.tonearm .pivot-base {
-    fill: #92775E;
-    stroke: #806B5A;
-    stroke-width: 0.8;
-}
-
-.tonearm .pivot-metal {
-    fill: #D8C3A8;
-    stroke: #A88C72;
-    stroke-width: 0.8;
-}
-
-.tonearm .pivot-center {
-    fill: #A88C72;
-    stroke: #F8EFE3;
-    stroke-width: 0.5;
-}
-
-
-/* ==============================
-   歌曲資訊
-============================== */
-
-.player-info {
-    min-width: 0;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 3px;
-
-    /* 只移動播放器內的歌曲資訊 */
-    transform: translateX(5px);
+.player-top {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
 }
 
 .now-playing {
     font-size: 9px;
     letter-spacing: 1px;
-    font-weight: 700;
-    color: #806B5A;
+    text-align: left;
     white-space: nowrap;
 }
 
 .song-title {
     font-size: 12px;
-    font-weight: 700;
-    color: #806B5A;
+    text-align: center;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .song-artist {
     font-size: 10px;
-    font-weight: 500;
-    color: #A18D7B;
+    text-align: right;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
+/* 歌曲資訊全部粗體 */
 
-/* ==============================
-   播放控制按鈕
-============================== */
-
-.player-controls {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 9px;
-    flex-shrink: 0;
-}
-
-.player-controls button {
-    width: 35px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #D8C8BA;
-    border-radius: 50%;
-    background: transparent;
+.now-playing,
+.song-title,
+.song-artist {
+    font-weight: 700;
     color: #806B5A;
-    cursor: pointer;
-    padding: 0;
-    transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.player-controls button:hover {
-    background: #F3E8E1;
-    transform: scale(1.05);
-}
-
-.player-controls button svg {
-    width: 17px;
-    height: 17px;
-    fill: #806B5A;
-    stroke: none;
-}
-
-.player-controls .play-button {
-    width: 42px;
-    height: 42px;
-    background: #B58D86;
-    border: 1px solid #B58D86;
-}
-
-.player-controls .play-button:hover {
-    background: #A78078;
-}
-
-.player-controls .play-button svg {
-    width: 19px;
-    height: 19px;
-    fill: #FFFFFF;
 }
 
 
-/* ==============================
-   播放進度與時間
-============================== */
+/* 播放進度與時間 */
 
 .player-progress-row {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 5px;
-    margin: 10px 0 0;
+    margin: 8px 0 3px;
 }
 
 .progress-bar {
@@ -515,9 +248,56 @@ input {
 }
 
 
-/* ==============================
-   首頁照片
-============================== */
+/* 播放控制 */
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: -12px;
+}
+
+.player-controls button {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #D8C8BA;
+    border-radius: 50%;
+    background: transparent;
+    color: #806B5A;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s ease;
+}
+
+.player-controls button:hover {
+    background: #F3E8E1;
+}
+
+/* 實心播放圖示 */
+
+.player-controls button svg {
+    width: 16px;
+    height: 16px;
+    fill: #806B5A;
+    stroke: none;
+}
+
+.player-controls button svg {
+    width: 14px;
+    height: 14px;
+}
+
+.player-controls .play-button svg {
+    width: 17px;
+    height: 17px;
+}
+
+
+/* 首頁照片 */
 
 .cover-photo {
     width: 100%;
@@ -555,9 +335,7 @@ input {
 }
 
 
-/* ==============================
-   倒數工具
-============================== */
+/* 倒數工具 */
 
 .countdown-grid {
     display: grid;
@@ -594,7 +372,7 @@ input {
 }
 
 
-/* 相遇時間 */
+/* 相遇時間：奶油風四欄 */
 
 .meeting-time-grid {
     display: grid;
@@ -643,9 +421,7 @@ input {
 }
 
 
-/* ==============================
-   天氣區域
-============================== */
+/* 天氣區域 */
 
 .weather-section {
     margin: 45px 0 60px;
@@ -674,9 +450,7 @@ input {
 }
 
 
-/* ==============================
-   收藏分類
-============================== */
+/* 收藏分類 */
 
 .memories-section {
     margin-top: 60px;
@@ -696,12 +470,16 @@ input {
     border-radius: 12px;
     color: #806B5A;
     text-decoration: none;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    transition: transform 0.25s ease, background 0.25s ease;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
 }
 
 .memory-card:hover {
@@ -728,9 +506,7 @@ input {
 }
 
 
-/* ==============================
-   頁尾
-============================== */
+/* 頁尾 */
 
 footer {
     margin-top: 65px;
@@ -741,9 +517,7 @@ footer {
 }
 
 
-/* ==============================
-   手機版
-============================== */
+/* 手機版 */
 
 @media (max-width: 480px) {
 
@@ -752,54 +526,32 @@ footer {
     }
 
     .music-player {
-        padding: 10px 8px;
+        padding: 8px 5px;
     }
 
-    .player-main {
-        grid-template-columns: 87px minmax(0, 1fr) auto;
-        gap: 6px;
+    .player-artwork {
+        height: 70px;
     }
 
-    .record-composition {
-        width: 77px;
-        height: 44px;
+    .album-cover {
+        width: 70px;
+        height: 70px;
     }
 
-    .album-sleeve {
-        width: 44px;
-        height: 44px;
+    .vinyl-record {
+        width: 70px;
+        height: 70px;
+        flex-basis: 70px;
     }
 
-    .record-area {
-        width: 44px;
-        height: 44px;
-        left: 33px;
+    .vinyl-record::before {
+        width: 25px;
+        height: 25px;
     }
 
-    .cd-disc {
-        width: 44px;
-        height: 44px;
-    }
-
-    .record-label {
-        width: 13px;
-        height: 13px;
-    }
-
-    .cd-center {
-        width: 2.5px;
-        height: 2.5px;
-    }
-
-    .tonearm {
-        width: 77px;
-        height: 57px;
-        top: -13px;
-    }
-
-    .now-playing {
-        font-size: 8px;
-        letter-spacing: 0.4px;
+    .player-top {
+        grid-template-columns: 1fr 1.5fr 1fr;
+        gap: 4px;
     }
 
     .song-title {
@@ -810,32 +562,8 @@ footer {
         font-size: 9px;
     }
 
-    .player-info {
-        transform: translateX(3px);
-    }
-
     .player-controls {
-        gap: 5px;
-    }
-
-    .player-controls button {
-        width: 29px;
-        height: 29px;
-    }
-
-    .player-controls button svg {
-        width: 14px;
-        height: 14px;
-    }
-
-    .player-controls .play-button {
-        width: 35px;
-        height: 35px;
-    }
-
-    .player-controls .play-button svg {
-        width: 16px;
-        height: 16px;
+        gap: 18px;
     }
 
     .cover-photo {
@@ -876,9 +604,6 @@ footer {
     }
 }
 
-
-/* 平板與電腦 */
-
 @media (min-width: 600px) {
 
     .meeting-time-grid {
@@ -888,31 +613,6 @@ footer {
     .meeting-time-number {
         font-size: 34px;
     }
-}
-
-
-/* ==============================
-   首頁文字置中
-   不更動原本圖形與排版
-============================== */
-
-.site-title,
-.subtitle,
-.description,
-.countdown-card,
-.weather-section,
-.memories-section,
-.memories-section .section-title,
-.memories-section .section-subtitle,
-footer {
-    text-align: center;
-}
-
-.countdown-label,
-.countdown-unit,
-.meeting-footer,
-.weather-placeholder {
-    text-align: center;
 }
 
 </style>
@@ -931,176 +631,41 @@ footer {
         <audio id="audio-player" preload="metadata"></audio>
 
 
-        <div class="player-main">
+        <!-- 音樂封面與黑膠唱片 -->
+
+        <div class="player-artwork">
+
+            <img
+                src="images/music-covers/odori-ko.jpg"
+                alt="踊り子 專輯封面"
+                class="album-cover"
+                id="album-cover"
+            >
+
+            <div
+                class="vinyl-record"
+                id="vinyl-record"
+                aria-label="黑膠唱片"
+            ></div>
+
+        </div>
 
 
-            <!-- 專輯封面與黑膠唱片 -->
+        <!-- 歌曲資訊 -->
 
-            <div class="record-composition">
+        <div class="player-top">
 
+            <span class="now-playing">
+                NOW PLAYING
+            </span>
 
-                <!-- 正方形專輯封面 -->
+            <span class="song-title" id="song-title">
+                踊り子
+            </span>
 
-                <div class="album-sleeve">
-
-                    <img
-                        id="cd-cover"
-                        src="images/music-covers/odori-ko.jpg"
-                        alt="Album cover"
-                    >
-
-                </div>
-
-
-                <!-- 黑膠唱片 -->
-
-                <div class="record-area">
-
-                    <div class="cd-disc" id="cd-disc">
-
-                        <div class="record-label">
-                            <img
-                                id="record-label-cover"
-                                src="images/music-covers/odori-ko.jpg"
-                                alt="Record label"
-                            >
-                        </div>
-
-                        <span class="cd-center"></span>
-
-                    </div>
-
-                </div>
-
-
-                <!-- 奶油香檳金唱針臂 -->
-
-                <svg
-                    class="tonearm"
-                    id="tonearm"
-                    viewBox="0 -18 108 80"
-                    aria-hidden="true"
-                >
-
-                    <g class="tonearm-group">
-
-                        <path
-                            class="arm-shadow"
-                            d="M101 9 L96 13 L87 25"
-                        />
-
-                        <path
-                            class="arm-silver"
-                            d="M101 9 L96 13 L87 25"
-                        />
-
-                        <path
-                            class="arm-highlight"
-                            d="M99 10 L95 14 L88 24"
-                        />
-
-                        <path
-                            class="headshell-shadow"
-                            d="M87 25 L82 30 L81 34 L85 36 L90 31 L90 27 Z"
-                        />
-
-                        <path
-                            class="headshell-silver"
-                            d="M86 26 L82 30 L82 33 L85 34 L89 30 L89 27 Z"
-                        />
-
-                        <line
-                            class="stylus"
-                            x1="85"
-                            y1="35"
-                            x2="84"
-                            y2="39"
-                        />
-
-                        <circle
-                            class="stylus-tip"
-                            cx="84"
-                            cy="39"
-                            r="1"
-                        />
-
-                        <circle
-                            class="pivot-base"
-                            cx="101"
-                            cy="9"
-                            r="5"
-                        />
-
-                        <circle
-                            class="pivot-metal"
-                            cx="101"
-                            cy="9"
-                            r="3.3"
-                        />
-
-                        <circle
-                            class="pivot-center"
-                            cx="101"
-                            cy="9"
-                            r="1.2"
-                        />
-
-                    </g>
-
-                </svg>
-
-            </div>
-
-
-            <!-- 歌曲資訊 -->
-
-            <div class="player-info">
-
-                <span class="now-playing">
-                    ♡ NOW PLAYING ♡
-                </span>
-
-                <span class="song-title" id="song-title">
-                    踊り子
-                </span>
-
-                <span class="song-artist" id="song-artist">
-                    Vaundy
-                </span>
-
-            </div>
-
-
-            <!-- 播放控制 -->
-
-            <div class="player-controls">
-
-                <button onclick="previousTrack()" aria-label="Previous track">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M6 5H9V19H6Z"/>
-                        <path d="M19 5V19L9 12Z"/>
-                    </svg>
-                </button>
-
-                <button
-                    class="play-button"
-                    id="play-button"
-                    onclick="togglePlay()"
-                    aria-label="Play"
-                >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M7 4.5L20 12L7 19.5Z"/>
-                    </svg>
-                </button>
-
-                <button onclick="nextTrack()" aria-label="Next track">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M15 5H18V19H15Z"/>
-                        <path d="M5 5V19L15 12Z"/>
-                    </svg>
-                </button>
-
-            </div>
+            <span class="song-artist" id="song-artist">
+                Vaundy
+            </span>
 
         </div>
 
@@ -1131,6 +696,52 @@ footer {
                 </span>
 
             </div>
+
+        </div>
+
+
+        <!-- 播放控制 -->
+
+        <div class="player-controls">
+
+            <!-- 上一首 -->
+
+            <button onclick="previousTrack()" aria-label="Previous track">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 5H9V19H6Z"/>
+                    <path d="M19 5V19L9 12Z"/>
+                </svg>
+
+            </button>
+
+
+            <!-- 播放與暫停 -->
+
+            <button
+                class="play-button"
+                id="play-button"
+                onclick="togglePlay()"
+                aria-label="Play"
+            >
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M7 4.5L20 12L7 19.5Z"/>
+                </svg>
+
+            </button>
+
+
+            <!-- 下一首 -->
+
+            <button onclick="nextTrack()" aria-label="Next track">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M15 5H18V19H15Z"/>
+                    <path d="M5 5V19L15 12Z"/>
+                </svg>
+
+            </button>
 
         </div>
 
@@ -1165,13 +776,19 @@ footer {
 
     <section class="countdown-grid">
 
+
+        <!-- 下次約會倒數 -->
+
         <div class="countdown-card">
 
             <div class="countdown-label">
                 次のデートまで
             </div>
 
-            <div class="countdown-number" id="date-countdown">
+            <div
+                class="countdown-number"
+                id="date-countdown"
+            >
                 --
             </div>
 
@@ -1182,6 +799,8 @@ footer {
         </div>
 
 
+        <!-- 相遇天數與時間 -->
+
         <div class="countdown-card">
 
             <div class="countdown-label">
@@ -1191,23 +810,66 @@ footer {
             <div class="meeting-time-grid">
 
                 <div class="meeting-time-item">
-                    <div class="meeting-time-number" id="meeting-days">--</div>
-                    <div class="meeting-time-label">DAYS</div>
+
+                    <div
+                        class="meeting-time-number"
+                        id="meeting-days"
+                    >
+                        --
+                    </div>
+
+                    <div class="meeting-time-label">
+                        DAYS
+                    </div>
+
                 </div>
 
-                <div class="meeting-time-item">
-                    <div class="meeting-time-number" id="meeting-hours">00</div>
-                    <div class="meeting-time-label">HOURS</div>
-                </div>
 
                 <div class="meeting-time-item">
-                    <div class="meeting-time-number" id="meeting-minutes">00</div>
-                    <div class="meeting-time-label">MINUTES</div>
+
+                    <div
+                        class="meeting-time-number"
+                        id="meeting-hours"
+                    >
+                        00
+                    </div>
+
+                    <div class="meeting-time-label">
+                        HOURS
+                    </div>
+
                 </div>
 
+
                 <div class="meeting-time-item">
-                    <div class="meeting-time-number" id="meeting-seconds">00</div>
-                    <div class="meeting-time-label">SECONDS</div>
+
+                    <div
+                        class="meeting-time-number"
+                        id="meeting-minutes"
+                    >
+                        00
+                    </div>
+
+                    <div class="meeting-time-label">
+                        MINUTES
+                    </div>
+
+                </div>
+
+
+                <div class="meeting-time-item">
+
+                    <div
+                        class="meeting-time-number"
+                        id="meeting-seconds"
+                    >
+                        00
+                    </div>
+
+                    <div class="meeting-time-label">
+                        SECONDS
+                    </div>
+
                 </div>
 
             </div>
@@ -1254,11 +916,13 @@ footer {
 
         <div class="memories-grid">
 
+
             <a href="photos.html" class="memory-card">
                 <i data-lucide="camera"></i>
                 <span class="memory-name">Photos</span>
                 <span class="memory-japanese">ふたりの写真</span>
             </a>
+
 
             <a href="gifts.html" class="memory-card">
                 <i data-lucide="gift"></i>
@@ -1266,11 +930,13 @@ footer {
                 <span class="memory-japanese">イラストと贈り物</span>
             </a>
 
+
             <a href="movies.html" class="memory-card">
                 <i data-lucide="clapperboard"></i>
                 <span class="memory-name">Movies</span>
                 <span class="memory-japanese">映画</span>
             </a>
+
 
             <a href="games.html" class="memory-card">
                 <i data-lucide="gamepad-2"></i>
@@ -1278,11 +944,13 @@ footer {
                 <span class="memory-japanese">ふたりのゲーム</span>
             </a>
 
+
             <a href="important-days.html" class="memory-card">
                 <i data-lucide="calendar-heart"></i>
                 <span class="memory-name">Important Days</span>
                 <span class="memory-japanese">大切な記念日</span>
             </a>
+
 
             <a href="little-things.html" class="memory-card">
                 <i data-lucide="heart"></i>
@@ -1290,11 +958,13 @@ footer {
                 <span class="memory-japanese">小さな日常</span>
             </a>
 
+
             <a href="music.html" class="memory-card">
                 <i data-lucide="music-2"></i>
                 <span class="memory-name">Music</span>
                 <span class="memory-japanese">ふたりの音楽</span>
             </a>
+
 
             <a href="letters.html" class="memory-card">
                 <i data-lucide="mail"></i>
@@ -1302,11 +972,13 @@ footer {
                 <span class="memory-japanese">手紙とメッセージ</span>
             </a>
 
+
             <a href="places.html" class="memory-card">
                 <i data-lucide="map-pin"></i>
                 <span class="memory-name">Places</span>
                 <span class="memory-japanese">ふたりで行った場所</span>
             </a>
+
 
             <a href="timeline.html" class="memory-card">
                 <i data-lucide="clock-3"></i>
@@ -1314,17 +986,20 @@ footer {
                 <span class="memory-japanese">ふたりの時間軸</span>
             </a>
 
+
             <a href="food.html" class="memory-card">
                 <i data-lucide="utensils"></i>
                 <span class="memory-name">Food</span>
                 <span class="memory-japanese">ふたりのごはん</span>
             </a>
 
+
             <a href="wishlist.html" class="memory-card">
                 <i data-lucide="sparkles"></i>
                 <span class="memory-name">Wishlist</span>
                 <span class="memory-japanese">いつか叶えたいこと</span>
             </a>
+
 
         </div>
 
@@ -1352,13 +1027,11 @@ footer {
 const audio = document.getElementById("audio-player");
 const progressBar = document.getElementById("progress-bar");
 const playButton = document.getElementById("play-button");
-const cdDisc = document.getElementById("cd-disc");
-const cdCover = document.getElementById("cd-cover");
-const recordLabelCover = document.getElementById("record-label-cover");
-const tonearm = document.getElementById("tonearm");
+const albumCover = document.getElementById("album-cover");
+const vinylRecord = document.getElementById("vinyl-record");
 
 
-/* 歌曲清單與專輯封面 */
+/* 歌曲清單 */
 
 const tracks = [
 
@@ -1402,7 +1075,7 @@ const tracks = [
 let currentTrack = 0;
 
 
-/* 播放圖示 */
+/* 實心播放圖示 */
 
 const playIcon = `
 <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1411,7 +1084,7 @@ const playIcon = `
 `;
 
 
-/* 暫停圖示 */
+/* 實心暫停圖示 */
 
 const pauseIcon = `
 <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1430,29 +1103,11 @@ function formatTime(seconds) {
     }
 
     const minutes = Math.floor(seconds / 60);
+
     const remainingSeconds = Math.floor(seconds % 60);
 
     return minutes + ":" +
         String(remainingSeconds).padStart(2, "0");
-
-}
-
-
-/* 更新唱片與唱針狀態 */
-
-function updateCDAnimation() {
-
-    if (!audio.paused && !audio.ended) {
-
-        cdDisc.classList.add("is-playing");
-        tonearm.classList.add("is-playing");
-
-    } else {
-
-        cdDisc.classList.remove("is-playing");
-        tonearm.classList.remove("is-playing");
-
-    }
 
 }
 
@@ -1465,9 +1120,6 @@ function loadTrack() {
 
     audio.pause();
 
-    cdDisc.classList.remove("is-playing");
-    tonearm.classList.remove("is-playing");
-
     audio.src = track.src;
     audio.load();
 
@@ -1477,15 +1129,14 @@ function loadTrack() {
     document.getElementById("song-artist").textContent =
         track.artist;
 
+    /* 切換歌曲封面 */
 
-    /* 同時更換正方形封面與唱片中央照片 */
+    albumCover.src = track.cover;
+    albumCover.alt = track.title + " 專輯封面";
 
-    cdCover.src = track.cover;
-    cdCover.alt = track.title + " album cover";
+    /* 切換歌曲時停止黑膠旋轉 */
 
-    recordLabelCover.src = track.cover;
-    recordLabelCover.alt = track.title + " record label";
-
+    vinylRecord.classList.remove("is-playing");
 
     document.getElementById("player-time").textContent =
         "0:00";
@@ -1497,7 +1148,6 @@ function loadTrack() {
     progressBar.max = 100;
 
     playButton.innerHTML = playIcon;
-    playButton.setAttribute("aria-label", "Play");
 
 }
 
@@ -1552,14 +1202,14 @@ function previousTrack() {
 }
 
 
-/* 播放與暫停圖示、唱片與唱針動畫 */
+/* 播放與暫停圖示、黑膠旋轉 */
 
 audio.addEventListener("play", () => {
 
     playButton.innerHTML = pauseIcon;
     playButton.setAttribute("aria-label", "Pause");
 
-    updateCDAnimation();
+    vinylRecord.classList.add("is-playing");
 
 });
 
@@ -1569,7 +1219,7 @@ audio.addEventListener("pause", () => {
     playButton.innerHTML = playIcon;
     playButton.setAttribute("aria-label", "Play");
 
-    updateCDAnimation();
+    vinylRecord.classList.remove("is-playing");
 
 });
 
@@ -1620,7 +1270,9 @@ audio.addEventListener("timeupdate", () => {
 progressBar.addEventListener("input", () => {
 
     if (Number.isFinite(audio.duration)) {
+
         audio.currentTime = Number(progressBar.value);
+
     }
 
 });
@@ -1664,6 +1316,7 @@ function updateDateCountdown() {
 
 /* ==============================
    優花と出会った日
+   天、時、分、秒
 ============================== */
 
 function updateMeetingCounter() {
@@ -1709,9 +1362,11 @@ function updateMeetingCounter() {
 /* 啟動倒數 */
 
 updateDateCountdown();
+
 updateMeetingCounter();
 
 setInterval(updateMeetingCounter, 1000);
+
 setInterval(updateDateCountdown, 60000);
 
 
