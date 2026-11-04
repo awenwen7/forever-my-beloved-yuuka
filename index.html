@@ -50,7 +50,6 @@ body {
     font-family: 'Noto Serif JP', serif;
     color: #806B5A;
 
-    /* 原本的灰色外框 */
     border: 1px solid #E5DED6;
     border-radius: 12px;
     background: transparent;
@@ -61,16 +60,29 @@ body {
 
 .player-main {
     display: grid;
-    grid-template-columns: 62px minmax(0, 1fr) auto;
+    grid-template-columns: 62px 62px minmax(0, 1fr) auto;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     width: 100%;
 }
 
 
-/* CD 唱片 */
+/* 音樂封面 */
 
-.cd-disc {
+.album-cover {
+    width: 62px;
+    height: 62px;
+    flex-shrink: 0;
+    display: block;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(128, 107, 90, 0.15);
+}
+
+
+/* 黑膠唱片 */
+
+.vinyl-record {
     width: 62px;
     height: 62px;
     flex-shrink: 0;
@@ -79,54 +91,80 @@ body {
     overflow: hidden;
 
     background:
-        repeating-radial-gradient(
+        radial-gradient(
             circle,
-            #D9C9BB 0px,
-            #EDE4DC 2px,
-            #D8C8B9 4px
+            #3A3938 0%,
+            #171717 35%,
+            #292827 36%,
+            #111111 39%,
+            #292827 40%,
+            #111111 43%,
+            #242322 44%,
+            #101010 48%,
+            #292827 49%,
+            #111111 53%,
+            #242322 54%,
+            #101010 58%,
+            #292827 59%,
+            #111111 64%,
+            #242322 65%,
+            #101010 70%,
+            #292827 71%,
+            #111111 100%
         );
 
-    box-shadow: 0 2px 5px rgba(128, 107, 90, 0.12);
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.2),
+        inset 0 0 4px rgba(255, 255, 255, 0.12);
 }
 
 
-/* CD 封面照片 */
+/* 黑膠唱片中心標籤 */
 
-.cd-disc img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    display: block;
-}
-
-
-/* CD 中心孔 */
-
-.cd-disc::after {
+.vinyl-record::before {
     content: "";
     position: absolute;
-    width: 11px;
-    height: 11px;
+    width: 23px;
+    height: 23px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+
+    background: #B58D86;
+
+    border: 2px solid #D6B9A9;
+
+    box-shadow:
+        0 0 3px rgba(0, 0, 0, 0.35);
+}
+
+
+/* 黑膠中心孔 */
+
+.vinyl-record::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
 
     background: #FBF8F3;
-    border: 2px solid rgba(128, 107, 90, 0.35);
 
-    box-shadow: 0 0 2px rgba(0,0,0,0.12);
+    border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 
-/* 播放時旋轉 */
+/* 播放時黑膠旋轉 */
 
-.cd-disc.is-playing {
-    animation: cd-rotate 5s linear infinite;
+.vinyl-record.is-playing {
+    animation: vinyl-rotate 5s linear infinite;
 }
 
-@keyframes cd-rotate {
+@keyframes vinyl-rotate {
     from {
         transform: rotate(0deg);
     }
@@ -534,13 +572,28 @@ footer {
     }
 
     .player-main {
-        grid-template-columns: 54px minmax(0, 1fr) auto;
-        gap: 8px;
+        grid-template-columns: 48px 48px minmax(0, 1fr) auto;
+        gap: 6px;
     }
 
-    .cd-disc {
-        width: 54px;
-        height: 54px;
+    .album-cover {
+        width: 48px;
+        height: 48px;
+    }
+
+    .vinyl-record {
+        width: 48px;
+        height: 48px;
+    }
+
+    .vinyl-record::before {
+        width: 19px;
+        height: 19px;
+    }
+
+    .vinyl-record::after {
+        width: 4px;
+        height: 4px;
     }
 
     .now-playing {
@@ -650,23 +703,25 @@ footer {
         <audio id="audio-player" preload="metadata"></audio>
 
 
-        <!-- CD、歌曲資訊、控制按鈕 -->
+        <!-- 音樂封面、黑膠、歌曲資訊、控制按鈕 -->
 
         <div class="player-main">
 
 
-            <!-- CD 唱片 -->
+            <!-- 音樂封面 -->
 
-            <div class="cd-disc" id="cd-disc">
+            <img
+                id="album-cover"
+                class="album-cover"
+                src="images/music-covers/odori-ko.jpg"
+                alt="Album cover"
+                onerror="this.style.visibility='hidden'"
+            >
 
-                <img
-                    id="cd-cover"
-                    src="images/music-covers/odori-ko.jpg"
-                    alt="Album cover"
-                    onerror="this.style.display='none'"
-                >
 
-            </div>
+            <!-- 黑膠唱片 -->
+
+            <div class="vinyl-record" id="vinyl-record"></div>
 
 
             <!-- 歌曲資訊 -->
@@ -1050,9 +1105,9 @@ const progressBar = document.getElementById("progress-bar");
 
 const playButton = document.getElementById("play-button");
 
-const cdDisc = document.getElementById("cd-disc");
+const vinylRecord = document.getElementById("vinyl-record");
 
-const cdCover = document.getElementById("cd-cover");
+const albumCover = document.getElementById("album-cover");
 
 
 /* 歌曲清單與專輯封面 */
@@ -1136,17 +1191,17 @@ function formatTime(seconds) {
 }
 
 
-/* 更新 CD 旋轉狀態 */
+/* 更新黑膠旋轉狀態 */
 
-function updateCDAnimation() {
+function updateVinylAnimation() {
 
     if (!audio.paused && !audio.ended) {
 
-        cdDisc.classList.add("is-playing");
+        vinylRecord.classList.add("is-playing");
 
     } else {
 
-        cdDisc.classList.remove("is-playing");
+        vinylRecord.classList.remove("is-playing");
 
     }
 
@@ -1161,7 +1216,7 @@ function loadTrack() {
 
     audio.pause();
 
-    cdDisc.classList.remove("is-playing");
+    vinylRecord.classList.remove("is-playing");
 
     audio.src = track.src;
     audio.load();
@@ -1173,11 +1228,11 @@ function loadTrack() {
         track.artist;
 
 
-    /* 更換 CD 封面 */
+    /* 更換音樂封面 */
 
-    cdCover.style.display = "block";
+    albumCover.style.visibility = "visible";
 
-    cdCover.src = track.cover;
+    albumCover.src = track.cover;
 
 
     document.getElementById("player-time").textContent =
@@ -1246,7 +1301,7 @@ function previousTrack() {
 }
 
 
-/* 播放與暫停圖示、CD 動畫 */
+/* 播放與暫停圖示、黑膠動畫 */
 
 audio.addEventListener("play", () => {
 
@@ -1254,7 +1309,7 @@ audio.addEventListener("play", () => {
 
     playButton.setAttribute("aria-label", "Pause");
 
-    updateCDAnimation();
+    updateVinylAnimation();
 
 });
 
@@ -1265,14 +1320,14 @@ audio.addEventListener("pause", () => {
 
     playButton.setAttribute("aria-label", "Play");
 
-    updateCDAnimation();
+    updateVinylAnimation();
 
 });
 
 
 audio.addEventListener("ended", () => {
 
-    updateCDAnimation();
+    updateVinylAnimation();
 
 });
 
