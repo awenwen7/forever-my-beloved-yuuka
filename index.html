@@ -38,113 +38,95 @@ body {
 }
 
 
-/* 音樂播放器 */
+/* ==============================
+   音樂播放器
+============================== */
 
 .music-player {
     width: 100%;
     max-width: 100%;
     margin: 15px auto 20px;
-    padding: 10px 12px;
+    padding: 12px 14px;
     font-family: 'Noto Serif JP', serif;
     color: #806B5A;
+
+    /* 原本的灰色外框 */
+    border: 1px solid #E5DED6;
+    border-radius: 12px;
+    background: transparent;
 }
 
 
-/* 音樂封面與黑膠唱片 */
+/* 播放器上半部 */
 
-.player-artwork {
-    display: flex;
-    justify-content: center;
+.player-main {
+    display: grid;
+    grid-template-columns: 62px minmax(0, 1fr) auto;
     align-items: center;
+    gap: 12px;
     width: 100%;
-    height: 86px;
-    margin: 0 auto 12px;
 }
 
-.album-cover {
-    position: relative;
-    z-index: 2;
-    display: block;
-    width: 86px;
-    height: 86px;
-    object-fit: cover;
-    border-radius: 4px;
-    box-shadow: 0 3px 9px rgba(91, 68, 48, 0.18);
-}
 
-.vinyl-record {
+/* CD 唱片 */
+
+.cd-disc {
+    width: 62px;
+    height: 62px;
+    flex-shrink: 0;
     position: relative;
-    flex: 0 0 86px;
-    width: 86px;
-    height: 86px;
-    margin-left: -14px;
     border-radius: 50%;
+    overflow: hidden;
 
     background:
         repeating-radial-gradient(
-            circle at center,
-            #493A30 0px,
-            #493A30 1px,
-            #30251F 2px,
-            #30251F 3px,
-            #594638 4px,
-            #30251F 5px
-        );
-
-    box-shadow: 0 3px 9px rgba(91, 68, 48, 0.2);
-
-    animation: vinyl-spin 5s linear infinite;
-    animation-play-state: paused;
-}
-
-/* 黑膠唱片中央標籤 */
-
-.vinyl-record::before {
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
             circle,
-            #806B5A 0%,
-            #806B5A 18%,
-            #D8C3AA 19%,
-            #D8C3AA 68%,
-            #A88D73 69%,
-            #A88D73 100%
+            #D9C9BB 0px,
+            #EDE4DC 2px,
+            #D8C8B9 4px
         );
 
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(128, 107, 90, 0.12);
 }
 
-/* 黑膠唱片中央圓孔 */
 
-.vinyl-record::after {
+/* CD 封面照片 */
+
+.cd-disc img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+
+/* CD 中心孔 */
+
+.cd-disc::after {
     content: "";
     position: absolute;
-    width: 5px;
-    height: 5px;
+    width: 11px;
+    height: 11px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
+
     background: #FBF8F3;
-    border: 1px solid #806B5A;
+    border: 2px solid rgba(128, 107, 90, 0.35);
+
+    box-shadow: 0 0 2px rgba(0,0,0,0.12);
 }
+
 
 /* 播放時旋轉 */
 
-.vinyl-record.is-playing {
-    animation-play-state: running;
+.cd-disc.is-playing {
+    animation: cd-rotate 5s linear infinite;
 }
 
-@keyframes vinyl-spin {
+@keyframes cd-rotate {
     from {
         transform: rotate(0deg);
     }
@@ -157,40 +139,105 @@ body {
 
 /* 歌曲資訊 */
 
-.player-top {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
+.player-info {
+    min-width: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
 }
 
 .now-playing {
     font-size: 9px;
     letter-spacing: 1px;
-    text-align: left;
+    font-weight: 700;
+    color: #806B5A;
     white-space: nowrap;
 }
 
 .song-title {
     font-size: 12px;
-    text-align: center;
+    font-weight: 700;
+    color: #806B5A;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .song-artist {
     font-size: 10px;
-    text-align: right;
+    font-weight: 700;
+    color: #A18D7B;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* 歌曲資訊全部粗體 */
 
-.now-playing,
-.song-title,
-.song-artist {
-    font-weight: 700;
+/* 播放控制按鈕 */
+
+.player-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+}
+
+.player-controls button {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #D8C8BA;
+    border-radius: 50%;
+
+    background: transparent;
     color: #806B5A;
+
+    cursor: pointer;
+    padding: 0;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.player-controls button:hover {
+    background: #F3E8E1;
+    transform: scale(1.05);
+}
+
+
+/* 實心圖示 */
+
+.player-controls button svg {
+    width: 17px;
+    height: 17px;
+    fill: #806B5A;
+    stroke: none;
+}
+
+.player-controls .play-button {
+    width: 42px;
+    height: 42px;
+
+    background: #B58D86;
+    border: 1px solid #B58D86;
+}
+
+.player-controls .play-button:hover {
+    background: #A78078;
+}
+
+.player-controls .play-button svg {
+    width: 19px;
+    height: 19px;
+    fill: #FFFFFF;
 }
 
 
@@ -201,15 +248,17 @@ body {
     flex-direction: column;
     width: 100%;
     gap: 5px;
-    margin: 8px 0 3px;
+    margin: 10px 0 0;
 }
 
 .progress-bar {
     order: 1;
     width: 100%;
     height: 3px;
+
     appearance: none;
     -webkit-appearance: none;
+
     background: #E5D8CC;
     border-radius: 10px;
     outline: none;
@@ -248,56 +297,9 @@ body {
 }
 
 
-/* 播放控制 */
-
-.player-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-top: -12px;
-}
-
-.player-controls button {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #D8C8BA;
-    border-radius: 50%;
-    background: transparent;
-    color: #806B5A;
-    cursor: pointer;
-    padding: 0;
-    transition: background 0.2s ease;
-}
-
-.player-controls button:hover {
-    background: #F3E8E1;
-}
-
-/* 實心播放圖示 */
-
-.player-controls button svg {
-    width: 16px;
-    height: 16px;
-    fill: #806B5A;
-    stroke: none;
-}
-
-.player-controls button svg {
-    width: 14px;
-    height: 14px;
-}
-
-.player-controls .play-button svg {
-    width: 17px;
-    height: 17px;
-}
-
-
-/* 首頁照片 */
+/* ==============================
+   首頁照片
+============================== */
 
 .cover-photo {
     width: 100%;
@@ -372,7 +374,7 @@ body {
 }
 
 
-/* 相遇時間：奶油風四欄 */
+/* 相遇時間 */
 
 .meeting-time-grid {
     display: grid;
@@ -517,7 +519,9 @@ footer {
 }
 
 
-/* 手機版 */
+/* ==============================
+   手機版
+============================== */
 
 @media (max-width: 480px) {
 
@@ -526,32 +530,22 @@ footer {
     }
 
     .music-player {
-        padding: 8px 5px;
+        padding: 10px 9px;
     }
 
-    .player-artwork {
-        height: 70px;
+    .player-main {
+        grid-template-columns: 54px minmax(0, 1fr) auto;
+        gap: 8px;
     }
 
-    .album-cover {
-        width: 70px;
-        height: 70px;
+    .cd-disc {
+        width: 54px;
+        height: 54px;
     }
 
-    .vinyl-record {
-        width: 70px;
-        height: 70px;
-        flex-basis: 70px;
-    }
-
-    .vinyl-record::before {
-        width: 25px;
-        height: 25px;
-    }
-
-    .player-top {
-        grid-template-columns: 1fr 1.5fr 1fr;
-        gap: 4px;
+    .now-playing {
+        font-size: 8px;
+        letter-spacing: 0.6px;
     }
 
     .song-title {
@@ -563,7 +557,27 @@ footer {
     }
 
     .player-controls {
-        gap: 18px;
+        gap: 6px;
+    }
+
+    .player-controls button {
+        width: 31px;
+        height: 31px;
+    }
+
+    .player-controls button svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    .player-controls .play-button {
+        width: 37px;
+        height: 37px;
+    }
+
+    .player-controls .play-button svg {
+        width: 17px;
+        height: 17px;
     }
 
     .cover-photo {
@@ -604,6 +618,9 @@ footer {
     }
 }
 
+
+/* 平板與電腦 */
+
 @media (min-width: 600px) {
 
     .meeting-time-grid {
@@ -624,48 +641,97 @@ footer {
 <main class="container">
 
 
-    <!-- 音樂播放器 -->
+    <!-- ==========================
+         音樂播放器
+    =========================== -->
 
     <div class="music-player">
 
         <audio id="audio-player" preload="metadata"></audio>
 
 
-        <!-- 音樂封面與黑膠唱片 -->
+        <!-- CD、歌曲資訊、控制按鈕 -->
 
-        <div class="player-artwork">
-
-            <img
-                src="images/music-covers/odori-ko.jpg"
-                alt="踊り子 專輯封面"
-                class="album-cover"
-                id="album-cover"
-            >
-
-            <div
-                class="vinyl-record"
-                id="vinyl-record"
-                aria-label="黑膠唱片"
-            ></div>
-
-        </div>
+        <div class="player-main">
 
 
-        <!-- 歌曲資訊 -->
+            <!-- CD 唱片 -->
 
-        <div class="player-top">
+            <div class="cd-disc" id="cd-disc">
 
-            <span class="now-playing">
-                NOW PLAYING
-            </span>
+                <img
+                    id="cd-cover"
+                    src="images/music-covers/odori-ko.jpg"
+                    alt="Album cover"
+                    onerror="this.style.display='none'"
+                >
 
-            <span class="song-title" id="song-title">
-                踊り子
-            </span>
+            </div>
 
-            <span class="song-artist" id="song-artist">
-                Vaundy
-            </span>
+
+            <!-- 歌曲資訊 -->
+
+            <div class="player-info">
+
+                <span class="now-playing">
+                    ♡ NOW PLAYING ♡
+                </span>
+
+                <span class="song-title" id="song-title">
+                    踊り子
+                </span>
+
+                <span class="song-artist" id="song-artist">
+                    Vaundy
+                </span>
+
+            </div>
+
+
+            <!-- 播放控制 -->
+
+            <div class="player-controls">
+
+                <!-- 上一首 -->
+
+                <button
+                    onclick="previousTrack()"
+                    aria-label="Previous track"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 5H9V19H6Z"/>
+                        <path d="M19 5V19L9 12Z"/>
+                    </svg>
+                </button>
+
+
+                <!-- 播放與暫停 -->
+
+                <button
+                    class="play-button"
+                    id="play-button"
+                    onclick="togglePlay()"
+                    aria-label="Play"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M7 4.5L20 12L7 19.5Z"/>
+                    </svg>
+                </button>
+
+
+                <!-- 下一首 -->
+
+                <button
+                    onclick="nextTrack()"
+                    aria-label="Next track"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M15 5H18V19H15Z"/>
+                        <path d="M5 5V19L15 12Z"/>
+                    </svg>
+                </button>
+
+            </div>
 
         </div>
 
@@ -696,52 +762,6 @@ footer {
                 </span>
 
             </div>
-
-        </div>
-
-
-        <!-- 播放控制 -->
-
-        <div class="player-controls">
-
-            <!-- 上一首 -->
-
-            <button onclick="previousTrack()" aria-label="Previous track">
-
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M6 5H9V19H6Z"/>
-                    <path d="M19 5V19L9 12Z"/>
-                </svg>
-
-            </button>
-
-
-            <!-- 播放與暫停 -->
-
-            <button
-                class="play-button"
-                id="play-button"
-                onclick="togglePlay()"
-                aria-label="Play"
-            >
-
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M7 4.5L20 12L7 19.5Z"/>
-                </svg>
-
-            </button>
-
-
-            <!-- 下一首 -->
-
-            <button onclick="nextTrack()" aria-label="Next track">
-
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M15 5H18V19H15Z"/>
-                    <path d="M5 5V19L15 12Z"/>
-                </svg>
-
-            </button>
 
         </div>
 
@@ -1025,13 +1045,17 @@ footer {
 ============================== */
 
 const audio = document.getElementById("audio-player");
+
 const progressBar = document.getElementById("progress-bar");
+
 const playButton = document.getElementById("play-button");
-const albumCover = document.getElementById("album-cover");
-const vinylRecord = document.getElementById("vinyl-record");
+
+const cdDisc = document.getElementById("cd-disc");
+
+const cdCover = document.getElementById("cd-cover");
 
 
-/* 歌曲清單 */
+/* 歌曲清單與專輯封面 */
 
 const tracks = [
 
@@ -1112,6 +1136,23 @@ function formatTime(seconds) {
 }
 
 
+/* 更新 CD 旋轉狀態 */
+
+function updateCDAnimation() {
+
+    if (!audio.paused && !audio.ended) {
+
+        cdDisc.classList.add("is-playing");
+
+    } else {
+
+        cdDisc.classList.remove("is-playing");
+
+    }
+
+}
+
+
 /* 載入歌曲 */
 
 function loadTrack() {
@@ -1119,6 +1160,8 @@ function loadTrack() {
     const track = tracks[currentTrack];
 
     audio.pause();
+
+    cdDisc.classList.remove("is-playing");
 
     audio.src = track.src;
     audio.load();
@@ -1129,14 +1172,13 @@ function loadTrack() {
     document.getElementById("song-artist").textContent =
         track.artist;
 
-    /* 切換歌曲封面 */
 
-    albumCover.src = track.cover;
-    albumCover.alt = track.title + " 專輯封面";
+    /* 更換 CD 封面 */
 
-    /* 切換歌曲時停止黑膠旋轉 */
+    cdCover.style.display = "block";
 
-    vinylRecord.classList.remove("is-playing");
+    cdCover.src = track.cover;
+
 
     document.getElementById("player-time").textContent =
         "0:00";
@@ -1148,6 +1190,8 @@ function loadTrack() {
     progressBar.max = 100;
 
     playButton.innerHTML = playIcon;
+
+    playButton.setAttribute("aria-label", "Play");
 
 }
 
@@ -1202,14 +1246,15 @@ function previousTrack() {
 }
 
 
-/* 播放與暫停圖示、黑膠旋轉 */
+/* 播放與暫停圖示、CD 動畫 */
 
 audio.addEventListener("play", () => {
 
     playButton.innerHTML = pauseIcon;
+
     playButton.setAttribute("aria-label", "Pause");
 
-    vinylRecord.classList.add("is-playing");
+    updateCDAnimation();
 
 });
 
@@ -1217,9 +1262,17 @@ audio.addEventListener("play", () => {
 audio.addEventListener("pause", () => {
 
     playButton.innerHTML = playIcon;
+
     playButton.setAttribute("aria-label", "Play");
 
-    vinylRecord.classList.remove("is-playing");
+    updateCDAnimation();
+
+});
+
+
+audio.addEventListener("ended", () => {
+
+    updateCDAnimation();
 
 });
 
@@ -1259,7 +1312,9 @@ audio.addEventListener("timeupdate", () => {
         "-" + formatTime(remaining);
 
     if (duration > 0) {
+
         progressBar.value = currentTime;
+
     }
 
 });
