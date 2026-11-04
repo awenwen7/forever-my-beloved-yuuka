@@ -250,25 +250,29 @@ input {
     pointer-events: none;
 }
 
-/* 以右側固定座為旋轉中心 */
+
+/* 旋轉中心：唱片右上方固定座 */
+
 .tonearm .tonearm-group {
     transform-box: view-box;
     transform-origin: 101px 9px;
 
-    /* 未播放：唱針停在唱片外側 */
-    transform: rotate(-105deg);
+    /* 未播放：停留在右側 */
+    transform: rotate(-30deg);
 
     transition:
-        transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        transform 0.7s ease;
 }
 
-/* 播放：唱針往左移到唱片上 */
+
+/* 播放：往左移動 30 度 */
+
 .tonearm.is-playing .tonearm-group {
     transform: rotate(0deg);
 }
 
 
-/* 唱臂陰影：暖咖啡色 */
+/* 唱臂陰影 */
 
 .tonearm .arm-shadow {
     fill: none;
@@ -886,6 +890,31 @@ footer {
     }
 }
 
+
+/* ==============================
+   首頁文字置中
+   不更動原本圖形與排版
+============================== */
+
+.site-title,
+.subtitle,
+.description,
+.countdown-card,
+.weather-section,
+.memories-section,
+.memories-section .section-title,
+.memories-section .section-subtitle,
+footer {
+    text-align: center;
+}
+
+.countdown-label,
+.countdown-unit,
+.meeting-footer,
+.weather-placeholder {
+    text-align: center;
+}
+
 </style>
 </head>
 
@@ -957,41 +986,41 @@ footer {
 
                         <path
                             class="arm-shadow"
-                            d="M101 9 L96 13 L72 31"
+                            d="M101 9 L96 13 L87 25"
                         />
 
                         <path
                             class="arm-silver"
-                            d="M101 9 L96 13 L72 31"
+                            d="M101 9 L96 13 L87 25"
                         />
 
                         <path
                             class="arm-highlight"
-                            d="M99 10 L95 14 L73 30"
+                            d="M99 10 L95 14 L88 24"
                         />
 
                         <path
                             class="headshell-shadow"
-                            d="M72 31 L65 35 L59 41 L63 44 L70 39 L75 34 Z"
+                            d="M87 25 L82 30 L81 34 L85 36 L90 31 L90 27 Z"
                         />
 
                         <path
                             class="headshell-silver"
-                            d="M70 32 L65 36 L61 41 L64 42 L70 38 L73 34 Z"
+                            d="M86 26 L82 30 L82 33 L85 34 L89 30 L89 27 Z"
                         />
 
                         <line
                             class="stylus"
-                            x1="63"
-                            y1="42"
-                            x2="60"
-                            y2="46"
+                            x1="85"
+                            y1="35"
+                            x2="84"
+                            y2="39"
                         />
 
                         <circle
                             class="stylus-tip"
-                            cx="60"
-                            cy="46"
+                            cx="84"
+                            cy="39"
                             r="1"
                         />
 
