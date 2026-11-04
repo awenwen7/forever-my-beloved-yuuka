@@ -236,7 +236,7 @@ input {
 
 
 /* ==============================
-   真實感銀色唱針臂
+   奶油香檳金唱針臂
 ============================== */
 
 .tonearm {
@@ -250,68 +250,72 @@ input {
     pointer-events: none;
 }
 
-/* 唱臂以固定軸心旋轉 */
+/* 以右側固定座為旋轉中心 */
 .tonearm .tonearm-group {
     transform-box: view-box;
     transform-origin: 101px 9px;
-    transform: rotate(109deg);
-    transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* 未播放：唱針停在唱片外側 */
+    transform: rotate(-105deg);
+
+    transition:
+        transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 播放時唱針移到唱片上 */
+/* 播放：唱針往左移到唱片上 */
 .tonearm.is-playing .tonearm-group {
     transform: rotate(0deg);
 }
 
 
-/* 黑色金屬邊緣 */
+/* 唱臂陰影：暖咖啡色 */
 
 .tonearm .arm-shadow {
     fill: none;
-    stroke: #343434;
-    stroke-width: 4;
+    stroke: #92775E;
+    stroke-width: 3.8;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
 
-/* 銀色唱臂主體 */
+/* 香檳金唱臂 */
 
 .tonearm .arm-silver {
     fill: none;
-    stroke: #D5D7D8;
-    stroke-width: 2.1;
+    stroke: #C5A98A;
+    stroke-width: 2.3;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
 
-/* 銀色細緻反光 */
+/* 奶油白反光 */
 
 .tonearm .arm-highlight {
     fill: none;
-    stroke: #FFFFFF;
-    stroke-width: 0.65;
+    stroke: #F8EFE3;
+    stroke-width: 0.7;
     stroke-linecap: round;
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
 
-/* 黑色唱頭 */
+/* 唱頭外框 */
 
 .tonearm .headshell-shadow {
-    fill: #292929;
-    stroke: #171717;
-    stroke-width: 1;
+    fill: #92775E;
+    stroke: #806B5A;
+    stroke-width: 0.8;
     stroke-linejoin: round;
 }
 
 
-/* 銀色唱頭細節 */
+/* 奶茶棕唱頭 */
 
 .tonearm .headshell-silver {
-    fill: #BFC2C4;
-    stroke: #777B7E;
+    fill: #C5A98A;
+    stroke: #A88C72;
     stroke-width: 0.7;
     stroke-linejoin: round;
 }
@@ -320,33 +324,33 @@ input {
 /* 唱針 */
 
 .tonearm .stylus {
-    stroke: #333333;
+    stroke: #806B5A;
     stroke-width: 1.2;
     stroke-linecap: round;
 }
 
 .tonearm .stylus-tip {
-    fill: #252525;
+    fill: #806B5A;
 }
 
 
-/* 唱臂固定座 */
+/* 固定座 */
 
 .tonearm .pivot-base {
-    fill: #343638;
-    stroke: #171819;
+    fill: #92775E;
+    stroke: #806B5A;
     stroke-width: 0.8;
 }
 
 .tonearm .pivot-metal {
-    fill: #C9CCCE;
-    stroke: #777B7E;
+    fill: #D8C3A8;
+    stroke: #A88C72;
     stroke-width: 0.8;
 }
 
 .tonearm .pivot-center {
-    fill: #686C70;
-    stroke: #E7E8E9;
+    fill: #A88C72;
+    stroke: #F8EFE3;
     stroke-width: 0.5;
 }
 
@@ -362,6 +366,9 @@ input {
     flex-direction: column;
     justify-content: center;
     gap: 3px;
+
+    /* 只移動播放器內的歌曲資訊 */
+    transform: translateX(5px);
 }
 
 .now-playing {
@@ -799,6 +806,10 @@ footer {
         font-size: 9px;
     }
 
+    .player-info {
+        transform: translateX(3px);
+    }
+
     .player-controls {
         gap: 5px;
     }
@@ -933,7 +944,7 @@ footer {
                 </div>
 
 
-                <!-- 真實感銀色唱針臂 -->
+                <!-- 奶油香檳金唱針臂 -->
 
                 <svg
                     class="tonearm"
@@ -944,43 +955,30 @@ footer {
 
                     <g class="tonearm-group">
 
-                        <!-- 唱臂黑色底層 -->
-
                         <path
                             class="arm-shadow"
                             d="M101 9 L96 13 L72 31"
                         />
-
-                        <!-- 唱臂銀色主體 -->
 
                         <path
                             class="arm-silver"
                             d="M101 9 L96 13 L72 31"
                         />
 
-                        <!-- 唱臂反光 -->
-
                         <path
                             class="arm-highlight"
                             d="M99 10 L95 14 L73 30"
                         />
-
-
-                        <!-- 唱頭黑色外框 -->
 
                         <path
                             class="headshell-shadow"
                             d="M72 31 L65 35 L59 41 L63 44 L70 39 L75 34 Z"
                         />
 
-                        <!-- 唱頭銀色表面 -->
-
                         <path
                             class="headshell-silver"
                             d="M70 32 L65 36 L61 41 L64 42 L70 38 L73 34 Z"
                         />
-
-                        <!-- 唱針 -->
 
                         <line
                             class="stylus"
@@ -997,9 +995,6 @@ footer {
                             r="1"
                         />
 
-
-                        <!-- 唱臂固定座底盤 -->
-
                         <circle
                             class="pivot-base"
                             cx="101"
@@ -1007,16 +1002,12 @@ footer {
                             r="5"
                         />
 
-                        <!-- 銀色固定軸 -->
-
                         <circle
                             class="pivot-metal"
                             cx="101"
                             cy="9"
                             r="3.3"
                         />
-
-                        <!-- 中央軸心 -->
 
                         <circle
                             class="pivot-center"
