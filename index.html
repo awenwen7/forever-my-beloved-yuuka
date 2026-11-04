@@ -60,22 +60,38 @@ body {
 
 .player-main {
     display: grid;
-    grid-template-columns: 62px 62px minmax(0, 1fr) auto;
+    grid-template-columns: 108px minmax(0, 1fr) auto;
     align-items: center;
     gap: 10px;
     width: 100%;
 }
 
 
+/* 封面與黑膠唱片容器 */
+
+.player-art {
+    width: 108px;
+    height: 72px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+
 /* 音樂封面 */
 
 .album-cover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+
     width: 62px;
     height: 62px;
-    flex-shrink: 0;
+
     display: block;
     object-fit: cover;
-    border-radius: 5px;
+
+    border-radius: 3px;
     box-shadow: 0 2px 5px rgba(128, 107, 90, 0.15);
 }
 
@@ -85,8 +101,12 @@ body {
 .vinyl-record {
     width: 62px;
     height: 62px;
-    flex-shrink: 0;
-    position: relative;
+
+    position: absolute;
+    left: 46px;
+    top: 10px;
+    z-index: 1;
+
     border-radius: 50%;
     overflow: hidden;
 
@@ -119,21 +139,24 @@ body {
 }
 
 
-/* 黑膠唱片中心標籤 */
+/* 黑膠唱片中心圓形封面 */
 
-.vinyl-record::before {
-    content: "";
+.vinyl-label {
     position: absolute;
-    width: 23px;
-    height: 23px;
+    width: 25px;
+    height: 25px;
+
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
 
-    background: #B58D86;
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+    object-fit: cover;
 
     border: 2px solid #D6B9A9;
+
+    z-index: 2;
 
     box-shadow:
         0 0 3px rgba(0, 0, 0, 0.35);
@@ -147,14 +170,18 @@ body {
     position: absolute;
     width: 5px;
     height: 5px;
+
     left: 50%;
     top: 50%;
+
     transform: translate(-50%, -50%);
+
     border-radius: 50%;
 
     background: #FBF8F3;
-
     border: 1px solid rgba(0, 0, 0, 0.3);
+
+    z-index: 3;
 }
 
 
@@ -388,9 +415,17 @@ body {
     background: #F3E8E1;
     border-radius: 12px;
     padding: 25px 12px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .countdown-label {
+    width: 100%;
+    text-align: center;
+
     font-size: 13px;
     letter-spacing: 1px;
     margin-bottom: 16px;
@@ -398,6 +433,9 @@ body {
 }
 
 .countdown-number {
+    width: 100%;
+    text-align: center;
+
     font-size: 34px;
     font-weight: 500;
     letter-spacing: 1px;
@@ -406,6 +444,9 @@ body {
 }
 
 .countdown-unit {
+    width: 100%;
+    text-align: center;
+
     font-size: 12px;
     margin-top: 8px;
     color: #A18D7B;
@@ -572,23 +613,30 @@ footer {
     }
 
     .player-main {
-        grid-template-columns: 48px 48px minmax(0, 1fr) auto;
+        grid-template-columns: 84px minmax(0, 1fr) auto;
         gap: 6px;
     }
 
+    .player-art {
+        width: 84px;
+        height: 58px;
+    }
+
     .album-cover {
-        width: 48px;
-        height: 48px;
+        width: 50px;
+        height: 50px;
     }
 
     .vinyl-record {
-        width: 48px;
-        height: 48px;
+        width: 50px;
+        height: 50px;
+        left: 34px;
+        top: 8px;
     }
 
-    .vinyl-record::before {
-        width: 19px;
-        height: 19px;
+    .vinyl-label {
+        width: 21px;
+        height: 21px;
     }
 
     .vinyl-record::after {
@@ -708,20 +756,30 @@ footer {
         <div class="player-main">
 
 
-            <!-- 音樂封面 -->
+            <!-- 專輯封面與黑膠唱片 -->
 
-            <img
-                id="album-cover"
-                class="album-cover"
-                src="images/music-covers/odori-ko.jpg"
-                alt="Album cover"
-                onerror="this.style.visibility='hidden'"
-            >
+            <div class="player-art">
 
+                <img
+                    id="album-cover"
+                    class="album-cover"
+                    src="images/music-covers/odori-ko.jpg"
+                    alt="Album cover"
+                    onerror="this.style.visibility='hidden'"
+                >
 
-            <!-- 黑膠唱片 -->
+                <div class="vinyl-record" id="vinyl-record">
 
-            <div class="vinyl-record" id="vinyl-record"></div>
+                    <img
+                        id="vinyl-label"
+                        class="vinyl-label"
+                        src="images/music-covers/odori-ko.jpg"
+                        alt="Vinyl label"
+                    >
+
+                </div>
+
+            </div>
 
 
             <!-- 歌曲資訊 -->
@@ -1109,6 +1167,8 @@ const vinylRecord = document.getElementById("vinyl-record");
 
 const albumCover = document.getElementById("album-cover");
 
+const vinylLabel = document.getElementById("vinyl-label");
+
 
 /* 歌曲清單與專輯封面 */
 
@@ -1228,11 +1288,13 @@ function loadTrack() {
         track.artist;
 
 
-    /* 更換音樂封面 */
+    /* 同時更換專輯封面與黑膠中心封面 */
 
     albumCover.style.visibility = "visible";
 
     albumCover.src = track.cover;
+
+    vinylLabel.src = track.cover;
 
 
     document.getElementById("player-time").textContent =
