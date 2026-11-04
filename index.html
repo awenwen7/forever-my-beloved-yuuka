@@ -1033,24 +1033,32 @@ footer {
     </section>
 
 
-    <!-- 天氣區域 -->
+   
+<!-- 天氣區域 -->
 
-    <section class="weather-section">
+<section class="weather-section">
 
-        <div class="section-title">
-            大阪の天気
-        </div>
+    <div class="section-title">
+        大阪の天気
+    </div>
 
-        <div class="section-subtitle">
-            大阪府 │ 東大阪市
-        </div>
+    <div class="section-subtitle">
+        大阪府 │ 東大阪市
+    </div>
 
-        <div class="weather-placeholder">
-            Weather
-        </div>
+    <div class="weather-placeholder" id="weather-info">
+        <div id="weather-icon">☁️</div>
+        <div id="weather-temperature">--°C</div>
+        <div id="weather-description">天気を読み込み中...</div>
+        <div id="weather-details">湿度 --% │ 風速 -- km/h</div>
+        <div id="weather-range">最高 --°C ／ 最低 --°C</div>
+    </div>
 
-    </section>
+    <div class="weather-credit">
+        Weather data by Open-Meteo
+    </div>
 
+</section>
 
     <!-- 12 個回憶收藏分類 -->
 
@@ -1559,6 +1567,83 @@ setInterval(updateMeetingCounter, 1000);
 setInterval(updateDateCountdown, 60000);
 
 
+/* 大阪・東大阪の天気 */
+
+async function loadOsakaWeather() {
+    const icon = document.getElementById("weather-icon");
+    const temperature = document.getElementById("weather-temperature");
+    const description = document.getElementById("weather-description");
+    const details = document.getElementById("weather-details");
+
+    if (!icon || !temperature || !description || !details) return;
+
+    const url = "https://api.open-meteo.com/v1/forecast?latitude=34.6794&longitude=135.6009&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,is_day&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo";
+
+    const weatherTypes = {
+        0: ["晴れ", "☀️"],
+        1: ["おおむね晴れ", "🌤️"],
+        2: ["晴れ時々曇り", "⛅"],
+        3: ["曇り", "☁️"],
+        45: ["霧", "🌫️"],
+        48: ["霧", "🌫️"],
+        51: ["弱い霧雨", "🌦️"],
+        53: ["霧雨", "🌦️"],
+        55: ["強い霧雨", "🌧️"],
+        61: ["弱い雨", "🌧️"],
+        63: ["雨", "🌧️"],
+        65: ["強い雨", "🌧️"],
+        71: ["弱い雪", "🌨️"],
+        73: ["雪", "❄️"],
+        75: ["強い雪", "❄️"],
+        80: ["にわか雨", "🌦️"],
+        81: ["雨", "🌧️"],
+        82: ["強いにわか雨", "🌧️"],
+        85: ["にわか雪", "🌨️"],
+        86: ["強いにわか雪", "❄️"],
+        95: ["雷雨", "⛈️"],
+        96: ["ひょうを伴う雷雨", "⛈️"],
+        99: ["強い雷雨", "⛈️"]
+    };
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Weather data unavailable");
+        }
+
+        const data = await response.json();
+        const current = data.current;
+        const daily = data.daily;
+
+        const weather = weatherTypes[current.weather_code] || ["天気情報", "🌤️"];
+
+        icon.textContent = weather[1];
+        temperature.textContent = Math.round(current.temperature_2m) + "°C";
+        description.textContent = weather[0];
+
+        details.textContent =
+            "体感 " + Math.round(current.apparent_temperature) + "°C" +
+            " │ 湿度 " + current.relative_humidity_2m + "%" +
+            " │ 風速 " + Math.round(current.wind_speed_10m) + " km/h";
+
+        const range = document.getElementById("weather-range");
+
+        if (range && daily) {
+            range.textContent =
+                "最高 " + Math.round(daily.temperature_2m_max[0]) + "°C" +
+                " ／ 最低 " + Math.round(daily.temperature_2m_min[0]) + "°C";
+        }
+
+    } catch (error) {
+        description.textContent = "天気情報を取得できませんでした";
+        details.textContent = "時間をおいて再度お試しください";
+        console.error("Weather error:", error);
+    }
+}
+
+loadOsakaWeather();
+    
 /* 收藏分類線條圖示 */
 
 lucide.createIcons();
