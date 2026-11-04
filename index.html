@@ -25,11 +25,20 @@
 body {
     margin: 0;
     padding: 0 20px 60px;
-    background: #FBF8F3;
-    color: #806B5A;
-    font-family: 'Noto Serif JP', serif;
-    text-align: center;
-}
+    background:
+    radial-gradient(
+        circle,
+        transparent 0 23%,
+        rgba(255,255,255,0.08) 23.5%,
+        transparent 24% 100%
+    ),
+    repeating-radial-gradient(
+        circle,
+        #111111 0px,
+        #111111 2px,
+        #292929 3px,
+        #111111 4px
+    );
 
 .container {
     width: 100%;
@@ -123,7 +132,7 @@ body {
 /* 播放時旋轉 */
 
 .cd-disc.is-playing {
-    animation: cd-rotate 5s linear infinite;
+    animation: cd-rotate 10s linear infinite;
 }
 
 @keyframes cd-rotate {
