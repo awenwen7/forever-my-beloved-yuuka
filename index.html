@@ -69,7 +69,7 @@ input {
 
 .player-main {
     display: grid;
-    grid-template-columns: 62px 62px minmax(0, 1fr) auto;
+    grid-template-columns: 108px minmax(0, 1fr) auto;
     align-items: center;
     gap: 11px;
     width: 100%;
@@ -77,18 +77,30 @@ input {
 
 
 /* ==============================
-   正方形專輯封面
+   專輯封面 + 黑膠唱片組合
 ============================== */
+
+.record-composition {
+    width: 108px;
+    height: 62px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+
+/* 正方形專輯封面 */
 
 .album-sleeve {
     width: 62px;
     height: 62px;
-    flex-shrink: 0;
-    position: relative;
+    position: absolute;
+    left: 0;
+    top: 0;
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 2px;
     background: #E9DED2;
-    box-shadow: 0 2px 6px rgba(80, 60, 45, 0.16);
+    box-shadow: 0 2px 6px rgba(80, 60, 45, 0.2);
+    z-index: 4;
 }
 
 .album-sleeve img {
@@ -105,8 +117,8 @@ input {
     content: "";
     position: absolute;
     inset: 0;
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 2px;
     pointer-events: none;
 }
 
@@ -118,8 +130,10 @@ input {
 .record-area {
     width: 62px;
     height: 62px;
-    position: relative;
-    flex-shrink: 0;
+    position: absolute;
+    left: 46px;
+    top: 0;
+    z-index: 2;
 }
 
 .cd-disc {
@@ -164,77 +178,150 @@ input {
             transparent 61%
         );
     pointer-events: none;
-    z-index: 1;
-}
-
-
-/* 唱片中心標籤 */
-
-.cd-disc::after {
-    content: "";
-    position: absolute;
-    width: 17px;
-    height: 17px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background: #D8C8BA;
-    border: 1px solid rgba(255,255,255,0.6);
     z-index: 2;
 }
 
 
-/* 中心孔 */
+/* 唱片中央照片 */
 
-.cd-center {
+.record-label {
     position: absolute;
-    width: 4px;
-    height: 4px;
+    width: 18px;
+    height: 18px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    background: #806B5A;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.65);
+    background: #D8C8BA;
     z-index: 3;
+}
+
+.record-label img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+
+/* 唱片中心小孔 */
+
+.cd-center {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: #F5EDE5;
+    box-shadow: 0 0 1px rgba(0,0,0,0.8);
+    z-index: 4;
 }
 
 
 /* ==============================
-   簡約唱臂
+   真實感銀色唱針臂
 ============================== */
 
 .tonearm {
     position: absolute;
-    width: 62px;
+    width: 108px;
     height: 62px;
-    top: 0;
     left: 0;
+    top: 0;
     z-index: 5;
     overflow: visible;
     pointer-events: none;
 }
 
-.tonearm line,
-.tonearm path,
-.tonearm circle {
-    stroke: #C5AE99;
-    stroke-width: 1.5;
+
+/* 黑色金屬邊緣 */
+
+.tonearm .arm-shadow {
+    fill: none;
+    stroke: #343434;
+    stroke-width: 4;
     stroke-linecap: round;
     stroke-linejoin: round;
+}
+
+
+/* 銀色唱臂主體 */
+
+.tonearm .arm-silver {
     fill: none;
+    stroke: #D5D7D8;
+    stroke-width: 2.1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
-.tonearm .tonearm-pivot {
-    fill: #D7C4B2;
-    stroke: #B69D87;
-    stroke-width: 1;
+
+/* 銀色細緻反光 */
+
+.tonearm .arm-highlight {
+    fill: none;
+    stroke: #FFFFFF;
+    stroke-width: 0.65;
+    stroke-linecap: round;
+    opacity: 0.9;
 }
 
-.tonearm .tonearm-tip {
-    fill: #B69D87;
-    stroke: #B69D87;
+
+/* 黑色唱頭 */
+
+.tonearm .headshell-shadow {
+    fill: #292929;
+    stroke: #171717;
     stroke-width: 1;
+    stroke-linejoin: round;
+}
+
+
+/* 銀色唱頭細節 */
+
+.tonearm .headshell-silver {
+    fill: #BFC2C4;
+    stroke: #777B7E;
+    stroke-width: 0.7;
+    stroke-linejoin: round;
+}
+
+
+/* 唱針 */
+
+.tonearm .stylus {
+    stroke: #333333;
+    stroke-width: 1.2;
+    stroke-linecap: round;
+}
+
+.tonearm .stylus-tip {
+    fill: #252525;
+}
+
+
+/* 唱臂固定座 */
+
+.tonearm .pivot-base {
+    fill: #343638;
+    stroke: #171819;
+    stroke-width: 0.8;
+}
+
+.tonearm .pivot-metal {
+    fill: #C9CCCE;
+    stroke: #777B7E;
+    stroke-width: 0.8;
+}
+
+.tonearm .pivot-center {
+    fill: #686C70;
+    stroke: #E7E8E9;
+    stroke-width: 0.5;
 }
 
 
@@ -648,8 +735,13 @@ footer {
     }
 
     .player-main {
-        grid-template-columns: 44px 44px minmax(0, 1fr) auto;
+        grid-template-columns: 77px minmax(0, 1fr) auto;
         gap: 6px;
+    }
+
+    .record-composition {
+        width: 77px;
+        height: 44px;
     }
 
     .album-sleeve {
@@ -657,28 +749,30 @@ footer {
         height: 44px;
     }
 
-    .record-area,
-    .cd-disc,
-    .tonearm {
+    .record-area {
+        width: 44px;
+        height: 44px;
+        left: 33px;
+    }
+
+    .cd-disc {
         width: 44px;
         height: 44px;
     }
 
-    .cd-disc::after {
+    .record-label {
         width: 13px;
         height: 13px;
     }
 
     .cd-center {
-        width: 3px;
-        height: 3px;
+        width: 2.5px;
+        height: 2.5px;
     }
 
     .tonearm {
-        transform: scale(0.71);
-        transform-origin: top left;
-        width: 62px;
-        height: 62px;
+        width: 77px;
+        height: 44px;
     }
 
     .now-playing {
@@ -789,73 +883,134 @@ footer {
         <div class="player-main">
 
 
-            <!-- 正方形專輯封面 -->
+            <!-- 專輯封面與黑膠唱片 -->
 
-            <div class="album-sleeve">
-
-                <img
-                    id="cd-cover"
-                    src="images/music-covers/odori-ko.jpg"
-                    alt="Album cover"
-                >
-
-            </div>
+            <div class="record-composition">
 
 
-            <!-- 黑膠唱片與唱臂 -->
+                <!-- 正方形專輯封面 -->
 
-            <div class="record-area">
+                <div class="album-sleeve">
 
-                <div class="cd-disc" id="cd-disc">
-                    <span class="cd-center"></span>
+                    <img
+                        id="cd-cover"
+                        src="images/music-covers/odori-ko.jpg"
+                        alt="Album cover"
+                    >
+
                 </div>
 
-                <!-- 簡約細線唱臂 -->
+
+                <!-- 黑膠唱片 -->
+
+                <div class="record-area">
+
+                    <div class="cd-disc" id="cd-disc">
+
+                        <!-- 唱片中央照片 -->
+
+                        <div class="record-label">
+                            <img
+                                id="record-label-cover"
+                                src="images/music-covers/odori-ko.jpg"
+                                alt="Record label"
+                            >
+                        </div>
+
+                        <span class="cd-center"></span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 真實感銀色唱針臂 -->
 
                 <svg
                     class="tonearm"
-                    viewBox="0 0 62 62"
+                    viewBox="0 0 108 62"
                     aria-hidden="true"
                 >
 
-                    <!-- 唱臂固定軸 -->
-
-                    <circle
-                        class="tonearm-pivot"
-                        cx="49"
-                        cy="10"
-                        r="3"
-                    />
-
-                    <!-- 唱臂 -->
-
-                    <line
-                        x1="49"
-                        y1="10"
-                        x2="31"
-                        y2="29"
-                    />
-
-                    <!-- 唱臂前端 -->
+                    <!-- 唱臂黑色底層 -->
 
                     <path
-                        d="M31 29 L27 33 L30 36"
+                        class="arm-shadow"
+                        d="M101 9 L96 13 L72 31"
+                    />
+
+                    <!-- 唱臂銀色主體 -->
+
+                    <path
+                        class="arm-silver"
+                        d="M101 9 L96 13 L72 31"
+                    />
+
+                    <!-- 唱臂反光 -->
+
+                    <path
+                        class="arm-highlight"
+                        d="M99 10 L95 14 L73 30"
+                    />
+
+
+                    <!-- 唱頭黑色外框 -->
+
+                    <path
+                        class="headshell-shadow"
+                        d="M72 31 L65 35 L59 41 L63 44 L70 39 L75 34 Z"
+                    />
+
+                    <!-- 唱頭銀色表面 -->
+
+                    <path
+                        class="headshell-silver"
+                        d="M70 32 L65 36 L61 41 L64 42 L70 38 L73 34 Z"
                     />
 
                     <!-- 唱針 -->
 
                     <line
-                        x1="30"
-                        y1="36"
-                        x2="28"
-                        y2="39"
+                        class="stylus"
+                        x1="63"
+                        y1="42"
+                        x2="60"
+                        y2="46"
                     />
 
                     <circle
-                        class="tonearm-tip"
-                        cx="28"
-                        cy="39"
-                        r="1.3"
+                        class="stylus-tip"
+                        cx="60"
+                        cy="46"
+                        r="1"
+                    />
+
+
+                    <!-- 唱臂固定座底盤 -->
+
+                    <circle
+                        class="pivot-base"
+                        cx="101"
+                        cy="9"
+                        r="5"
+                    />
+
+                    <!-- 銀色固定軸 -->
+
+                    <circle
+                        class="pivot-metal"
+                        cx="101"
+                        cy="9"
+                        r="3.3"
+                    />
+
+                    <!-- 中央軸心 -->
+
+                    <circle
+                        class="pivot-center"
+                        cx="101"
+                        cy="9"
+                        r="1.2"
                     />
 
                 </svg>
@@ -1165,6 +1320,7 @@ const progressBar = document.getElementById("progress-bar");
 const playButton = document.getElementById("play-button");
 const cdDisc = document.getElementById("cd-disc");
 const cdCover = document.getElementById("cd-cover");
+const recordLabelCover = document.getElementById("record-label-cover");
 
 
 /* 歌曲清單與專輯封面 */
@@ -1279,10 +1435,13 @@ function loadTrack() {
         track.artist;
 
 
-    /* 更換正方形專輯封面 */
+    /* 同時更換正方形封面與唱片中央照片 */
 
     cdCover.src = track.cover;
     cdCover.alt = track.title + " album cover";
+
+    recordLabelCover.src = track.cover;
+    recordLabelCover.alt = track.title + " record label";
 
 
     document.getElementById("player-time").textContent =
