@@ -49,7 +49,6 @@ body {
     padding: 12px 14px;
     font-family: 'Noto Serif JP', serif;
     color: #806B5A;
-
     border: 1px solid #E5DED6;
     border-radius: 12px;
     background: transparent;
@@ -84,13 +83,10 @@ body {
     left: 0;
     top: 0;
     z-index: 2;
-
     width: 62px;
     height: 62px;
-
     display: block;
     object-fit: cover;
-
     border-radius: 3px;
     box-shadow: 0 2px 5px rgba(128, 107, 90, 0.15);
 }
@@ -101,12 +97,10 @@ body {
 .vinyl-record {
     width: 62px;
     height: 62px;
-
     position: absolute;
     left: 46.5px;
     top: 0;
     z-index: 1;
-
     border-radius: 50%;
     overflow: hidden;
 
@@ -145,21 +139,14 @@ body {
     position: absolute;
     width: 25px;
     height: 25px;
-
     left: 50%;
     top: 50%;
-
     transform: translate(-50%, -50%);
-
     border-radius: 50%;
     object-fit: cover;
-
     border: 2px solid #D6B9A9;
-
     z-index: 2;
-
-    box-shadow:
-        0 0 3px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.35);
 }
 
 
@@ -170,17 +157,12 @@ body {
     position: absolute;
     width: 5px;
     height: 5px;
-
     left: 50%;
     top: 50%;
-
     transform: translate(-50%, -50%);
-
     border-radius: 50%;
-
     background: #FBF8F3;
     border: 1px solid rgba(0, 0, 0, 0.3);
-
     z-index: 3;
 }
 
@@ -195,7 +177,6 @@ body {
     from {
         transform: rotate(0deg);
     }
-
     to {
         transform: rotate(360deg);
     }
@@ -254,20 +235,15 @@ body {
 .player-controls button {
     width: 35px;
     height: 35px;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     border: 1px solid #D8C8BA;
     border-radius: 50%;
-
     background: transparent;
     color: #806B5A;
-
     cursor: pointer;
     padding: 0;
-
     transition:
         background 0.2s ease,
         transform 0.2s ease;
@@ -277,9 +253,6 @@ body {
     background: #F3E8E1;
     transform: scale(1.05);
 }
-
-
-/* 實心圖示 */
 
 .player-controls button svg {
     width: 17px;
@@ -291,7 +264,6 @@ body {
 .player-controls .play-button {
     width: 42px;
     height: 42px;
-
     background: #B58D86;
     border: 1px solid #B58D86;
 }
@@ -321,10 +293,8 @@ body {
     order: 1;
     width: 100%;
     height: 3px;
-
     appearance: none;
     -webkit-appearance: none;
-
     background: #E5D8CC;
     border-radius: 10px;
     outline: none;
@@ -416,7 +386,6 @@ body {
     background: #F3E8E1;
     border-radius: 12px;
     padding: 25px 12px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -427,7 +396,6 @@ body {
 .countdown-label {
     width: 100%;
     text-align: center;
-
     font-size: 15px;
     letter-spacing: 1.15px;
     margin-bottom: 18px;
@@ -437,7 +405,6 @@ body {
 .countdown-number {
     width: 100%;
     text-align: center;
-
     font-size: 39px;
     font-weight: 500;
     letter-spacing: 1.15px;
@@ -448,7 +415,6 @@ body {
 .countdown-unit {
     width: 100%;
     text-align: center;
-
     font-size: 14px;
     margin-top: 9px;
     letter-spacing: 1.15px;
@@ -505,13 +471,19 @@ body {
 }
 
 
-/* 天氣區域 */
+/* ==============================
+   大阪天氣區域
+============================== */
 
 .weather-section {
     margin: 45px 0 60px;
-    padding: 25px 15px;
+    padding: 24px 18px 18px;
     background: #F3E8E1;
     border-radius: 12px;
+}
+
+.weather-section .section-title {
+    margin-bottom: 10px;
 }
 
 .section-title {
@@ -527,14 +499,181 @@ body {
     letter-spacing: 1px;
 }
 
-.weather-placeholder {
-    margin-top: 18px;
-    font-size: 13px;
+
+/* 今日天氣左右排列 */
+
+.weather-current {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+
+/* 左側天氣圖示與溫度 */
+
+.weather-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.weather-main-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #947B66;
+}
+
+.weather-main-icon svg {
+    width: 38px;
+    height: 38px;
+    stroke-width: 1.35;
+}
+
+.weather-main-info {
+    text-align: left;
+    min-width: 0;
+}
+
+.weather-temperature {
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 500;
+    color: #806B5A;
+    font-variant-numeric: tabular-nums;
+}
+
+.weather-description {
+    margin-top: 5px;
+    font-size: 11px;
+    color: #947B66;
+    white-space: nowrap;
+}
+
+
+/* 右側天氣資訊 */
+
+.weather-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    text-align: right;
+    font-size: 10px;
+    line-height: 1.5;
+    color: #947B66;
+    white-space: nowrap;
+}
+
+
+/* 最後更新時間 */
+
+.weather-updated {
+    margin-top: 13px;
+    text-align: right;
+    font-size: 9px;
+    letter-spacing: 0.3px;
     color: #A18D7B;
 }
 
 
-/* 收藏分類 */
+/* 一週天氣 */
+
+.weekly-weather {
+    margin-top: 19px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(161, 141, 123, 0.22);
+}
+
+.weekly-weather-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    color: #806B5A;
+}
+
+.weekly-weather-en {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #B5A393;
+}
+
+
+/* 七天排列 */
+
+.weekly-weather-list {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 3px;
+    width: 100%;
+}
+
+.weekly-day {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+
+.weekly-day-name {
+    font-size: 10px;
+    color: #A18D7B;
+}
+
+.weekly-day-icon {
+    height: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #947B66;
+}
+
+.weekly-day-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 1.35;
+}
+
+.weekly-day-max {
+    font-size: 10px;
+    font-weight: 600;
+    color: #806B5A;
+    font-variant-numeric: tabular-nums;
+}
+
+.weekly-day-min {
+    font-size: 10px;
+    color: #A18D7B;
+    font-variant-numeric: tabular-nums;
+}
+
+.weekly-day-rain {
+    font-size: 9px;
+    color: #A18D7B;
+}
+
+.weekly-loading {
+    grid-column: 1 / -1;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 10px;
+    color: #A18D7B;
+}
+
+
+/* ==============================
+   收藏分類
+============================== */
 
 .memories-section {
     margin-top: 60px;
@@ -554,13 +693,11 @@ body {
     border-radius: 12px;
     color: #806B5A;
     text-decoration: none;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 12px;
-
     transition:
         transform 0.25s ease,
         background 0.25s ease;
@@ -624,11 +761,11 @@ footer {
         width: 87.5px;
         height: 50px;
     }
-    
+
     .player-info {
-    margin-left: 6px;
+        margin-left: 6px;
     }
-    
+
     .album-cover {
         width: 50px;
         height: 50px;
@@ -734,6 +871,70 @@ footer {
     .memory-card {
         min-height: 118px;
     }
+
+    /* 手機版天氣 */
+
+    .weather-section {
+        padding: 22px 12px 17px;
+    }
+
+    .weather-current {
+        gap: 6px;
+    }
+
+    .weather-main {
+        gap: 8px;
+    }
+
+    .weather-main-icon {
+        width: 34px;
+        height: 34px;
+    }
+
+    .weather-main-icon svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .weather-temperature {
+        font-size: 26px;
+    }
+
+    .weather-description {
+        font-size: 10px;
+    }
+
+    .weather-details {
+        font-size: 9px;
+        gap: 5px;
+    }
+
+    .weekly-weather-list {
+        gap: 1px;
+    }
+
+    .weekly-day {
+        gap: 7px;
+    }
+
+    .weekly-day-name {
+        font-size: 9px;
+    }
+
+    .weekly-day-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .weekly-day-max,
+    .weekly-day-min {
+        font-size: 9px;
+    }
+
+    .weekly-day-rain {
+        font-size: 8px;
+    }
+
 }
 
 
@@ -767,11 +968,7 @@ footer {
 
         <audio id="audio-player" preload="metadata"></audio>
 
-
-        <!-- 音樂封面、黑膠、歌曲資訊、控制按鈕 -->
-
         <div class="player-main">
-
 
             <!-- 專輯封面與黑膠唱片 -->
 
@@ -822,8 +1019,6 @@ footer {
 
             <div class="player-controls">
 
-                <!-- 上一首 -->
-
                 <button
                     onclick="previousTrack()"
                     aria-label="Previous track"
@@ -833,9 +1028,6 @@ footer {
                         <path d="M19 5V19L9 12Z"/>
                     </svg>
                 </button>
-
-
-                <!-- 播放與暫停 -->
 
                 <button
                     class="play-button"
@@ -847,9 +1039,6 @@ footer {
                         <path d="M7 4.5L20 12L7 19.5Z"/>
                     </svg>
                 </button>
-
-
-                <!-- 下一首 -->
 
                 <button
                     onclick="nextTrack()"
@@ -926,7 +1115,6 @@ footer {
 
     <section class="countdown-grid">
 
-
         <!-- 下次約會倒數 -->
 
         <div class="countdown-card">
@@ -974,7 +1162,6 @@ footer {
 
                 </div>
 
-
                 <div class="meeting-time-item">
 
                     <div
@@ -990,7 +1177,6 @@ footer {
 
                 </div>
 
-
                 <div class="meeting-time-item">
 
                     <div
@@ -1005,7 +1191,6 @@ footer {
                     </div>
 
                 </div>
-
 
                 <div class="meeting-time-item">
 
@@ -1033,32 +1218,97 @@ footer {
     </section>
 
 
-   
-<!-- 天氣區域 -->
+    <!-- ==========================
+         大阪天氣區域
+    =========================== -->
 
-<section class="weather-section">
+    <section class="weather-section">
 
-    <div class="section-title">
-        大阪の天気
-    </div>
+        <div class="section-title">
+            大阪の天気
+        </div>
 
-    <div class="section-subtitle">
-        大阪府 │ 東大阪市
-    </div>
+        <div class="section-subtitle">
+            大阪府 │ 東大阪市
+        </div>
 
-    <div class="weather-placeholder" id="weather-info">
-        <div id="weather-icon">☁️</div>
-        <div id="weather-temperature">--°C</div>
-        <div id="weather-description">天気を読み込み中...</div>
-        <div id="weather-details">湿度 --% │ 風速 -- km/h</div>
-        <div id="weather-range">最高 --°C ／ 最低 --°C</div>
-    </div>
 
-    <div class="weather-credit">
-        Weather data by Open-Meteo
-    </div>
+        <!-- 今日天氣 -->
 
-</section>
+        <div class="weather-current">
+
+            <div class="weather-main">
+
+                <div id="weather-icon" class="weather-main-icon">
+                    <i data-lucide="cloud-sun"></i>
+                </div>
+
+                <div class="weather-main-info">
+
+                    <div id="weather-temperature" class="weather-temperature">
+                        --°C
+                    </div>
+
+                    <div id="weather-description" class="weather-description">
+                        天気を読み込み中...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="weather-details">
+
+                <div id="weather-feels">
+                    体感 --°C
+                </div>
+
+                <div id="weather-humidity">
+                    湿度 --%
+                </div>
+
+                <div id="weather-wind">
+                    風速 -- km/h
+                </div>
+
+                <div id="weather-range">
+                    最高 --° ／ 最低 --°
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 最後更新時間 -->
+
+        <div class="weather-updated" id="weather-updated">
+            最終更新 --:--（日本時間）
+        </div>
+
+
+        <!-- 一週間天氣 -->
+
+        <div class="weekly-weather">
+
+            <div class="weekly-weather-heading">
+                <span>一週間の天気</span>
+                <span class="weekly-weather-en">WEEKLY</span>
+            </div>
+
+            <div id="weekly-weather-list" class="weekly-weather-list">
+
+                <div class="weekly-loading">
+                    天気予報を読み込み中...
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
 
     <!-- 12 個回憶收藏分類 -->
 
@@ -1183,15 +1433,10 @@ footer {
 ============================== */
 
 const audio = document.getElementById("audio-player");
-
 const progressBar = document.getElementById("progress-bar");
-
 const playButton = document.getElementById("play-button");
-
 const vinylRecord = document.getElementById("vinyl-record");
-
 const albumCover = document.getElementById("album-cover");
-
 const vinylLabel = document.getElementById("vinyl-label");
 
 
@@ -1267,7 +1512,6 @@ function formatTime(seconds) {
     }
 
     const minutes = Math.floor(seconds / 60);
-
     const remainingSeconds = Math.floor(seconds % 60);
 
     return minutes + ":" +
@@ -1281,13 +1525,9 @@ function formatTime(seconds) {
 function updateVinylAnimation() {
 
     if (!audio.paused && !audio.ended) {
-
         vinylRecord.classList.add("is-playing");
-
     } else {
-
         vinylRecord.classList.remove("is-playing");
-
     }
 
 }
@@ -1300,7 +1540,6 @@ function loadTrack() {
     const track = tracks[currentTrack];
 
     audio.pause();
-
     vinylRecord.classList.remove("is-playing");
 
     audio.src = track.src;
@@ -1312,15 +1551,9 @@ function loadTrack() {
     document.getElementById("song-artist").textContent =
         track.artist;
 
-
-    /* 同時更換專輯封面與黑膠中心封面 */
-
     albumCover.style.visibility = "visible";
-
     albumCover.src = track.cover;
-
     vinylLabel.src = track.cover;
-
 
     document.getElementById("player-time").textContent =
         "0:00";
@@ -1332,7 +1565,6 @@ function loadTrack() {
     progressBar.max = 100;
 
     playButton.innerHTML = playIcon;
-
     playButton.setAttribute("aria-label", "Play");
 
 }
@@ -1393,9 +1625,7 @@ function previousTrack() {
 audio.addEventListener("play", () => {
 
     playButton.innerHTML = pauseIcon;
-
     playButton.setAttribute("aria-label", "Pause");
-
     updateVinylAnimation();
 
 });
@@ -1404,9 +1634,7 @@ audio.addEventListener("play", () => {
 audio.addEventListener("pause", () => {
 
     playButton.innerHTML = playIcon;
-
     playButton.setAttribute("aria-label", "Play");
-
     updateVinylAnimation();
 
 });
@@ -1444,7 +1672,6 @@ audio.addEventListener("timeupdate", () => {
         : 0;
 
     const currentTime = audio.currentTime;
-
     const remaining = Math.max(0, duration - currentTime);
 
     document.getElementById("player-time").textContent =
@@ -1454,9 +1681,7 @@ audio.addEventListener("timeupdate", () => {
         "-" + formatTime(remaining);
 
     if (duration > 0) {
-
         progressBar.value = currentTime;
-
     }
 
 });
@@ -1467,9 +1692,7 @@ audio.addEventListener("timeupdate", () => {
 progressBar.addEventListener("input", () => {
 
     if (Number.isFinite(audio.duration)) {
-
         audio.currentTime = Number(progressBar.value);
-
     }
 
 });
@@ -1519,7 +1742,6 @@ function updateDateCountdown() {
 function updateMeetingCounter() {
 
     const start = new Date("2024-06-29T00:00:00+09:00");
-
     const now = new Date();
 
     let diff = Math.max(
@@ -1559,53 +1781,91 @@ function updateMeetingCounter() {
 /* 啟動倒數 */
 
 updateDateCountdown();
-
 updateMeetingCounter();
 
 setInterval(updateMeetingCounter, 1000);
-
 setInterval(updateDateCountdown, 60000);
 
 
-/* 大阪・東大阪の天気 */
+/* ==============================
+   大阪・東大阪の天気
+============================== */
 
 async function loadOsakaWeather() {
+
     const icon = document.getElementById("weather-icon");
     const temperature = document.getElementById("weather-temperature");
     const description = document.getElementById("weather-description");
-    const details = document.getElementById("weather-details");
+    const feels = document.getElementById("weather-feels");
+    const humidity = document.getElementById("weather-humidity");
+    const wind = document.getElementById("weather-wind");
+    const range = document.getElementById("weather-range");
+    const updated = document.getElementById("weather-updated");
+    const weeklyList = document.getElementById("weekly-weather-list");
 
-    if (!icon || !temperature || !description || !details) return;
+    if (!icon || !temperature || !description) return;
 
-    const url = "https://api.open-meteo.com/v1/forecast?latitude=34.6794&longitude=135.6009&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,is_day&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo";
+    const url =
+        "https://api.open-meteo.com/v1/forecast" +
+        "?latitude=34.6794" +
+        "&longitude=135.6009" +
+        "&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,is_day" +
+        "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max" +
+        "&timezone=Asia%2FTokyo" +
+        "&forecast_days=7";
 
-    const weatherTypes = {
-        0: ["晴れ", "☀️"],
-        1: ["おおむね晴れ", "🌤️"],
-        2: ["晴れ時々曇り", "⛅"],
-        3: ["曇り", "☁️"],
-        45: ["霧", "🌫️"],
-        48: ["霧", "🌫️"],
-        51: ["弱い霧雨", "🌦️"],
-        53: ["霧雨", "🌦️"],
-        55: ["強い霧雨", "🌧️"],
-        61: ["弱い雨", "🌧️"],
-        63: ["雨", "🌧️"],
-        65: ["強い雨", "🌧️"],
-        71: ["弱い雪", "🌨️"],
-        73: ["雪", "❄️"],
-        75: ["強い雪", "❄️"],
-        80: ["にわか雨", "🌦️"],
-        81: ["雨", "🌧️"],
-        82: ["強いにわか雨", "🌧️"],
-        85: ["にわか雪", "🌨️"],
-        86: ["強いにわか雪", "❄️"],
-        95: ["雷雨", "⛈️"],
-        96: ["ひょうを伴う雷雨", "⛈️"],
-        99: ["強い雷雨", "⛈️"]
-    };
+
+    /* 天氣代碼對應 Lucide 圖示 */
+
+    function getWeatherInfo(code, isDay = 1) {
+
+        const weatherTypes = {
+
+            0: ["晴れ", isDay ? "sun" : "moon"],
+            1: ["おおむね晴れ", isDay ? "sun" : "moon"],
+            2: ["晴れ時々曇り", isDay ? "cloud-sun" : "cloud-moon"],
+            3: ["曇り", "cloud"],
+
+            45: ["霧", "cloud-fog"],
+            48: ["霧", "cloud-fog"],
+
+            51: ["弱い霧雨", "cloud-drizzle"],
+            53: ["霧雨", "cloud-drizzle"],
+            55: ["強い霧雨", "cloud-rain"],
+            56: ["凍結性の霧雨", "cloud-drizzle"],
+            57: ["強い凍結性の霧雨", "cloud-rain"],
+
+            61: ["弱い雨", "cloud-rain"],
+            63: ["雨", "cloud-rain"],
+            65: ["強い雨", "cloud-rain"],
+            66: ["凍結性の雨", "cloud-rain"],
+            67: ["強い凍結性の雨", "cloud-rain"],
+
+            71: ["弱い雪", "cloud-snow"],
+            73: ["雪", "cloud-snow"],
+            75: ["強い雪", "cloud-snow"],
+            77: ["雪あられ", "cloud-snow"],
+
+            80: ["にわか雨", "cloud-drizzle"],
+            81: ["雨", "cloud-rain"],
+            82: ["強いにわか雨", "cloud-rain"],
+
+            85: ["にわか雪", "cloud-snow"],
+            86: ["強いにわか雪", "cloud-snow"],
+
+            95: ["雷雨", "cloud-lightning"],
+            96: ["ひょうを伴う雷雨", "cloud-lightning"],
+            99: ["強い雷雨", "cloud-lightning"]
+
+        };
+
+        return weatherTypes[code] || ["天気情報", "cloud"];
+
+    }
+
 
     try {
+
         const response = await fetch(url);
 
         if (!response.ok) {
@@ -1613,37 +1873,153 @@ async function loadOsakaWeather() {
         }
 
         const data = await response.json();
+
         const current = data.current;
         const daily = data.daily;
 
-        const weather = weatherTypes[current.weather_code] || ["天気情報", "🌤️"];
 
-        icon.textContent = weather[1];
-        temperature.textContent = Math.round(current.temperature_2m) + "°C";
-        description.textContent = weather[0];
+        /* 今日の天氣 */
 
-        details.textContent =
-            "体感 " + Math.round(current.apparent_temperature) + "°C" +
-            " │ 湿度 " + current.relative_humidity_2m + "%" +
-            " │ 風速 " + Math.round(current.wind_speed_10m) + " km/h";
+        const todayWeather = getWeatherInfo(
+            current.weather_code,
+            current.is_day
+        );
 
-        const range = document.getElementById("weather-range");
+        icon.innerHTML =
+            '<i data-lucide="' + todayWeather[1] + '"></i>';
 
-        if (range && daily) {
-            range.textContent =
-                "最高 " + Math.round(daily.temperature_2m_max[0]) + "°C" +
-                " ／ 最低 " + Math.round(daily.temperature_2m_min[0]) + "°C";
+        temperature.textContent =
+            Math.round(current.temperature_2m) + "°C";
+
+        description.textContent =
+            todayWeather[0];
+
+        feels.textContent =
+            "体感 " + Math.round(current.apparent_temperature) + "°C";
+
+        humidity.textContent =
+            "湿度 " + current.relative_humidity_2m + "%";
+
+        wind.textContent =
+            "風速 " + Math.round(current.wind_speed_10m) + " km/h";
+
+        range.textContent =
+            "最高 " + Math.round(daily.temperature_2m_max[0]) + "°" +
+            " ／ 最低 " + Math.round(daily.temperature_2m_min[0]) + "°";
+
+
+        /* 日本時間最後更新時間 */
+
+        updated.textContent =
+            "最終更新 " +
+            new Date().toLocaleTimeString("ja-JP", {
+                timeZone: "Asia/Tokyo",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false
+            }) +
+            "（日本時間）";
+
+
+        /* 一週間天氣 */
+
+        if (weeklyList) {
+
+            weeklyList.innerHTML = "";
+
+            daily.time.forEach((date, index) => {
+
+                const dayWeather = getWeatherInfo(
+                    daily.weather_code[index]
+                );
+
+                const dateObject = new Date(
+                    date + "T00:00:00+09:00"
+                );
+
+                const dayName = dateObject.toLocaleDateString(
+                    "ja-JP",
+                    {
+                        timeZone: "Asia/Tokyo",
+                        weekday: "short"
+                    }
+                );
+
+                const rainChance =
+                    daily.precipitation_probability_max[index];
+
+                const day = document.createElement("div");
+                day.className = "weekly-day";
+
+                day.innerHTML = `
+                    <div class="weekly-day-name">
+                        ${index === 0 ? "今日" : dayName}
+                    </div>
+
+                    <div class="weekly-day-icon">
+                        <i data-lucide="${dayWeather[1]}"></i>
+                    </div>
+
+                    <div class="weekly-day-max">
+                        ${Math.round(daily.temperature_2m_max[index])}°
+                    </div>
+
+                    <div class="weekly-day-min">
+                        ${Math.round(daily.temperature_2m_min[index])}°
+                    </div>
+
+                    <div class="weekly-day-rain">
+                        ${rainChance == null ? "--" : rainChance + "%"}
+                    </div>
+                `;
+
+                weeklyList.appendChild(day);
+
+            });
+
         }
 
+
+        /* 更新動態產生的 Lucide 圖示 */
+
+        lucide.createIcons();
+
+
     } catch (error) {
-        description.textContent = "天気情報を取得できませんでした";
-        details.textContent = "時間をおいて再度お試しください";
+
+        description.textContent =
+            "天気情報を取得できませんでした";
+
+        feels.textContent = "";
+        humidity.textContent = "";
+        wind.textContent = "";
+
+        if (weeklyList) {
+
+            weeklyList.innerHTML =
+                '<div class="weekly-loading">' +
+                '天気予報を取得できませんでした' +
+                '</div>';
+
+        }
+
         console.error("Weather error:", error);
+
     }
+
 }
 
+
+/* 初次載入 */
+
 loadOsakaWeather();
-    
+
+
+/* 每 30 分鐘自動更新 */
+
+setInterval(loadOsakaWeather, 30 * 60 * 1000);
+
+
 /* 收藏分類線條圖示 */
 
 lucide.createIcons();
