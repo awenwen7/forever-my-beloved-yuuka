@@ -69,7 +69,7 @@ input {
 
 .player-main {
     display: grid;
-    grid-template-columns: 108px minmax(0, 1fr) auto;
+    grid-template-columns: 120px minmax(0, 1fr) auto;
     align-items: center;
     gap: 11px;
     width: 100%;
@@ -109,9 +109,6 @@ input {
     display: block;
     object-fit: cover;
 }
-
-
-/* 封面細緻邊框 */
 
 .album-sleeve::after {
     content: "";
@@ -222,6 +219,22 @@ input {
 }
 
 
+/* 播放時黑膠旋轉 */
+
+.cd-disc.is-playing {
+    animation: cd-rotate 12s linear infinite;
+}
+
+@keyframes cd-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
 /* ==============================
    真實感銀色唱針臂
 ============================== */
@@ -229,12 +242,25 @@ input {
 .tonearm {
     position: absolute;
     width: 108px;
-    height: 62px;
+    height: 80px;
     left: 0;
-    top: 0;
+    top: -18px;
     z-index: 5;
     overflow: visible;
     pointer-events: none;
+}
+
+/* 唱臂以固定軸心旋轉 */
+.tonearm .tonearm-group {
+    transform-box: view-box;
+    transform-origin: 101px 9px;
+    transform: rotate(109deg);
+    transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 播放時唱針移到唱片上 */
+.tonearm.is-playing .tonearm-group {
+    transform: rotate(0deg);
 }
 
 
@@ -322,22 +348,6 @@ input {
     fill: #686C70;
     stroke: #E7E8E9;
     stroke-width: 0.5;
-}
-
-
-/* 播放時黑膠旋轉 */
-
-.cd-disc.is-playing {
-    animation: cd-rotate 12s linear infinite;
-}
-
-@keyframes cd-rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
 }
 
 
@@ -735,7 +745,7 @@ footer {
     }
 
     .player-main {
-        grid-template-columns: 77px minmax(0, 1fr) auto;
+        grid-template-columns: 87px minmax(0, 1fr) auto;
         gap: 6px;
     }
 
@@ -772,7 +782,8 @@ footer {
 
     .tonearm {
         width: 77px;
-        height: 44px;
+        height: 57px;
+        top: -13px;
     }
 
     .now-playing {
@@ -907,8 +918,6 @@ footer {
 
                     <div class="cd-disc" id="cd-disc">
 
-                        <!-- 唱片中央照片 -->
-
                         <div class="record-label">
                             <img
                                 id="record-label-cover"
@@ -928,90 +937,95 @@ footer {
 
                 <svg
                     class="tonearm"
-                    viewBox="0 0 108 62"
+                    id="tonearm"
+                    viewBox="0 -18 108 80"
                     aria-hidden="true"
                 >
 
-                    <!-- 唱臂黑色底層 -->
+                    <g class="tonearm-group">
 
-                    <path
-                        class="arm-shadow"
-                        d="M101 9 L96 13 L72 31"
-                    />
+                        <!-- 唱臂黑色底層 -->
 
-                    <!-- 唱臂銀色主體 -->
+                        <path
+                            class="arm-shadow"
+                            d="M101 9 L96 13 L72 31"
+                        />
 
-                    <path
-                        class="arm-silver"
-                        d="M101 9 L96 13 L72 31"
-                    />
+                        <!-- 唱臂銀色主體 -->
 
-                    <!-- 唱臂反光 -->
+                        <path
+                            class="arm-silver"
+                            d="M101 9 L96 13 L72 31"
+                        />
 
-                    <path
-                        class="arm-highlight"
-                        d="M99 10 L95 14 L73 30"
-                    />
+                        <!-- 唱臂反光 -->
 
-
-                    <!-- 唱頭黑色外框 -->
-
-                    <path
-                        class="headshell-shadow"
-                        d="M72 31 L65 35 L59 41 L63 44 L70 39 L75 34 Z"
-                    />
-
-                    <!-- 唱頭銀色表面 -->
-
-                    <path
-                        class="headshell-silver"
-                        d="M70 32 L65 36 L61 41 L64 42 L70 38 L73 34 Z"
-                    />
-
-                    <!-- 唱針 -->
-
-                    <line
-                        class="stylus"
-                        x1="63"
-                        y1="42"
-                        x2="60"
-                        y2="46"
-                    />
-
-                    <circle
-                        class="stylus-tip"
-                        cx="60"
-                        cy="46"
-                        r="1"
-                    />
+                        <path
+                            class="arm-highlight"
+                            d="M99 10 L95 14 L73 30"
+                        />
 
 
-                    <!-- 唱臂固定座底盤 -->
+                        <!-- 唱頭黑色外框 -->
 
-                    <circle
-                        class="pivot-base"
-                        cx="101"
-                        cy="9"
-                        r="5"
-                    />
+                        <path
+                            class="headshell-shadow"
+                            d="M72 31 L65 35 L59 41 L63 44 L70 39 L75 34 Z"
+                        />
 
-                    <!-- 銀色固定軸 -->
+                        <!-- 唱頭銀色表面 -->
 
-                    <circle
-                        class="pivot-metal"
-                        cx="101"
-                        cy="9"
-                        r="3.3"
-                    />
+                        <path
+                            class="headshell-silver"
+                            d="M70 32 L65 36 L61 41 L64 42 L70 38 L73 34 Z"
+                        />
 
-                    <!-- 中央軸心 -->
+                        <!-- 唱針 -->
 
-                    <circle
-                        class="pivot-center"
-                        cx="101"
-                        cy="9"
-                        r="1.2"
-                    />
+                        <line
+                            class="stylus"
+                            x1="63"
+                            y1="42"
+                            x2="60"
+                            y2="46"
+                        />
+
+                        <circle
+                            class="stylus-tip"
+                            cx="60"
+                            cy="46"
+                            r="1"
+                        />
+
+
+                        <!-- 唱臂固定座底盤 -->
+
+                        <circle
+                            class="pivot-base"
+                            cx="101"
+                            cy="9"
+                            r="5"
+                        />
+
+                        <!-- 銀色固定軸 -->
+
+                        <circle
+                            class="pivot-metal"
+                            cx="101"
+                            cy="9"
+                            r="3.3"
+                        />
+
+                        <!-- 中央軸心 -->
+
+                        <circle
+                            class="pivot-center"
+                            cx="101"
+                            cy="9"
+                            r="1.2"
+                        />
+
+                    </g>
 
                 </svg>
 
@@ -1321,6 +1335,7 @@ const playButton = document.getElementById("play-button");
 const cdDisc = document.getElementById("cd-disc");
 const cdCover = document.getElementById("cd-cover");
 const recordLabelCover = document.getElementById("record-label-cover");
+const tonearm = document.getElementById("tonearm");
 
 
 /* 歌曲清單與專輯封面 */
@@ -1403,14 +1418,20 @@ function formatTime(seconds) {
 }
 
 
-/* 更新 CD 旋轉狀態 */
+/* 更新唱片與唱針狀態 */
 
 function updateCDAnimation() {
 
     if (!audio.paused && !audio.ended) {
+
         cdDisc.classList.add("is-playing");
+        tonearm.classList.add("is-playing");
+
     } else {
+
         cdDisc.classList.remove("is-playing");
+        tonearm.classList.remove("is-playing");
+
     }
 
 }
@@ -1423,7 +1444,9 @@ function loadTrack() {
     const track = tracks[currentTrack];
 
     audio.pause();
+
     cdDisc.classList.remove("is-playing");
+    tonearm.classList.remove("is-playing");
 
     audio.src = track.src;
     audio.load();
@@ -1509,7 +1532,7 @@ function previousTrack() {
 }
 
 
-/* 播放與暫停圖示、CD 動畫 */
+/* 播放與暫停圖示、唱片與唱針動畫 */
 
 audio.addEventListener("play", () => {
 
