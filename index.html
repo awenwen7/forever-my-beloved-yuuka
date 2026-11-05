@@ -1042,7 +1042,55 @@ footer {
 .container {
     padding-top: 66px;
 }
-    
+
+    /* ==============================
+   語言選單
+============================== */
+
+.language-menu {
+    position: fixed;
+    top: 56px;
+    right: max(15px, calc((100vw - 680px) / 2));
+    z-index: 1001;
+    width: 145px;
+    padding: 7px;
+    background: #FFF9F0;
+    border: 1px solid #E8DED3;
+    border-radius: 10px;
+    box-shadow: 0 5px 18px rgba(80, 60, 45, 0.15);
+}
+
+.language-menu[hidden] {
+    display: none;
+}
+
+.language-option {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 10px;
+    border: none;
+    background: transparent;
+    color: #806B5A;
+    font-family: inherit;
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.language-option + .language-option {
+    border-top: 1px solid #E9DED3;
+}
+
+.language-check {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.language-option.active .language-check::before {
+    content: "✓";
+}
     
 </style>
 </head>
@@ -1084,10 +1132,25 @@ footer {
     <!-- 右側語言切換 -->
 
     <button
-        class="language-button"
-        id="language-toggle"
-        aria-label="切換語言"
-    >
+    class="language-button"
+    id="language-toggle"
+    aria-label="切換語言"
+>
+    <svg viewBox="0 0 24 24" fill="none">
+        <circle
+            cx="12"
+            cy="12"
+            r="9"
+            stroke="currentColor"
+            stroke-width="1.5"
+        />
+        <path
+            d="M3 12H21M12 3C14.5 5.5 15.5 8.5 15.5 12S14.5 18.5 12 21M12 3C9.5 5.5 8.5 8.5 8.5 12S9.5 18.5 12 21"
+            stroke="currentColor"
+            stroke-width="1.3"
+        />
+    </svg>
+</button>
         <svg viewBox="0 0 24 24" fill="none">
             <circle
                 cx="12"
@@ -1118,6 +1181,21 @@ footer {
 
 </header>
 
+    <!-- 語言選單 -->
+
+<div class="language-menu" id="language-menu" hidden>
+
+    <button class="language-option" data-lang="ja">
+        <span>日本語</span>
+        <span class="language-check"></span>
+    </button>
+
+    <button class="language-option" data-lang="zh">
+        <span>繁體中文</span>
+        <span class="language-check"></span>
+    </button>
+
+</div>
     
 <main class="container">
 
@@ -2186,6 +2264,59 @@ setInterval(loadOsakaWeather, 30 * 60 * 1000);
 
 lucide.createIcons();
 
+/* ==============================
+   語言選單功能
+============================== */
+
+const languageToggle = document.getElementById("language-toggle");
+const languageMenu = document.getElementById("language-menu");
+const languageOptions = document.querySelectorAll(".language-option");
+
+// 開啟或關閉語言選單
+
+languageToggle.addEventListener("click", () => {
+    languageMenu.hidden = !languageMenu.hidden;
+});
+
+// 點擊選單以外的地方，自動關閉
+
+document.addEventListener("click", (event) => {
+    if (
+        !languageToggle.contains(event.target) &&
+        !languageMenu.contains(event.target)
+    ) {
+        languageMenu.hidden = true;
+    }
+});
+
+// 設定預設語言：日語
+
+let currentLanguage = "ja";
+
+// 更新勾勾
+
+function updateLanguageCheck() {
+    languageOptions.forEach((option) => {
+        option.classList.toggle(
+            "active",
+            option.dataset.lang === currentLanguage
+        );
+    });
+}
+
+updateLanguageCheck();
+// 點擊語言選項
+
+languageOptions.forEach((option) => {
+    option.addEventListener("click", () => {
+        currentLanguage = option.dataset.lang;
+
+        updateLanguageCheck();
+
+        languageMenu.hidden = true;
+    });
+});
+    
 </script>
 
 </body>
