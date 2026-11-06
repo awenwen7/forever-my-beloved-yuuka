@@ -367,21 +367,58 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    margin-top: 18px;
+    gap: 16px;
+    margin-top: 20px;
 }
 
-.playback-option {
-    border: none;
-    background: transparent;
+.playback-icon-button {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: #FFFDF9;
     color: var(--muted);
-    font-family: inherit;
-    font-size: 11px;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.playback-option.active {
-    color: var(--accent);
+.playback-icon-button svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.playback-icon-button:hover {
+    border-color: var(--accent);
+}
+
+.playback-icon-button.active {
+    background: var(--text);
+    border-color: var(--text);
+    color: #FFFDF9;
+}
+
+.repeat-one {
+    display: none;
+    position: absolute;
+    right: 5px;
+    bottom: 4px;
+    font-family: sans-serif;
+    font-size: 8px;
+    font-weight: bold;
+}
+
+#repeat-button.repeat-single .repeat-one {
+    display: block;
 }
 
 .volume-area {
@@ -423,8 +460,8 @@ body {
 
 .section-heading span {
     color: var(--muted);
-    font-size: 10px;
-    font-weight: 400;
+    font-size: inherit;
+    font-weight: inherit;
     letter-spacing: 1.5px;
 }
 
@@ -467,18 +504,33 @@ body {
     letter-spacing: 1px;
 }
 
-.filter-select {
-    width: 100%;
-    height: 39px;
-    padding: 0 10px;
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter-button {
+    min-height: 35px;
+    padding: 7px 15px;
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 30px;
     background: #FFFDF9;
     color: var(--text);
     font-family: inherit;
-    font-size: 12px;
-    outline: none;
+    font-size: 11px;
     cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-button:hover {
+    border-color: var(--accent);
+}
+
+.filter-button.active {
+    background: var(--text);
+    border-color: var(--text);
+    color: #FFFDF9;
 }
 
 /* Song list */
@@ -693,15 +745,29 @@ body {
 
         </div>
 
-        <div class="playback-options">
-            <button class="playback-option" id="repeat-button">
-                リピートなし
-            </button>
+       <div class="playback-options">
 
-            <button class="playback-option" id="shuffle-button">
-                シャッフル再生
-            </button>
-        </div>
+    <button class="playback-icon-button" id="repeat-button" aria-label="Repeat">
+        <svg viewBox="0 0 24 24">
+            <path d="M17 2L21 6L17 10"/>
+            <path d="M3 11V9C3 7.3 4.3 6 6 6H21"/>
+            <path d="M7 22L3 18L7 14"/>
+            <path d="M21 13V15C21 16.7 19.7 18 18 18H3"/>
+        </svg>
+        <span class="repeat-one">1</span>
+    </button>
+
+    <button class="playback-icon-button" id="shuffle-button" aria-label="Shuffle">
+        <svg viewBox="0 0 24 24">
+            <path d="M16 3H21V8"/>
+            <path d="M4 20L21 3"/>
+            <path d="M21 16V21H16"/>
+            <path d="M15 15L21 21"/>
+            <path d="M4 4L9 9"/>
+        </svg>
+    </button>
+
+</div>
 
         <div class="volume-area">
             <svg viewBox="0 0 24 24">
@@ -737,29 +803,29 @@ body {
             placeholder="曲名・アーティストを検索..."
         >
 
-        <div class="filter-area">
+       <div class="filter-area">
 
-            <div class="filter-group">
-                <label for="type-filter">音楽タイプ</label>
-                <select class="filter-select" id="type-filter">
-                    <option value="all">All</option>
-                    <option value="vocal">歌入り</option>
-                    <option value="instrumental">インスト（純音楽）</option>
-                </select>
-            </div>
-
-            <div class="filter-group">
-                <label for="language-filter">曲の言語</label>
-                <select class="filter-select" id="language-filter">
-                    <option value="all">All</option>
-                    <option value="ja">日本語</option>
-                    <option value="zh">中文</option>
-                    <option value="en">English</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-
+    <div class="filter-group">
+        <label>音楽タイプ</label>
+        <div class="filter-buttons" id="type-filter">
+            <button class="filter-button active" data-value="all">All</button>
+            <button class="filter-button" data-value="vocal">歌入り</button>
+            <button class="filter-button" data-value="instrumental">インスト（純音楽）</button>
         </div>
+    </div>
+
+    <div class="filter-group">
+        <label>曲の言語</label>
+        <div class="filter-buttons" id="language-filter">
+            <button class="filter-button active" data-value="all">All</button>
+            <button class="filter-button" data-value="ja">日本語</button>
+            <button class="filter-button" data-value="zh">中文</button>
+            <button class="filter-button" data-value="en">English</button>
+            <button class="filter-button" data-value="other">Other</button>
+        </div>
+    </div>
+
+</div>
 
         <div class="song-list" id="song-list"></div>
 
@@ -963,9 +1029,18 @@ nextButton.addEventListener("click", nextSong);
 
 repeatButton.addEventListener("click", () => {
     repeatMode = (repeatMode + 1) % 3;
-    repeatButton.textContent = repeatLabels[repeatMode];
 
     repeatButton.classList.toggle("active", repeatMode !== 0);
+    repeatButton.classList.toggle("repeat-single", repeatMode === 2);
+
+    const labels = [
+        "リピートなし",
+        "全曲リピート",
+        "1曲リピート"
+    ];
+
+    repeatButton.setAttribute("aria-label", labels[repeatMode]);
+    repeatButton.setAttribute("title", labels[repeatMode]);
 });
 
 audio.addEventListener("ended", () => {
@@ -1015,14 +1090,40 @@ volumeBar.addEventListener("input", () => {
     audio.volume = Number(volumeBar.value);
 });
 
+
 /* Song list and filters */
+
+let selectedType = "all";
+let selectedLanguage = "all";
+
+function setupFilterButtons(containerId, onSelect) {
+    const container = document.getElementById(containerId);
+    const buttons = container.querySelectorAll(".filter-button");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            buttons.forEach(item => item.classList.remove("active"));
+
+            button.classList.add("active");
+
+            onSelect(button.dataset.value);
+            renderSongList();
+        });
+    });
+}
+
+setupFilterButtons("type-filter", value => {
+    selectedType = value;
+});
+
+setupFilterButtons("language-filter", value => {
+    selectedLanguage = value;
+});
 
 function renderSongList() {
     songList.innerHTML = "";
 
     const keyword = searchInput.value.trim().toLowerCase();
-    const selectedType = typeFilter.value;
-    const selectedLanguage = languageFilter.value;
 
     const filteredSongs = songData
         .map((song, index) => ({ ...song, originalIndex: index }))
@@ -1075,11 +1176,8 @@ function renderSongList() {
         const status = document.createElement("span");
         status.className = "song-status";
 
-        if (song.originalIndex === currentIndex && !audio.paused) {
-            status.textContent = "♫";
-        } else {
-            status.textContent = "♡";
-        }
+        status.textContent =
+            song.originalIndex === currentIndex && !audio.paused ? "♫" : "♡";
 
         item.appendChild(image);
         item.appendChild(info);
@@ -1095,8 +1193,6 @@ function renderSongList() {
 }
 
 searchInput.addEventListener("input", renderSongList);
-typeFilter.addEventListener("change", renderSongList);
-languageFilter.addEventListener("change", renderSongList);
 
 /* Initial setup */
 
