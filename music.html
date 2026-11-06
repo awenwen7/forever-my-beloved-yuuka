@@ -62,7 +62,6 @@ button {
     border-radius: 7px;
     background: transparent;
     color: #FFF9F0;
-    cursor: pointer;
 }
 
 .nav-button svg {
@@ -91,7 +90,6 @@ button {
     border-radius: 50%;
     background: transparent;
     color: #FFF9F0;
-    cursor: pointer;
 }
 
 .language-button svg {
@@ -393,10 +391,12 @@ input[type="range"] {
     color: #A18D7B;
 }
 
+/* 搜尋欄 */
+
 .search-box {
     width: 100%;
     padding: 12px 15px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     border: 1px solid #E5DED6;
     border-radius: 9px;
     outline: none;
@@ -408,6 +408,51 @@ input[type="range"] {
 .search-box:focus {
     border-color: #B58D86;
 }
+
+/* 音樂分類 */
+
+.category-section {
+    margin-bottom: 25px;
+}
+
+.category-group {
+    margin-bottom: 20px;
+}
+
+.category-heading {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #A18D7B;
+    margin-bottom: 10px;
+}
+
+.category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.category-button {
+    padding: 8px 13px;
+    border: 1px solid #E5DED6;
+    border-radius: 20px;
+    background: #FFFDF9;
+    color: #806B5A;
+    font-size: 11px;
+    transition: all 0.2s ease;
+}
+
+.category-button:hover {
+    border-color: #B58D86;
+}
+
+.category-button.active {
+    background: #806B5A;
+    border-color: #806B5A;
+    color: #FFF9F0;
+}
+
+/* 歌曲列表 */
 
 .song-list {
     display: flex;
@@ -495,6 +540,10 @@ footer {
     .page-heading h1 {
         font-size: 22px;
     }
+
+    .category-button {
+        padding: 8px 11px;
+    }
 }
 </style>
 </head>
@@ -504,6 +553,7 @@ footer {
 <!-- 導覽列 -->
 
 <header class="site-header">
+
     <button class="nav-button" id="menu-toggle"
         aria-label="開啟選單" aria-expanded="false" type="button">
         <svg viewBox="0 0 24 24" fill="none">
@@ -524,32 +574,42 @@ footer {
                 stroke="currentColor" stroke-width="1.3" />
         </svg>
     </button>
+
 </header>
+
+<!-- 語言選單 -->
 
 <div class="language-menu" id="language-menu" hidden>
     <button class="language-option active" data-lang="ja" type="button">
         <span>日本語</span>
         <span class="language-check"></span>
     </button>
+
     <button class="language-option" data-lang="zh" type="button">
         <span>繁體中文</span>
         <span class="language-check"></span>
     </button>
 </div>
 
+<!-- 漢堡選單 -->
+
 <div class="menu-overlay" id="menu-overlay"></div>
 
 <nav class="side-menu" id="side-menu" aria-hidden="true">
     <button class="menu-close" id="menu-close"
         aria-label="關閉選單" type="button">×</button>
+
     <div class="menu-heading">♡ Wen &amp; Yuuka ♡</div>
     <div class="menu-label">MENU</div>
+
     <div class="menu-links" id="menu-links">
         <!-- 保留原本的選單位置 -->
     </div>
 </nav>
 
 <main class="container">
+
+    <!-- 頁面標題 -->
 
     <section class="page-heading">
         <h1>Music Library</h1>
@@ -573,8 +633,11 @@ footer {
 
         <div class="progress-area">
             <span id="current-time">0:00</span>
-            <input type="range" id="progress" min="0" max="100"
-                value="0" aria-label="播放進度">
+
+            <input type="range" id="progress"
+                min="0" max="100" value="0"
+                aria-label="播放進度">
+
             <span id="duration">0:00</span>
         </div>
 
@@ -584,23 +647,23 @@ footer {
                 type="button" aria-label="隨機播放">⤨</button>
 
             <button class="control-button" id="previous-button"
-    type="button" aria-label="上一首">
-    <svg viewBox="0 0 24 24">
-        <path d="M6 5H9V19H6Z"/>
-        <path d="M19 5V19L9 12Z"/>
-    </svg>
-</button>
+                type="button" aria-label="上一首">
+                <svg viewBox="0 0 24 24">
+                    <path d="M6 5H9V19H6Z"/>
+                    <path d="M19 5V19L9 12Z"/>
+                </svg>
+            </button>
 
             <button class="play-button" id="play-button"
                 type="button" aria-label="播放">▶</button>
 
             <button class="control-button" id="next-button"
-    type="button" aria-label="下一首">
-    <svg viewBox="0 0 24 24">
-        <path d="M15 5H18V19H15Z"/>
-        <path d="M5 5V19L15 12Z"/>
-    </svg>
-</button>
+                type="button" aria-label="下一首">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15 5H18V19H15Z"/>
+                    <path d="M5 5V19L15 12Z"/>
+                </svg>
+            </button>
 
             <button class="control-button" id="repeat-button"
                 type="button" aria-label="循環播放">↻</button>
@@ -611,6 +674,7 @@ footer {
 
         <div class="volume-area">
             <span>♪</span>
+
             <input type="range" id="volume"
                 min="0" max="1" step="0.01" value="0.7"
                 aria-label="音量">
@@ -627,12 +691,106 @@ footer {
             <span class="song-count" id="song-count">0 SONGS</span>
         </div>
 
+        <!-- 搜尋歌曲 -->
+
         <input
             type="search"
             class="search-box"
             id="search-input"
             placeholder="Search songs or artists..."
             aria-label="搜尋歌曲或歌手">
+
+        <!-- 音樂分類 -->
+
+        <div class="category-section">
+
+            <!-- 語言分類 -->
+
+            <div class="category-group">
+                <div class="category-heading">LANGUAGE</div>
+
+                <div class="category-buttons">
+                    <button class="category-button active"
+                        data-filter="all" type="button">
+                        All
+                    </button>
+
+                    <button class="category-button"
+                        data-filter="ja" type="button">
+                        日本語
+                    </button>
+
+                    <button class="category-button"
+                        data-filter="zh" type="button">
+                        中文
+                    </button>
+
+                    <button class="category-button"
+                        data-filter="en" type="button">
+                        English
+                    </button>
+
+                    <button class="category-button"
+                        data-filter="ko" type="button">
+                        한국어
+                    </button>
+
+                    <button class="category-button"
+                        data-filter="other" type="button">
+                        Other
+                    </button>
+                </div>
+            </div>
+
+            <!-- 音樂形式 -->
+
+            <div class="category-group">
+                <div class="category-heading">MUSIC TYPE</div>
+
+                <div class="category-buttons">
+                    <button class="category-button"
+                        data-filter="instrumental" type="button">
+                        Instrumental
+                    </button>
+
+                    <button class="category-button"
+                        data-filter="soundtrack" type="button">
+                        Soundtrack
+                    </button>
+                </div>
+            </div>
+
+            <!-- 兩人收藏 -->
+
+            <div class="category-group">
+                <div class="category-heading">OUR COLLECTION</div>
+
+                <div class="category-buttons">
+                    <button class="category-button"
+                        data-filter="favorites" type="button">
+                        Our Favorites
+                    </button>
+
+                    <button class="category-button"
+                        data-filter="memories" type="button">
+                        Memories
+                    </button>
+
+                    <button class="category-button"
+                        data-filter="for-yuuka" type="button">
+                        For Yuuka
+                    </button>
+
+                    <button class="category-button"
+                        data-filter="for-wen" type="button">
+                        For Wen
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 歌曲顯示區 -->
 
         <div class="song-list" id="song-list"></div>
 
@@ -649,6 +807,7 @@ footer {
 <script src="js/songs.js"></script>
 
 <script>
+
 /* 導覽列功能 */
 
 const menuToggle = document.getElementById("menu-toggle");
@@ -674,12 +833,16 @@ menuToggle.addEventListener("click", openMenu);
 menuClose.addEventListener("click", closeMenu);
 menuOverlay.addEventListener("click", closeMenu);
 
+
+/* 語言選單 */
+
 const languageToggle = document.getElementById("language-toggle");
 const languageMenu = document.getElementById("language-menu");
 const languageOptions = document.querySelectorAll(".language-option");
 
 languageToggle.addEventListener("click", () => {
     languageMenu.hidden = !languageMenu.hidden;
+
     languageToggle.setAttribute(
         "aria-expanded",
         String(!languageMenu.hidden)
@@ -688,9 +851,13 @@ languageToggle.addEventListener("click", () => {
 
 languageOptions.forEach(option => {
     option.addEventListener("click", () => {
-        languageOptions.forEach(item => item.classList.remove("active"));
+        languageOptions.forEach(item => {
+            item.classList.remove("active");
+        });
+
         option.classList.add("active");
         languageMenu.hidden = true;
+
         languageToggle.setAttribute("aria-expanded", "false");
     });
 });
@@ -712,39 +879,59 @@ document.addEventListener("keydown", event => {
     }
 });
 
+
 /* 音樂播放器 */
 
 const audio = document.getElementById("audio-player");
 const cover = document.getElementById("album-cover");
 const title = document.getElementById("track-title");
 const artist = document.getElementById("track-artist");
+
 const playButton = document.getElementById("play-button");
 const previousButton = document.getElementById("previous-button");
 const nextButton = document.getElementById("next-button");
 const shuffleButton = document.getElementById("shuffle-button");
 const repeatButton = document.getElementById("repeat-button");
+
 const progress = document.getElementById("progress");
 const currentTimeText = document.getElementById("current-time");
 const durationText = document.getElementById("duration");
 const volume = document.getElementById("volume");
+
 const modeLabel = document.getElementById("mode-label");
 const songList = document.getElementById("song-list");
 const songCount = document.getElementById("song-count");
 const searchInput = document.getElementById("search-input");
 
+const categoryButtons = document.querySelectorAll(".category-button");
+
 let currentIndex = 0;
 let isShuffle = false;
 let repeatMode = 0;
-// 0 = 關閉，1 = 全部循環，2 = 單曲循環
+let selectedFilter = "all";
+
+// repeatMode:
+// 0 = 關閉
+// 1 = 全部循環
+// 2 = 單曲循環
+
+
+/* 時間格式 */
 
 function formatTime(seconds) {
-    if (!Number.isFinite(seconds)) return "0:00";
+    if (!Number.isFinite(seconds)) {
+        return "0:00";
+    }
 
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.floor(seconds % 60);
 
-    return minutes + ":" + String(remainingSeconds).padStart(2, "0");
+    return minutes + ":" +
+        String(remainingSeconds).padStart(2, "0");
 }
+
+
+/* 載入歌曲 */
 
 function loadTrack(index) {
     if (!Array.isArray(tracks) || tracks.length === 0) {
@@ -758,8 +945,10 @@ function loadTrack(index) {
     const track = tracks[currentIndex];
 
     audio.src = track.src;
+
     cover.src = track.cover;
     cover.alt = track.title + " album cover";
+
     title.textContent = track.title;
     artist.textContent = track.artist;
 
@@ -769,6 +958,9 @@ function loadTrack(index) {
 
     renderSongList();
 }
+
+
+/* 播放歌曲 */
 
 function playTrack() {
     audio.play().catch(() => {
@@ -786,13 +978,21 @@ function togglePlay() {
 
 function updatePlayButton() {
     playButton.textContent = audio.paused ? "▶" : "Ⅱ";
+
     playButton.setAttribute(
         "aria-label",
         audio.paused ? "播放" : "暫停"
     );
 }
 
+
+/* 下一首 */
+
 function nextTrack() {
+    if (!Array.isArray(tracks) || tracks.length === 0) {
+        return;
+    }
+
     let nextIndex;
 
     if (isShuffle && tracks.length > 1) {
@@ -807,6 +1007,9 @@ function nextTrack() {
     playTrack();
 }
 
+
+/* 上一首 */
+
 function previousTrack() {
     if (audio.currentTime > 3) {
         audio.currentTime = 0;
@@ -817,17 +1020,65 @@ function previousTrack() {
     playTrack();
 }
 
-function renderSongList(keyword = "") {
+
+/* 分類篩選 */
+
+function matchesFilter(track, filter) {
+
+    if (filter === "all") {
+        return true;
+    }
+
+    // 語言分類
+    if (["ja", "zh", "en", "ko", "other"].includes(filter)) {
+        return track.language === filter;
+    }
+
+    // 音樂形式
+    if (["instrumental", "soundtrack"].includes(filter)) {
+        return track.type === filter;
+    }
+
+    // 兩人收藏
+    if (["favorites", "memories", "for-yuuka", "for-wen"].includes(filter)) {
+        return Array.isArray(track.collections) &&
+            track.collections.includes(filter);
+    }
+
+    return true;
+}
+
+
+/* 顯示歌曲清單 */
+
+function renderSongList() {
     songList.innerHTML = "";
+
+    if (!Array.isArray(tracks) || tracks.length === 0) {
+        songCount.textContent = "0 SONGS";
+        songList.innerHTML =
+            '<div class="empty-message">Please check js/songs.js</div>';
+        return;
+    }
+
+    const keyword = searchInput.value.trim().toLowerCase();
 
     const filteredTracks = tracks
         .map((track, index) => ({ track, index }))
         .filter(item => {
+
             const searchText = (
                 item.track.title + " " + item.track.artist
             ).toLowerCase();
 
-            return searchText.includes(keyword.toLowerCase());
+            const matchesSearch = searchText.includes(keyword);
+
+            const matchesCategory = matchesFilter(
+                item.track,
+                selectedFilter
+            );
+
+            return matchesSearch && matchesCategory;
         });
 
     songCount.textContent = filteredTracks.length + " SONGS";
@@ -839,6 +1090,7 @@ function renderSongList(keyword = "") {
     }
 
     filteredTracks.forEach(({ track, index }) => {
+
         const item = document.createElement("div");
         item.className = "song-item";
 
@@ -864,6 +1116,7 @@ function renderSongList(keyword = "") {
 
         const status = document.createElement("span");
         status.className = "song-status";
+
         status.textContent =
             index === currentIndex ? "♫" : "♡";
 
@@ -880,56 +1133,103 @@ function renderSongList(keyword = "") {
     });
 }
 
+
+/* 分類按鈕事件 */
+
+categoryButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        selectedFilter = button.dataset.filter;
+
+        categoryButtons.forEach(item => {
+            item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        renderSongList();
+    });
+
+});
+
+
 /* 播放控制 */
 
 playButton.addEventListener("click", togglePlay);
+
 previousButton.addEventListener("click", previousTrack);
+
 nextButton.addEventListener("click", nextTrack);
+
 
 audio.addEventListener("play", () => {
     updatePlayButton();
-    renderSongList(searchInput.value);
+    renderSongList();
 });
 
 audio.addEventListener("pause", () => {
     updatePlayButton();
-    renderSongList(searchInput.value);
+    renderSongList();
 });
+
+
+/* 播放結束 */
 
 audio.addEventListener("ended", () => {
+
     if (repeatMode === 2) {
+
         audio.currentTime = 0;
         playTrack();
+
     } else if (repeatMode === 1 || isShuffle) {
+
         nextTrack();
+
     } else if (currentIndex < tracks.length - 1) {
+
         nextTrack();
+
     } else {
+
         audio.currentTime = 0;
         updatePlayButton();
+
     }
+
 });
 
-/* 進度條 */
+
+/* 播放進度 */
 
 audio.addEventListener("loadedmetadata", () => {
     durationText.textContent = formatTime(audio.duration);
 });
 
 audio.addEventListener("timeupdate", () => {
+
     if (!Number.isFinite(audio.duration) || audio.duration === 0) {
         return;
     }
 
-    progress.value = (audio.currentTime / audio.duration) * 100;
-    currentTimeText.textContent = formatTime(audio.currentTime);
+    progress.value =
+        (audio.currentTime / audio.duration) * 100;
+
+    currentTimeText.textContent =
+        formatTime(audio.currentTime);
+
 });
 
 progress.addEventListener("input", () => {
+
     if (Number.isFinite(audio.duration)) {
-        audio.currentTime = (progress.value / 100) * audio.duration;
+        audio.currentTime =
+            (progress.value / 100) * audio.duration;
     }
+
 });
+
 
 /* 音量 */
 
@@ -939,55 +1239,79 @@ volume.addEventListener("input", () => {
     audio.volume = Number(volume.value);
 });
 
+
 /* 隨機播放 */
 
 shuffleButton.addEventListener("click", () => {
+
     isShuffle = !isShuffle;
+
     shuffleButton.classList.toggle("active", isShuffle);
 
-    modeLabel.textContent = isShuffle
-        ? "SHUFFLE ON"
-        : repeatMode === 0
-            ? "REPEAT OFF"
-            : repeatMode === 1
-                ? "REPEAT ALL"
-                : "REPEAT ONE";
+    updateModeLabel();
+
 });
 
-/* 循環模式 */
+
+/* 循環播放 */
 
 repeatButton.addEventListener("click", () => {
+
     repeatMode = (repeatMode + 1) % 3;
 
-    repeatButton.classList.toggle("active", repeatMode !== 0);
+    repeatButton.classList.toggle(
+        "active",
+        repeatMode !== 0
+    );
 
-    const labels = [
-        "REPEAT OFF",
-        "REPEAT ALL",
-        "REPEAT ONE"
-    ];
+    updateModeLabel();
 
-    modeLabel.textContent = labels[repeatMode];
 });
+
+
+/* 更新播放模式文字 */
+
+function updateModeLabel() {
+
+    if (repeatMode === 2) {
+        modeLabel.textContent = "REPEAT ONE";
+    } else if (repeatMode === 1 && isShuffle) {
+        modeLabel.textContent = "REPEAT ALL · SHUFFLE ON";
+    } else if (repeatMode === 1) {
+        modeLabel.textContent = "REPEAT ALL";
+    } else if (isShuffle) {
+        modeLabel.textContent = "SHUFFLE ON";
+    } else {
+        modeLabel.textContent = "REPEAT OFF";
+    }
+
+}
+
 
 /* 搜尋歌曲 */
 
 searchInput.addEventListener("input", () => {
-    renderSongList(searchInput.value);
+    renderSongList();
 });
+
 
 /* 初始設定 */
 
 if (Array.isArray(tracks) && tracks.length > 0) {
+
     audio.volume = 0.7;
     loadTrack(0);
+
 } else {
+
     title.textContent = "No songs available";
+
     songList.innerHTML =
         '<div class="empty-message">Please check js/songs.js</div>';
+
 }
+
 </script>
 
 </body>
 </html>
-
