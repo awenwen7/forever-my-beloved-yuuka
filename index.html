@@ -1093,6 +1093,70 @@ footer {
 .language-option.active .language-check::before {
     content: "✓";
 }
+
+/* ==========================
+   側邊漢堡選單
+========================== */
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(40, 30, 24, 0.35);
+    z-index: 1090;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: min(290px, 82vw);
+    height: 100dvh;
+    padding: 35px 25px;
+    background: #806B5A;
+    color: #FFF9F0;
+    z-index: 1100;
+    transform: translateX(-100%);
+    transition: transform 0.35s ease;
+    overflow-y: auto;
+}
+
+.side-menu.active {
+    transform: translateX(0);
+}
+
+.menu-close {
+    position: absolute;
+    top: 13px;
+    right: 17px;
+    border: none;
+    background: none;
+    color: #FFF9F0;
+    font-size: 29px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.menu-heading {
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin: 25px 0 35px;
+    text-align: center;
+}
+
+.menu-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #D8C9BB;
+    margin-bottom: 20px;
+}
     
 </style>
 </head>
@@ -1175,7 +1239,34 @@ footer {
     </button>
 
 </div>
+    
+<!-- 漢堡選單遮罩 -->
+<div class="menu-overlay" id="menu-overlay"></div>
 
+<!-- 左側漢堡選單 -->
+<nav class="side-menu" id="side-menu" aria-hidden="true">
+
+    <button
+        class="menu-close"
+        id="menu-close"
+        aria-label="關閉選單"
+        type="button"
+    >
+        ×
+    </button>
+
+    <div class="menu-heading">
+        ♡ Wen & Yuuka ♡
+    </div>
+
+    <div class="menu-label">MENU</div>
+
+    <div class="menu-links" id="menu-links">
+        <!-- 下一步加入導覽項目 -->
+    </div>
+
+</nav>
+    
 <main class="container">
     
 
