@@ -326,6 +326,26 @@ input[type="range"] {
     border-radius: 50%;
 }
 
+#previous-button,
+#next-button {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #D8C8BA;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+#previous-button svg,
+#next-button svg {
+    width: 16px;
+    height: 16px;
+    fill: #806B5A;
+    stroke: none;
+}
+
 .control-button.active {
     color: #B58D86;
     background: rgba(181, 141, 134, 0.13);
@@ -564,13 +584,23 @@ footer {
                 type="button" aria-label="隨機播放">⤨</button>
 
             <button class="control-button" id="previous-button"
-                type="button" aria-label="上一首">⏮</button>
+    type="button" aria-label="上一首">
+    <svg viewBox="0 0 24 24">
+        <path d="M6 5H9V19H6Z"/>
+        <path d="M19 5V19L9 12Z"/>
+    </svg>
+</button>
 
             <button class="play-button" id="play-button"
                 type="button" aria-label="播放">▶</button>
 
             <button class="control-button" id="next-button"
-                type="button" aria-label="下一首">⏭</button>
+    type="button" aria-label="下一首">
+    <svg viewBox="0 0 24 24">
+        <path d="M15 5H18V19H15Z"/>
+        <path d="M5 5V19L15 12Z"/>
+    </svg>
+</button>
 
             <button class="control-button" id="repeat-button"
                 type="button" aria-label="循環播放">↻</button>
