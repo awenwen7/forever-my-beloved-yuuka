@@ -1,1 +1,568 @@
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+
+<title>Our Cinema | Forever My Beloved Yuuka</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #E8E7E2;
+    --paper: #F8F7F2;
+    --ticket: #F1F0EA;
+    --ink: #292A29;
+    --gray: #777873;
+    --line: #D4D3CC;
+    --berry: #A97878;
+    --sage: #8D9A91;
+    --gold: #C5A66E;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Serif JP", serif;
+}
+
+.container {
+    width: min(100% - 40px, 1000px);
+    margin: 0 auto;
+    padding: 70px 0 100px;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.eyebrow {
+    color: var(--berry);
+    font-family: "Playfair Display", serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+.hero h1 {
+    margin: 15px 0 8px;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(38px, 7vw, 62px);
+    font-weight: 500;
+    letter-spacing: 5px;
+}
+
+.subtitle {
+    color: var(--gray);
+    font-size: 13px;
+    letter-spacing: 3px;
+}
+
+.hero-line {
+    width: 65px;
+    height: 1px;
+    background: var(--gold);
+    margin: 28px auto;
+}
+
+.intro {
+    color: var(--gray);
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 45px 0 25px;
+}
+
+.section-heading h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+
+.section-heading::after {
+    content: "";
+    height: 1px;
+    background: var(--line);
+    flex: 1;
+}
+
+.ticket-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+}
+
+.ticket {
+    display: flex;
+    position: relative;
+    min-height: 190px;
+    background: var(--ticket);
+    border: 1px solid #D4D2CA;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(40, 38, 34, .08);
+    cursor: pointer;
+    transition: transform .25s, box-shadow .25s;
+}
+
+.ticket:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 13px 25px rgba(40, 38, 34, .14);
+}
+
+.poster {
+    width: 34%;
+    min-width: 100px;
+    position: relative;
+    overflow: hidden;
+    background: #B8B8B4;
+}
+
+.poster img {
+    width: 100%;
+    height: 100%;
+    min-height: 190px;
+    object-fit: cover;
+    display: block;
+    filter: saturate(.8);
+}
+
+.poster-placeholder {
+    height: 100%;
+    min-height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    text-align: center;
+    color: white;
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    background: linear-gradient(145deg, #555653, #292A29);
+}
+
+.ticket-main {
+    flex: 1;
+    padding: 17px 15px;
+    min-width: 0;
+}
+
+.ticket-top {
+    color: var(--gray);
+    font-family: "Playfair Display", serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.movie-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 13px 0 7px;
+    line-height: 1.5;
+}
+
+.movie-meta {
+    color: var(--gray);
+    font-size: 10px;
+    line-height: 1.9;
+}
+
+.ticket-bottom {
+    margin-top: 17px;
+    padding-top: 9px;
+    border-top: 1px dashed #C9C6BD;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+}
+
+.ticket-date {
+    color: var(--gray);
+    font-size: 9px;
+}
+
+.ticket-number {
+    color: var(--berry);
+    font-family: "Playfair Display", serif;
+    font-size: 10px;
+}
+
+.ticket-stub {
+    width: 74px;
+    flex-shrink: 0;
+    background: #555653;
+    color: #F1F0EA;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 14px 5px;
+    border-left: 1px dashed #D4D3CC;
+}
+
+.ticket-stub::before,
+.ticket-stub::after {
+    content: "";
+    position: absolute;
+    left: -7px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--bg);
+}
+
+.ticket-stub::before {
+    top: -7px;
+}
+
+.ticket-stub::after {
+    bottom: -7px;
+}
+
+.stub-label {
+    font-family: "Playfair Display", serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+    writing-mode: vertical-rl;
+}
+
+.stub-heart {
+    color: #D8B8B1;
+    font-size: 16px;
+}
+
+.stub-barcode {
+    width: 43px;
+    height: 28px;
+    background: repeating-linear-gradient(
+        90deg,
+        #F1F0EA 0 2px,
+        transparent 2px 4px,
+        #F1F0EA 4px 5px,
+        transparent 5px 7px
+    );
+}
+
+.ticket:nth-child(2) .ticket-stub {
+    background: #A97878;
+}
+
+.ticket:nth-child(3) .ticket-stub {
+    background: #687B70;
+}
+
+.ticket:nth-child(4) .ticket-stub {
+    background: #8B7859;
+}
+
+.footer {
+    margin-top: 65px;
+    text-align: center;
+    color: var(--gray);
+    font-family: "Playfair Display", serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+.footer span {
+    display: block;
+    color: var(--berry);
+    margin-top: 10px;
+    font-family: "Noto Serif JP", serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+/* Movie detail window */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(32, 33, 32, .65);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    width: min(100%, 480px);
+    max-height: 85vh;
+    overflow-y: auto;
+    background: var(--paper);
+    padding: 35px 28px;
+    box-shadow: 0 15px 50px rgba(0,0,0,.2);
+}
+
+.close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    border: none;
+    background: none;
+    font-size: 25px;
+    color: var(--gray);
+    cursor: pointer;
+}
+
+.modal-label {
+    color: var(--berry);
+    font-family: "Playfair Display", serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+.modal-content h2 {
+    font-size: 24px;
+    margin: 13px 0;
+}
+
+.modal-info {
+    color: var(--gray);
+    font-size: 12px;
+    line-height: 2;
+}
+
+.modal-divider {
+    height: 1px;
+    background: var(--line);
+    margin: 22px 0;
+}
+
+.modal-description {
+    font-size: 13px;
+    line-height: 2;
+}
+
+@media (max-width: 650px) {
+    .container {
+        width: min(100% - 26px, 480px);
+        padding-top: 55px;
+    }
+
+    .ticket-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .ticket {
+        min-height: 175px;
+    }
+
+    .poster img,
+    .poster-placeholder {
+        min-height: 175px;
+    }
+
+    .ticket-main {
+        padding: 14px 12px;
+    }
+
+    .movie-title {
+        font-size: 14px;
+    }
+
+    .ticket-stub {
+        width: 64px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="container">
+
+    <header class="hero">
+        <div class="eyebrow">WEN & YUUKA · PRIVATE CINEMA</div>
+        <h1>OUR CINEMA</h1>
+        <div class="subtitle">ふたりだけの映画記録。</div>
+        <div class="hero-line"></div>
+        <p class="intro">Every film becomes a little memory.</p>
+    </header>
+
+    <section>
+        <div class="section-heading">
+            <h2>OUR TICKET COLLECTION</h2>
+        </div>
+
+        <div class="ticket-grid">
+
+            <article class="ticket" onclick="openMovie(0)">
+                <div class="poster">
+                    <div class="poster-placeholder">ROBOT<br>DREAMS</div>
+                </div>
+                <div class="ticket-main">
+                    <div class="ticket-top">W & Y CINEMA</div>
+                    <div class="movie-title">Robot Dreams</div>
+                    <div class="movie-meta">Animation · Drama<br>2023</div>
+                    <div class="ticket-bottom">
+                        <span class="ticket-date">OUR MEMORY</span>
+                        <span class="ticket-number">No.001</span>
+                    </div>
+                </div>
+                <div class="ticket-stub">
+                    <span class="stub-label">ADMIT TWO</span>
+                    <span class="stub-heart">♡</span>
+                    <div class="stub-barcode"></div>
+                    <span class="stub-label">W ♥ Y</span>
+                </div>
+            </article>
+
+            <article class="ticket" onclick="openMovie(1)">
+                <div class="poster">
+                    <div class="poster-placeholder">MOVIE<br>NO. 002</div>
+                </div>
+                <div class="ticket-main">
+                    <div class="ticket-top">W & Y CINEMA</div>
+                    <div class="movie-title">Our Next Film</div>
+                    <div class="movie-meta">Movie Collection<br>To be continued</div>
+                    <div class="ticket-bottom">
+                        <span class="ticket-date">COMING SOON</span>
+                        <span class="ticket-number">No.002</span>
+                    </div>
+                </div>
+                <div class="ticket-stub">
+                    <span class="stub-label">ADMIT TWO</span>
+                    <span class="stub-heart">♡</span>
+                    <div class="stub-barcode"></div>
+                    <span class="stub-label">W ♥ Y</span>
+                </div>
+            </article>
+
+            <article class="ticket" onclick="openMovie(2)">
+                <div class="poster">
+                    <div class="poster-placeholder">MOVIE<br>NO. 003</div>
+                </div>
+                <div class="ticket-main">
+                    <div class="ticket-top">W & Y CINEMA</div>
+                    <div class="movie-title">Our Next Film</div>
+                    <div class="movie-meta">Movie Collection<br>To be continued</div>
+                    <div class="ticket-bottom">
+                        <span class="ticket-date">COMING SOON</span>
+                        <span class="ticket-number">No.003</span>
+                    </div>
+                </div>
+                <div class="ticket-stub">
+                    <span class="stub-label">ADMIT TWO</span>
+                    <span class="stub-heart">♡</span>
+                    <div class="stub-barcode"></div>
+                    <span class="stub-label">W ♥ Y</span>
+                </div>
+            </article>
+
+            <article class="ticket" onclick="openMovie(3)">
+                <div class="poster">
+                    <div class="poster-placeholder">MOVIE<br>NO. 004</div>
+                </div>
+                <div class="ticket-main">
+                    <div class="ticket-top">W & Y CINEMA</div>
+                    <div class="movie-title">Our Next Film</div>
+                    <div class="movie-meta">Movie Collection<br>To be continued</div>
+                    <div class="ticket-bottom">
+                        <span class="ticket-date">COMING SOON</span>
+                        <span class="ticket-number">No.004</span>
+                    </div>
+                </div>
+                <div class="ticket-stub">
+                    <span class="stub-label">ADMIT TWO</span>
+                    <span class="stub-heart">♡</span>
+                    <div class="stub-barcode"></div>
+                    <span class="stub-label">W ♥ Y</span>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <footer class="footer">
+        TWO HEARTS, ONE CINEMA.
+        <span>W ♡ Y</span>
+    </footer>
+
+</main>
+
+<div class="modal" id="movie-modal" onclick="closeMovie(event)">
+    <div class="modal-content">
+        <button class="close" onclick="closeMovie()">×</button>
+        <div class="modal-label">W & Y · MOVIE ARCHIVE</div>
+        <h2 id="modal-title"></h2>
+        <div class="modal-info" id="modal-info"></div>
+        <div class="modal-divider"></div>
+        <div class="modal-description" id="modal-description"></div>
+    </div>
+</div>
+
+<script>
+const movies = [
+    {
+        title: "Robot Dreams",
+        info: "Animation · Drama · 2023",
+        description: "A special film in our little movie collection. Every film has its own story, and every memory has a place here."
+    },
+    {
+        title: "Our Next Film",
+        info: "Coming Soon",
+        description: "A new movie memory is waiting to be added."
+    },
+    {
+        title: "Our Next Film",
+        info: "Coming Soon",
+        description: "A new movie memory is waiting to be added."
+    },
+    {
+        title: "Our Next Film",
+        info: "Coming Soon",
+        description: "A new movie memory is waiting to be added."
+    }
+];
+
+function openMovie(index) {
+    const movie = movies[index];
+    document.getElementById("modal-title").textContent = movie.title;
+    document.getElementById("modal-info").textContent = movie.info;
+    document.getElementById("modal-description").textContent = movie.description;
+    document.getElementById("movie-modal").classList.add("active");
+}
+
+function closeMovie(event) {
+    if (!event || event.target.id === "movie-modal" || event.target.classList.contains("close")) {
+        document.getElementById("movie-modal").classList.remove("active");
+    }
+}
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        document.getElementById("movie-modal").classList.remove("active");
+    }
+});
+</script>
+
+</body>
+</html>
+
