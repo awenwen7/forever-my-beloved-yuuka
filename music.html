@@ -282,11 +282,11 @@ body {
     position: absolute;
     width: 62px;
     height: 62px;
-    left: 179px;
-    top: 74px;
+    left: 64px;
+    top: 64px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #D8B8A8;
+    border: 3px solid #D9D9D9;
     z-index: 2;
 }
 
@@ -301,14 +301,6 @@ body {
     animation: vinyl-spin 4s linear infinite;
 }
 
-@keyframes vinyl-label-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-.vinyl-label.is-playing {
-    animation: vinyl-label-spin 4s linear infinite;
-}
 .song-title {
     margin: 22px 0 5px;
     font-size: 20px;
@@ -746,12 +738,12 @@ body {
         top: 9px;
     }
 
-    .vinyl-label {
-        width: 56px;
-        height: 56px;
-        left: 156px;
-        top: 67px;
-    }
+     .vinyl-label {
+    width: 56px;
+    height: 56px;
+    left: 58px;
+    top: 58px;
+}
 
     .filter-area {
         gap: 9px;
@@ -829,20 +821,22 @@ body {
 
         <div class="album-wrapper">
 
-    <div class="vinyl-record" id="vinyl-record"></div>
+    <div class="vinyl-record" id="vinyl-record">
+
+        <img
+            class="vinyl-label"
+            id="vinyl-label"
+            src="images/music-covers/odori-ko.jpg"
+            alt="Vinyl label"
+        >
+
+    </div>
 
     <img
         class="album-cover"
         id="album-cover"
         src="images/music-covers/odori-ko.jpg"
         alt="Album cover"
-    >
-
-    <img
-        class="vinyl-label"
-        id="vinyl-label"
-        src="images/music-covers/odori-ko.jpg"
-        alt="Vinyl label"
     >
 
 </div>
@@ -1041,12 +1035,10 @@ const vinylRecord = document.getElementById("vinyl-record");
 
 audio.addEventListener("play", () => {
     vinylRecord.classList.add("is-playing");
-    vinylLabel.classList.add("is-playing");
 });
 
 audio.addEventListener("pause", () => {
     vinylRecord.classList.remove("is-playing");
-    vinylLabel.classList.remove("is-playing");
 });
 const currentTitle = document.getElementById("current-title");
 const currentArtist = document.getElementById("current-artist");
