@@ -244,6 +244,71 @@ body {
     box-shadow: 0 5px 18px rgba(80, 60, 40, 0.12);
 }
 
+    /* Album cover and vinyl record */
+
+.album-wrapper {
+    position: relative;
+    width: 210px;
+    height: 210px;
+    max-width: 70%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vinyl-record {
+    position: absolute;
+    width: 195px;
+    height: 195px;
+    right: -65px;
+    top: 7px;
+    border-radius: 50%;
+    background:
+        repeating-radial-gradient(
+            circle,
+            #292725 0px,
+            #292725 2px,
+            #35312E 3px,
+            #292725 4px
+        );
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 0;
+}
+
+/* Vinyl rotation */
+
+@keyframes vinyl-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.vinyl-record.is-playing {
+    animation: vinyl-spin 4s linear infinite;
+}
+    
+.vinyl-label {
+    position: absolute;
+    width: 62px;
+    height: 62px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: #B58D86;
+    border: 3px solid #D8B8A8;
+}
+
+.album-cover {
+    position: relative;
+    z-index: 1;
+}
+    
 .song-title {
     margin: 22px 0 5px;
     font-size: 20px;
@@ -733,12 +798,20 @@ body {
 
         <div class="now-playing">♡ NOW PLAYING ♡</div>
 
-        <img
-            class="album-cover"
-            id="album-cover"
-            src="images/music-covers/odori-ko.jpg"
-            alt="Album cover"
-        >
+        <div class="album-wrapper">
+
+    <div class="vinyl-record" id="vinyl-record">
+        <div class="vinyl-label"></div>
+    </div>
+
+    <img
+        class="album-cover"
+        id="album-cover"
+        src="images/music-covers/odori-ko.jpg"
+        alt="Album cover"
+    >
+
+</div>
 
         <h2 class="song-title" id="current-title">踊り子</h2>
         <p class="song-artist" id="current-artist">Vaundy</p>
@@ -929,6 +1002,16 @@ const songData = Array.isArray(tracks) ? tracks : [];
 
 const audio = document.getElementById("audio-player");
 const albumCover = document.getElementById("album-cover");
+const vinylRecord = document.getElementById("vinyl-record");
+/* Vinyl playback animation */
+
+audio.addEventListener("play", () => {
+    vinylRecord.classList.add("is-playing");
+});
+
+audio.addEventListener("pause", () => {
+    vinylRecord.classList.remove("is-playing");
+});    
 const currentTitle = document.getElementById("current-title");
 const currentArtist = document.getElementById("current-artist");
 
