@@ -229,7 +229,7 @@ body {
 
 .page-heading {
     text-align: center;
-    margin-top: 12px;
+    margin-top: 8px;
     margin-bottom: 18px;
 }
 .page-heading h1 {
@@ -1190,10 +1190,12 @@ const typeFilter = document.getElementById("type-filter");
 const languageFilter = document.getElementById("language-filter");
 const songList = document.getElementById("song-list");
 
-let currentIndex = 0;
+let currentIndex = songData.length > 0
+    ? Math.floor(Math.random() * songData.length)
+    : 0;
+
 let repeatMode = 0;
 let shuffleEnabled = false;
-
 const repeatLabels = [
     "リピートなし",
     "全曲リピート",
