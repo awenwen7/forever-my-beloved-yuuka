@@ -399,6 +399,48 @@ body {
         width: 64px;
     }
 }
+    .ticket::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 13px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+
+    background:
+        radial-gradient(
+            circle at 100% 0,
+            var(--bg) 0 6px,
+            transparent 6.5px
+        ),
+        radial-gradient(
+            circle at 100% 100%,
+            var(--bg) 0 6px,
+            transparent 6.5px
+        ),
+        radial-gradient(
+            circle at 100% 50%,
+            var(--bg) 0 5px,
+            transparent 5.5px
+        );
+
+    background-size:
+        13px 13px,
+        13px 13px,
+        13px 24px;
+
+    background-position:
+        right top,
+        right bottom,
+        right 12px;
+
+    background-repeat:
+        no-repeat,
+        no-repeat,
+        repeat-y;
+}
 </style>
 </head>
 
