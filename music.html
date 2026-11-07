@@ -239,22 +239,18 @@ body {
 
 .album-wrapper {
     position: relative;
-    width: 210px;
+    width: 305px;
     height: 210px;
     max-width: 100%;
     margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .vinyl-record {
     position: absolute;
     width: 190px;
     height: 190px;
+    left: 115px;
     top: 10px;
-    left: 50%;
-    transform: translateX(-20%);
     border-radius: 50%;
     background:
         repeating-radial-gradient(
@@ -268,13 +264,26 @@ body {
     z-index: 0;
 }
 
+.album-cover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210px;
+    height: 210px;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 5px 18px rgba(80, 60, 40, 0.12);
+    z-index: 1;
+}
+
 .vinyl-label {
     position: absolute;
     width: 62px;
     height: 62px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 179px;
+    top: 74px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #D8B8A8;
@@ -284,62 +293,21 @@ body {
 /* Vinyl rotation */
 
 @keyframes vinyl-spin {
-    from {
-        transform: translateX(-20%) rotate(0deg);
-    }
-
-    to {
-        transform: translateX(-20%) rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .vinyl-record.is-playing {
     animation: vinyl-spin 4s linear infinite;
 }
 
-.album-cover {
-    position: relative;
-    z-index: 1;
-    width: 210px;
-    height: 210px;
-    max-width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 5px;
-    box-shadow: 0 5px 18px rgba(80, 60, 40, 0.12);
-    flex-shrink: 0;
-}
-    
-.song-title {
-    margin: 22px 0 5px;
-    font-size: 20px;
-    font-weight: 500;
+@keyframes vinyl-label-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-.song-artist {
-    margin: 0;
-    color: var(--muted);
-    font-size: 13px;
-}
-
-.progress-area {
-    margin-top: 24px;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 5px;
-    appearance: none;
-    -webkit-appearance: none;
-    background: linear-gradient(
-        to right,
-        #806B5A 0%,
-        #806B5A var(--progress, 0%),
-        #E5DED6 var(--progress, 0%),
-        #E5DED6 100%
-    );
-    border-radius: 5px;
-    cursor: pointer;
+.vinyl-label.is-playing {
+    animation: vinyl-label-spin 4s linear infinite;
 }
 
 /* Chrome / Safari */
@@ -719,20 +687,7 @@ body {
 
 /* Responsive */
 
-@media (max-width: 480px) {
-    .container {
-        padding: 32px 17px 55px;
-    }
-
-    .page-heading h1 {
-        font-size: 22px;
-    }
-
-    .player-card {
-        padding: 23px 17px;
-    }
-
-    .album-wrapper {
+.album-wrapper {
     width: 270px;
     height: 190px;
     max-width: 100%;
@@ -751,7 +706,6 @@ body {
     width: 172px;
     height: 172px;
     left: 98px;
-    right: auto;
     top: 9px;
 }
 
