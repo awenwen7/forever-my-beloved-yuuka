@@ -341,8 +341,8 @@ body {
     height: 17px;
 }
 
-.side-control.active {
-    color: var(--text);
+.side-control.active svg {
+    stroke-width: 2.3;
 }
 
 .side-control:hover {
@@ -354,7 +354,7 @@ body {
 .repeat-one {
     display: none;
     position: absolute;
-    right: 0;
+    right: -3px;
     bottom: 2px;
     font-family: sans-serif;
     font-size: 8px;
@@ -542,7 +542,7 @@ body {
     margin-bottom: 10px;
     color: var(--text);
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: 1.5px;
 }
 
@@ -605,8 +605,8 @@ body {
 }
 
 .song-item.playing {
-    border-color: var(--accent);
-    background: #F7EEE8;
+    border-color: #D8C3B3;
+    background: #EDE0D5;
 }
 
 .song-item img {
@@ -853,8 +853,8 @@ body {
        <div class="filter-area">
 
     <div class="filter-group">
-        <label>音楽タイプ | MUSIC TYPE</label>
-        <div class="filter-buttons" id="type-filter">
+            <label>♡ 音楽タイプ | MUSIC TYPE</label>
+            <div class="filter-buttons" id="type-filter">
             <button class="filter-button active" data-value="all">All</button>
             <button class="filter-button" data-value="vocal">歌入り</button>
             <button class="filter-button" data-value="instrumental">インスト（純音楽）</button>
@@ -862,8 +862,8 @@ body {
     </div>
 
     <div class="filter-group">
-        <label>曲の言語 | LANGUAGE</label>
-        <div class="filter-buttons" id="language-filter">
+            <label>♡ 曲の言語 | LANGUAGE</label>
+            <div class="filter-buttons" id="language-filter">
             <button class="filter-button active" data-value="all">All</button>
             <button class="filter-button" data-value="ja">日本語</button>
             <button class="filter-button" data-value="zh">中文</button>
@@ -1231,9 +1231,10 @@ function renderSongList() {
         item.appendChild(status);
 
         item.addEventListener("click", () => {
-            loadSong(song.originalIndex);
-            playSong();
-        });
+    loadSong(song.originalIndex);
+    playSong();
+    renderSongList();
+});
 
         songList.appendChild(item);
     });
