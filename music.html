@@ -293,6 +293,8 @@ body {
     font-size: 10px;
 }
 
+/* Player controls */
+
 .player-controls {
     display: flex;
     align-items: center;
@@ -302,6 +304,7 @@ body {
 }
 
 .control-button {
+    position: relative;
     width: 34px;
     height: 34px;
     padding: 0;
@@ -312,6 +315,7 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: color 0.2s ease;
 }
 
 .control-button svg {
@@ -322,6 +326,43 @@ body {
     stroke-width: 1.6;
     stroke-linecap: round;
     stroke-linejoin: round;
+}
+
+/* Shuffle and Repeat */
+
+.side-control {
+    width: 26px;
+    height: 34px;
+    color: var(--muted);
+}
+
+.side-control svg {
+    width: 17px;
+    height: 17px;
+}
+
+.side-control.active {
+    color: var(--text);
+}
+
+.side-control:hover {
+    color: var(--accent);
+}
+
+/* Repeat single */
+
+.repeat-one {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 2px;
+    font-family: sans-serif;
+    font-size: 8px;
+    font-weight: bold;
+}
+
+#repeat-button.repeat-single .repeat-one {
+    display: block;
 }
 
 #previous-button,
@@ -498,11 +539,17 @@ body {
 
 .filter-group label {
     display: block;
-    margin-bottom: 8px;
-    color: var(--muted);
-    font-size: 11px;
-    letter-spacing: 1px;
+    margin-bottom: 10px;
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
 }
+
+
+這樣兩個分類標題就會變成和 ♡ 曲一覧 | ALL SONGS 一樣醒目的粗體風格。
+
+完成後跟小果說「好了」喔！
 
 .filter-buttons {
     display: flex;
@@ -721,43 +768,10 @@ body {
             </div>
         </div>
 
-        <div class="player-controls">
+       <div class="player-controls">
 
-            <button class="control-button" id="previous-button" aria-label="Previous">
-                <svg viewBox="0 0 24 24">
-                    <path d="M6 5H9V19H6Z"/>
-                    <path d="M19 5V19L9 12Z"/>
-                </svg>
-            </button>
-
-            <button class="control-button" id="play-button" aria-label="Play">
-                <svg id="play-icon" viewBox="0 0 24 24">
-                    <path d="M7 4V20L20 12Z"/>
-                </svg>
-            </button>
-
-            <button class="control-button" id="next-button" aria-label="Next">
-                <svg viewBox="0 0 24 24">
-                    <path d="M15 5H18V19H15Z"/>
-                    <path d="M5 5V19L15 12Z"/>
-                </svg>
-            </button>
-
-        </div>
-
-       <div class="playback-options">
-
-    <button class="playback-icon-button" id="repeat-button" aria-label="Repeat">
-        <svg viewBox="0 0 24 24">
-            <path d="M17 2L21 6L17 10"/>
-            <path d="M3 11V9C3 7.3 4.3 6 6 6H21"/>
-            <path d="M7 22L3 18L7 14"/>
-            <path d="M21 13V15C21 16.7 19.7 18 18 18H3"/>
-        </svg>
-        <span class="repeat-one">1</span>
-    </button>
-
-    <button class="playback-icon-button" id="shuffle-button" aria-label="Shuffle">
+    <!-- Shuffle -->
+    <button class="control-button side-control" id="shuffle-button" aria-label="Shuffle">
         <svg viewBox="0 0 24 24">
             <path d="M16 3H21V8"/>
             <path d="M4 20L21 3"/>
@@ -767,8 +781,41 @@ body {
         </svg>
     </button>
 
-</div>
+    <!-- Previous -->
+    <button class="control-button" id="previous-button" aria-label="Previous">
+        <svg viewBox="0 0 24 24">
+            <path d="M6 5H9V19H6Z"/>
+            <path d="M19 5V19L9 12Z"/>
+        </svg>
+    </button>
 
+    <!-- Play -->
+    <button class="control-button" id="play-button" aria-label="Play">
+        <svg id="play-icon" viewBox="0 0 24 24">
+            <path d="M7 4V20L20 12Z"/>
+        </svg>
+    </button>
+
+    <!-- Next -->
+    <button class="control-button" id="next-button" aria-label="Next">
+        <svg viewBox="0 0 24 24">
+            <path d="M15 5H18V19H15Z"/>
+            <path d="M5 5V19L15 12Z"/>
+        </svg>
+    </button>
+
+    <!-- Repeat -->
+    <button class="control-button side-control" id="repeat-button" aria-label="Repeat">
+        <svg viewBox="0 0 24 24">
+            <path d="M17 2L21 6L17 10"/>
+            <path d="M3 11V9C3 7.3 4.3 6 6 6H21"/>
+            <path d="M7 22L3 18L7 14"/>
+            <path d="M21 13V15C21 16.7 19.7 18 18 18H3"/>
+        </svg>
+        <span class="repeat-one">1</span>
+    </button>
+
+</div>
         <div class="volume-area">
             <svg viewBox="0 0 24 24">
                 <path d="M4 10V14H8L13 18V6L8 10H4Z"/>
@@ -806,7 +853,7 @@ body {
        <div class="filter-area">
 
     <div class="filter-group">
-        <label>音楽タイプ</label>
+        <label>音楽タイプ | MUSIC TYPE</label>
         <div class="filter-buttons" id="type-filter">
             <button class="filter-button active" data-value="all">All</button>
             <button class="filter-button" data-value="vocal">歌入り</button>
@@ -815,7 +862,7 @@ body {
     </div>
 
     <div class="filter-group">
-        <label>曲の言語</label>
+        <label>曲の言語 | LANGUAGE</label>
         <div class="filter-buttons" id="language-filter">
             <button class="filter-button active" data-value="all">All</button>
             <button class="filter-button" data-value="ja">日本語</button>
