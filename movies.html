@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -108,6 +109,8 @@ body {
     gap: 28px;
 }
 
+/* Ticket */
+
 .ticket {
     display: flex;
     position: relative;
@@ -125,6 +128,8 @@ body {
     transform: translateY(-5px);
     box-shadow: 0 13px 25px rgba(40, 38, 34, .14);
 }
+
+/* Poster */
 
 .poster {
     width: 34%;
@@ -156,6 +161,8 @@ body {
     font-size: 20px;
     background: linear-gradient(145deg, #555653, #292A29);
 }
+
+/* Main ticket */
 
 .ticket-main {
     flex: 1;
@@ -204,6 +211,8 @@ body {
     font-size: 10px;
 }
 
+/* Right stub */
+
 .ticket-stub {
     width: 74px;
     flex-shrink: 0;
@@ -218,33 +227,62 @@ body {
     border-left: 1px dashed #D4D3CC;
 }
 
-/* Right edge ticket perforations */
+/* Holes between main ticket and stub */
 
-.ticket {
-    overflow: visible;
-}
-
-.ticket-stub {
-    overflow: hidden;
+.ticket-stub::before,
+.ticket-stub::after {
+    content: "";
+    position: absolute;
+    left: -7px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--bg);
+    z-index: 3;
+    pointer-events: none;
 }
 
 .ticket-stub::before {
+    top: -7px;
+}
+
+.ticket-stub::after {
+    bottom: -7px;
+}
+
+/* Perforated right outer edge */
+
+.ticket::after {
     content: "";
     position: absolute;
     top: 0;
-    right: -7px;
-    width: 14px;
+    right: 0;
+    width: 12px;
     height: 100%;
-    background: radial-gradient(
-        circle,
-        var(--bg) 0 6px,
-        transparent 6.5px
-    );
-    background-size: 14px 22px;
-    background-repeat: repeat-y;
-    background-position: right center;
-    z-index: 2;
+    z-index: 5;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 100% 0,
+            var(--bg) 0 5.5px,
+            transparent 6px
+        ) top right / 12px 12px no-repeat,
+
+        radial-gradient(
+            circle at 100% 100%,
+            var(--bg) 0 5.5px,
+            transparent 6px
+        ) bottom right / 12px 12px no-repeat,
+
+        radial-gradient(
+            circle at 100% 50%,
+            var(--bg) 0 5px,
+            transparent 5.5px
+        ) right 12px / 12px 24px repeat-y;
 }
+
+/* Stub details */
 
 .stub-label {
     font-family: "Playfair Display", serif;
@@ -270,6 +308,8 @@ body {
     );
 }
 
+/* Different stub colors */
+
 .ticket:nth-child(2) .ticket-stub {
     background: #A97878;
 }
@@ -281,6 +321,8 @@ body {
 .ticket:nth-child(4) .ticket-stub {
     background: #8B7859;
 }
+
+/* Footer */
 
 .footer {
     margin-top: 65px;
@@ -367,6 +409,8 @@ body {
     line-height: 2;
 }
 
+/* Mobile */
+
 @media (max-width: 650px) {
     .container {
         width: min(100% - 26px, 480px);
@@ -399,48 +443,7 @@ body {
         width: 64px;
     }
 }
-    .ticket::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 13px;
-    height: 100%;
-    pointer-events: none;
-    z-index: 5;
 
-    background:
-        radial-gradient(
-            circle at 100% 0,
-            var(--bg) 0 6px,
-            transparent 6.5px
-        ),
-        radial-gradient(
-            circle at 100% 100%,
-            var(--bg) 0 6px,
-            transparent 6.5px
-        ),
-        radial-gradient(
-            circle at 100% 50%,
-            var(--bg) 0 5px,
-            transparent 5.5px
-        );
-
-    background-size:
-        13px 13px,
-        13px 13px,
-        13px 24px;
-
-    background-position:
-        right top,
-        right bottom,
-        right 12px;
-
-    background-repeat:
-        no-repeat,
-        no-repeat,
-        repeat-y;
-}
 </style>
 </head>
 
@@ -615,4 +618,3 @@ document.addEventListener("keydown", function(event) {
 
 </body>
 </html>
-接下來進度
