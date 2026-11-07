@@ -42,6 +42,8 @@ body {
     padding: 70px 0 100px;
 }
 
+/* Hero */
+
 .hero {
     text-align: center;
     margin-bottom: 55px;
@@ -81,11 +83,22 @@ body {
     letter-spacing: 1px;
 }
 
+/* Section heading */
+
 .section-heading {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin: 45px 0 25px;
+    justify-content: center;
+    gap: 18px;
+    margin: 45px 0 12px;
+}
+
+.section-heading::before,
+.section-heading::after {
+    content: "";
+    height: 1px;
+    background: var(--line);
+    flex: 1;
 }
 
 .section-heading h2 {
@@ -93,15 +106,103 @@ body {
     font-size: 19px;
     font-weight: 500;
     letter-spacing: 2px;
+    text-align: center;
     white-space: nowrap;
+    margin: 0;
 }
 
-.section-heading::after {
-    content: "";
-    height: 1px;
-    background: var(--line);
-    flex: 1;
+.collection-subtitle {
+    text-align: center;
+    color: var(--gray);
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
 }
+
+/* Search */
+
+.search-wrap {
+    max-width: 440px;
+    margin: 0 auto 25px;
+    position: relative;
+}
+
+.search-wrap input {
+    width: 100%;
+    padding: 13px 42px 13px 17px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background: rgba(248, 247, 242, .7);
+    color: var(--ink);
+    font-family: "Noto Serif JP", serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    outline: none;
+    transition: border-color .25s, background .25s;
+}
+
+.search-wrap input:focus {
+    border-color: var(--berry);
+    background: var(--paper);
+}
+
+.search-wrap input::placeholder {
+    color: #A6A39B;
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray);
+    font-size: 17px;
+    pointer-events: none;
+}
+
+/* Category buttons */
+
+.category-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 35px;
+}
+
+.category-btn {
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--gray);
+    padding: 10px 17px;
+    font-family: "Playfair Display", "Noto Serif JP", serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all .25s;
+}
+
+.category-btn:hover {
+    border-color: var(--berry);
+    color: var(--berry);
+}
+
+.category-btn.active {
+    background: #555653;
+    border-color: #555653;
+    color: #F8F7F2;
+}
+
+.category-btn .jp {
+    display: block;
+    margin-top: 4px;
+    font-family: "Noto Serif JP", serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+    opacity: .8;
+}
+
+/* Ticket grid */
 
 .ticket-grid {
     display: grid;
@@ -116,13 +217,38 @@ body {
     position: relative;
     min-height: 190px;
     background: var(--ticket);
-    border: 1px solid border: 1px solid #D4D2CA;
-    border-right: none;#D4D2CA;
-    border-radius: 3px;
+    border: 1px solid #D4D2CA;
+    border-right: none;
+    border-radius: 3px 0 0 3px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(40, 38, 34, .08);
     cursor: pointer;
     transition: transform .25s, box-shadow .25s;
+}
+
+/* Right edge perforations */
+
+.ticket::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 100% 0,
+            var(--bg) 0 6px,
+            transparent 6.5px
+        ) top right / 12px 24px repeat-y,
+        radial-gradient(
+            circle at 100% 100%,
+            var(--bg) 0 6px,
+            transparent 6.5px
+        ) bottom right / 12px 24px repeat-y;
 }
 
 .ticket:hover {
@@ -228,8 +354,6 @@ body {
     border-left: 1px dashed #D4D3CC;
 }
 
-/* Holes between main ticket and stub */
-
 .ticket-stub::before,
 .ticket-stub::after {
     content: "";
@@ -250,10 +374,6 @@ body {
 .ticket-stub::after {
     bottom: -7px;
 }
-
-/* Perforated right outer edge */
-
-/* Stub details */
 
 .stub-label {
     font-family: "Playfair Display", serif;
@@ -291,6 +411,30 @@ body {
 
 .ticket:nth-child(4) .ticket-stub {
     background: #8B7859;
+}
+
+/* Empty result */
+
+.no-results {
+    display: none;
+    text-align: center;
+    padding: 55px 15px;
+    color: var(--gray);
+    font-size: 12px;
+    letter-spacing: 2px;
+    line-height: 2.2;
+}
+
+.no-results.show {
+    display: block;
+}
+
+.no-results span {
+    display: block;
+    color: var(--berry);
+    font-family: "Playfair Display", serif;
+    font-size: 25px;
+    margin-bottom: 10px;
 }
 
 /* Footer */
@@ -413,8 +557,25 @@ body {
     .ticket-stub {
         width: 64px;
     }
-}
 
+    .section-heading {
+        gap: 10px;
+    }
+
+    .section-heading h2 {
+        font-size: 15px;
+        letter-spacing: 1px;
+    }
+
+    .category-list {
+        gap: 7px;
+    }
+
+    .category-btn {
+        padding: 9px 12px;
+        font-size: 9px;
+    }
+}
 </style>
 </head>
 
@@ -431,25 +592,75 @@ body {
     </header>
 
     <section>
+
         <div class="section-heading">
             <h2>OUR TICKET COLLECTION</h2>
         </div>
 
-        <div class="ticket-grid">
+        <div class="collection-subtitle">
+            ふたりの映画を、ひとつずつ大切に。
+        </div>
 
-            <article class="ticket" onclick="openMovie(0)">
+        <!-- Search -->
+
+        <div class="search-wrap">
+            <input
+                type="search"
+                id="movie-search"
+                placeholder="Search our movies..."
+                aria-label="Search movies"
+            >
+            <span class="search-icon">⌕</span>
+        </div>
+
+        <!-- Categories -->
+
+        <div class="category-list">
+
+            <button class="category-btn active" data-category="all">
+                ALL
+                <span class="jp">すべて</span>
+            </button>
+
+            <button class="category-btn" data-category="watched">
+                OUR MEMORIES
+                <span class="jp">ふたりで観た映画</span>
+            </button>
+
+            <button class="category-btn" data-category="wishlist">
+                MOVIE WISHLIST
+                <span class="jp">ふたりで観たい映画</span>
+            </button>
+
+            <button class="category-btn" data-category="favorites">
+                FAVORITES
+                <span class="jp">お気に入り</span>
+            </button>
+
+        </div>
+
+        <!-- Tickets -->
+
+        <div class="ticket-grid" id="ticket-grid">
+
+            <article class="ticket"
+                data-categories="watched favorites"
+                data-search="robot dreams animation drama 2023 robot dreams">
                 <div class="poster">
                     <div class="poster-placeholder">ROBOT<br>DREAMS</div>
                 </div>
+
                 <div class="ticket-main">
                     <div class="ticket-top">W & Y CINEMA</div>
                     <div class="movie-title">Robot Dreams</div>
                     <div class="movie-meta">Animation · Drama<br>2023</div>
+
                     <div class="ticket-bottom">
                         <span class="ticket-date">OUR MEMORY</span>
                         <span class="ticket-number">No.001</span>
                     </div>
                 </div>
+
                 <div class="ticket-stub">
                     <span class="stub-label">ADMIT TWO</span>
                     <span class="stub-heart">♡</span>
@@ -458,19 +669,24 @@ body {
                 </div>
             </article>
 
-            <article class="ticket" onclick="openMovie(1)">
+            <article class="ticket"
+                data-categories="wishlist"
+                data-search="our next film movie collection coming soon">
                 <div class="poster">
                     <div class="poster-placeholder">MOVIE<br>NO. 002</div>
                 </div>
+
                 <div class="ticket-main">
                     <div class="ticket-top">W & Y CINEMA</div>
                     <div class="movie-title">Our Next Film</div>
                     <div class="movie-meta">Movie Collection<br>To be continued</div>
+
                     <div class="ticket-bottom">
                         <span class="ticket-date">COMING SOON</span>
                         <span class="ticket-number">No.002</span>
                     </div>
                 </div>
+
                 <div class="ticket-stub">
                     <span class="stub-label">ADMIT TWO</span>
                     <span class="stub-heart">♡</span>
@@ -479,19 +695,24 @@ body {
                 </div>
             </article>
 
-            <article class="ticket" onclick="openMovie(2)">
+            <article class="ticket"
+                data-categories="wishlist"
+                data-search="our next film movie collection coming soon">
                 <div class="poster">
                     <div class="poster-placeholder">MOVIE<br>NO. 003</div>
                 </div>
+
                 <div class="ticket-main">
                     <div class="ticket-top">W & Y CINEMA</div>
                     <div class="movie-title">Our Next Film</div>
                     <div class="movie-meta">Movie Collection<br>To be continued</div>
+
                     <div class="ticket-bottom">
                         <span class="ticket-date">COMING SOON</span>
                         <span class="ticket-number">No.003</span>
                     </div>
                 </div>
+
                 <div class="ticket-stub">
                     <span class="stub-label">ADMIT TWO</span>
                     <span class="stub-heart">♡</span>
@@ -500,19 +721,24 @@ body {
                 </div>
             </article>
 
-            <article class="ticket" onclick="openMovie(3)">
+            <article class="ticket"
+                data-categories="wishlist"
+                data-search="our next film movie collection coming soon">
                 <div class="poster">
                     <div class="poster-placeholder">MOVIE<br>NO. 004</div>
                 </div>
+
                 <div class="ticket-main">
                     <div class="ticket-top">W & Y CINEMA</div>
                     <div class="movie-title">Our Next Film</div>
                     <div class="movie-meta">Movie Collection<br>To be continued</div>
+
                     <div class="ticket-bottom">
                         <span class="ticket-date">COMING SOON</span>
                         <span class="ticket-number">No.004</span>
                     </div>
                 </div>
+
                 <div class="ticket-stub">
                     <span class="stub-label">ADMIT TWO</span>
                     <span class="stub-heart">♡</span>
@@ -522,6 +748,14 @@ body {
             </article>
 
         </div>
+
+        <div class="no-results" id="no-results">
+            <span>♡</span>
+            No movies found.
+            <br>
+            まだ映画がありません。
+        </div>
+
     </section>
 
     <footer class="footer">
@@ -531,18 +765,26 @@ body {
 
 </main>
 
+<!-- Movie detail window -->
+
 <div class="modal" id="movie-modal" onclick="closeMovie(event)">
     <div class="modal-content">
+
         <button class="close" onclick="closeMovie()">×</button>
+
         <div class="modal-label">W & Y · MOVIE ARCHIVE</div>
         <h2 id="modal-title"></h2>
         <div class="modal-info" id="modal-info"></div>
         <div class="modal-divider"></div>
         <div class="modal-description" id="modal-description"></div>
+
     </div>
 </div>
 
 <script>
+
+/* Movie information */
+
 const movies = [
     {
         title: "Robot Dreams",
@@ -566,25 +808,109 @@ const movies = [
     }
 ];
 
+/* Open movie details */
+
 function openMovie(index) {
     const movie = movies[index];
+
     document.getElementById("modal-title").textContent = movie.title;
     document.getElementById("modal-info").textContent = movie.info;
     document.getElementById("modal-description").textContent = movie.description;
+
     document.getElementById("movie-modal").classList.add("active");
 }
 
+/* Close movie details */
+
 function closeMovie(event) {
-    if (!event || event.target.id === "movie-modal" || event.target.classList.contains("close")) {
+    if (
+        !event ||
+        event.target.id === "movie-modal" ||
+        event.target.classList.contains("close")
+    ) {
         document.getElementById("movie-modal").classList.remove("active");
     }
 }
 
+/* Connect ticket clicks */
+
+document.querySelectorAll(".ticket").forEach((ticket, index) => {
+    ticket.addEventListener("click", () => openMovie(index));
+});
+
+/* Search and category filter */
+
+const searchInput = document.getElementById("movie-search");
+const categoryButtons = document.querySelectorAll(".category-btn");
+const tickets = document.querySelectorAll(".ticket");
+const noResults = document.getElementById("no-results");
+
+let activeCategory = "all";
+
+function filterMovies() {
+
+    const keyword = searchInput.value.trim().toLowerCase();
+    let visibleCount = 0;
+
+    tickets.forEach(ticket => {
+
+        const categories = ticket.dataset.categories.split(" ");
+        const searchText = ticket.dataset.search.toLowerCase();
+
+        const matchesCategory =
+            activeCategory === "all" ||
+            categories.includes(activeCategory);
+
+        const matchesSearch =
+            searchText.includes(keyword);
+
+        const shouldShow = matchesCategory && matchesSearch;
+
+        ticket.style.display = shouldShow ? "flex" : "none";
+
+        if (shouldShow) {
+            visibleCount++;
+        }
+
+    });
+
+    noResults.classList.toggle("show", visibleCount === 0);
+}
+
+/* Category button clicks */
+
+categoryButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        categoryButtons.forEach(item => {
+            item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        activeCategory = button.dataset.category;
+
+        filterMovies();
+
+    });
+
+});
+
+/* Search input */
+
+searchInput.addEventListener("input", filterMovies);
+
+/* Escape key */
+
 document.addEventListener("keydown", function(event) {
+
     if (event.key === "Escape") {
         document.getElementById("movie-modal").classList.remove("active");
     }
+
 });
+
 </script>
 
 </body>
