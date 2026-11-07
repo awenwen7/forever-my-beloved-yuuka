@@ -116,7 +116,8 @@ body {
     position: relative;
     min-height: 190px;
     background: var(--ticket);
-    border: 1px solid #D4D2CA;
+    border: 1px solid border: 1px solid #D4D2CA;
+    border-right: none;#D4D2CA;
     border-radius: 3px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(40, 38, 34, .08);
@@ -251,36 +252,6 @@ body {
 }
 
 /* Perforated right outer edge */
-
-.ticket::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 12px;
-    height: 100%;
-    z-index: 10;
-    pointer-events: none;
-
-    background:
-        radial-gradient(
-            circle at 100% 0,
-            var(--bg) 0 6px,
-            transparent 6.5px
-        ) top right / 12px 12px no-repeat,
-
-        radial-gradient(
-            circle at 100% 100%,
-            var(--bg) 0 6px,
-            transparent 6.5px
-        ) bottom right / 12px 12px no-repeat,
-
-        radial-gradient(
-            circle at 100% 50%,
-            var(--bg) 0 5px,
-            transparent 5.5px
-        ) right 12px / 12px 24px repeat-y;
-}
 
 /* Stub details */
 
