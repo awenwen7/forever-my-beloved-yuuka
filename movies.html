@@ -237,7 +237,7 @@ body {
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: #E8E7E2;
+    background: var(--bg);
     z-index: 3;
     pointer-events: none;
 }
@@ -259,25 +259,25 @@ body {
     right: 0;
     width: 12px;
     height: 100%;
-    z-index: 5;
+    z-index: 10;
     pointer-events: none;
 
     background:
         radial-gradient(
             circle at 100% 0,
-            #E8E7E2 0 5.5px,
-            transparent 6px
+            var(--bg) 0 6px,
+            transparent 6.5px
         ) top right / 12px 12px no-repeat,
 
         radial-gradient(
             circle at 100% 100%,
-            #E8E7E2 0 5.5px,
-            transparent 6px
+            var(--bg) 0 6px,
+            transparent 6.5px
         ) bottom right / 12px 12px no-repeat,
 
         radial-gradient(
             circle at 100% 50%,
-            #E8E7E2 0 5px,
+            var(--bg) 0 5px,
             transparent 5.5px
         ) right 12px / 12px 24px repeat-y;
 }
