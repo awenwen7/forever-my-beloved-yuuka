@@ -297,8 +297,13 @@ body {
     to { transform: rotate(360deg); }
 }
 
-.vinyl-record.is-playing {
+.vinyl-record {
     animation: vinyl-spin 4s linear infinite;
+    animation-play-state: paused;
+}
+
+.vinyl-record.is-playing {
+    animation-play-state: running;
 }
 
 .song-title {
