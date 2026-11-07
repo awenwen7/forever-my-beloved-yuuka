@@ -235,26 +235,13 @@ body {
     letter-spacing: 3px;
 }
 
-.album-cover {
-    width: 210px;
-    height: 210px;
-    max-width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 5px;
-    box-shadow: 0 5px 18px rgba(80, 60, 40, 0.12);
-    position: relative;
-    z-index: 1;
-    flex-shrink: 0;
-}
-
-    /* Album cover and vinyl record */
+/* Album cover and vinyl record */
 
 .album-wrapper {
     position: relative;
     width: 210px;
     height: 210px;
-    max-width: 70%;
+    max-width: 100%;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -263,10 +250,11 @@ body {
 
 .vinyl-record {
     position: absolute;
-    width: 195px;
-    height: 195px;
-    right: -65px;
-    top: 7px;
+    width: 190px;
+    height: 190px;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-20%);
     border-radius: 50%;
     background:
         repeating-radial-gradient(
@@ -280,22 +268,6 @@ body {
     z-index: 0;
 }
 
-/* Vinyl rotation */
-
-@keyframes vinyl-spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.vinyl-record.is-playing {
-    animation: vinyl-spin 4s linear infinite;
-}
-    
 .vinyl-label {
     position: absolute;
     width: 62px;
@@ -309,9 +281,33 @@ body {
     z-index: 2;
 }
 
+/* Vinyl rotation */
+
+@keyframes vinyl-spin {
+    from {
+        transform: translateX(-20%) rotate(0deg);
+    }
+
+    to {
+        transform: translateX(-20%) rotate(360deg);
+    }
+}
+
+.vinyl-record.is-playing {
+    animation: vinyl-spin 4s linear infinite;
+}
+
 .album-cover {
     position: relative;
     z-index: 1;
+    width: 210px;
+    height: 210px;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 5px 18px rgba(80, 60, 40, 0.12);
+    flex-shrink: 0;
 }
     
 .song-title {
@@ -736,10 +732,35 @@ body {
         padding: 23px 17px;
     }
 
-    .album-cover {
-        width: 190px;
-        height: 190px;
-    }
+    .album-wrapper {
+    width: 270px;
+    height: 190px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.album-cover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 190px;
+    height: 190px;
+}
+
+.vinyl-record {
+    width: 172px;
+    height: 172px;
+    left: 98px;
+    right: auto;
+    top: 9px;
+}
+
+.vinyl-label {
+    width: 56px;
+    height: 56px;
+    left: 156px;
+    top: 67px;
+}
 
     .filter-area {
         gap: 9px;
@@ -816,14 +837,7 @@ body {
 
         <div class="album-wrapper">
 
-   <div class="vinyl-record" id="vinyl-record">
-    <img
-        class="vinyl-label"
-        id="vinyl-label"
-        src="images/music-covers/odori-ko.jpg"
-        alt="Vinyl label"
-    >
-</div>
+    <div class="vinyl-record" id="vinyl-record"></div>
 
     <img
         class="album-cover"
@@ -832,8 +846,14 @@ body {
         alt="Album cover"
     >
 
-</div>
+    <img
+        class="vinyl-label"
+        id="vinyl-label"
+        src="images/music-covers/odori-ko.jpg"
+        alt="Vinyl label"
+    >
 
+</div>
         <h2 class="song-title" id="current-title">踊り子</h2>
         <p class="song-artist" id="current-artist">Vaundy</p>
 
@@ -1029,11 +1049,13 @@ const vinylRecord = document.getElementById("vinyl-record");
 
 audio.addEventListener("play", () => {
     vinylRecord.classList.add("is-playing");
+    vinylLabel.classList.add("is-playing");
 });
 
 audio.addEventListener("pause", () => {
     vinylRecord.classList.remove("is-playing");
-});    
+    vinylLabel.classList.remove("is-playing");
+});
 const currentTitle = document.getElementById("current-title");
 const currentArtist = document.getElementById("current-artist");
 
