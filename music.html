@@ -1489,7 +1489,7 @@ searchInput.addEventListener("input", renderSongList);
 /* Initial setup */
 
 if (songData.length > 0) {
-    loadSong(0);
+    loadSong(currentIndex);
     audio.volume = 0.7;
 } else {
     songList.innerHTML =
