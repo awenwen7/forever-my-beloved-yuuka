@@ -219,19 +219,36 @@ body {
     border-left: 1px dashed #D4D3CC;
 }
 
-.ticket-stub::before,
-.ticket-stub::after {
-    content: "";
-    position: absolute;
-    left: -7px;
-    width: 13px;
-    height: 13px;
-    border-radius: 50%;
-    background: var(--bg);
+.ticket-stub {
+    width: 74px;
+    flex-shrink: 0;
+    background: #555653;
+    color: #F1F0EA;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 14px 5px;
+    border-left: 1px dashed #D4D3CC;
+
+    --notch-size: 14px;
 }
 
 .ticket-stub::before {
-    top: -7px;
+    content: "";
+    position: absolute;
+    left: calc(var(--notch-size) / -2);
+    top: 0;
+    bottom: 0;
+    width: var(--notch-size);
+    background: radial-gradient(
+        circle at 50% 50%,
+        var(--bg) 0 calc(var(--notch-size) / 2 - 1px),
+        transparent calc(var(--notch-size) / 2)
+    );
+    background-size: var(--notch-size) var(--notch-size);
+    background-repeat: repeat-y;
 }
 
 .ticket-stub::after {
