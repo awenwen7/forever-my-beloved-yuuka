@@ -290,6 +290,20 @@ body {
     z-index: 2;
 }
 
+.vinyl-hole {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: #292725;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    z-index: 3;
+}    
+    
 /* Vinyl rotation */
 
 @keyframes vinyl-spin {
@@ -724,8 +738,8 @@ body {
         padding: 23px 17px;
     }
 
-    .album-wrapper {
-        width: 270px;
+        .album-wrapper {
+        width: 284px;
         height: 190px;
         max-width: 100%;
         margin: 0 auto;
@@ -739,16 +753,16 @@ body {
     .vinyl-record {
         width: 172px;
         height: 172px;
-        left: 98px;
+        left: 112px;
         top: 9px;
     }
 
-     .vinyl-label {
-    width: 56px;
-    height: 56px;
-    left: 58px;
-    top: 58px;
-}
+    .vinyl-label {
+        width: 56px;
+        height: 56px;
+        left: 58px;
+        top: 58px;
+    }
 
     .filter-area {
         gap: 9px;
@@ -834,7 +848,7 @@ body {
             src="images/music-covers/odori-ko.jpg"
             alt="Vinyl label"
         >
-
+        <span class="vinyl-hole"></span>
     </div>
 
     <img
