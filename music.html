@@ -667,7 +667,28 @@ body {
     border-color: var(--accent);
     color: var(--text);
 }
+.playlist-tab-item {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
 
+.playlist-delete-button {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.playlist-delete-button:hover {
+    color: #B58D86;
+    opacity: 1;
+}
 .playlist-songs {
     display: flex;
     flex-direction: column;
@@ -776,7 +797,23 @@ body {
     cursor: pointer;
     transition: 0.2s;
 }
+.add-to-playlist-button {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: #FFFDF9;
+    color: var(--accent);
+    font-size: 19px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
 
+.add-to-playlist-button:hover {
+    background: var(--card);
+    border-color: var(--accent);
+}
 .song-item:hover {
     border-color: #D8C8BA;
 }
@@ -1139,16 +1176,12 @@ body {
     </div>
 
 </div>
-
-        <div class="song-list" id="song-list"></div>
-
-    </section>
-    <!-- Playlist -->
+<!-- Playlist -->
     <section class="playlist-section">
 
-        <h2 class="section-heading">
-            ♡ PLAYLIST <span>| 播放清單</span>
-        </h2>
+       <h2 class="section-heading">
+    ♡ プレイリスト <span>| PLAYLIST</span>
+    </h2>
 
         <div class="playlist-create">
             <input
@@ -1169,6 +1202,10 @@ body {
         </div>
 
     </section>
+        <div class="song-list" id="song-list"></div>
+
+    </section>
+    
 </main>
 
 <audio id="audio-player"></audio>
@@ -1509,8 +1546,10 @@ function renderPlaylists() {
     playlistTabs.innerHTML = "";
 
     playlists.forEach(playlist => {
-        const button = document.createElement("button");
+        const item = document.createElement("div");
+        item.className = "playlist-tab-item";
 
+        const button = document.createElement("button");
         button.className = "playlist-tab";
         button.textContent = playlist.name;
 
@@ -1523,7 +1562,33 @@ function renderPlaylists() {
             renderPlaylists();
         });
 
-        playlistTabs.appendChild(button);
+        const deleteButton = document.createElement("button");
+        deleteButton.className = "playlist-delete-button";
+        deleteButton.textContent = "×";
+        deleteButton.title = "Delete playlist";
+
+        deleteButton.addEventListener("click", () => {
+            const confirmed = confirm(
+                `確定要刪除「${playlist.name}」播放清單嗎？`
+            );
+
+            if (!confirmed) return;
+
+            playlists = playlists.filter(
+                item => item.id !== playlist.id
+            );
+
+            if (activePlaylistId === playlist.id) {
+                activePlaylistId = null;
+            }
+
+            savePlaylists();
+            renderPlaylists();
+        });
+
+        item.appendChild(button);
+        item.appendChild(deleteButton);
+        playlistTabs.appendChild(item);
     });
 
     if (activePlaylistId) {
@@ -1617,7 +1682,6 @@ function renderSongList() {
 
     filteredSongs.forEach(song => {
         const item = document.createElement("div");
-
         item.className = "song-item";
 
         if (song.originalIndex === currentIndex) {
@@ -1642,19 +1706,68 @@ function renderSongList() {
 
         const status = document.createElement("span");
         status.className = "song-status";
-
         status.textContent =
             song.originalIndex === currentIndex && !audio.paused ? "♫" : "♡";
+
+        const addButton = document.createElement("button");
+        addButton.className = "add-to-playlist-button";
+        addButton.textContent = "+";
+        addButton.title = "加入播放清單";
+
+        addButton.addEventListener("click", event => {
+            event.stopPropagation();
+
+            if (playlists.length === 0) {
+                alert("請先建立播放清單！");
+                return;
+            }
+
+            const choices = playlists
+                .map((playlist, index) => `${index + 1}. ${playlist.name}`)
+                .join("\n");
+
+            const choice = prompt(
+                "請選擇要加入的播放清單：\n\n" + choices
+            );
+
+            if (choice === null) return;
+
+            const playlistIndex = Number(choice) - 1;
+
+            if (
+                !Number.isInteger(playlistIndex) ||
+                playlistIndex < 0 ||
+                playlistIndex >= playlists.length
+            ) {
+                alert("請輸入有效的清單編號！");
+                return;
+            }
+
+            const selectedPlaylist = playlists[playlistIndex];
+
+            if (selectedPlaylist.songs.includes(song.originalIndex)) {
+                alert("這首歌曲已經在播放清單裡了！");
+                return;
+            }
+
+            selectedPlaylist.songs.push(song.originalIndex);
+
+            savePlaylists();
+            renderPlaylists();
+
+            alert(`已加入「${selectedPlaylist.name}」♡`);
+        });
 
         item.appendChild(image);
         item.appendChild(info);
         item.appendChild(status);
+        item.appendChild(addButton);
 
         item.addEventListener("click", () => {
-    loadSong(song.originalIndex);
-    playSong();
-    renderSongList();
-});
+            loadSong(song.originalIndex);
+            playSong();
+            renderSongList();
+        });
 
         songList.appendChild(item);
     });
