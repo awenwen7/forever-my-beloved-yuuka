@@ -600,6 +600,80 @@ body {
     margin-top: 43px;
 }
 
+/* Playlist */
+
+.playlist-section {
+    margin-top: 55px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border);
+}
+
+.playlist-create {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#playlist-name-input {
+    flex: 1;
+    min-width: 0;
+    height: 42px;
+    padding: 0 13px;
+    background: #FFFDF9;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 12px;
+    outline: none;
+}
+
+#playlist-name-input:focus {
+    border-color: var(--accent);
+}
+
+#create-playlist-button {
+    padding: 0 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.playlist-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-bottom: 18px;
+}
+
+.playlist-tab {
+    padding: 8px 14px;
+    background: #FFFDF9;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.playlist-tab.active {
+    background: var(--card);
+    border-color: var(--accent);
+    color: var(--text);
+}
+
+.playlist-songs {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}    
+    
 .section-heading {
     margin-bottom: 20px;
     font-size: 15px;
@@ -1069,7 +1143,32 @@ body {
         <div class="song-list" id="song-list"></div>
 
     </section>
+    <!-- Playlist -->
+    <section class="playlist-section">
 
+        <h2 class="section-heading">
+            ♡ PLAYLIST <span>| 播放清單</span>
+        </h2>
+
+        <div class="playlist-create">
+            <input
+                type="text"
+                id="playlist-name-input"
+                placeholder="輸入播放清單名稱..."
+            >
+
+            <button id="create-playlist-button">
+                + CREATE
+            </button>
+        </div>
+
+        <div class="playlist-tabs" id="playlist-tabs">
+        </div>
+
+        <div class="playlist-songs" id="playlist-songs">
+        </div>
+
+    </section>
 </main>
 
 <audio id="audio-player"></audio>
@@ -1386,7 +1485,84 @@ volumeBar.addEventListener("input", () => {
 
 let selectedType = "all";
 let selectedLanguage = "all";
+/* Playlist Data */
 
+const playlistNameInput = document.getElementById("playlist-name-input");
+const createPlaylistButton = document.getElementById("create-playlist-button");
+const playlistTabs = document.getElementById("playlist-tabs");
+const playlistSongs = document.getElementById("playlist-songs");
+
+let playlists = JSON.parse(
+    localStorage.getItem("yuuka-playlists") || "[]"
+);
+
+let activePlaylistId = null;
+
+function savePlaylists() {
+    localStorage.setItem(
+        "yuuka-playlists",
+        JSON.stringify(playlists)
+    );
+}
+
+function renderPlaylists() {
+    playlistTabs.innerHTML = "";
+
+    playlists.forEach(playlist => {
+        const button = document.createElement("button");
+
+        button.className = "playlist-tab";
+        button.textContent = playlist.name;
+
+        if (playlist.id === activePlaylistId) {
+            button.classList.add("active");
+        }
+
+        button.addEventListener("click", () => {
+            activePlaylistId = playlist.id;
+            renderPlaylists();
+        });
+
+        playlistTabs.appendChild(button);
+    });
+
+    if (activePlaylistId) {
+        const activePlaylist = playlists.find(
+            playlist => playlist.id === activePlaylistId
+        );
+
+        playlistSongs.textContent = activePlaylist
+            ? "♡ 這個播放清單目前還沒有歌曲"
+            : "";
+    } else {
+        playlistSongs.textContent = "♡ 請建立或選擇一個播放清單";
+    }
+}
+
+createPlaylistButton.addEventListener("click", () => {
+    const name = playlistNameInput.value.trim();
+
+    if (!name) {
+        playlistNameInput.focus();
+        return;
+    }
+
+    const newPlaylist = {
+        id: Date.now().toString(),
+        name: name,
+        songs: []
+    };
+
+    playlists.push(newPlaylist);
+    activePlaylistId = newPlaylist.id;
+
+    savePlaylists();
+    renderPlaylists();
+
+    playlistNameInput.value = "";
+});
+
+renderPlaylists();
 function setupFilterButtons(containerId, onSelect) {
     const container = document.getElementById(containerId);
     const buttons = container.querySelectorAll(".filter-button");
