@@ -952,7 +952,82 @@ input {
     color: #A38A60;
     background: #F2EEDC;
 }
-    
+  /* Mobile ticket adjustments */
+
+@media (max-width: 650px) {
+
+    .ticket {
+        align-items: stretch;
+        min-height: 175px;
+    }
+
+    .poster {
+        width: 31%;
+        min-width: 86px;
+    }
+
+    .ticket-main {
+        position: relative;
+        flex: 1;
+        min-width: 0;
+        padding: 13px 10px;
+    }
+
+    .movie-title {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .movie-meta {
+        font-size: 10px;
+        line-height: 1.7;
+    }
+
+    .movie-genre {
+        gap: 5px;
+    }
+
+    .genre-tag {
+        padding: 4px 8px;
+        margin: 0;
+        font-size: 9px;
+        letter-spacing: .5px;
+    }
+
+    .ticket-bottom {
+        position: relative;
+        justify-content: flex-start;
+        padding-right: 25px;
+        margin-top: 12px;
+    }
+
+    .ticket-date {
+        min-width: 0;
+        padding: 8px 9px;
+        gap: 4px;
+        max-width: 100%;
+    }
+
+    .date-stamp-label,
+    .date-stamp-footer {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .date-stamp-main {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+
+    .ticket-number {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        font-size: 12px;
+        transform: translateY(-50%) rotate(90deg);
+        transform-origin: center;
+    }
+}  
 </style>
 </head>
 
