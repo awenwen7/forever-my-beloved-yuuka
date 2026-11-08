@@ -65,13 +65,6 @@ input {
     letter-spacing: 4px;
 }
 
-.ticket-stub .stub-label:last-child {
-    transform: translateY(5px);
-}
-.rotated-heart {
-    display: inline-block;
-    transform: rotate(90deg);
-}
 .hero h1 {
     margin: 15px 0 8px;
     font-family: "Playfair Display", serif;
@@ -399,9 +392,11 @@ input {
     letter-spacing: 1px;
     writing-mode: vertical-rl;
 }
+
 .ticket-stub .stub-label:last-child {
-    transform: translateY(5px) rotate(90deg);
+    transform: translateY(5px);
 }
+
 .stub-heart {
     color: #D8B8B1;
     font-size: 16px;
@@ -419,6 +414,11 @@ input {
     );
 }
 
+.rotated-heart {
+    display: inline-block;
+    transform: rotate(90deg);
+}
+    
 /* Stub colors */
 
 .ticket:nth-child(2) .ticket-stub {
