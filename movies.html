@@ -51,7 +51,9 @@ input {
     padding: 70px 0 100px;
 }
 
-/* Hero */
+/* =========================
+   Hero
+========================= */
 
 .hero {
     text-align: center;
@@ -92,7 +94,9 @@ input {
     letter-spacing: 1px;
 }
 
-/* Section heading */
+/* =========================
+   Section heading
+========================= */
 
 .section-heading {
     display: flex;
@@ -128,7 +132,9 @@ input {
     margin-bottom: 30px;
 }
 
-/* Search */
+/* =========================
+   Search
+========================= */
 
 .search-wrap {
     max-width: 440px;
@@ -174,7 +180,9 @@ input {
     pointer-events: none;
 }
 
-/* Category buttons */
+/* =========================
+   Category buttons
+========================= */
 
 .category-list {
     display: flex;
@@ -192,8 +200,6 @@ input {
     color: var(--gray);
     padding: 11px 17px 10px;
     font-family: "Playfair Display", "Noto Serif JP", serif;
-    font-size: 10px;
-    letter-spacing: 1.5px;
     cursor: pointer;
     box-shadow: 0 3px 10px rgba(40, 38, 34, .025);
     transition:
@@ -240,7 +246,9 @@ input {
     outline-offset: 4px;
 }
 
-/* Ticket grid */
+/* =========================
+   Ticket grid
+========================= */
 
 .ticket-grid {
     display: grid;
@@ -248,8 +256,9 @@ input {
     gap: 28px;
 }
 
-
-/* Ticket */
+/* =========================
+   Ticket body
+========================= */
 
 .ticket {
     display: flex;
@@ -261,7 +270,9 @@ input {
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(40, 38, 34, .08);
     cursor: pointer;
-    transition: transform .25s, box-shadow .25s;
+    transition:
+        transform .25s,
+        box-shadow .25s;
 }
 
 .ticket:focus-visible {
@@ -274,58 +285,9 @@ input {
     box-shadow: 0 13px 25px rgba(40, 38, 34, .14);
 }
 
-/* Right stub */
-
-.ticket-stub {
-    width: 74px;
-    flex-shrink: 0;
-    background: #555653;
-    color: #F1F0EA;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    padding: 14px 5px;
-    border-left: 1px dashed rgba(241, 240, 234, .8);
-}
-
-/* Perforated edge on the right */
-
-.ticket::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 10px;
-    height: 100%;
-    pointer-events: none;
-    z-index: 5;
-
-    background:
-        radial-gradient(
-            circle at 100% 50%,
-            var(--bg) 0 5px,
-            transparent 5.5px
-        ) right top / 10px 22px repeat-y;
-}
-
-/* Different stub colors */
-
-.ticket:nth-child(2) .ticket-stub {
-    background: #A97878;
-}
-
-.ticket:nth-child(3) .ticket-stub {
-    background: #687B70;
-}
-
-.ticket:nth-child(4) .ticket-stub {
-    background: #8B7859;
-}
-
-
-/* Poster */
+/* =========================
+   Poster
+========================= */
 
 .poster {
     width: 34%;
@@ -349,7 +311,9 @@ input {
     background: linear-gradient(145deg, #555653, #292A29);
 }
 
-/* Main ticket */
+/* =========================
+   Main ticket
+========================= */
 
 .ticket-main {
     flex: 1;
@@ -398,7 +362,9 @@ input {
     font-size: 10px;
 }
 
-/* Right stub */
+/* =========================
+   Right ticket stub
+========================= */
 
 .ticket-stub {
     width: 74px;
@@ -412,29 +378,6 @@ input {
     justify-content: space-around;
     padding: 14px 5px;
     border-left: 1px dashed rgba(241, 240, 234, .8);
-}
-
-/* Stub cutouts */
-
-.ticket-stub::before,
-.ticket-stub::after {
-    content: "";
-    position: absolute;
-    left: -7px;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--bg);
-    z-index: 3;
-    pointer-events: none;
-}
-
-.ticket-stub::before {
-    top: -7px;
-}
-
-.ticket-stub::after {
-    bottom: -7px;
 }
 
 .stub-label {
@@ -461,7 +404,7 @@ input {
     );
 }
 
-/* Different stub colors */
+/* Stub colors */
 
 .ticket:nth-child(2) .ticket-stub {
     background: #A97878;
@@ -475,7 +418,37 @@ input {
     background: #8B7859;
 }
 
-/* Empty result */
+/* =========================
+   Right perforated edge
+========================= */
+
+/*
+   The holes are cut into the right edge.
+   The page background shows through each hole.
+   The stub divider remains separate on the left.
+*/
+
+.ticket::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 11px;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 100% 50%,
+            var(--bg) 0 5px,
+            transparent 5.5px
+        ) right top / 11px 22px repeat-y;
+}
+
+/* =========================
+   Empty result
+========================= */
 
 .no-results {
     display: none;
@@ -499,7 +472,9 @@ input {
     margin-bottom: 10px;
 }
 
-/* Footer */
+/* =========================
+   Footer
+========================= */
 
 .footer {
     margin-top: 65px;
@@ -519,7 +494,9 @@ input {
     letter-spacing: 2px;
 }
 
-/* Movie detail window */
+/* =========================
+   Movie detail modal
+========================= */
 
 .modal {
     display: none;
@@ -590,7 +567,9 @@ input {
     line-height: 2;
 }
 
-/* Mobile */
+/* =========================
+   Mobile
+========================= */
 
 @media (max-width: 650px) {
     .container {
@@ -663,6 +642,8 @@ input {
         width: 58px;
     }
 }
+
+/* Reduced motion */
 
 @media (prefers-reduced-motion: reduce) {
     *,
@@ -741,6 +722,7 @@ input {
                 aria-label="Open Robot Dreams details"
                 data-categories="watched favorites"
                 data-search="robot dreams animation drama 2023">
+
                 <div class="poster">
                     <div class="poster-placeholder">ROBOT<br>DREAMS</div>
                 </div>
@@ -762,6 +744,7 @@ input {
                     <div class="stub-barcode"></div>
                     <span class="stub-label">W ♥ Y</span>
                 </div>
+
             </article>
 
             <article class="ticket"
@@ -770,6 +753,7 @@ input {
                 aria-label="Open movie number 002 details"
                 data-categories="wishlist"
                 data-search="our next film movie collection coming soon">
+
                 <div class="poster">
                     <div class="poster-placeholder">MOVIE<br>NO. 002</div>
                 </div>
@@ -791,6 +775,7 @@ input {
                     <div class="stub-barcode"></div>
                     <span class="stub-label">W ♥ Y</span>
                 </div>
+
             </article>
 
             <article class="ticket"
@@ -799,6 +784,7 @@ input {
                 aria-label="Open movie number 003 details"
                 data-categories="wishlist"
                 data-search="our next film movie collection coming soon">
+
                 <div class="poster">
                     <div class="poster-placeholder">MOVIE<br>NO. 003</div>
                 </div>
@@ -820,6 +806,7 @@ input {
                     <div class="stub-barcode"></div>
                     <span class="stub-label">W ♥ Y</span>
                 </div>
+
             </article>
 
             <article class="ticket"
@@ -828,6 +815,7 @@ input {
                 aria-label="Open movie number 004 details"
                 data-categories="wishlist"
                 data-search="our next film movie collection coming soon">
+
                 <div class="poster">
                     <div class="poster-placeholder">MOVIE<br>NO. 004</div>
                 </div>
@@ -849,6 +837,7 @@ input {
                     <div class="stub-barcode"></div>
                     <span class="stub-label">W ♥ Y</span>
                 </div>
+
             </article>
 
         </div>
