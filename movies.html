@@ -858,8 +858,9 @@ const metaText = [
 
 const genreLabel = (movie.genre || [])[0] || "";
 
-const dateText = movie.watchedDate ||
-    (categories.includes("wishlist") ? "MOVIE WISHLIST" : "♡ 映画の思い出 ♡");
+const dateText = categories.includes("wishlist")
+    ? "MOVIE WISHLIST"
+    : (movie.watchedDate || "");
 
         const poster = document.createElement("div");
         poster.className = "poster";
