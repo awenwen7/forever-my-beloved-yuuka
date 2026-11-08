@@ -824,6 +824,38 @@ input {
     margin: 7px 0 0 0;
     text-align: left;
 }   
+    /* Additional movie genre colors */
+
+.genre-mystery {
+    color: #77718E;
+    background: #EBE8F2;
+}
+
+.genre-suspense {
+    color: #786A78;
+    background: #EDE7ED;
+}
+
+.genre-documentary {
+    color: #718477;
+    background: #E8EEE8;
+}
+
+.genre-action {
+    color: #A16F5D;
+    background: #F2E7DF;
+}
+
+.genre-thriller {
+    color: #815F62;
+    background: #EEE3E3;
+}
+
+.genre-family {
+    color: #A38A60;
+    background: #F2EEDC;
+}
+    
 </style>
 </head>
 
@@ -1072,8 +1104,32 @@ function renderMovies() {
         ticket.querySelector(".movie-meta").innerHTML = metaText
         .map(line => `<div>${line}</div>`)
         .join("");
-        ticket.querySelector(".movie-genre").textContent = genreLabel;
-        ticket.querySelector(".ticket-date").textContent = dateText;
+       // Movie genre color
+const genreElement = ticket.querySelector(".movie-genre");
+genreElement.textContent = genreLabel;
+
+const genreColors = {
+    "アニメーション": "animation",
+    "ドラマ": "drama",
+    "ロマンス": "romance",
+    "コメディ": "comedy",
+    "アドベンチャー": "adventure",
+    "ファンタジー": "fantasy",
+    "ホラー": "horror",
+    "SF": "scifi",
+    "ミステリー": "mystery",
+    "サスペンス": "suspense",
+    "ドキュメンタリー": "documentary",
+    "アクション": "action",
+    "スリラー": "thriller",
+    "ファミリー": "family"
+};
+
+genreElement.classList.add(
+    "genre-" + (genreColors[genreLabel] || "default")
+);
+
+ticket.querySelector(".ticket-date").textContent = dateText;
         ticket.querySelector(".ticket-number").textContent =
             "No." + String(index + 1).padStart(3, "0");
 
