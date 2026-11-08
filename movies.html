@@ -36,6 +36,15 @@ body {
     font-family: "Noto Serif JP", serif;
 }
 
+body.modal-open {
+    overflow: hidden;
+}
+
+button,
+input {
+    font: inherit;
+}
+
 .container {
     width: min(100% - 40px, 1000px);
     margin: 0 auto;
@@ -226,7 +235,10 @@ body {
     transition: transform .25s, box-shadow .25s;
 }
 
-/* Right edge perforations */
+.ticket:focus-visible {
+    outline: 2px solid var(--berry);
+    outline-offset: 4px;
+}
 
 .ticket::after {
     content: "";
@@ -237,7 +249,6 @@ body {
     height: 100%;
     z-index: 10;
     pointer-events: none;
-
     background:
         radial-gradient(
             circle at 100% 0,
@@ -264,15 +275,6 @@ body {
     position: relative;
     overflow: hidden;
     background: #B8B8B4;
-}
-
-.poster img {
-    width: 100%;
-    height: 100%;
-    min-height: 190px;
-    object-fit: cover;
-    display: block;
-    filter: saturate(.8);
 }
 
 .poster-placeholder {
@@ -495,6 +497,10 @@ body {
     cursor: pointer;
 }
 
+.close:focus-visible {
+    outline: 2px solid var(--berry);
+}
+
 .modal-label {
     color: var(--berry);
     font-family: "Playfair Display", serif;
@@ -541,7 +547,6 @@ body {
         min-height: 175px;
     }
 
-    .poster img,
     .poster-placeholder {
         min-height: 175px;
     }
@@ -576,6 +581,16 @@ body {
         font-size: 9px;
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+    }
+}
 </style>
 </head>
 
@@ -591,7 +606,7 @@ body {
         <p class="intro">Every film becomes a little memory.</p>
     </header>
 
-    <section>
+    <section aria-label="Our movie collection">
 
         <div class="section-heading">
             <h2>OUR TICKET COLLECTION</h2>
@@ -601,51 +616,49 @@ body {
             ふたりの映画を、ひとつずつ大切に。
         </div>
 
-        <!-- Search -->
-
         <div class="search-wrap">
             <input
                 type="search"
                 id="movie-search"
                 placeholder="Search our movies..."
                 aria-label="Search movies"
+                autocomplete="off"
             >
-            <span class="search-icon">⌕</span>
+            <span class="search-icon" aria-hidden="true">⌕</span>
         </div>
 
-        <!-- Categories -->
+        <div class="category-list" aria-label="Movie categories">
 
-        <div class="category-list">
-
-            <button class="category-btn active" data-category="all">
+            <button class="category-btn active" type="button" data-category="all" aria-pressed="true">
                 ALL
                 <span class="jp">すべて</span>
             </button>
 
-            <button class="category-btn" data-category="watched">
+            <button class="category-btn" type="button" data-category="watched" aria-pressed="false">
                 OUR MEMORIES
                 <span class="jp">ふたりで観た映画</span>
             </button>
 
-            <button class="category-btn" data-category="wishlist">
+            <button class="category-btn" type="button" data-category="wishlist" aria-pressed="false">
                 MOVIE WISHLIST
                 <span class="jp">ふたりで観たい映画</span>
             </button>
 
-            <button class="category-btn" data-category="favorites">
+            <button class="category-btn" type="button" data-category="favorites" aria-pressed="false">
                 FAVORITES
                 <span class="jp">お気に入り</span>
             </button>
 
         </div>
 
-        <!-- Tickets -->
-
         <div class="ticket-grid" id="ticket-grid">
 
             <article class="ticket"
+                tabindex="0"
+                role="button"
+                aria-label="Open Robot Dreams details"
                 data-categories="watched favorites"
-                data-search="robot dreams animation drama 2023 robot dreams">
+                data-search="robot dreams animation drama 2023">
                 <div class="poster">
                     <div class="poster-placeholder">ROBOT<br>DREAMS</div>
                 </div>
@@ -670,6 +683,9 @@ body {
             </article>
 
             <article class="ticket"
+                tabindex="0"
+                role="button"
+                aria-label="Open movie number 002 details"
                 data-categories="wishlist"
                 data-search="our next film movie collection coming soon">
                 <div class="poster">
@@ -696,6 +712,9 @@ body {
             </article>
 
             <article class="ticket"
+                tabindex="0"
+                role="button"
+                aria-label="Open movie number 003 details"
                 data-categories="wishlist"
                 data-search="our next film movie collection coming soon">
                 <div class="poster">
@@ -722,6 +741,9 @@ body {
             </article>
 
             <article class="ticket"
+                tabindex="0"
+                role="button"
+                aria-label="Open movie number 004 details"
                 data-categories="wishlist"
                 data-search="our next film movie collection coming soon">
                 <div class="poster">
@@ -749,7 +771,7 @@ body {
 
         </div>
 
-        <div class="no-results" id="no-results">
+        <div class="no-results" id="no-results" role="status" aria-live="polite">
             <span>♡</span>
             No movies found.
             <br>
@@ -765,12 +787,10 @@ body {
 
 </main>
 
-<!-- Movie detail window -->
+<div class="modal" id="movie-modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
 
-<div class="modal" id="movie-modal" onclick="closeMovie(event)">
-    <div class="modal-content">
-
-        <button class="close" onclick="closeMovie()">×</button>
+        <button class="close" id="modal-close" type="button" aria-label="Close movie details">×</button>
 
         <div class="modal-label">W & Y · MOVIE ARCHIVE</div>
         <h2 id="modal-title"></h2>
@@ -782,6 +802,7 @@ body {
 </div>
 
 <script>
+"use strict";
 
 /* Movie information */
 
@@ -808,37 +829,13 @@ const movies = [
     }
 ];
 
-/* Open movie details */
+/* Elements */
 
-function openMovie(index) {
-    const movie = movies[index];
-
-    document.getElementById("modal-title").textContent = movie.title;
-    document.getElementById("modal-info").textContent = movie.info;
-    document.getElementById("modal-description").textContent = movie.description;
-
-    document.getElementById("movie-modal").classList.add("active");
-}
-
-/* Close movie details */
-
-function closeMovie(event) {
-    if (
-        !event ||
-        event.target.id === "movie-modal" ||
-        event.target.classList.contains("close")
-    ) {
-        document.getElementById("movie-modal").classList.remove("active");
-    }
-}
-
-/* Connect ticket clicks */
-
-document.querySelectorAll(".ticket").forEach((ticket, index) => {
-    ticket.addEventListener("click", () => openMovie(index));
-});
-
-/* Search and category filter */
+const modal = document.getElementById("movie-modal");
+const modalTitle = document.getElementById("modal-title");
+const modalInfo = document.getElementById("modal-info");
+const modalDescription = document.getElementById("modal-description");
+const modalClose = document.getElementById("modal-close");
 
 const searchInput = document.getElementById("movie-search");
 const categoryButtons = document.querySelectorAll(".category-btn");
@@ -846,14 +843,64 @@ const tickets = document.querySelectorAll(".ticket");
 const noResults = document.getElementById("no-results");
 
 let activeCategory = "all";
+let lastFocusedElement = null;
+
+/* Open movie details */
+
+function openMovie(index) {
+    const movie = movies[index];
+
+    if (!movie) return;
+
+    lastFocusedElement = document.activeElement;
+
+    modalTitle.textContent = movie.title;
+    modalInfo.textContent = movie.info;
+    modalDescription.textContent = movie.description;
+
+    modal.classList.add("active");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+
+    modalClose.focus();
+}
+
+/* Close movie details */
+
+function closeMovie() {
+    if (!modal.classList.contains("active")) return;
+
+    modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+
+    if (lastFocusedElement) {
+        lastFocusedElement.focus();
+    }
+}
+
+/* Ticket interactions */
+
+tickets.forEach((ticket, index) => {
+    ticket.addEventListener("click", () => {
+        openMovie(index);
+    });
+
+    ticket.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openMovie(index);
+        }
+    });
+});
+
+/* Search and category filter */
 
 function filterMovies() {
-
     const keyword = searchInput.value.trim().toLowerCase();
     let visibleCount = 0;
 
     tickets.forEach(ticket => {
-
         const categories = ticket.dataset.categories.split(" ");
         const searchText = ticket.dataset.search.toLowerCase();
 
@@ -871,46 +918,50 @@ function filterMovies() {
         if (shouldShow) {
             visibleCount++;
         }
-
     });
 
     noResults.classList.toggle("show", visibleCount === 0);
 }
 
-/* Category button clicks */
+/* Category buttons */
 
 categoryButtons.forEach(button => {
-
     button.addEventListener("click", () => {
-
         categoryButtons.forEach(item => {
             item.classList.remove("active");
+            item.setAttribute("aria-pressed", "false");
         });
 
         button.classList.add("active");
+        button.setAttribute("aria-pressed", "true");
 
         activeCategory = button.dataset.category;
 
         filterMovies();
-
     });
-
 });
 
 /* Search input */
 
 searchInput.addEventListener("input", filterMovies);
 
-/* Escape key */
+/* Modal close interactions */
 
-document.addEventListener("keydown", function(event) {
+modalClose.addEventListener("click", closeMovie);
 
-    if (event.key === "Escape") {
-        document.getElementById("movie-modal").classList.remove("active");
+modal.addEventListener("click", event => {
+    if (event.target === modal) {
+        closeMovie();
     }
-
 });
 
+/* Escape key */
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+        closeMovie();
+    }
+});
 </script>
 
 </body>
