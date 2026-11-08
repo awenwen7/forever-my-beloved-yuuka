@@ -747,60 +747,112 @@ input {
 }
 
 .genre-tag {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     width: fit-content;
-    padding: 5px 12px;
-    border-radius: 7px;
+    padding: 5px 13px;
+    margin-right: 9px;
+    margin-bottom: 6px;
+
+    border: 1px solid currentColor;
+    border-radius: 5px;
+
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 1px;
-    line-height: 1.6;
+    line-height: 1.5;
     white-space: nowrap;
 }
+/* Vintage movie genre colors */
 
 .genre-animation {
-    color: #647D91;
-    background: #E5EDF2;
+    color: #657783;
+    background: #E6E8E5;
+    border-color: #AAB5B5;
 }
 
 .genre-drama {
-    color: #A4777D;
-    background: #F1E4E5;
+    color: #936D69;
+    background: #EEE5DF;
+    border-color: #C5A49B;
 }
 
 .genre-romance {
-    color: #B47E8C;
-    background: #F5E7EB;
+    color: #9A7478;
+    background: #EFE5E2;
+    border-color: #C7A6A2;
 }
 
 .genre-comedy {
-    color: #A18A50;
-    background: #F3EEDC;
+    color: #927D51;
+    background: #EEEADD;
+    border-color: #C5B78E;
 }
 
 .genre-adventure {
-    color: #748B73;
-    background: #E8EEE5;
+    color: #687C68;
+    background: #E7E9DF;
+    border-color: #AAB69F;
 }
 
 .genre-fantasy {
-    color: #8979A4;
-    background: #EDE8F3;
+    color: #7D708C;
+    background: #EAE6EB;
+    border-color: #B8AABD;
 }
 
 .genre-horror {
-    color: #875F60;
-    background: #EEE4E3;
+    color: #795D5A;
+    background: #EAE3DE;
+    border-color: #B6A09A;
 }
 
 .genre-scifi {
-    color: #657D83;
-    background: #E5ECEC;
+    color: #60777A;
+    background: #E3E9E7;
+    border-color: #A5B5B2;
+}
+
+.genre-mystery {
+    color: #716B7D;
+    background: #E8E5E8;
+    border-color: #B3AAB8;
+}
+
+.genre-suspense {
+    color: #78666D;
+    background: #EBE4E4;
+    border-color: #B9A5A6;
+}
+
+.genre-documentary {
+    color: #6D7C6D;
+    background: #E5E9E1;
+    border-color: #AAB5A5;
+}
+
+.genre-action {
+    color: #946B55;
+    background: #EEE5DC;
+    border-color: #C5A58E;
+}
+
+.genre-thriller {
+    color: #795D5E;
+    background: #EAE2DF;
+    border-color: #B8A09D;
+}
+
+.genre-family {
+    color: #917C55;
+    background: #EEE9DC;
+    border-color: #C5B58F;
 }
 
 .genre-default {
     color: #80766B;
-    background: #EEEAE4;
+    background: #EBE7E0;
+    border-color: #BDB3A7;
 }
  /* Movie ticket information layout */
 
@@ -827,13 +879,17 @@ input {
     display: block;
 }
 
-/* Genre label aligned to the left */
+/* Genre labels aligned to the left */
 .movie-genre {
-    display: block;
-    width: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap: 9px;
     margin: 7px 0 0 0;
     text-align: left;
-}   
+}
     /* Additional movie genre colors */
 
 .genre-mystery {
