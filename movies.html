@@ -396,7 +396,9 @@ input {
     letter-spacing: 1px;
     writing-mode: vertical-rl;
 }
-
+.ticket-stub .stub-label:last-child {
+    transform: translateY(5px) rotate(90deg);
+}
 .stub-heart {
     color: #D8B8B1;
     font-size: 16px;
@@ -899,7 +901,7 @@ const dateText = movie.watchedDate ||
         <span class="stub-label">W ♡ Y</span>
     </div>
 `;
-        `;
+
 
         ticket.querySelector(".movie-title").textContent = movie.title;
         ticket.querySelector(".movie-meta").textContent = metaText;
