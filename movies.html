@@ -342,19 +342,49 @@ input {
 /* Vintage movie date stamp */
 
 .ticket-date {
-    color: #A97878;
-    font-family: "Cormorant Garamond", serif;
-    font-size: 17px;
-    font-weight: 600;
-    letter-spacing: 1.3px;
-    line-height: 1;
-    display: inline-block;
-    padding: 7px 9px;
-    border: 2px double rgba(169, 120, 120, .75);
-    border-radius: 45% 52% 48% 44%;
-    transform: rotate(-7deg);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    width: fit-content;
+    min-width: 155px;
+    padding: 10px 14px;
+
+    color: #765D4B;
+    background: #F1EAE0;
+
+    border: 1px solid #9E856F;
+    outline: 1px solid #C8B6A2;
+    outline-offset: -5px;
+
+    text-align: center;
     white-space: nowrap;
-    text-shadow: .3px .3px 0 rgba(169, 120, 120, .2);
+}
+
+.date-stamp-label {
+    font-family: "Courier New", monospace;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    color: #987D68;
+}
+
+.date-stamp-main {
+    font-family: "Courier New", monospace;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #715B4C;
+}
+
+.date-stamp-footer {
+    font-family: "Courier New", monospace;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: #987D68;
 }
 .ticket-number {
     color: var(--berry);
@@ -1194,8 +1224,11 @@ genreList.forEach(genre => {
     tag.textContent = genre;
     genreElement.appendChild(tag);
 });
-ticket.querySelector(".ticket-date").textContent = dateText;
-        ticket.querySelector(".ticket-number").textContent =
+ticket.querySelector(".ticket-date").innerHTML = `
+    <span class="date-stamp-label">♡ DATE WATCHED ♡</span>
+    <span class="date-stamp-main">${dateText}</span>
+    <span class="date-stamp-footer">— W & Y CINEMA —</span>
+`;        ticket.querySelector(".ticket-number").textContent =
             "No." + String(index + 1).padStart(3, "0");
 
         ticket.insertBefore(poster, ticket.firstChild);
