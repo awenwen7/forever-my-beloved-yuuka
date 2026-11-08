@@ -66,9 +66,12 @@ input {
 }
 
 .ticket-stub .stub-label:last-child {
-    transform: translateY(5px) rotate(90deg);
+    transform: translateY(5px);
 }
-
+.rotated-heart {
+    display: inline-block;
+    transform: rotate(90deg);
+}
 .hero h1 {
     margin: 15px 0 8px;
     font-family: "Playfair Display", serif;
@@ -898,7 +901,9 @@ const dateText = movie.watchedDate ||
         <span class="stub-label">ADMIT TWO</span>
         <span class="stub-heart">♡</span>
         <div class="stub-barcode"></div>
-        <span class="stub-label">W ♡ Y</span>
+        <span class="stub-label">
+        W <span class="rotated-heart">♡</span> Y
+        </span>
     </div>
 `;
 
