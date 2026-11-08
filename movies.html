@@ -814,7 +814,6 @@ input {
 
 <script>
 
-<script>
 "use strict";
 
 /* Elements */
@@ -951,6 +950,10 @@ const dateText = categories.includes("wishlist")
 
 function openMovie(movie) {
     lastFocusedElement = document.activeElement;
+
+const oldMemoryDivider = modal.querySelector(".movie-memory-divider");
+if (oldMemoryDivider) oldMemoryDivider.remove();
+
 const oldMemoryLabel = modal.querySelector(".movie-memory-label");
 if (oldMemoryLabel) oldMemoryLabel.remove();
     modalTitle.textContent = movie.title;
@@ -977,13 +980,19 @@ if (oldMemoryLabel) oldMemoryLabel.remove();
         movie.watchedDate ? "鑑賞日：" + movie.watchedDate : ""
     ].filter(Boolean);
 
-   modalDescription.textContent = details.join("\n") || "♡";
+ modalDescription.textContent = details.join("\n") || "♡";
 
+// 回憶區塊分隔線
+const memoryDivider = document.createElement("div");
+memoryDivider.className = "modal-divider movie-memory-divider";
+
+// 回憶標題
 const memoryLabel = document.createElement("div");
 memoryLabel.className = "modal-label movie-memory-label";
 memoryLabel.textContent = "♡ 映画の思い出 | OUR MOVIE MEMORIES";
 
-modalDescription.insertAdjacentElement("afterend", memoryLabel);
+modalDescription.insertAdjacentElement("afterend", memoryDivider);
+memoryDivider.insertAdjacentElement("afterend", memoryLabel);
     modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
