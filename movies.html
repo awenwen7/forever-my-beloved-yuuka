@@ -379,7 +379,28 @@ input {
     padding: 14px 5px;
     border-left: 1px dashed rgba(241, 240, 234, .8);
 }
+/* Top and bottom notches at the stub connection */
 
+.ticket-stub::before,
+.ticket-stub::after {
+    content: "";
+    position: absolute;
+    left: -6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    z-index: 6;
+    pointer-events: none;
+}
+
+.ticket-stub::before {
+    top: -6px;
+}
+
+.ticket-stub::after {
+    bottom: -6px;
+}
 .stub-label {
     font-family: "Playfair Display", serif;
     font-size: 9px;
