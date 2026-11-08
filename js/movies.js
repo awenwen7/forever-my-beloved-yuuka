@@ -17,6 +17,6 @@ const movies = [
         poster: "images/movie-posters/robot-dreams.jpg",
 
         // 觀影日期
-        watchedDate: ""
+        watchedDate: "2025.01.04"
     }
 ];
