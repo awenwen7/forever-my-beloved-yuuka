@@ -55,6 +55,7 @@ input {
 
 .hero {
     position: relative;
+    width: 100%;
     min-height: 380px;
     padding: 55px 20px;
     margin-bottom: 55px;
@@ -68,23 +69,31 @@ input {
 
     background:
         linear-gradient(
-            rgba(35, 34, 32, .45),
-            rgba(35, 34, 32, .45)
+            rgba(35, 30, 27, .32),
+            rgba(35, 30, 27, .48)
         ),
         url("images/movie-cover.jpg") center / cover no-repeat;
 }
 
-.eyebrow,
-.hero h1,
-.subtitle,
-.intro {
-    color: #F8F7F2;
+.eyebrow {
+    color: #E8B9AD;
+}
+
+.hero h1 {
+    color: #FFF9F0;
+}
+
+.subtitle {
+    color: #E8D5C1;
 }
 
 .hero-line {
-    background: #E3D0B2;
+    background: #C7A477;
 }
 
+.intro {
+    color: #E0D5CA;
+}
 /* Section heading */
 
 .section-heading {
@@ -730,6 +739,14 @@ input {
 .hero {
     min-height: 280px;
     padding: 35px 15px;
+}
+    .hero {
+    width: 100vw;
+    max-width: none;
+    min-height: 300px;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 40px 20px;
 }
     .ticket-grid {
         grid-template-columns: 1fr;
