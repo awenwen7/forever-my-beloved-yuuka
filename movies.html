@@ -465,18 +465,62 @@ input {
     transform: rotate(90deg);
 }
 
-/* Stub colors */
+/* Stub colors by movie genre */
 
-.ticket:nth-child(2) .ticket-stub {
-    background: #A97878;
+.ticket-stub.stub-animation {
+    background: #657783;
 }
 
-.ticket:nth-child(3) .ticket-stub {
-    background: #687B70;
+.ticket-stub.stub-drama {
+    background: #936D69;
 }
 
-.ticket:nth-child(4) .ticket-stub {
-    background: #8B7859;
+.ticket-stub.stub-romance {
+    background: #9A7478;
+}
+
+.ticket-stub.stub-comedy {
+    background: #927D51;
+}
+
+.ticket-stub.stub-adventure {
+    background: #687C68;
+}
+
+.ticket-stub.stub-fantasy {
+    background: #7D708C;
+}
+
+.ticket-stub.stub-horror {
+    background: #795D5A;
+}
+
+.ticket-stub.stub-scifi {
+    background: #60777A;
+}
+
+.ticket-stub.stub-mystery {
+    background: #77718E;
+}
+
+.ticket-stub.stub-suspense {
+    background: #786A78;
+}
+
+.ticket-stub.stub-documentary {
+    background: #718477;
+}
+
+.ticket-stub.stub-action {
+    background: #A16F5D;
+}
+
+.ticket-stub.stub-thriller {
+    background: #815F62;
+}
+
+.ticket-stub.stub-family {
+    background: #A38A60;
 }
 
 /* Right perforated edge */
@@ -1297,7 +1341,13 @@ const genreColors = {
     "スリラー": "thriller",
     "ファミリー": "family"
 };
+        
+// Set ticket stub color by the first movie genre
+const primaryGenre = genreList[0];
+const stubColor = genreColors[primaryGenre] || "default";
 
+ticket.querySelector(".ticket-stub").classList.add("stub-" + stubColor);
+        
 genreList.forEach(genre => {
     const tag = document.createElement("span");
     tag.className = "genre-tag genre-" + (genreColors[genre] || "default");
