@@ -735,17 +735,27 @@ input {
         animation-duration: .01ms !important;
     }
 }
-/* Movie genre labels */
+/* Movie genre tags */
 
 .movie-genre {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-top: 9px;
+}
+
+.genre-tag {
     display: inline-block;
     width: fit-content;
-    margin-top: 7px;
-    padding: 3px 8px;
-    border-radius: 3px;
-    font-size: 10px;
+    padding: 5px 12px;
+    border-radius: 7px;
+    font-size: 11px;
     font-weight: 600;
-    letter-spacing: .8px;
+    letter-spacing: 1px;
+    line-height: 1.6;
+    white-space: nowrap;
 }
 
 .genre-animation {
