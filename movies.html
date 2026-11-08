@@ -1039,16 +1039,14 @@ function renderMovies() {
             ...(movie.genre || [])
         ].join(" ").toLowerCase();
 
-        const genreText = (movie.genre || []).join(" · ");
-
-       const metaText = [
+const metaText = [
     movie.originalTitle
         ? movie.originalTitle + " · " + (movie.year || "")
         : movie.year,
-    [movie.country, genreText].filter(Boolean).join(" · ")
+    movie.country
 ].filter(Boolean);
 
-        const genreLabel = (movie.genre || [])[0] || "";
+const genreList = movie.genre || [];
 
         const dateText = categories.includes("wishlist")
             ? "MOVIE WISHLIST"
@@ -1104,9 +1102,8 @@ function renderMovies() {
         ticket.querySelector(".movie-meta").innerHTML = metaText
         .map(line => `<div>${line}</div>`)
         .join("");
-       // Movie genre color
+// Display all movie genres with individual colors
 const genreElement = ticket.querySelector(".movie-genre");
-genreElement.textContent = genreLabel;
 
 const genreColors = {
     "アニメーション": "animation",
@@ -1125,10 +1122,12 @@ const genreColors = {
     "ファミリー": "family"
 };
 
-genreElement.classList.add(
-    "genre-" + (genreColors[genreLabel] || "default")
-);
-
+genreList.forEach(genre => {
+    const tag = document.createElement("span");
+    tag.className = "genre-tag genre-" + (genreColors[genre] || "default");
+    tag.textContent = genre;
+    genreElement.appendChild(tag);
+});
 ticket.querySelector(".ticket-date").textContent = dateText;
         ticket.querySelector(".ticket-number").textContent =
             "No." + String(index + 1).padStart(3, "0");
