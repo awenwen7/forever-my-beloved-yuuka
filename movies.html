@@ -248,6 +248,7 @@ input {
     gap: 28px;
 }
 
+
 /* Ticket */
 
 .ticket {
@@ -272,6 +273,57 @@ input {
     transform: translateY(-5px);
     box-shadow: 0 13px 25px rgba(40, 38, 34, .14);
 }
+
+/* Right stub */
+
+.ticket-stub {
+    width: 74px;
+    flex-shrink: 0;
+    background: #555653;
+    color: #F1F0EA;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 14px 5px;
+    border-left: 1px dashed rgba(241, 240, 234, .8);
+}
+
+/* Perforated edge on the right */
+
+.ticket::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+
+    background:
+        radial-gradient(
+            circle at 100% 50%,
+            var(--bg) 0 5px,
+            transparent 5.5px
+        ) right top / 10px 22px repeat-y;
+}
+
+/* Different stub colors */
+
+.ticket:nth-child(2) .ticket-stub {
+    background: #A97878;
+}
+
+.ticket:nth-child(3) .ticket-stub {
+    background: #687B70;
+}
+
+.ticket:nth-child(4) .ticket-stub {
+    background: #8B7859;
+}
+
 
 /* Poster */
 
