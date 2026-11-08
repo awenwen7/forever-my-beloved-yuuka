@@ -689,16 +689,9 @@ input {
 
 /* Reduced motion */
 
+/* Reduced motion */
+
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
-        animation-duration: .01ms !important;
-    }
-}
-    @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
     *::after {
@@ -709,14 +702,13 @@ input {
 }
 
 /* Movie memory label */
+
 .movie-memory-label {
     text-align: center;
     letter-spacing: 1px;
     line-height: 1.8;
     margin-top: 20px;
 }
-
-</style>
 </style>
 </head>
 
@@ -813,9 +805,14 @@ input {
         <div class="modal-divider"></div>
         <div class="modal-description" id="modal-description"></div>
     </div>
-</div>
+</div> <!-- modal-movie-layout -->
+
+    </div> <!-- modal-content -->
+</div> <!-- modal -->
 
 <script src="js/movies.js"></script>
+
+<script>
 
 <script>
 "use strict";
@@ -954,7 +951,8 @@ const dateText = categories.includes("wishlist")
 
 function openMovie(movie) {
     lastFocusedElement = document.activeElement;
-
+const oldMemoryLabel = modal.querySelector(".movie-memory-label");
+if (oldMemoryLabel) oldMemoryLabel.remove();
     modalTitle.textContent = movie.title;
 
     modalInfo.textContent = movie.originalTitle
@@ -979,11 +977,13 @@ function openMovie(movie) {
         movie.watchedDate ? "鑑賞日：" + movie.watchedDate : ""
     ].filter(Boolean);
 
-    modalDescription.textContent = details.join("\n") || "♡";
-    modalDescription.insertAdjacentHTML(
-    "afterend",
-    '<div class="modal-divider"></div><div class="modal-label movie-memory-label">♡ 映画の思い出 | OUR MOVIE MEMORIES</div>'
-);
+   modalDescription.textContent = details.join("\n") || "♡";
+
+const memoryLabel = document.createElement("div");
+memoryLabel.className = "modal-label movie-memory-label";
+memoryLabel.textContent = "♡ 映画の思い出 | OUR MOVIE MEMORIES";
+
+modalDescription.insertAdjacentElement("afterend", memoryLabel);
     modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
