@@ -792,7 +792,38 @@ input {
     color: #80766B;
     background: #EEEAE4;
 }
-    
+ /* Movie ticket information layout */
+
+.movie-title {
+    color: #343532;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.45;
+}
+
+/* Divider under Japanese title */
+.movie-meta {
+    border-top: 1px solid #D4D0C8;
+    margin-top: 8px;
+    padding-top: 7px;
+    color: #696963;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .4px;
+    line-height: 1.8;
+}
+
+.movie-meta > div {
+    display: block;
+}
+
+/* Genre label aligned to the left */
+.movie-genre {
+    display: block;
+    width: fit-content;
+    margin: 7px 0 0 0;
+    text-align: left;
+}   
 </style>
 </head>
 
@@ -978,12 +1009,12 @@ function renderMovies() {
 
         const genreText = (movie.genre || []).join(" · ");
 
-        const metaText = [
-            movie.originalTitle
-                ? movie.originalTitle + " · " + (movie.year || "")
-                : movie.year,
-            [movie.country, genreText].filter(Boolean).join(" · ")
-        ].filter(Boolean).join("\n");
+       const metaText = [
+    movie.originalTitle
+        ? movie.originalTitle + " · " + (movie.year || "")
+        : movie.year,
+    [movie.country, genreText].filter(Boolean).join(" · ")
+].filter(Boolean);
 
         const genreLabel = (movie.genre || [])[0] || "";
 
@@ -1038,7 +1069,9 @@ function renderMovies() {
         `;
 
         ticket.querySelector(".movie-title").textContent = movie.title;
-        ticket.querySelector(".movie-meta").textContent = metaText;
+        ticket.querySelector(".movie-meta").innerHTML = metaText
+        .map(line => `<div>${line}</div>`)
+        .join("");
         ticket.querySelector(".movie-genre").textContent = genreLabel;
         ticket.querySelector(".ticket-date").textContent = dateText;
         ticket.querySelector(".ticket-number").textContent =
