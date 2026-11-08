@@ -66,7 +66,7 @@ input {
 }
 
 .ticket-stub .stub-label:last-child {
-    transform: translateY(5px);
+    transform: translateY(5px) rotate(90deg);
 }
 
 .hero h1 {
@@ -880,23 +880,25 @@ const dateText = movie.watchedDate ||
             poster.appendChild(placeholder);
         }
 
-        ticket.innerHTML = `
-            <div class="ticket-main">
-                <div class="ticket-top">W & Y · CINEMA</div>
-                <div class="movie-title"></div>
-                <div class="movie-meta"></div>
-                <div class="movie-genre"></div>
-                <div class="ticket-bottom">
-                    <span class="ticket-date"></span>
-                    <span class="ticket-number"></span>
-                </div>
-            </div>
-           <div class="ticket-stub">
-    <span class="stub-label">ADMIT TWO</span>
-    <span class="stub-heart">♡</span>
-    <div class="stub-barcode"></div>
-    <span class="stub-label">W ♡ Y</span>
-</div>
+ ticket.innerHTML = `
+    <div class="ticket-main">
+        <div class="ticket-top">W & Y · CINEMA</div>
+        <div class="movie-title"></div>
+        <div class="movie-meta"></div>
+        <div class="movie-genre"></div>
+        <div class="ticket-bottom">
+            <span class="ticket-date"></span>
+            <span class="ticket-number"></span>
+        </div>
+    </div>
+
+    <div class="ticket-stub">
+        <span class="stub-label">ADMIT TWO</span>
+        <span class="stub-heart">♡</span>
+        <div class="stub-barcode"></div>
+        <span class="stub-label">W ♡ Y</span>
+    </div>
+`;
         `;
 
         ticket.querySelector(".movie-title").textContent = movie.title;
