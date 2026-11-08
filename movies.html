@@ -329,6 +329,7 @@ input {
     color: var(--gray);
     font-size: 10px;
     line-height: 1.9;
+    white-space: pre-line;
 }
 
 .ticket-bottom {
@@ -516,7 +517,52 @@ input {
     padding: 35px 28px;
     box-shadow: 0 15px 50px rgba(0,0,0,.2);
 }
+/* Modal movie poster */
 
+.modal-movie-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    margin-top: 22px;
+}
+
+.modal-poster-wrap {
+    width: 145px;
+    aspect-ratio: 2 / 3;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #B8B8B4;
+}
+
+.modal-poster-wrap img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.modal-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.modal-details h2 {
+    margin-top: 0;
+}
+
+@media (max-width: 480px) {
+    .modal-movie-layout {
+        gap: 15px;
+    }
+
+    .modal-poster-wrap {
+        width: 115px;
+    }
+
+    .modal-content {
+        padding: 35px 20px;
+    }
+}
 .close {
     position: absolute;
     top: 12px;
@@ -730,12 +776,18 @@ input {
 
         <button class="close" id="modal-close" type="button" aria-label="Close movie details">×</button>
 
-        <div class="modal-label">W & Y · MOVIE ARCHIVE</div>
+       <div class="modal-label">W & Y · MOVIE ARCHIVE</div>
+
+<div class="modal-movie-layout">
+    <div class="modal-poster-wrap" id="modal-poster-wrap">
+        <img id="modal-poster" alt="">
+    </div>
+
+    <div class="modal-details">
         <h2 id="modal-title"></h2>
         <div class="modal-info" id="modal-info"></div>
         <div class="modal-divider"></div>
         <div class="modal-description" id="modal-description"></div>
-
     </div>
 </div>
 
@@ -751,6 +803,8 @@ const modal = document.getElementById("movie-modal");
 const modalTitle = document.getElementById("modal-title");
 const modalInfo = document.getElementById("modal-info");
 const modalDescription = document.getElementById("modal-description");
+const modalPoster = document.getElementById("modal-poster");
+const modalPosterWrap = document.getElementById("modal-poster-wrap");
 const modalClose = document.getElementById("modal-close");
 const searchInput = document.getElementById("movie-search");
 const categoryButtons = document.querySelectorAll(".category-btn");
@@ -837,12 +891,12 @@ const dateText = movie.watchedDate ||
                     <span class="ticket-number"></span>
                 </div>
             </div>
-            <div class="ticket-stub">
-                <span class="stub-label">ADMIT ONE</span>
-                <span class="stub-heart">♡</span>
-                <div class="stub-barcode"></div>
-                <span class="stub-label">OUR FILM</span>
-            </div>
+           <div class="ticket-stub">
+    <span class="stub-label">ADMIT TWO</span>
+    <span class="stub-heart">♡</span>
+    <div class="stub-barcode"></div>
+    <span class="stub-label">W ♡</span>
+</div>
         `;
 
         ticket.querySelector(".movie-title").textContent = movie.title;
@@ -869,8 +923,6 @@ const dateText = movie.watchedDate ||
     filterMovies();
 }
 
-/* Open movie details */
-
 function openMovie(movie) {
     lastFocusedElement = document.activeElement;
 
@@ -879,6 +931,16 @@ function openMovie(movie) {
     modalInfo.textContent = movie.originalTitle
         ? movie.originalTitle + " · " + (movie.year || "")
         : (movie.year || "");
+
+    // 顯示電影海報
+    if (movie.poster) {
+        modalPosterWrap.style.display = "block";
+        modalPoster.src = movie.poster;
+        modalPoster.alt = movie.title + " poster";
+    } else {
+        modalPosterWrap.style.display = "none";
+        modalPoster.removeAttribute("src");
+    }
 
     const details = [
         movie.director ? "監督：" + movie.director : "",
