@@ -698,6 +698,25 @@ input {
         animation-duration: .01ms !important;
     }
 }
+    @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+    }
+}
+
+/* Movie memory label */
+.movie-memory-label {
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 1.8;
+    margin-top: 20px;
+}
+
+</style>
 </style>
 </head>
 
@@ -961,7 +980,10 @@ function openMovie(movie) {
     ].filter(Boolean);
 
     modalDescription.textContent = details.join("\n") || "♡";
-
+    modalDescription.insertAdjacentHTML(
+    "afterend",
+    '<div class="modal-divider"></div><div class="modal-label movie-memory-label">♡ 映画の思い出 | OUR MOVIE MEMORIES</div>'
+);
     modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
