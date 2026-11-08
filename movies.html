@@ -51,9 +51,7 @@ input {
     padding: 70px 0 100px;
 }
 
-/* =========================
-   Hero
-========================= */
+/* Hero */
 
 .hero {
     text-align: center;
@@ -66,9 +64,11 @@ input {
     font-size: 12px;
     letter-spacing: 4px;
 }
+
 .ticket-stub .stub-label:last-child {
     transform: translateY(5px);
 }
+
 .hero h1 {
     margin: 15px 0 8px;
     font-family: "Playfair Display", serif;
@@ -96,9 +96,7 @@ input {
     letter-spacing: 1px;
 }
 
-/* =========================
-   Section heading
-========================= */
+/* Section heading */
 
 .section-heading {
     display: flex;
@@ -134,9 +132,7 @@ input {
     margin-bottom: 30px;
 }
 
-/* =========================
-   Search
-========================= */
+/* Search */
 
 .search-wrap {
     max-width: 440px;
@@ -156,10 +152,7 @@ input {
     letter-spacing: 1px;
     outline: none;
     box-shadow: 0 3px 12px rgba(40, 38, 34, .035);
-    transition:
-        border-color .25s,
-        background .25s,
-        box-shadow .25s;
+    transition: border-color .25s, background .25s, box-shadow .25s;
 }
 
 .search-wrap input:focus {
@@ -182,9 +175,7 @@ input {
     pointer-events: none;
 }
 
-/* =========================
-   Category buttons
-========================= */
+/* Category buttons */
 
 .category-list {
     display: flex;
@@ -204,12 +195,7 @@ input {
     font-family: "Playfair Display", "Noto Serif JP", serif;
     cursor: pointer;
     box-shadow: 0 3px 10px rgba(40, 38, 34, .025);
-    transition:
-        background .25s,
-        border-color .25s,
-        color .25s,
-        transform .25s,
-        box-shadow .25s;
+    transition: background .25s, border-color .25s, color .25s, transform .25s, box-shadow .25s;
 }
 
 .category-btn:hover {
@@ -248,9 +234,7 @@ input {
     outline-offset: 4px;
 }
 
-/* =========================
-   Ticket grid
-========================= */
+/* Ticket grid */
 
 .ticket-grid {
     display: grid;
@@ -258,9 +242,7 @@ input {
     gap: 28px;
 }
 
-/* =========================
-   Ticket body
-========================= */
+/* Ticket body */
 
 .ticket {
     display: flex;
@@ -272,9 +254,7 @@ input {
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(40, 38, 34, .08);
     cursor: pointer;
-    transition:
-        transform .25s,
-        box-shadow .25s;
+    transition: transform .25s, box-shadow .25s;
 }
 
 .ticket:focus-visible {
@@ -287,9 +267,7 @@ input {
     box-shadow: 0 13px 25px rgba(40, 38, 34, .14);
 }
 
-/* =========================
-   Poster
-========================= */
+/* Poster */
 
 .poster {
     width: 34%;
@@ -297,6 +275,16 @@ input {
     position: relative;
     overflow: hidden;
     background: #B8B8B4;
+    flex-shrink: 0;
+}
+
+.poster img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .poster-placeholder {
@@ -313,9 +301,7 @@ input {
     background: linear-gradient(145deg, #555653, #292A29);
 }
 
-/* =========================
-   Main ticket
-========================= */
+/* Main ticket */
 
 .ticket-main {
     flex: 1;
@@ -364,9 +350,7 @@ input {
     font-size: 10px;
 }
 
-/* =========================
-   Right ticket stub
-========================= */
+/* Right ticket stub */
 
 .ticket-stub {
     width: 74px;
@@ -381,7 +365,6 @@ input {
     padding: 14px 5px;
     border-left: 1px dashed rgba(241, 240, 234, .8);
 }
-/* Top and bottom notches at the stub connection */
 
 .ticket-stub::before,
 .ticket-stub::after {
@@ -403,6 +386,7 @@ input {
 .ticket-stub::after {
     bottom: -6px;
 }
+
 .stub-label {
     font-family: "Playfair Display", serif;
     font-size: 9px;
@@ -441,15 +425,7 @@ input {
     background: #8B7859;
 }
 
-/* =========================
-   Right perforated edge
-========================= */
-
-/*
-   The holes are cut into the right edge.
-   The page background shows through each hole.
-   The stub divider remains separate on the left.
-*/
+/* Right perforated edge */
 
 .ticket::after {
     content: "";
@@ -460,7 +436,6 @@ input {
     height: 100%;
     z-index: 5;
     pointer-events: none;
-
     background:
         radial-gradient(
             circle at 100% 50%,
@@ -469,9 +444,7 @@ input {
         ) right top / 11px 22px repeat-y;
 }
 
-/* =========================
-   Empty result
-========================= */
+/* Empty result */
 
 .no-results {
     display: none;
@@ -495,9 +468,7 @@ input {
     margin-bottom: 10px;
 }
 
-/* =========================
-   Footer
-========================= */
+/* Footer */
 
 .footer {
     margin-top: 65px;
@@ -517,9 +488,7 @@ input {
     letter-spacing: 2px;
 }
 
-/* =========================
-   Movie detail modal
-========================= */
+/* Movie detail modal */
 
 .modal {
     display: none;
@@ -588,11 +557,10 @@ input {
 .modal-description {
     font-size: 13px;
     line-height: 2;
+    white-space: pre-line;
 }
 
-/* =========================
-   Mobile
-========================= */
+/* Mobile */
 
 @media (max-width: 650px) {
     .container {
@@ -737,8 +705,7 @@ input {
 
         </div>
 
-<div class="ticket-grid" id="ticket-grid">
-</div>
+        <div class="ticket-grid" id="ticket-grid"></div>
 
         <div class="no-results" id="no-results" role="status" aria-live="polite">
             <span>♡</span>
@@ -770,62 +737,146 @@ input {
     </div>
 </div>
 
+<script src="js/movies.js"></script>
+
 <script>
 "use strict";
 
-/* Movie information */
-
-const movies = [
-    {
-        title: "Robot Dreams",
-        info: "Animation · Drama · 2023",
-        description: "A special film in our little movie collection. Every film has its own story, and every memory has a place here."
-    },
-    {
-        title: "Our Next Film",
-        info: "Coming Soon",
-        description: "A new movie memory is waiting to be added."
-    },
-    {
-        title: "Our Next Film",
-        info: "Coming Soon",
-        description: "A new movie memory is waiting to be added."
-    },
-    {
-        title: "Our Next Film",
-        info: "Coming Soon",
-        description: "A new movie memory is waiting to be added."
-    }
-];
-
 /* Elements */
 
+const grid = document.getElementById("ticket-grid");
 const modal = document.getElementById("movie-modal");
 const modalTitle = document.getElementById("modal-title");
 const modalInfo = document.getElementById("modal-info");
 const modalDescription = document.getElementById("modal-description");
 const modalClose = document.getElementById("modal-close");
-
 const searchInput = document.getElementById("movie-search");
 const categoryButtons = document.querySelectorAll(".category-btn");
-const tickets = document.querySelectorAll(".ticket");
 const noResults = document.getElementById("no-results");
 
 let activeCategory = "all";
 let lastFocusedElement = null;
 
+/* Create movie tickets */
+
+function renderMovies() {
+    grid.innerHTML = "";
+
+    if (typeof movies === "undefined" || !Array.isArray(movies)) {
+        noResults.classList.add("show");
+        return;
+    }
+
+    movies.forEach((movie, index) => {
+        const ticket = document.createElement("article");
+        const categories = movie.category || [];
+
+        ticket.className = "ticket";
+        ticket.tabIndex = 0;
+        ticket.setAttribute("role", "button");
+        ticket.setAttribute("aria-label", "Open " + movie.title);
+
+        ticket.dataset.categories = categories.join(" ");
+        ticket.dataset.search = [
+            movie.title,
+            movie.originalTitle,
+            movie.year,
+            movie.director,
+            movie.country,
+            ...(movie.genre || [])
+        ].join(" ").toLowerCase();
+
+        const genreText = (movie.genre || []).join(" · ");
+        const metaText = [genreText, movie.year].filter(Boolean).join(" · ");
+
+        const dateText = movie.watchedDate ||
+            (categories.includes("wishlist") ? "MOVIE WISHLIST" : "OUR MEMORY");
+
+        const poster = document.createElement("div");
+        poster.className = "poster";
+
+        if (movie.poster) {
+            const img = document.createElement("img");
+            img.src = movie.poster;
+            img.alt = movie.title + " poster";
+
+            img.onerror = () => {
+                poster.innerHTML = "";
+                const placeholder = document.createElement("div");
+                placeholder.className = "poster-placeholder";
+                placeholder.textContent = movie.title;
+                poster.appendChild(placeholder);
+            };
+
+            poster.appendChild(img);
+        } else {
+            const placeholder = document.createElement("div");
+            placeholder.className = "poster-placeholder";
+            placeholder.textContent = movie.title;
+            poster.appendChild(placeholder);
+        }
+
+        ticket.innerHTML = `
+            <div class="ticket-main">
+                <div class="ticket-top">W & Y · CINEMA</div>
+                <div class="movie-title"></div>
+                <div class="movie-meta"></div>
+                <div class="ticket-bottom">
+                    <span class="ticket-date"></span>
+                    <span class="ticket-number"></span>
+                </div>
+            </div>
+            <div class="ticket-stub">
+                <span class="stub-label">ADMIT ONE</span>
+                <span class="stub-heart">♡</span>
+                <div class="stub-barcode"></div>
+                <span class="stub-label">OUR FILM</span>
+            </div>
+        `;
+
+        ticket.querySelector(".movie-title").textContent = movie.title;
+        ticket.querySelector(".movie-meta").textContent = metaText;
+        ticket.querySelector(".ticket-date").textContent = dateText;
+        ticket.querySelector(".ticket-number").textContent =
+            "No." + String(index + 1).padStart(3, "0");
+
+        ticket.insertBefore(poster, ticket.firstChild);
+
+        ticket.addEventListener("click", () => openMovie(movie));
+
+        ticket.addEventListener("keydown", event => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                openMovie(movie);
+            }
+        });
+
+        grid.appendChild(ticket);
+    });
+
+    filterMovies();
+}
+
 /* Open movie details */
 
-function openMovie(index) {
-    const movie = movies[index];
-
-    if (!movie) return;
-
+function openMovie(movie) {
     lastFocusedElement = document.activeElement;
 
     modalTitle.textContent = movie.title;
-    modalInfo.textContent = movie.info;
-    modalDescription.textContent = movie.description;
+
+    modalInfo.textContent = movie.originalTitle
+        ? movie.originalTitle + " · " + (movie.year || "")
+        : (movie.year || "");
+
+    const details = [
+        movie.director ? "監督：" + movie.director : "",
+        movie.country ? "製作国：" + movie.country : "",
+        movie.genre?.length ? "ジャンル：" + movie.genre.join(" · ") : "",
+        movie.duration ? "上映時間：" + movie.duration + "分" : "",
+        movie.watchedDate ? "鑑賞日：" + movie.watchedDate : ""
+    ].filter(Boolean);
+
+    modalDescription.textContent = details.join("\n") || "♡";
 
     modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
@@ -848,45 +899,27 @@ function closeMovie() {
     }
 }
 
-/* Ticket interactions */
-
-tickets.forEach((ticket, index) => {
-    ticket.addEventListener("click", () => {
-        openMovie(index);
-    });
-
-    ticket.addEventListener("keydown", event => {
-        if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            openMovie(index);
-        }
-    });
-});
-
 /* Search and category filter */
 
 function filterMovies() {
     const keyword = searchInput.value.trim().toLowerCase();
     let visibleCount = 0;
 
-    tickets.forEach(ticket => {
+    document.querySelectorAll(".ticket").forEach(ticket => {
         const categories = ticket.dataset.categories.split(" ");
-        const searchText = ticket.dataset.search.toLowerCase();
 
         const matchesCategory =
             activeCategory === "all" ||
             categories.includes(activeCategory);
 
         const matchesSearch =
-            searchText.includes(keyword);
+            ticket.dataset.search.includes(keyword);
 
         const shouldShow = matchesCategory && matchesSearch;
 
         ticket.style.display = shouldShow ? "flex" : "none";
 
-        if (shouldShow) {
-            visibleCount++;
-        }
+        if (shouldShow) visibleCount++;
     });
 
     noResults.classList.toggle("show", visibleCount === 0);
@@ -905,7 +938,6 @@ categoryButtons.forEach(button => {
         button.setAttribute("aria-pressed", "true");
 
         activeCategory = button.dataset.category;
-
         filterMovies();
     });
 });
@@ -931,6 +963,10 @@ document.addEventListener("keydown", event => {
         closeMovie();
     }
 });
+
+/* Start */
+
+renderMovies();
 </script>
 
 </body>
