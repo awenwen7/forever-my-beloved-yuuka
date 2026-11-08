@@ -138,21 +138,26 @@ input {
 
 .search-wrap input {
     width: 100%;
-    padding: 13px 42px 13px 17px;
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    background: rgba(248, 247, 242, .7);
+    padding: 14px 46px 14px 22px;
+    border: 1px solid rgba(212, 211, 204, .85);
+    border-radius: 30px;
+    background: rgba(248, 247, 242, .78);
     color: var(--ink);
     font-family: "Noto Serif JP", serif;
     font-size: 12px;
     letter-spacing: 1px;
     outline: none;
-    transition: border-color .25s, background .25s;
+    box-shadow: 0 3px 12px rgba(40, 38, 34, .035);
+    transition:
+        border-color .25s,
+        background .25s,
+        box-shadow .25s;
 }
 
 .search-wrap input:focus {
-    border-color: var(--berry);
+    border-color: #BDA09A;
     background: var(--paper);
+    box-shadow: 0 4px 15px rgba(40, 38, 34, .07);
 }
 
 .search-wrap input::placeholder {
@@ -161,11 +166,11 @@ input {
 
 .search-icon {
     position: absolute;
-    right: 15px;
+    right: 19px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--gray);
-    font-size: 17px;
+    font-size: 18px;
     pointer-events: none;
 }
 
@@ -175,40 +180,64 @@ input {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 11px;
     margin-bottom: 35px;
 }
 
 .category-btn {
-    border: 1px solid var(--line);
-    background: transparent;
+    min-width: 112px;
+    border: 1px solid rgba(212, 211, 204, .9);
+    border-radius: 30px;
+    background: rgba(248, 247, 242, .38);
     color: var(--gray);
-    padding: 10px 17px;
+    padding: 11px 17px 10px;
     font-family: "Playfair Display", "Noto Serif JP", serif;
     font-size: 10px;
     letter-spacing: 1.5px;
     cursor: pointer;
-    transition: all .25s;
+    box-shadow: 0 3px 10px rgba(40, 38, 34, .025);
+    transition:
+        background .25s,
+        border-color .25s,
+        color .25s,
+        transform .25s,
+        box-shadow .25s;
 }
 
 .category-btn:hover {
-    border-color: var(--berry);
+    border-color: #BDA09A;
     color: var(--berry);
+    background: rgba(248, 247, 242, .8);
+    transform: translateY(-2px);
 }
 
 .category-btn.active {
     background: #555653;
     border-color: #555653;
     color: #F8F7F2;
+    box-shadow: 0 4px 12px rgba(40, 38, 34, .12);
 }
 
 .category-btn .jp {
     display: block;
-    margin-top: 4px;
+    margin-bottom: 4px;
     font-family: "Noto Serif JP", serif;
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 1px;
+    opacity: .95;
+}
+
+.category-btn .en {
+    display: block;
+    font-family: "Playfair Display", serif;
+    font-size: 9px;
+    letter-spacing: 1.3px;
     opacity: .8;
+}
+
+.category-btn:focus-visible {
+    outline: 2px solid var(--berry);
+    outline-offset: 4px;
 }
 
 /* Ticket grid */
@@ -227,8 +256,7 @@ input {
     min-height: 190px;
     background: var(--ticket);
     border: 1px solid #D4D2CA;
-    border-right: none;
-    border-radius: 3px 0 0 3px;
+    border-radius: 3px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(40, 38, 34, .08);
     cursor: pointer;
@@ -238,28 +266,6 @@ input {
 .ticket:focus-visible {
     outline: 2px solid var(--berry);
     outline-offset: 4px;
-}
-
-.ticket::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 12px;
-    height: 100%;
-    z-index: 10;
-    pointer-events: none;
-    background:
-        radial-gradient(
-            circle at 100% 0,
-            var(--bg) 0 6px,
-            transparent 6.5px
-        ) top right / 12px 24px repeat-y,
-        radial-gradient(
-            circle at 100% 100%,
-            var(--bg) 0 6px,
-            transparent 6.5px
-        ) bottom right / 12px 24px repeat-y;
 }
 
 .ticket:hover {
@@ -353,8 +359,10 @@ input {
     align-items: center;
     justify-content: space-around;
     padding: 14px 5px;
-    border-left: 1px dashed #D4D3CC;
+    border-left: 1px dashed rgba(241, 240, 234, .8);
 }
+
+/* Stub cutouts */
 
 .ticket-stub::before,
 .ticket-stub::after {
@@ -573,12 +581,34 @@ input {
     }
 
     .category-list {
-        gap: 7px;
+        gap: 8px;
     }
 
     .category-btn {
-        padding: 9px 12px;
-        font-size: 9px;
+        min-width: 0;
+        padding: 10px 14px;
+    }
+}
+
+@media (max-width: 380px) {
+    .category-btn {
+        padding: 9px 11px;
+    }
+
+    .category-btn .jp {
+        font-size: 10px;
+    }
+
+    .category-btn .en {
+        font-size: 8px;
+    }
+
+    .poster {
+        min-width: 86px;
+    }
+
+    .ticket-stub {
+        width: 58px;
     }
 }
 
@@ -620,8 +650,8 @@ input {
             <input
                 type="search"
                 id="movie-search"
-                placeholder="Search our movies..."
-                aria-label="Search movies"
+                placeholder="映画のタイトルを検索..."
+                aria-label="映画を探す"
                 autocomplete="off"
             >
             <span class="search-icon" aria-hidden="true">⌕</span>
@@ -630,23 +660,23 @@ input {
         <div class="category-list" aria-label="Movie categories">
 
             <button class="category-btn active" type="button" data-category="all" aria-pressed="true">
-                ALL
                 <span class="jp">すべて</span>
+                <span class="en">ALL</span>
             </button>
 
             <button class="category-btn" type="button" data-category="watched" aria-pressed="false">
-                OUR MEMORIES
                 <span class="jp">ふたりで観た映画</span>
+                <span class="en">OUR MEMORIES</span>
             </button>
 
             <button class="category-btn" type="button" data-category="wishlist" aria-pressed="false">
-                MOVIE WISHLIST
                 <span class="jp">ふたりで観たい映画</span>
+                <span class="en">MOVIE WISHLIST</span>
             </button>
 
             <button class="category-btn" type="button" data-category="favorites" aria-pressed="false">
-                FAVORITES
                 <span class="jp">お気に入り</span>
+                <span class="en">FAVORITES</span>
             </button>
 
         </div>
