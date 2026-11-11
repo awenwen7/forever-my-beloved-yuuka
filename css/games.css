@@ -829,3 +829,27 @@ body.launching {
     }
 
 }
+
+/* =========================================
+   GAMES PAGE - TITLE COLORS
+========================================= */
+
+/* Japanese subtitle */
+.games-hero .eyebrow {
+    color: #A97878;
+}
+
+/* Main title */
+.games-hero h1 {
+    color: #292A29;
+}
+
+/* Collection title */
+.collection-heading h2 {
+    color: #292A29;
+}
+
+/* Japanese description */
+.collection-heading > p:last-child {
+    color: #A97878;
+}
