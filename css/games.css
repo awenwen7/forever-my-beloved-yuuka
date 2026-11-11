@@ -452,3 +452,78 @@ button {
     }
 }
 
+/* =================================
+   CARTRIDGE LAUNCH ANIMATION
+================================= */
+
+/* Whole cartridge enlarges */
+.launch-cartridge {
+    width: min(65vw, 210px);
+    aspect-ratio: 21 / 31;
+    padding: 10px;
+    border-radius: 9px;
+    background: #343A3D;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+
+    transform: scale(0.65);
+    transition:
+        transform 0.65s cubic-bezier(.2,.8,.2,1),
+        width 0.75s ease,
+        height 0.75s ease,
+        padding 0.75s ease,
+        border-radius 0.75s ease;
+}
+
+.launch-screen.active .launch-cartridge {
+    transform: scale(1);
+}
+
+/* Cover expands to fill the screen */
+.launch-screen.cover-open .launch-cartridge {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    aspect-ratio: auto;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    transform: scale(1);
+}
+
+.launch-screen.cover-open .launch-cartridge-label {
+    border-radius: 0;
+}
+
+.launch-screen.cover-open .launch-title {
+    opacity: 0;
+}
+
+.launch-title {
+    transition: opacity 0.3s ease;
+}
+
+/* Close button */
+.launch-close {
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.launch-screen.active .launch-close {
+    opacity: 1;
+}
+
+/* Prevent background scrolling */
+body.launching {
+    overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .launch-cartridge,
+    .launch-title,
+    .launch-close {
+        transition-duration: 0.01ms;
+    }
+}
+
