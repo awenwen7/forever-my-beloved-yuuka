@@ -1,44 +1,158 @@
 
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
 
-  <title>Our Games | Forever My Beloved Yuuka</title>
+    <title>Our Games | Forever My Beloved Yuuka</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/games.css">
+    <link rel="stylesheet" href="css/games.css">
 </head>
 
 <body>
 
-  <main class="games-room">
+    <main class="games-page">
 
-    <header class="games-header">
-      <span class="eyebrow">OUR GAME COLLECTION</span>
+        <!-- Page Introduction -->
+        <section class="games-hero">
 
-      <h1>Games</h1>
+            <p class="eyebrow">OUR GAME COLLECTION</p>
 
-      <p>Every game holds a little memory of us.</p>
-    </header>
+            <h1>Games</h1>
 
-    <section class="cartridge-shelf" id="cartridgeShelf">
+            <p class="hero-description">
+                Every game holds a little memory of us.
+            </p>
 
-      <!-- Game cartridges will be added here -->
+            <div class="hero-divider">
+                <span>♡</span>
+            </div>
 
-    </section>
+        </section>
 
-  </main>
 
-  <script src="js/games.js"></script>
+        <!-- Game Collection -->
+        <section class="game-collection">
+
+            <div class="collection-heading">
+                <p class="section-label">OUR LITTLE WORLD</p>
+                <h2>Game Collection</h2>
+                <p>Our adventures, kept together.</p>
+            </div>
+
+
+            <div class="cartridge-shelf" id="cartridgeShelf">
+
+                <!-- Splatoon 3 -->
+                <button
+                    class="game-cartridge"
+                    type="button"
+                    data-title="Splatoon 3"
+                    data-cover="images/games/splatoon3.jpg"
+                    data-page="games/splatoon.html"
+                    aria-label="Open Splatoon 3 memories"
+                >
+                    <span class="cartridge-image">
+                        <img
+                            src="images/games/splatoon3.jpg"
+                            alt="Splatoon 3 cover"
+                        >
+                    </span>
+
+                    <span class="cartridge-name">Splatoon 3</span>
+                </button>
+
+
+                <!-- Sky -->
+                <button
+                    class="game-cartridge"
+                    type="button"
+                    data-title="Sky: Children of the Light"
+                    data-cover="images/games/sky.jpg"
+                    data-page="games/sky.html"
+                    aria-label="Open Sky memories"
+                >
+                    <span class="cartridge-image">
+                        <img
+                            src="images/games/sky.jpg"
+                            alt="Sky game cover"
+                        >
+                    </span>
+
+                    <span class="cartridge-name">Sky</span>
+                </button>
+
+
+                <!-- Animal Crossing -->
+                <button
+                    class="game-cartridge"
+                    type="button"
+                    data-title="Animal Crossing"
+                    data-cover="images/games/animal-crossing.jpg"
+                    data-page="games/animal-crossing.html"
+                    aria-label="Open Animal Crossing memories"
+                >
+                    <span class="cartridge-image">
+                        <img
+                            src="images/games/animal-crossing.jpg"
+                            alt="Animal Crossing game cover"
+                        >
+                    </span>
+
+                    <span class="cartridge-name">Animal Crossing</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Cartridge Launch Screen -->
+        <section
+            class="launch-screen"
+            id="launchScreen"
+            aria-hidden="true"
+        >
+
+            <button
+                class="launch-close"
+                id="closeLaunch"
+                type="button"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+            <div class="launch-content" id="launchContent">
+
+                <div class="launch-cartridge" id="launchCartridge">
+
+                    <div class="launch-cartridge-label">
+                        <img
+                            id="launchCover"
+                            src=""
+                            alt=""
+                        >
+                    </div>
+
+                </div>
+
+                <div class="launch-title" id="launchTitle"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="js/games.js"></script>
 
 </body>
 </html>
-
