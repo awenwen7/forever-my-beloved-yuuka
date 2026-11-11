@@ -1,18 +1,619 @@
 
-.launch-screen.cover-open .launch-cartridge-brand {
+/* =========================================
+   1. ROOT
+========================================= */
+
+:root {
+    --game-bg: #FBF8F3;
+    --game-surface: #F5F0E9;
+    --game-card: #F3EAE1;
+
+    --game-text: #806B5A;
+    --game-muted: #A18D7B;
+    --game-accent: #B58D86;
+
+    --game-border: #E5DED6;
+
+    /* WARM GREY CARTRIDGE */
+    --cartridge-body: #77736D;
+    --cartridge-top: #68645F;
+    --cartridge-dark: #56524D;
+    --cartridge-border: #625E58;
+    --cartridge-contact: #B9A47D;
+}
+
+
+/* =========================================
+   2. GLOBAL
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    background: var(--game-bg);
+    color: var(--game-text);
+
+    font-family:
+        "Noto Serif JP",
+        serif;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+button {
+    font: inherit;
+}
+
+button:focus-visible {
+    outline: 2px solid var(--game-accent);
+    outline-offset: 5px;
+}
+
+
+/* =========================================
+   3. GAMES PAGE
+========================================= */
+
+.games-page {
+    min-height: 100vh;
+
+    padding: 75px 30px 100px;
+
+    background: var(--game-bg);
+}
+
+.games-hero {
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    padding: 55px 20px 75px;
+
+    text-align: center;
+}
+
+.eyebrow {
+    margin: 0 0 18px;
+
+    color: var(--game-muted);
+
+    font-size: 10px;
+    letter-spacing: 4px;
+}
+
+.games-hero h1 {
+    margin: 0;
+
+    color: var(--game-text);
+
+    font-size: clamp(38px, 6vw, 58px);
+    font-weight: 500;
+    letter-spacing: 5px;
+}
+
+.hero-description {
+    margin: 22px 0 0;
+
+    color: var(--game-muted);
+
+    font-size: 12px;
+    letter-spacing: 1px;
+    line-height: 1.9;
+}
+
+.hero-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 35px;
+
+    color: var(--game-accent);
+    font-size: 16px;
+}
+
+.hero-divider::before,
+.hero-divider::after {
+    content: "";
+
+    width: 55px;
+    height: 1px;
+
+    background: var(--game-border);
+}
+
+
+/* =========================================
+   4. COLLECTION HEADING
+========================================= */
+
+.game-collection {
+    max-width: 1050px;
+
+    margin: 0 auto;
+}
+
+.collection-heading {
+    margin-bottom: 55px;
+
+    text-align: center;
+}
+
+.section-label {
+    margin: 0 0 13px;
+
+    color: var(--game-muted);
+
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+.collection-heading h2 {
+    margin: 0;
+
+    color: var(--game-text);
+
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+.collection-heading > p:last-child {
+    margin-top: 13px;
+
+    color: var(--game-muted);
+
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   5. CARTRIDGE SHELF
+========================================= */
+
+.cartridge-shelf {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(150px, 1fr));
+
+    justify-items: center;
+
+    gap: 55px 45px;
+
+    max-width: 780px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   6. GAME CARTRIDGE BUTTON
+========================================= */
+
+.game-cartridge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    max-width: 155px;
+
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: var(--game-text);
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.cartridge-shell {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    aspect-ratio: 21 / 31;
+
+    padding: 8px 8px 7px;
+
+    overflow: hidden;
+
+    background: var(--cartridge-body);
+
+    border: 1px solid var(--cartridge-border);
+
+    border-radius: 10px 10px 8px 8px;
+
+    box-shadow:
+        0 5px 12px rgba(50, 45, 40, 0.15),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.07);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+/* Cartridge top */
+
+.cartridge-top {
+    position: relative;
+
+    flex: 0 0 12px;
+
+    width: 100%;
+
+    background: var(--cartridge-top);
+
+    border-radius: 4px 4px 0 0;
+}
+
+.cartridge-notch {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width: 30%;
+    height: 4px;
+
+    transform: translateX(-50%);
+
+    background: var(--cartridge-dark);
+
+    border-radius: 0 0 4px 4px;
+}
+
+
+/* Cartridge artwork */
+
+.cartridge-label {
+    position: relative;
+
+    flex: 1;
+
+    min-height: 0;
+
+    margin-top: 4px;
+    margin-bottom: 5px;
+
+    overflow: hidden;
+
+    background: #E7E0D6;
+
+    border: 2px solid rgba(55, 50, 45, 0.18);
+
+    border-radius: 3px;
+}
+
+.cartridge-label img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+}
+
+
+/* Cartridge bottom */
+
+.cartridge-bottom {
+    position: relative;
+
+    flex: 0 0 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+}
+
+.cartridge-contact {
+    width: 32%;
+    height: 3px;
+
+    background: var(--cartridge-contact);
+
+    border-radius: 2px;
+}
+
+
+/* Cartridge title */
+
+.cartridge-name {
+    display: block;
+
+    margin-top: 17px;
+
+    color: var(--game-text);
+
+    font-size: 11px;
+    letter-spacing: 0.7px;
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+
+/* Hover */
+
+@media (hover: hover) {
+
+    .game-cartridge:hover .cartridge-shell {
+        transform: translateY(-7px);
+
+        box-shadow:
+            0 12px 22px rgba(50, 45, 40, 0.19),
+            inset 0 0 0 2px rgba(255, 255, 255, 0.07);
+    }
+
+}
+
+
+/* =========================================
+   7. LAUNCH SCREEN
+========================================= */
+
+.launch-screen {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    overflow: hidden;
+
+    background: #292824;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.4s ease,
+        visibility 0.4s ease;
+}
+
+.launch-screen.active {
+    opacity: 1;
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+.launch-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    gap: 22px;
+}
+
+
+/* =========================================
+   8. ENLARGED CARTRIDGE
+========================================= */
+
+.launch-cartridge {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: min(240px, 52vw);
+
+    aspect-ratio: 21 / 31;
+
+    padding: 10px 10px 8px;
+
+    overflow: hidden;
+
+    background: var(--cartridge-body);
+
+    border: 1px solid var(--cartridge-border);
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.4);
+
+    transform: scale(0.75);
+
+    transition:
+        transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+        width 0.7s ease,
+        height 0.7s ease,
+        border-radius 0.7s ease,
+        padding 0.7s ease;
+}
+
+.launch-screen.active .launch-cartridge {
+    transform: scale(1);
+}
+
+
+/* Launch cartridge top */
+
+.launch-cartridge-top {
+    position: relative;
+
+    flex: 0 0 12px;
+
+    width: 100%;
+
+    background: var(--cartridge-top);
+
+    border-radius: 4px 4px 0 0;
+}
+
+.launch-cartridge-notch {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width: 30%;
+    height: 4px;
+
+    transform: translateX(-50%);
+
+    background: var(--cartridge-dark);
+
+    border-radius: 0 0 4px 4px;
+}
+
+
+/* Launch artwork */
+
+.launch-cartridge-label {
+    position: relative;
+
+    flex: 1;
+
+    min-height: 0;
+
+    margin-top: 4px;
+    margin-bottom: 5px;
+
+    overflow: hidden;
+
+    background: #E7E0D6;
+
+    border-radius: 3px;
+}
+
+.launch-cartridge-label img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+}
+
+
+/* Launch cartridge bottom */
+
+.launch-cartridge-bottom {
+    flex: 0 0 8px;
+
+    width: 100%;
+
+    border-radius: 2px;
+
+    background: var(--cartridge-contact);
+}
+
+
+/* =========================================
+   9. FULLSCREEN COVER
+========================================= */
+
+.launch-screen.cover-open {
+    padding: 0;
+}
+
+.launch-screen.cover-open .launch-content {
+    gap: 0;
+}
+
+.launch-screen.cover-open .launch-cartridge {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    max-width: none;
+
+    aspect-ratio: auto;
+
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+    border-radius: 0;
+
+    box-shadow: none;
+
+    transform: none;
+}
+
+.launch-screen.cover-open .launch-cartridge-top,
+.launch-screen.cover-open .launch-cartridge-bottom {
     display: none;
 }
 
 .launch-screen.cover-open .launch-cartridge-label {
-    height: 100%;
+    position: absolute;
+    inset: 0;
+
+    margin: 0;
+
     border-radius: 0;
+
+    background: #292824;
 }
 
-.launch-title {
-    color: var(--game-text);
+.launch-screen.cover-open .launch-cartridge-label img {
+    width: 100%;
+    height: 100%;
 
-    font-size: 14px;
+    object-fit: contain;
+}
+
+
+/* =========================================
+   10. LAUNCH TITLE
+========================================= */
+
+.launch-title {
+    position: relative;
+    z-index: 1;
+
+    color: #F5F0E9;
+
+    font-size: 13px;
     letter-spacing: 2px;
+
+    text-align: center;
+
+    opacity: 1;
 
     transition: opacity 0.3s ease;
 }
@@ -22,33 +623,109 @@
 }
 
 
-/* Close button */
+/* =========================================
+   11. OPEN MEMORIES BUTTON
+========================================= */
+
+.open-memory-button {
+    position: relative;
+    z-index: 3;
+
+    padding: 12px 25px;
+
+    border: 1px solid rgba(245, 240, 233, 0.55);
+
+    border-radius: 30px;
+
+    background: rgba(41, 40, 36, 0.75);
+
+    color: #F5F0E9;
+
+    font-size: 11px;
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(8px);
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease,
+        background 0.3s ease,
+        visibility 0.4s ease;
+}
+
+.launch-screen.cover-open .open-memory-button {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform: translateY(0);
+}
+
+.open-memory-button span {
+    margin-left: 8px;
+
+    color: #D8B9AD;
+}
+
+.open-memory-button:hover {
+    background: rgba(181, 141, 134, 0.85);
+}
+
+
+/* =========================================
+   12. CLOSE BUTTON
+========================================= */
 
 .launch-close {
     position: absolute;
 
-    top: 25px;
-    right: 30px;
+    top: 20px;
+    right: 25px;
 
-    z-index: 2;
+    z-index: 5;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
 
     border: none;
 
     background: transparent;
-    color: var(--game-text);
 
-    font-size: 35px;
+    color: #F5F0E9;
+
+    font-family: sans-serif;
+    font-size: 34px;
+    font-weight: 300;
 
     cursor: pointer;
 
     opacity: 0;
 
-    transition: opacity 0.3s ease;
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
 }
 
 .launch-screen.active .launch-close {
     opacity: 1;
 }
+
+.launch-close:hover {
+    transform: rotate(90deg);
+}
+
+
+/* =========================================
+   13. BODY LOCK
+========================================= */
 
 body.launching {
     overflow: hidden;
@@ -56,17 +733,17 @@ body.launching {
 
 
 /* =========================================
-   MOBILE
+   14. MOBILE
 ========================================= */
 
 @media (max-width: 650px) {
 
     .games-page {
-        padding: 55px 20px 75px;
+        padding: 45px 20px 75px;
     }
 
     .games-hero {
-        padding: 45px 10px 55px;
+        padding: 40px 10px 55px;
     }
 
     .hero-description {
@@ -74,9 +751,21 @@ body.launching {
         line-height: 1.8;
     }
 
+    .collection-heading {
+        margin-bottom: 40px;
+    }
+
+    .collection-heading h2 {
+        font-size: 21px;
+    }
+
     .cartridge-shelf {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 35px 22px;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 38px 22px;
+
+        max-width: 390px;
     }
 
     .game-cartridge {
@@ -84,13 +773,47 @@ body.launching {
     }
 
     .cartridge-name {
+        margin-top: 13px;
+
         font-size: 10px;
     }
+
+    .launch-close {
+        top: 12px;
+        right: 15px;
+    }
+
+    .launch-cartridge {
+        width: min(210px, 58vw);
+    }
+
 }
 
 
 /* =========================================
-   REDUCED MOTION
+   15. SMALL MOBILE
+========================================= */
+
+@media (max-width: 360px) {
+
+    .games-page {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .cartridge-shelf {
+        gap: 32px 15px;
+    }
+
+    .game-cartridge {
+        max-width: 115px;
+    }
+
+}
+
+
+/* =========================================
+   16. REDUCED MOTION
 ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -99,6 +822,10 @@ body.launching {
     *::before,
     *::after {
         scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
         transition-duration: 0.01ms !important;
     }
 
