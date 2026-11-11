@@ -1,6 +1,6 @@
 
 /* =========================================
-   GAME CARTRIDGE INTERACTION
+   1. ELEMENTS
 ========================================= */
 
 const cartridges = document.querySelectorAll(".game-cartridge");
@@ -8,14 +8,16 @@ const cartridges = document.querySelectorAll(".game-cartridge");
 const launchScreen = document.getElementById("launchScreen");
 const launchCover = document.getElementById("launchCover");
 const launchTitle = document.getElementById("launchTitle");
+
 const closeLaunch = document.getElementById("closeLaunch");
+const openMemoryButton = document.getElementById("openMemoryButton");
 
 let launchTimer = null;
 let activePage = null;
 
 
 /* =========================================
-   ORIGINAL STARTUP SOUND
+   2. ORIGINAL STARTUP SOUND
 ========================================= */
 
 function playStartupSound() {
@@ -29,7 +31,13 @@ function playStartupSound() {
 
         const audio = new AudioContext();
 
-        [523.25, 659.25, 783.99].forEach((frequency, index) => {
+        const notes = [
+            523.25,
+            659.25,
+            783.99
+        ];
+
+        notes.forEach((frequency, index) => {
 
             const oscillator = audio.createOscillator();
             const gain = audio.createGain();
@@ -59,7 +67,11 @@ function playStartupSound() {
 
         });
 
-        setTimeout(() => audio.close(), 1000);
+        setTimeout(() => {
+
+            audio.close();
+
+        }, 1000);
 
     } catch (error) {
 
@@ -71,17 +83,26 @@ function playStartupSound() {
 
 
 /* =========================================
-   OPEN CARTRIDGE
+   3. OPEN CARTRIDGE
 ========================================= */
 
 function openCartridge(cartridge) {
 
     const title = cartridge.dataset.title;
     const cover = cartridge.dataset.cover;
+    const page = cartridge.dataset.page;
 
-    activePage = cartridge.dataset.page;
+    if (!title || !cover || !page) {
+
+        console.error("Game information is incomplete.");
+
+        return;
+
+    }
 
     clearTimeout(launchTimer);
+
+    activePage = page;
 
     launchCover.src = cover;
     launchCover.alt = title + " cover";
@@ -92,12 +113,16 @@ function openCartridge(cartridge) {
 
     launchScreen.classList.add("active");
 
+    launchScreen.removeAttribute("inert");
+
     launchScreen.setAttribute("aria-hidden", "false");
 
     document.body.classList.add("launching");
 
     playStartupSound();
 
+
+    // Wait for the cartridge animation
     launchTimer = setTimeout(() => {
 
         launchScreen.classList.add("cover-open");
@@ -108,7 +133,7 @@ function openCartridge(cartridge) {
 
 
 /* =========================================
-   CLOSE CARTRIDGE
+   4. CLOSE CARTRIDGE
 ========================================= */
 
 function closeCartridge() {
@@ -120,7 +145,12 @@ function closeCartridge() {
 
     launchScreen.setAttribute("aria-hidden", "true");
 
+    launchScreen.setAttribute("inert", "");
+
     document.body.classList.remove("launching");
+
+    launchCover.src = "";
+    launchCover.alt = "";
 
     activePage = null;
 
@@ -128,7 +158,20 @@ function closeCartridge() {
 
 
 /* =========================================
-   CLICK EVENTS
+   5. OPEN GAME MEMORY PAGE
+========================================= */
+
+function openMemoryPage() {
+
+    if (!activePage) return;
+
+    window.location.href = activePage;
+
+}
+
+
+/* =========================================
+   6. CARTRIDGE CLICK EVENTS
 ========================================= */
 
 cartridges.forEach((cartridge) => {
@@ -142,11 +185,26 @@ cartridges.forEach((cartridge) => {
 });
 
 
-closeLaunch.addEventListener("click", closeCartridge);
+/* =========================================
+   7. BUTTON EVENTS
+========================================= */
+
+closeLaunch.addEventListener("click", () => {
+
+    closeCartridge();
+
+});
+
+
+openMemoryButton.addEventListener("click", () => {
+
+    openMemoryPage();
+
+});
 
 
 /* =========================================
-   ESCAPE KEY
+   8. ESCAPE KEY
 ========================================= */
 
 document.addEventListener("keydown", (event) => {
@@ -159,5 +217,16 @@ document.addEventListener("keydown", (event) => {
         closeCartridge();
 
     }
+
+});
+
+
+/* =========================================
+   9. PREVENT BACKGROUND SCROLL
+========================================= */
+
+window.addEventListener("pageshow", () => {
+
+    closeCartridge();
 
 });
