@@ -11,7 +11,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
     <link rel="stylesheet" href="css/games.css">
 </head>
@@ -38,12 +41,14 @@
     </section>
 
 
-    <!-- COLLECTION -->
+    <!-- GAME COLLECTION -->
     <section class="game-collection">
 
         <div class="collection-heading">
             <p class="section-label">OUR LITTLE WORLD</p>
+
             <h2>Game Collection</h2>
+
             <p>Our adventures, kept together.</p>
         </div>
 
@@ -51,12 +56,13 @@
         <!-- CARTRIDGE SHELF -->
         <div class="cartridge-shelf" id="cartridgeShelf">
 
+
             <!-- SPLATOON 3 -->
             <button
                 class="game-cartridge"
                 type="button"
                 data-title="Splatoon 3"
-                data-cover="images/games/splatoon3.jpg"
+                data-cover="images/games/splatoon-3.jpg"
                 data-page="games/splatoon.html"
                 aria-label="Open Splatoon 3 memories"
             >
@@ -67,15 +73,11 @@
                         <span class="cartridge-notch"></span>
                     </span>
 
-                    <span class="cartridge-brand">
-                        <span>Nintendo</span>
-                        <strong>SWITCH</strong>
-                    </span>
-
                     <span class="cartridge-label">
                         <img
-                            src="images/games/splatoon3.jpg"
+                            src="images/games/splatoon-3.jpg"
                             alt="Splatoon 3"
+                            loading="lazy"
                         >
                     </span>
 
@@ -85,7 +87,9 @@
 
                 </span>
 
-                <span class="cartridge-name">Splatoon 3</span>
+                <span class="cartridge-name">
+                    Splatoon 3
+                </span>
 
             </button>
 
@@ -106,15 +110,11 @@
                         <span class="cartridge-notch"></span>
                     </span>
 
-                    <span class="cartridge-brand">
-                        <span>Nintendo</span>
-                        <strong>SWITCH</strong>
-                    </span>
-
                     <span class="cartridge-label">
                         <img
                             src="images/games/sky.jpg"
-                            alt="Sky"
+                            alt="Sky: Children of the Light"
+                            loading="lazy"
                         >
                     </span>
 
@@ -124,7 +124,9 @@
 
                 </span>
 
-                <span class="cartridge-name">Sky</span>
+                <span class="cartridge-name">
+                    Sky
+                </span>
 
             </button>
 
@@ -145,15 +147,11 @@
                         <span class="cartridge-notch"></span>
                     </span>
 
-                    <span class="cartridge-brand">
-                        <span>Nintendo</span>
-                        <strong>SWITCH</strong>
-                    </span>
-
                     <span class="cartridge-label">
                         <img
                             src="images/games/animal-crossing.jpg"
                             alt="Animal Crossing"
+                            loading="lazy"
                         >
                     </span>
 
@@ -163,9 +161,12 @@
 
                 </span>
 
-                <span class="cartridge-name">Animal Crossing</span>
+                <span class="cartridge-name">
+                    Animal Crossing
+                </span>
 
             </button>
+
 
         </div>
 
@@ -177,6 +178,7 @@
         class="launch-screen"
         id="launchScreen"
         aria-hidden="true"
+        inert
     >
 
         <button
@@ -188,32 +190,50 @@
             ×
         </button>
 
+
         <div class="launch-content">
 
+            <!-- ENLARGED CARTRIDGE -->
             <div class="launch-cartridge" id="launchCartridge">
 
-                <div class="launch-cartridge-brand">
-                    <span>Nintendo</span>
-                    <strong>SWITCH</strong>
+                <div class="launch-cartridge-top">
+                    <span class="launch-cartridge-notch"></span>
                 </div>
 
                 <div class="launch-cartridge-label">
+
                     <img
                         id="launchCover"
                         src=""
                         alt=""
                     >
+
                 </div>
+
+                <div class="launch-cartridge-bottom"></div>
 
             </div>
 
+
             <div class="launch-title" id="launchTitle"></div>
+
+
+            <!-- OPEN MEMORY PAGE -->
+            <button
+                class="open-memory-button"
+                id="openMemoryButton"
+                type="button"
+            >
+                Open Memories
+                <span>♡</span>
+            </button>
 
         </div>
 
     </section>
 
 </main>
+
 
 <script src="js/games.js"></script>
 
