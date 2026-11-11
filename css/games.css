@@ -148,17 +148,25 @@ button {
 
 .game-cartridge {
     width: 100%;
-    max-width: 190px;
-    padding: 12px;
+    max-width: 145px;
+    aspect-ratio: 21 / 31;
+
+    padding: 9px;
+    display: flex;
+    flex-direction: column;
+
     border: 1px solid var(--game-border);
-    border-radius: 13px;
+    border-radius: 9px;
+
     background: linear-gradient(
         145deg,
         #414B50,
         #30393E
     );
+
     color: var(--game-text);
     cursor: pointer;
+
     transition:
         transform 0.35s ease,
         border-color 0.35s ease,
@@ -226,10 +234,10 @@ button {
 }
 
 .launch-cartridge {
-    width: min(75vw, 330px);
-    aspect-ratio: 1.22 / 1;
-    padding: 12px;
-    border-radius: 12px;
+    width: min(65vw, 210px);
+    aspect-ratio: 21 / 31;
+    padding: 10px;
+    border-radius: 9px;
     background: #343A3D;
     box-shadow: 0 25px 70px rgba(0,0,0,0.5);
     transform: scale(0.65);
