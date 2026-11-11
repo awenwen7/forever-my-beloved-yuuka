@@ -12,7 +12,7 @@ const movies = [
         duration: 102,
 
         // 電影收藏
-        category: ["watched", "favorites"],
+        category: ["watched"],
         poster: "images/movie-posters/robot-dreams.jpg",
 
         // 觀影日期
