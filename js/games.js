@@ -79,6 +79,7 @@ function playStartupSound() {
 }
 
 
+
 /* =========================================
    3. OPEN CARTRIDGE
 ========================================= */
@@ -103,6 +104,9 @@ function openCartridge(cartridge) {
 
     launchTitle.textContent = title;
 
+    /* Clear any previous fullscreen state */
+    launchScreen.classList.remove("cover-open");
+
     document.body.classList.add("launching");
 
     launchScreen.removeAttribute("inert");
@@ -114,6 +118,7 @@ function openCartridge(cartridge) {
     playStartupSound();
 
 }
+
 
 
 /* =========================================
