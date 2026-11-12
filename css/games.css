@@ -989,21 +989,56 @@ body.launching {
     }
 
 }
+
 /* =========================================
-   手機版封面照片縮小
+   MOBILE HERO — CINEMA STYLE
 ========================================= */
 
-@media (max-width: 768px) {
-    .games-hero-image {
-        aspect-ratio: 16 / 9 !important;
-        height: auto !important;
-        max-height: 280px;
+@media (max-width: 650px) {
+
+    .games-hero {
+        width: 100%;
+        max-width: none;
+
+        padding: 55px 0 25px;
     }
 
-    .games-hero-image img {
+    .games-hero-image {
+        width: 100%;
+        aspect-ratio: auto;
+
+        height: 300px;
+        max-height: 300px;
+
+        border-radius: 0;
+        overflow: hidden;
+    }
+
+    .games-hero-image > img {
         width: 100%;
         height: 100%;
+
         object-fit: cover;
         object-position: center;
     }
+
+    .games-hero-content {
+        padding: 35px 20px;
+    }
+
+    .games-hero .eyebrow {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .games-hero h1 {
+        font-size: 42px;
+    }
+
+    .games-hero .hero-description {
+        font-size: 11px;
+        line-height: 1.8;
+    }
+
 }
+
