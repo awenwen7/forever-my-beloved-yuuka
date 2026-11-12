@@ -215,15 +215,8 @@ button:focus-visible {
 
     overflow: hidden;
 
-    background:
-        radial-gradient(
-            ellipse at 50% 0%,
-            #1B3D56 0%,
-            #122B40 55%,
-            #101F2D 100%
-        );
+    background: #193448;
 }
-
 
 /* DECORATIVE LIGHT */
 
@@ -1043,4 +1036,8 @@ body.launching {
         line-height: 1.7;
     }
 
+}
+.game-collection::before,
+.game-collection::after {
+    display: none;
 }
