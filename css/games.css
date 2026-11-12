@@ -960,3 +960,104 @@ body.launching {
     }
 
 }
+/* =========================================
+   GAMES HERO COVER IMAGE
+========================================= */
+
+.games-hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 0 65px;
+}
+
+.games-hero-image {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 16 / 7;
+
+    overflow: hidden;
+
+    border-radius: 5px;
+    background: #E8DED3;
+}
+
+.games-hero-image > img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+.games-hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(35, 30, 27, 0.28);
+}
+
+.games-hero-content {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    text-align: center;
+}
+
+.games-hero .eyebrow {
+    color: #F8F0E8;
+}
+
+.games-hero h1 {
+    color: #FFFFFF;
+
+    font-size: clamp(38px, 6vw, 58px);
+    font-weight: 500;
+    letter-spacing: 5px;
+
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.games-hero .hero-description {
+    color: #FFFFFF;
+
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 650px) {
+
+    .games-hero {
+        padding: 0 0 50px;
+    }
+
+    .games-hero-image {
+        aspect-ratio: 4 / 5;
+    }
+
+    .games-hero-content {
+        padding: 15px;
+    }
+
+    .games-hero .eyebrow {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .games-hero h1 {
+        font-size: 38px;
+    }
+
+    .games-hero .hero-description {
+        font-size: 10px;
+    }
+
+}
