@@ -12,7 +12,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Leaflet CSS -->
     <link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -24,36 +23,25 @@
         ========================================= */
 
         :root {
-            /* Background */
             --bg: #F5FAFD;
             --surface: #FFFFFF;
 
-            /* Blue surfaces */
             --surface-blue: #E7F2F8;
             --surface-blue-light: #DCEEF6;
             --surface-blue-deep: #B7D8E9;
 
-            /* Main blue */
             --blue: #6D9FBC;
             --blue-hover: #5689A8;
-
-            /* Text */
             --blue-dark: #405E72;
+
             --text: #526F82;
             --muted: #819EAF;
 
-            /* Border */
             --border: #DCEAF2;
 
-            /* Coral pink accents */
-            --pink: #E8C9C0;
-            --pink-light: #F3E9E5;
+            --pink: #E89AAF;
+            --pink-light: #FCECEF;
         }
-
-
-        /* =========================================
-           GLOBAL
-        ========================================= */
 
         * {
             box-sizing: border-box;
@@ -71,7 +59,6 @@
             margin: 0 auto;
             padding: 65px 0;
         }
-
 
         /* =========================================
            PAGE HEADER
@@ -103,7 +90,6 @@
             line-height: 1.9;
             color: var(--muted);
         }
-
 
         /* =========================================
            MAP SECTION
@@ -141,7 +127,6 @@
             border-radius: 20px;
         }
 
-
         /* =========================================
            LEAFLET MAP
         ========================================= */
@@ -161,8 +146,6 @@
             background: var(--surface-blue-light);
         }
 
-        /* Soft blue map appearance */
-
         #japan-map .leaflet-tile {
             filter:
                 saturate(0.78)
@@ -170,9 +153,95 @@
                 contrast(0.94);
         }
 
+        /* =========================================
+           HEART MARKERS
+        ========================================= */
+
+        .heart-marker {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 42px;
+            font-family: Arial, sans-serif;
+            font-size: 31px;
+            line-height: 1;
+            transition: transform 0.2s ease;
+            filter: drop-shadow(0 2px 3px rgba(64, 94, 114, 0.2));
+            cursor: pointer;
+        }
+
+        .heart-marker:hover {
+            transform: scale(1.2);
+        }
+
+        /* Visited: pink solid heart */
+
+        .heart-marker.visited {
+            color: #E89AAF;
+        }
+
+        /* Planned: blue outline heart */
+
+        .heart-marker.planned {
+            color: #6D9FBC;
+        }
 
         /* =========================================
-           MAP ZOOM CONTROLS
+           POPUP
+        ========================================= */
+
+        .leaflet-popup-content-wrapper {
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            box-shadow: 0 5px 20px rgba(64, 94, 114, 0.12);
+        }
+
+        .leaflet-popup-content {
+            margin: 14px 17px;
+            min-width: 155px;
+            color: var(--text);
+        }
+
+        .leaflet-popup-tip {
+            background: #FFFFFF;
+        }
+
+        .place-popup {
+            text-align: center;
+        }
+
+        .place-popup-title {
+            color: var(--blue-dark);
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.7;
+            margin-bottom: 7px;
+        }
+
+        .place-popup-category {
+            color: var(--muted);
+            font-size: 11px;
+            margin-bottom: 8px;
+        }
+
+        .place-popup-status {
+            display: inline-block;
+            color: #D9829A;
+            background: var(--pink-light);
+            border-radius: 20px;
+            padding: 5px 11px;
+            font-size: 10px;
+        }
+
+        .place-popup-status.planned {
+            color: var(--blue-hover);
+            background: var(--surface-blue);
+        }
+
+        /* =========================================
+           ZOOM CONTROLS
         ========================================= */
 
         #japan-map .leaflet-control-zoom {
@@ -192,9 +261,8 @@
             color: var(--blue-dark);
         }
 
-
         /* =========================================
-           MAP ATTRIBUTION
+           ATTRIBUTION
         ========================================= */
 
         #japan-map .leaflet-control-attribution {
@@ -206,7 +274,6 @@
         #japan-map .leaflet-control-attribution a {
             color: var(--blue-hover);
         }
-
 
         /* =========================================
            MAP DESCRIPTION
@@ -220,7 +287,6 @@
             margin: 17px 0 0;
             letter-spacing: 1px;
         }
-
 
         /* =========================================
            MAP LEGEND
@@ -242,19 +308,15 @@
             color: var(--text);
         }
 
-        /* Visited places */
-
         .legend-heart {
-            font-size: 17px;
-            color: var(--blue);
-        }
-
-        /* Future destinations */
-
-        .legend-heart.planned {
+            font-family: Arial, sans-serif;
+            font-size: 19px;
             color: var(--pink);
         }
 
+        .legend-heart.planned {
+            color: var(--blue);
+        }
 
         /* =========================================
            MOBILE
@@ -301,6 +363,12 @@
             .legend-item {
                 font-size: 11px;
             }
+
+            .heart-marker {
+                width: 34px;
+                height: 38px;
+                font-size: 28px;
+            }
         }
 
     </style>
@@ -339,14 +407,11 @@
 
             </div>
 
-
             <div id="japan-map"></div>
-
 
             <p class="map-description">
                 地図を動かして、ふたりの足跡を探そう。
             </p>
-
 
             <div class="map-legend">
 
@@ -374,17 +439,16 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script>
+
     document.addEventListener("DOMContentLoaded", function () {
 
         const mapElement = document.getElementById("japan-map");
 
-        // Check map container
         if (!mapElement) {
             console.error("找不到 japan-map 地圖容器");
             return;
         }
 
-        // Check Leaflet
         if (typeof L === "undefined") {
 
             mapElement.innerHTML =
@@ -395,12 +459,15 @@
         }
 
 
-        // Initialize Japan map
+        /* =========================================
+           INITIALIZE MAP
+        ========================================= */
+
         const map = L.map("japan-map", {
 
-            center: [36.2, 138.2],
+            center: [34.68, 135.53],
 
-            zoom: 5,
+            zoom: 11,
 
             minZoom: 4,
 
@@ -413,36 +480,29 @@
         });
 
 
-        // OpenStreetMap tiles
+        /* =========================================
+           OPENSTREETMAP
+        ========================================= */
+
         const tileLayer = L.tileLayer(
             "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
             {
-
                 attribution:
                     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 
                 subdomains: "abc",
 
                 maxZoom: 19
-
             }
         );
-
 
         tileLayer.addTo(map);
 
 
-        // Tile loading status
-        tileLayer.on("load", function () {
-            console.log("OpenStreetMap 底圖載入成功！");
-        });
+        /* =========================================
+           JAPAN BOUNDS
+        ========================================= */
 
-        tileLayer.on("tileerror", function (error) {
-            console.error("地圖圖磚載入失敗：", error);
-        });
-
-
-        // Restrict map to Japan
         const japanBounds = L.latLngBounds(
             [24.0, 122.0],
             [46.5, 146.0]
@@ -459,15 +519,268 @@
         });
 
 
-        // Refresh map size after rendering
+        /* =========================================
+           PLACE DATA
+
+           status:
+           visited = pink solid heart
+           planned = blue outline heart
+
+        ========================================= */
+
+        const places = [
+
+            /* -------------------------------------
+               SHINSAIBASHI / NAMBA
+            ------------------------------------- */
+
+            {
+                name: "心斎橋筋商店街",
+                category: "商店街",
+                lat: 34.6739,
+                lng: 135.5013,
+                status: "visited"
+            },
+
+            {
+                name: "戎橋",
+                category: "景點",
+                lat: 34.6687,
+                lng: 135.5013,
+                status: "visited"
+            },
+
+            {
+                name: "四ツ橋駅（Y14）",
+                category: "車站",
+                lat: 34.6756,
+                lng: 135.4957,
+                status: "visited"
+            },
+
+            {
+                name: "Via Inn Prime Shinsaibashi-Yotsubashi",
+                category: "飯店",
+                lat: 34.6755,
+                lng: 135.4967,
+                status: "visited"
+            },
+
+            {
+                name: "glänta osaka 心斎橋店",
+                category: "アクセサリー・ペアリング",
+                lat: 34.6705,
+                lng: 135.5014,
+                status: "visited"
+            },
+
+            {
+                name: "irodori 文房具と雑貨のお店（大丸心斎橋店）",
+                category: "文房具・雑貨",
+                lat: 34.6744,
+                lng: 135.5015,
+                status: "visited"
+            },
+
+            {
+                name: "星乃珈琲店 心斎橋ジャパンライフ店",
+                category: "カフェ",
+                lat: 34.6703,
+                lng: 135.5025,
+                status: "visited"
+            },
+
+
+            /* -------------------------------------
+               HIGASHI-OSAKA / ISHIKIRI
+            ------------------------------------- */
+
+            {
+                name: "石切参道商店街",
+                category: "商店街",
+                lat: 34.6810,
+                lng: 135.6500,
+                status: "visited"
+            },
+
+            {
+                name: "石切劔箭神社",
+                category: "神社",
+                lat: 34.6797,
+                lng: 135.6550,
+                status: "visited"
+            },
+
+            {
+                name: "新石切駅",
+                category: "車站",
+                lat: 34.6793,
+                lng: 135.6404,
+                status: "visited"
+            },
+
+            {
+                name: "ICHIcafe",
+                category: "カフェ",
+                lat: 34.6818276,
+                lng: 135.6451207,
+                status: "visited"
+            },
+
+
+            /* -------------------------------------
+               CENTRAL OSAKA
+            ------------------------------------- */
+
+            {
+                name: "谷町四丁目駅",
+                category: "車站",
+                lat: 34.6814,
+                lng: 135.5178,
+                status: "visited"
+            },
+
+            {
+                name: "セブン-イレブン 大阪内本町２丁目店",
+                category: "コンビニ",
+                lat: 34.6835,
+                lng: 135.5150,
+                status: "visited"
+            }
+
+        ];
+
+
+        /* =========================================
+           HEART ICON
+        ========================================= */
+
+        function createHeartIcon(status) {
+
+            const isVisited = status === "visited";
+
+            const heart = isVisited ? "♥" : "♡";
+
+            const className = isVisited
+                ? "heart-marker visited"
+                : "heart-marker planned";
+
+            return L.divIcon({
+
+                className: "heart-icon-wrapper",
+
+                html: `
+                    <div class="${className}">
+                        ${heart}
+                    </div>
+                `,
+
+                iconSize: [38, 42],
+
+                iconAnchor: [19, 21],
+
+                popupAnchor: [0, -19]
+
+            });
+
+        }
+
+
+        /* =========================================
+           ADD PLACE MARKERS
+        ========================================= */
+
+        const markerBounds = [];
+
+        places.forEach(function (place) {
+
+            const marker = L.marker(
+                [place.lat, place.lng],
+                {
+                    icon: createHeartIcon(place.status)
+                }
+            );
+
+
+            /* Popup content */
+
+            const isVisited = place.status === "visited";
+
+            const statusText = isVisited
+                ? "♥ 訪れた場所"
+                : "♡ これから行きたい場所";
+
+            const statusClass = isVisited
+                ? ""
+                : "planned";
+
+
+            const popupContent = `
+                <div class="place-popup">
+
+                    <div class="place-popup-title">
+                        ${place.name}
+                    </div>
+
+                    <div class="place-popup-category">
+                        ${place.category}
+                    </div>
+
+                    <div class="place-popup-status ${statusClass}">
+                        ${statusText}
+                    </div>
+
+                </div>
+            `;
+
+
+            marker.bindPopup(popupContent);
+
+            marker.addTo(map);
+
+            markerBounds.push([
+                place.lat,
+                place.lng
+            ]);
+
+        });
+
+
+        /* =========================================
+           AUTOMATIC MAP VIEW
+        ========================================= */
+
+        if (markerBounds.length > 0) {
+
+            map.fitBounds(markerBounds, {
+
+                padding: [35, 35],
+
+                maxZoom: 12,
+
+                animate: true
+
+            });
+
+        }
+
+
+        /* =========================================
+           REFRESH MAP SIZE
+        ========================================= */
+
         setTimeout(function () {
+
             map.invalidateSize();
+
         }, 300);
 
 
         console.log("Places 地圖初始化成功！");
+        console.log("已加入地點數量：", places.length);
 
     });
+
     </script>
 
 </body>
