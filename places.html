@@ -284,18 +284,29 @@ document.addEventListener("DOMContentLoaded", function () {
         zoomControl: true
     });
 
-    // 柔和淺色地圖
+    
+    // OpenStreetMap 底圖（不需要 API Key）
     const tileLayer = L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         {
             attribution:
-                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            subdomains: "abcd",
-            maxZoom: 20
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            subdomains: "abc",
+            maxZoom: 19
         }
     );
 
     tileLayer.addTo(map);
+
+    // 確認底圖載入狀態
+    tileLayer.on("load", function () {
+        console.log("OpenStreetMap 底圖載入成功！");
+    });
+
+    tileLayer.on("tileerror", function (error) {
+        console.error("地圖圖磚載入失敗：", error);
+    });
+
 
     // 日本顯示範圍
     const japanBounds = L.latLngBounds(
