@@ -855,3 +855,61 @@ body.launching {
     color: #A97878;
 }
 
+
+/* =========================================
+   MOBILE - CARTRIDGE PROPORTIONS
+========================================= */
+
+@media (max-width: 650px) {
+
+    .cartridge-shelf {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        justify-items: center;
+
+        column-gap: 28px;
+        row-gap: 38px;
+
+        max-width: 340px;
+    }
+
+    .game-cartridge {
+        width: 105px;
+        max-width: 105px;
+    }
+
+    .cartridge-shell {
+        width: 105px;
+
+        aspect-ratio: 21 / 31;
+
+        flex-shrink: 0;
+    }
+
+    .cartridge-name {
+        margin-top: 13px;
+
+        font-size: 10px;
+        line-height: 1.6;
+    }
+
+}
+
+/* Smaller phones */
+
+@media (max-width: 360px) {
+
+    .cartridge-shelf {
+        column-gap: 18px;
+    }
+
+    .game-cartridge {
+        width: 98px;
+        max-width: 98px;
+    }
+
+    .cartridge-shell {
+        width: 98px;
+    }
+
+}
