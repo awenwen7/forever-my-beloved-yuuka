@@ -1069,7 +1069,7 @@ body.launching {
     .games-hero {
         width: 100% !important;
         max-width: none !important;
-        padding: 55px 20px 25px !important;
+        padding: 55px 0 25px !important;
     }
 
     .games-hero-image {
@@ -1077,10 +1077,20 @@ body.launching {
         height: 190px !important;
         max-height: 190px !important;
         aspect-ratio: auto !important;
+
+        border-radius: 0 !important;
         overflow: hidden !important;
-        border-radius: 8px;
         background: #193448;
     }
+
+    .games-hero-image > img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        object-position: center !important;
+    }
+
+}
 
     .games-hero-image > img {
         display: block;
