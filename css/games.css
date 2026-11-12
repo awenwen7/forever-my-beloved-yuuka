@@ -947,3 +947,16 @@ body.launching {
         transform: translateY(-3px);
     }
 }
+/* =========================================
+   MOBILE - CENTER LAST CARTRIDGE
+========================================= */
+
+@media (max-width: 650px) {
+
+    /* 遊戲數量為奇數時，最後一個卡帶置中 */
+    .cartridge-shelf > .game-cartridge:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+
+}
