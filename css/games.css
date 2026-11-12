@@ -784,8 +784,11 @@ body.launching {
     }
 
     .launch-cartridge {
-        width: min(210px, 58vw);
-    }
+    width: 101.6px;
+    height: 150px;
+
+    aspect-ratio: 21 / 31;
+}
 
 }
 
