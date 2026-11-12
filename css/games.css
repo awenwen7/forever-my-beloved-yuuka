@@ -1041,3 +1041,71 @@ body.launching {
 .game-collection::after {
     display: none;
 }
+
+/* =========================================
+   FINAL OVERRIDE
+========================================= */
+
+/* 1. 遊戲收藏區：純色背景 */
+
+.game-collection {
+    background: #193448 !important;
+    background-image: none !important;
+}
+
+.game-collection::before,
+.game-collection::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+    filter: none !important;
+}
+
+
+/* 2. 手機首頁照片：縮小、不裁切 */
+
+@media screen and (max-width: 650px) {
+
+    .games-hero {
+        width: 100% !important;
+        max-width: none !important;
+        padding: 55px 20px 25px !important;
+    }
+
+    .games-hero-image {
+        width: 100% !important;
+        height: 190px !important;
+        max-height: 190px !important;
+        aspect-ratio: auto !important;
+        overflow: hidden !important;
+        border-radius: 8px;
+        background: #193448;
+    }
+
+    .games-hero-image > img {
+        display: block;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        object-position: center !important;
+    }
+
+    .games-hero-content {
+        padding: 15px !important;
+    }
+
+    .games-hero .eyebrow {
+        font-size: 8px !important;
+        letter-spacing: 1.5px;
+    }
+
+    .games-hero h1 {
+        font-size: 34px !important;
+    }
+
+    .games-hero .hero-description {
+        margin-top: 12px;
+        font-size: 10px !important;
+        line-height: 1.7;
+    }
+}
