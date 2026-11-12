@@ -853,3 +853,73 @@ body.launching {
 .collection-heading > p:last-child {
     color: #A97878;
 }
+
+/* =========================================
+   17. SIMPLE FULLSCREEN COVER TRANSITION
+   Remove cartridge enlargement animation
+========================================= */
+
+/* Fullscreen background fades in */
+.launch-screen {
+    transition:
+        opacity 0.55s ease,
+        visibility 0.55s ease;
+}
+
+/* No cartridge scaling */
+.launch-cartridge {
+    transform: none;
+    transition: none;
+}
+
+/* Show the cover directly in fullscreen */
+.launch-screen.cover-open .launch-cartridge {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+    max-width: none;
+
+    aspect-ratio: auto;
+
+    padding: 0;
+
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+
+    transform: none;
+}
+
+/* Hide cartridge structure */
+.launch-screen.cover-open .launch-cartridge-top,
+.launch-screen.cover-open .launch-cartridge-bottom {
+    display: none;
+}
+
+/* Fullscreen artwork */
+.launch-screen.cover-open .launch-cartridge-label {
+    position: absolute;
+    inset: 0;
+
+    margin: 0;
+    border-radius: 0;
+
+    background: #292824;
+}
+
+.launch-screen.cover-open .launch-cartridge-label img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    opacity: 1;
+}
+
+/* Button appears slightly after the cover */
+.launch-screen.cover-open .open-memory-button {
+    transition-delay: 0.35s;
+}
