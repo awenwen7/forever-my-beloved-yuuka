@@ -16,20 +16,44 @@
     <link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    />
-
+    >
 
     <style>
+        /* =========================================
+           SOFT SKY BLUE — COLOR SYSTEM
+        ========================================= */
+
         :root {
-            --bg: #F5F8F8;
+            /* Background */
+            --bg: #F5FAFD;
             --surface: #FFFFFF;
-            --surface-blue: #E8F0F2;
-            --border: #DCE5E8;
-            --blue: #A9C0C9;
-            --blue-dark: #536873;
-            --text: #657A84;
-            --muted: #96A8AE;
+
+            /* Blue surfaces */
+            --surface-blue: #E7F2F8;
+            --surface-blue-light: #DCEEF6;
+            --surface-blue-deep: #B7D8E9;
+
+            /* Main blue */
+            --blue: #6D9FBC;
+            --blue-hover: #5689A8;
+
+            /* Text */
+            --blue-dark: #405E72;
+            --text: #526F82;
+            --muted: #819EAF;
+
+            /* Border */
+            --border: #DCEAF2;
+
+            /* Coral pink accents */
+            --pink: #E8C9C0;
+            --pink-light: #F3E9E5;
         }
+
+
+        /* =========================================
+           GLOBAL
+        ========================================= */
 
         * {
             box-sizing: border-box;
@@ -48,6 +72,11 @@
             padding: 65px 0;
         }
 
+
+        /* =========================================
+           PAGE HEADER
+        ========================================= */
+
         .page-header {
             text-align: center;
             margin-bottom: 38px;
@@ -56,7 +85,7 @@
         .page-label {
             font-size: 11px;
             letter-spacing: 3px;
-            color: var(--muted);
+            color: var(--blue);
             margin-bottom: 12px;
         }
 
@@ -71,15 +100,21 @@
         .page-description {
             font-size: 13px;
             letter-spacing: 1px;
+            line-height: 1.9;
             color: var(--muted);
         }
+
+
+        /* =========================================
+           MAP SECTION
+        ========================================= */
 
         .map-section {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 18px;
+            border-radius: 20px;
             padding: 24px;
-            box-shadow: 0 8px 30px rgba(83, 104, 115, 0.05);
+            box-shadow: 0 8px 30px rgba(109, 159, 188, 0.08);
         }
 
         .map-heading {
@@ -99,97 +134,97 @@
 
         .map-country {
             font-size: 11px;
-            color: var(--blue-dark);
+            color: var(--blue-hover);
             background: var(--surface-blue);
-            padding: 6px 13px;
+            padding: 7px 15px;
+            border: 1px solid var(--border);
             border-radius: 20px;
         }
 
-        /* Leaflet 地圖 */
 
-#japan-map {
-    width: 100%;
-    height: 560px;
-    border-radius: 12px;
-    background: #EAF1F3;
-    overflow: hidden;
-    z-index: 1;
-}
+        /* =========================================
+           LEAFLET MAP
+        ========================================= */
 
-.leaflet-container {
-    font-family: 'Noto Serif JP', serif;
-    background: #EAF1F3;
-}
+        #japan-map {
+            width: 100%;
+            height: 560px;
+            border-radius: 14px;
+            background: var(--surface-blue-light);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            z-index: 1;
+        }
 
-/* =========================================
-   SOFT JAPANESE MAP
-========================================= */
+        .leaflet-container {
+            font-family: 'Noto Serif JP', serif;
+            background: var(--surface-blue-light);
+        }
 
-#japan-map {
-    background: #EAF0EF;
-}
+        /* Soft blue map appearance */
 
-/* 柔和日系地圖色調 */
-#japan-map .leaflet-tile {
-    filter:
-        saturate(0.65)
-        brightness(1.06)
-        contrast(0.91);
-}
+        #japan-map .leaflet-tile {
+            filter:
+                saturate(0.78)
+                brightness(1.06)
+                contrast(0.94);
+        }
 
-/* 地圖控制按鈕 */
-#japan-map .leaflet-control-zoom a {
-    background: #FBF8F3;
-    color: #806B5A;
-    border-color: #E5DED6;
-}
 
-/* 地圖控制按鈕滑鼠效果 */
-#japan-map .leaflet-control-zoom a:hover {
-    background: #F3E8E1;
-    color: #A18D7B;
-}
+        /* =========================================
+           MAP ZOOM CONTROLS
+        ========================================= */
 
-/* 地圖版權文字 */
-#japan-map .leaflet-control-attribution {
-    background: rgba(251, 248, 243, 0.85);
-    color: #A18D7B;
-    font-size: 9px;
-}
+        #japan-map .leaflet-control-zoom {
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            overflow: hidden;
+        }
 
-.leaflet-control-zoom a {
-    color: #536873 !important;
-    border-color: #DCE5E8 !important;
-}
+        #japan-map .leaflet-control-zoom a {
+            background: var(--surface);
+            color: var(--blue-hover);
+            border-color: var(--border);
+        }
 
-.leaflet-control-attribution {
-    font-size: 9px !important;
-    color: #82949B !important;
-}
+        #japan-map .leaflet-control-zoom a:hover {
+            background: var(--surface-blue);
+            color: var(--blue-dark);
+        }
 
-/* 隱藏地圖不需要的多餘邊框 */
 
-.leaflet-container {
-    font-family: 'Noto Serif JP', serif;
-    background: #EAF1F3;
-}
+        /* =========================================
+           MAP ATTRIBUTION
+        ========================================= */
 
-.leaflet-control-zoom a {
-    color: #536873 !important;
-    border-color: #DCE5E8 !important;
-}
+        #japan-map .leaflet-control-attribution {
+            background: rgba(245, 250, 253, 0.92);
+            color: var(--muted);
+            font-size: 9px;
+        }
 
-.leaflet-control-attribution {
-    font-size: 9px !important;
-    color: #82949B !important;
-}
+        #japan-map .leaflet-control-attribution a {
+            color: var(--blue-hover);
+        }
+
+
+        /* =========================================
+           MAP DESCRIPTION
+        ========================================= */
+
         .map-description {
             font-size: 12px;
             color: var(--muted);
             text-align: center;
+            line-height: 1.8;
             margin: 17px 0 0;
             letter-spacing: 1px;
         }
+
+
+        /* =========================================
+           MAP LEGEND
+        ========================================= */
 
         .map-legend {
             display: flex;
@@ -204,32 +239,55 @@
             align-items: center;
             gap: 8px;
             font-size: 12px;
+            color: var(--text);
         }
+
+        /* Visited places */
 
         .legend-heart {
             font-size: 17px;
-            color: #829DA9;
+            color: var(--blue);
         }
+
+        /* Future destinations */
 
         .legend-heart.planned {
-            color: #AABBC2;
+            color: var(--pink);
         }
 
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
         @media (max-width: 600px) {
+
             .places-container {
+                width: 92%;
                 padding: 42px 0;
+            }
+
+            .page-header {
+                margin-bottom: 28px;
             }
 
             .page-title {
                 font-size: 27px;
             }
 
+            .page-description {
+                font-size: 12px;
+                line-height: 1.9;
+            }
+
             .map-section {
                 padding: 15px;
+                border-radius: 16px;
             }
 
             #japan-map {
                 height: 430px;
+                border-radius: 12px;
             }
 
             .map-heading h2 {
@@ -239,7 +297,12 @@
             .map-legend {
                 gap: 14px;
             }
+
+            .legend-item {
+                font-size: 11px;
+            }
         }
+
     </style>
 </head>
 
@@ -248,27 +311,42 @@
     <main class="places-container">
 
         <header class="page-header">
-            <div class="page-label">OUR JOURNEY TOGETHER</div>
 
-            <h1 class="page-title">ふたりの場所</h1>
+            <div class="page-label">
+                OUR JOURNEY TOGETHER
+            </div>
+
+            <h1 class="page-title">
+                ふたりの場所
+            </h1>
 
             <p class="page-description">
                 一緒に訪れた場所、これから訪れたい場所。
             </p>
+
         </header>
+
 
         <section class="map-section">
 
             <div class="map-heading">
+
                 <h2>思い出マップ</h2>
-                <span class="map-country">日本</span>
+
+                <span class="map-country">
+                    日本
+                </span>
+
             </div>
 
+
             <div id="japan-map"></div>
+
 
             <p class="map-description">
                 地図を動かして、ふたりの足跡を探そう。
             </p>
+
 
             <div class="map-legend">
 
@@ -287,86 +365,110 @@
         </section>
 
     </main>
-<!-- Leaflet JavaScript -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
 
-    const mapElement = document.getElementById("japan-map");
+    <!-- =========================================
+         LEAFLET JAVASCRIPT
+    ========================================= -->
 
-    // 確認地圖容器存在
-    if (!mapElement) {
-        console.error("找不到 japan-map 地圖容器");
-        return;
-    }
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    // 確認 Leaflet 是否載入
-    if (typeof L === "undefined") {
-        mapElement.innerHTML =
-            '<p style="padding:30px;text-align:center;color:#536873;">地圖載入失敗，請重新整理頁面。</p>';
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
 
-        console.error("Leaflet JavaScript 載入失敗");
-        return;
-    }
+        const mapElement = document.getElementById("japan-map");
 
-    // 建立日本地圖
-    const map = L.map("japan-map", {
-        center: [36.2, 138.2],
-        zoom: 5,
-        minZoom: 4,
-        maxZoom: 12,
-        scrollWheelZoom: true,
-        zoomControl: true
-    });
-
-    
-    // OpenStreetMap 底圖（不需要 API Key）
-    const tileLayer = L.tileLayer(
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        {
-            attribution:
-                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            subdomains: "abc",
-            maxZoom: 19
+        // Check map container
+        if (!mapElement) {
+            console.error("找不到 japan-map 地圖容器");
+            return;
         }
-    );
 
-    tileLayer.addTo(map);
+        // Check Leaflet
+        if (typeof L === "undefined") {
 
-    // 確認底圖載入狀態
-    tileLayer.on("load", function () {
-        console.log("OpenStreetMap 底圖載入成功！");
-    });
+            mapElement.innerHTML =
+                '<p style="padding:30px;text-align:center;color:#405E72;">地圖載入失敗，請重新整理頁面。</p>';
 
-    tileLayer.on("tileerror", function (error) {
-        console.error("地圖圖磚載入失敗：", error);
-    });
+            console.error("Leaflet JavaScript 載入失敗");
+            return;
+        }
 
 
-    // 日本顯示範圍
-    const japanBounds = L.latLngBounds(
-        [24.0, 122.0],
-        [46.5, 146.0]
-    );
+        // Initialize Japan map
+        const map = L.map("japan-map", {
 
-    map.setMaxBounds(japanBounds);
+            center: [36.2, 138.2],
 
-    map.on("drag", function () {
-        map.panInsideBounds(japanBounds, {
-            animate: false
+            zoom: 5,
+
+            minZoom: 4,
+
+            maxZoom: 12,
+
+            scrollWheelZoom: true,
+
+            zoomControl: true
+
         });
+
+
+        // OpenStreetMap tiles
+        const tileLayer = L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {
+
+                attribution:
+                    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+
+                subdomains: "abc",
+
+                maxZoom: 19
+
+            }
+        );
+
+
+        tileLayer.addTo(map);
+
+
+        // Tile loading status
+        tileLayer.on("load", function () {
+            console.log("OpenStreetMap 底圖載入成功！");
+        });
+
+        tileLayer.on("tileerror", function (error) {
+            console.error("地圖圖磚載入失敗：", error);
+        });
+
+
+        // Restrict map to Japan
+        const japanBounds = L.latLngBounds(
+            [24.0, 122.0],
+            [46.5, 146.0]
+        );
+
+        map.setMaxBounds(japanBounds);
+
+        map.on("drag", function () {
+
+            map.panInsideBounds(japanBounds, {
+                animate: false
+            });
+
+        });
+
+
+        // Refresh map size after rendering
+        setTimeout(function () {
+            map.invalidateSize();
+        }, 300);
+
+
+        console.log("Places 地圖初始化成功！");
+
     });
-
-    // 確保地圖尺寸正確
-    setTimeout(function () {
-        map.invalidateSize();
-    }, 300);
-
-    console.log("Places 地圖初始化成功！");
-
-});
-</script>
+    </script>
 
 </body>
 </html>
