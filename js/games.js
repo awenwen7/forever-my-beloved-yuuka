@@ -12,7 +12,6 @@ const launchTitle = document.getElementById("launchTitle");
 const closeLaunch = document.getElementById("closeLaunch");
 const openMemoryButton = document.getElementById("openMemoryButton");
 
-let launchTimer = null;
 let activePage = null;
 
 
@@ -68,9 +67,7 @@ function playStartupSound() {
         });
 
         setTimeout(() => {
-
             audio.close();
-
         }, 1000);
 
     } catch (error) {
@@ -95,12 +92,9 @@ function openCartridge(cartridge) {
     if (!title || !cover || !page) {
 
         console.error("Game information is incomplete.");
-
         return;
 
     }
-
-    clearTimeout(launchTimer);
 
     activePage = page;
 
@@ -109,25 +103,16 @@ function openCartridge(cartridge) {
 
     launchTitle.textContent = title;
 
-    launchScreen.classList.remove("cover-open");
-
-    launchScreen.classList.add("active");
-
-    launchScreen.removeAttribute("inert");
-
-    launchScreen.setAttribute("aria-hidden", "false");
-
     document.body.classList.add("launching");
 
+    launchScreen.removeAttribute("inert");
+    launchScreen.setAttribute("aria-hidden", "false");
+
+    /* Show fullscreen cover directly */
+    launchScreen.classList.add("active");
+    launchScreen.classList.add("cover-open");
+
     playStartupSound();
-
-
-    // Wait for the cartridge animation
-    launchTimer = setTimeout(() => {
-
-        launchScreen.classList.add("cover-open");
-
-    }, 750);
 
 }
 
@@ -138,13 +123,10 @@ function openCartridge(cartridge) {
 
 function closeCartridge() {
 
-    clearTimeout(launchTimer);
-
     launchScreen.classList.remove("cover-open");
     launchScreen.classList.remove("active");
 
     launchScreen.setAttribute("aria-hidden", "true");
-
     launchScreen.setAttribute("inert", "");
 
     document.body.classList.remove("launching");
@@ -195,7 +177,6 @@ closeLaunch.addEventListener("click", () => {
 
 });
 
-
 openMemoryButton.addEventListener("click", () => {
 
     openMemoryPage();
@@ -222,7 +203,7 @@ document.addEventListener("keydown", (event) => {
 
 
 /* =========================================
-   9. PREVENT BACKGROUND SCROLL
+   9. PAGE RESTORE
 ========================================= */
 
 window.addEventListener("pageshow", () => {
