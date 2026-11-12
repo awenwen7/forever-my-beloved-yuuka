@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Our Places | Forever My Beloved Yuuka</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #F5F8F8;
+            --surface: #FFFFFF;
+            --surface-blue: #E8F0F2;
+            --border: #DCE5E8;
+            --blue: #A9C0C9;
+            --blue-dark: #536873;
+            --text: #657A84;
+            --muted: #96A8AE;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .places-container {
+            width: min(1100px, 92%);
+            margin: 0 auto;
+            padding: 65px 0;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .page-label {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .page-title {
+            font-size: 34px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            color: var(--blue-dark);
+            margin: 0 0 12px;
+        }
+
+        .page-description {
+            font-size: 13px;
+            letter-spacing: 1px;
+            color: var(--muted);
+        }
+
+        .map-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 8px 30px rgba(83, 104, 115, 0.05);
+        }
+
+        .map-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .map-heading h2 {
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--blue-dark);
+            margin: 0;
+        }
+
+        .map-country {
+            font-size: 11px;
+            color: var(--blue-dark);
+            background: var(--surface-blue);
+            padding: 6px 13px;
+            border-radius: 20px;
+        }
+
+        #japan-map {
+            width: 100%;
+            height: 560px;
+            border-radius: 12px;
+            background: #EAF1F3;
+            overflow: hidden;
+        }
+
+        .map-description {
+            font-size: 12px;
+            color: var(--muted);
+            text-align: center;
+            margin: 17px 0 0;
+            letter-spacing: 1px;
+        }
+
+        .map-legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+        }
+
+        .legend-heart {
+            font-size: 17px;
+            color: #829DA9;
+        }
+
+        .legend-heart.planned {
+            color: #AABBC2;
+        }
+
+        @media (max-width: 600px) {
+            .places-container {
+                padding: 42px 0;
+            }
+
+            .page-title {
+                font-size: 27px;
+            }
+
+            .map-section {
+                padding: 15px;
+            }
+
+            #japan-map {
+                height: 430px;
+            }
+
+            .map-heading h2 {
+                font-size: 15px;
+            }
+
+            .map-legend {
+                gap: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="places-container">
+
+        <header class="page-header">
+            <div class="page-label">OUR JOURNEY TOGETHER</div>
+
+            <h1 class="page-title">ふたりの場所</h1>
+
+            <p class="page-description">
+                一緒に訪れた場所、これから訪れたい場所。
+            </p>
+        </header>
+
+        <section class="map-section">
+
+            <div class="map-heading">
+                <h2>日本の思い出マップ</h2>
+                <span class="map-country">JAPAN</span>
+            </div>
+
+            <div id="japan-map"></div>
+
+            <p class="map-description">
+                地図を動かして、ふたりの足跡を探そう。
+            </p>
+
+            <div class="map-legend">
+
+                <div class="legend-item">
+                    <span class="legend-heart">♥</span>
+                    <span>訪れた場所</span>
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-heart planned">♡</span>
+                    <span>これから行きたい場所</span>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
