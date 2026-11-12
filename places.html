@@ -105,17 +105,30 @@
             border-radius: 20px;
         }
 
-        #japan-map {
-            width: 100%;
-            height: 560px;
-            border-radius: 12px;
-            background: #EAF1F3;
-            overflow: hidden;
-        }
-        /* Leaflet 地圖樣式 */
+        /* Leaflet 地圖 */
 
 #japan-map {
+    width: 100%;
+    height: 560px;
+    border-radius: 12px;
+    background: #EAF1F3;
+    overflow: hidden;
     z-index: 1;
+}
+
+.leaflet-container {
+    font-family: 'Noto Serif JP', serif;
+    background: #EAF1F3;
+}
+
+.leaflet-control-zoom a {
+    color: #536873 !important;
+    border-color: #DCE5E8 !important;
+}
+
+.leaflet-control-attribution {
+    font-size: 9px !important;
+    color: #82949B !important;
 }
 
 /* 隱藏地圖不需要的多餘邊框 */
@@ -242,7 +255,26 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
+
+<script>
 document.addEventListener("DOMContentLoaded", function () {
+
+    const mapElement = document.getElementById("japan-map");
+
+    // 確認地圖容器存在
+    if (!mapElement) {
+        console.error("找不到 japan-map 地圖容器");
+        return;
+    }
+
+    // 確認 Leaflet 是否載入
+    if (typeof L === "undefined") {
+        mapElement.innerHTML =
+            '<p style="padding:30px;text-align:center;color:#536873;">地圖載入失敗，請重新整理頁面。</p>';
+
+        console.error("Leaflet JavaScript 載入失敗");
+        return;
+    }
 
     // 建立日本地圖
     const map = L.map("japan-map", {
@@ -254,8 +286,8 @@ document.addEventListener("DOMContentLoaded", function () {
         zoomControl: true
     });
 
-    // 設定柔和的地圖底圖
-    L.tileLayer(
+    // 柔和淺色地圖
+    const tileLayer = L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
         {
             attribution:
@@ -263,22 +295,33 @@ document.addEventListener("DOMContentLoaded", function () {
             subdomains: "abcd",
             maxZoom: 20
         }
-    ).addTo(map);
+    );
 
-    // 日本地圖顯示範圍
+    tileLayer.addTo(map);
+
+    // 日本顯示範圍
     const japanBounds = L.latLngBounds(
         [24.0, 122.0],
         [46.5, 146.0]
     );
 
     map.setMaxBounds(japanBounds);
+
     map.on("drag", function () {
         map.panInsideBounds(japanBounds, {
             animate: false
         });
     });
 
+    // 確保地圖尺寸正確
+    setTimeout(function () {
+        map.invalidateSize();
+    }, 300);
+
+    console.log("Places 地圖初始化成功！");
+
 });
 </script>
+
 </body>
 </html>
