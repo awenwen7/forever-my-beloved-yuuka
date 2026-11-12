@@ -49,7 +49,7 @@ function playStartupSound() {
             gain.gain.setValueAtTime(0, startTime);
 
             gain.gain.linearRampToValueAtTime(
-                0.16,
+                0.24,
                 startTime + 0.03
             );
 
