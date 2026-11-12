@@ -121,6 +121,42 @@
     background: #EAF1F3;
 }
 
+/* =========================================
+   SOFT JAPANESE MAP
+========================================= */
+
+#japan-map {
+    background: #EAF0EF;
+}
+
+/* 柔和日系地圖色調 */
+#japan-map .leaflet-tile {
+    filter:
+        saturate(0.65)
+        brightness(1.06)
+        contrast(0.91);
+}
+
+/* 地圖控制按鈕 */
+#japan-map .leaflet-control-zoom a {
+    background: #FBF8F3;
+    color: #806B5A;
+    border-color: #E5DED6;
+}
+
+/* 地圖控制按鈕滑鼠效果 */
+#japan-map .leaflet-control-zoom a:hover {
+    background: #F3E8E1;
+    color: #A18D7B;
+}
+
+/* 地圖版權文字 */
+#japan-map .leaflet-control-attribution {
+    background: rgba(251, 248, 243, 0.85);
+    color: #A18D7B;
+    font-size: 9px;
+}
+
 .leaflet-control-zoom a {
     color: #536873 !important;
     border-color: #DCE5E8 !important;
