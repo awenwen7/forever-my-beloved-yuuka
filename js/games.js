@@ -108,9 +108,8 @@ function openCartridge(cartridge) {
     launchScreen.removeAttribute("inert");
     launchScreen.setAttribute("aria-hidden", "false");
 
-    /* Show fullscreen cover directly */
+    /* Show the small complete cartridge */
     launchScreen.classList.add("active");
-    launchScreen.classList.add("cover-open");
 
     playStartupSound();
 
@@ -123,7 +122,6 @@ function openCartridge(cartridge) {
 
 function closeCartridge() {
 
-    launchScreen.classList.remove("cover-open");
     launchScreen.classList.remove("active");
 
     launchScreen.setAttribute("aria-hidden", "true");
