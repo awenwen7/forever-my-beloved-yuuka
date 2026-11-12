@@ -1,25 +1,32 @@
 
 /* =========================================
-   1. ROOT
+   1. ROOT - SPLATOON INSPIRED COLORS
 ========================================= */
 
 :root {
-    --game-bg: #FBF8F3;
-    --game-surface: #F5F0E9;
-    --game-card: #F3EAE1;
+    /* PAGE COLORS */
+    --game-bg: #101F2D;
+    --game-surface: #193448;
+    --game-card: #24485D;
 
-    --game-text: #806B5A;
-    --game-muted: #A18D7B;
-    --game-accent: #B58D86;
+    /* TEXT COLORS */
+    --game-text: #F3EEE7;
+    --game-muted: #A9BBC5;
 
-    --game-border: #E5DED6;
+    /* ACCENT COLORS */
+    --game-accent: #38D9F2;
+    --game-purple: #9565C9;
+    --game-orange: #F2A12E;
 
-    /* WARM GREY CARTRIDGE */
-    --cartridge-body: #77736D;
-    --cartridge-top: #68645F;
-    --cartridge-dark: #56524D;
-    --cartridge-border: #625E58;
-    --cartridge-contact: #B9A47D;
+    /* BORDER */
+    --game-border: #34576A;
+
+    /* CARTRIDGE */
+    --cartridge-body: #52616B;
+    --cartridge-top: #40515D;
+    --cartridge-dark: #2B3D49;
+    --cartridge-border: #71818A;
+    --cartridge-contact: #D6B36E;
 }
 
 
@@ -64,18 +71,67 @@ button:focus-visible {
 
 .games-page {
     min-height: 100vh;
-
-    padding: 75px 30px 100px;
+    padding: 0;
 
     background: var(--game-bg);
 }
 
+
+/* =========================================
+   4. HERO COVER
+========================================= */
+
 .games-hero {
-    max-width: 850px;
+    max-width: 1200px;
 
     margin: 0 auto;
 
-    padding: 55px 20px 75px;
+    padding: 75px 30px 35px;
+
+    text-align: center;
+}
+
+.games-hero-image {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 7;
+
+    overflow: hidden;
+
+    border-radius: 8px;
+
+    background: #193448;
+}
+
+.games-hero-image > img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+.games-hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(8, 22, 35, 0.28);
+}
+
+.games-hero-content {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
 
     text-align: center;
 }
@@ -83,7 +139,7 @@ button:focus-visible {
 .eyebrow {
     margin: 0 0 18px;
 
-    color: var(--game-muted);
+    color: #F3EEE7;
 
     font-size: 10px;
     letter-spacing: 4px;
@@ -92,22 +148,31 @@ button:focus-visible {
 .games-hero h1 {
     margin: 0;
 
-    color: var(--game-text);
+    color: #FFFFFF;
 
-    font-size: clamp(38px, 6vw, 58px);
+    font-size: clamp(42px, 6vw, 76px);
     font-weight: 500;
     letter-spacing: 5px;
+
+    text-shadow:
+        0 3px 18px rgba(0, 0, 0, 0.35);
 }
 
 .hero-description {
     margin: 22px 0 0;
 
-    color: var(--game-muted);
+    color: #FFFFFF;
 
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 1px;
     line-height: 1.9;
+
+    text-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.4);
 }
+
+
+/* HERO DIVIDER */
 
 .hero-divider {
     display: flex;
@@ -116,7 +181,7 @@ button:focus-visible {
 
     gap: 15px;
 
-    margin-top: 35px;
+    margin-top: 30px;
 
     color: var(--game-accent);
     font-size: 16px;
@@ -129,19 +194,75 @@ button:focus-visible {
     width: 55px;
     height: 1px;
 
-    background: var(--game-border);
+    background: rgba(56, 217, 242, 0.65);
 }
 
 
 /* =========================================
-   4. COLLECTION HEADING
+   5. GAME COLLECTION
 ========================================= */
 
 .game-collection {
-    max-width: 1050px;
+    position: relative;
+    isolation: isolate;
 
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+
+    padding: 55px 30px 100px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            #1B3D56 0%,
+            #122B40 55%,
+            #101F2D 100%
+        );
 }
+
+
+/* DECORATIVE LIGHT */
+
+.game-collection::before,
+.game-collection::after {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    filter: blur(70px);
+    opacity: 0.16;
+
+    pointer-events: none;
+}
+
+.game-collection::before {
+    top: 20%;
+    left: -130px;
+
+    background: var(--game-accent);
+}
+
+.game-collection::after {
+    right: -130px;
+    bottom: 0;
+
+    background: var(--game-purple);
+}
+
+
+/* =========================================
+   6. COLLECTION HEADING
+========================================= */
 
 .collection-heading {
     margin-bottom: 55px;
@@ -152,10 +273,10 @@ button:focus-visible {
 .section-label {
     margin: 0 0 13px;
 
-    color: var(--game-muted);
+    color: var(--game-accent);
 
     font-size: 9px;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
 }
 
 .collection-heading h2 {
@@ -163,7 +284,7 @@ button:focus-visible {
 
     color: var(--game-text);
 
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 500;
     letter-spacing: 2px;
 }
@@ -171,7 +292,7 @@ button:focus-visible {
 .collection-heading > p:last-child {
     margin-top: 13px;
 
-    color: var(--game-muted);
+    color: #72D9E8;
 
     font-size: 11px;
     letter-spacing: 1px;
@@ -179,7 +300,7 @@ button:focus-visible {
 
 
 /* =========================================
-   5. CARTRIDGE SHELF
+   7. CARTRIDGE SHELF
 ========================================= */
 
 .cartridge-shelf {
@@ -199,7 +320,7 @@ button:focus-visible {
 
 
 /* =========================================
-   6. GAME CARTRIDGE BUTTON
+   8. GAME CARTRIDGE BUTTON
 ========================================= */
 
 .game-cartridge {
@@ -222,6 +343,9 @@ button:focus-visible {
     -webkit-tap-highlight-color: transparent;
 }
 
+
+/* CARTRIDGE BODY */
+
 .cartridge-shell {
     position: relative;
 
@@ -243,16 +367,18 @@ button:focus-visible {
     border-radius: 10px 10px 8px 8px;
 
     box-shadow:
-        0 5px 12px rgba(50, 45, 40, 0.15),
-        inset 0 0 0 2px rgba(255, 255, 255, 0.07);
+        0 7px 18px rgba(0, 0, 0, 0.35),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.08);
 
     transition:
         transform 0.35s ease,
-        box-shadow 0.35s ease;
+        box-shadow 0.35s ease,
+        border-color 0.35s ease,
+        background 0.35s ease;
 }
 
 
-/* Cartridge top */
+/* CARTRIDGE TOP */
 
 .cartridge-top {
     position: relative;
@@ -283,7 +409,7 @@ button:focus-visible {
 }
 
 
-/* Cartridge artwork */
+/* CARTRIDGE ARTWORK */
 
 .cartridge-label {
     position: relative;
@@ -297,9 +423,9 @@ button:focus-visible {
 
     overflow: hidden;
 
-    background: #E7E0D6;
+    background: #DCE7E9;
 
-    border: 2px solid rgba(55, 50, 45, 0.18);
+    border: 2px solid rgba(20, 35, 45, 0.35);
 
     border-radius: 3px;
 }
@@ -311,12 +437,11 @@ button:focus-visible {
     height: 100%;
 
     object-fit: cover;
-
     object-position: center;
 }
 
 
-/* Cartridge bottom */
+/* CARTRIDGE BOTTOM */
 
 .cartridge-bottom {
     position: relative;
@@ -340,7 +465,7 @@ button:focus-visible {
 }
 
 
-/* Cartridge title */
+/* CARTRIDGE TITLE */
 
 .cartridge-name {
     display: block;
@@ -357,23 +482,50 @@ button:focus-visible {
 }
 
 
-/* Hover */
+/* CARTRIDGE HOVER */
 
 @media (hover: hover) {
 
     .game-cartridge:hover .cartridge-shell {
         transform: translateY(-7px);
 
+        border-color: var(--game-accent);
+
         box-shadow:
-            0 12px 22px rgba(50, 45, 40, 0.19),
-            inset 0 0 0 2px rgba(255, 255, 255, 0.07);
+            0 0 0 1px rgba(56, 217, 242, 0.25),
+            0 0 20px rgba(56, 217, 242, 0.25),
+            0 12px 22px rgba(0, 0, 0, 0.3);
     }
 
 }
 
 
 /* =========================================
-   7. LAUNCH SCREEN
+   9. CARTRIDGE TAP FEEDBACK
+========================================= */
+
+.game-cartridge:active .cartridge-shell {
+    transform: translateY(-3px);
+
+    border-color: var(--game-accent);
+
+    background: #617985;
+
+    box-shadow:
+        0 0 0 2px rgba(56, 217, 242, 0.18),
+        0 0 18px rgba(56, 217, 242, 0.35),
+        0 8px 18px rgba(0, 0, 0, 0.3);
+
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease,
+        background 0.12s ease,
+        border-color 0.12s ease;
+}
+
+
+/* =========================================
+   10. LAUNCH SCREEN
 ========================================= */
 
 .launch-screen {
@@ -390,7 +542,7 @@ button:focus-visible {
 
     overflow: hidden;
 
-    background: #292824;
+    background: #0B1925;
 
     opacity: 0;
     visibility: hidden;
@@ -421,8 +573,9 @@ button:focus-visible {
     gap: 22px;
 }
 
+
 /* =========================================
-   8. LAUNCH CARTRIDGE
+   11. LAUNCH CARTRIDGE
 ========================================= */
 
 .launch-cartridge {
@@ -455,7 +608,7 @@ button:focus-visible {
 }
 
 
-/* Cartridge top */
+/* LAUNCH CARTRIDGE TOP */
 
 .launch-cartridge-top {
     position: relative;
@@ -486,7 +639,7 @@ button:focus-visible {
 }
 
 
-/* Cartridge artwork */
+/* LAUNCH CARTRIDGE ARTWORK */
 
 .launch-cartridge-label {
     position: relative;
@@ -500,9 +653,9 @@ button:focus-visible {
 
     overflow: hidden;
 
-    background: #E7E0D6;
+    background: #DCE7E9;
 
-    border: 1px solid rgba(55, 50, 45, 0.18);
+    border: 1px solid rgba(20, 35, 45, 0.35);
 
     border-radius: 3px;
 }
@@ -518,7 +671,7 @@ button:focus-visible {
 }
 
 
-/* Cartridge bottom */
+/* LAUNCH CARTRIDGE BOTTOM */
 
 .launch-cartridge-bottom {
     position: relative;
@@ -534,14 +687,14 @@ button:focus-visible {
 
 
 /* =========================================
-   9. LAUNCH TITLE
+   12. LAUNCH TITLE
 ========================================= */
 
 .launch-title {
     position: relative;
     z-index: 1;
 
-    color: #F5F0E9;
+    color: #F3EEE7;
 
     font-size: 13px;
     letter-spacing: 2px;
@@ -559,7 +712,7 @@ button:focus-visible {
 
 
 /* =========================================
-   10. OPEN MEMORIES BUTTON
+   13. OPEN MEMORIES BUTTON
 ========================================= */
 
 .open-memory-button {
@@ -568,13 +721,13 @@ button:focus-visible {
 
     padding: 11px 24px;
 
-    border: 1px solid rgba(245, 240, 233, 0.55);
+    border: 1px solid rgba(56, 217, 242, 0.75);
 
     border-radius: 30px;
 
-    background: rgba(41, 40, 36, 0.75);
+    background: rgba(25, 52, 72, 0.85);
 
-    color: #F5F0E9;
+    color: #F3EEE7;
 
     font-size: 11px;
     letter-spacing: 1.5px;
@@ -591,6 +744,7 @@ button:focus-visible {
         opacity 0.4s ease,
         transform 0.4s ease,
         background 0.3s ease,
+        border-color 0.3s ease,
         visibility 0.4s ease;
 }
 
@@ -607,16 +761,18 @@ button:focus-visible {
 .open-memory-button span {
     margin-left: 8px;
 
-    color: #D8B9AD;
+    color: var(--game-accent);
 }
 
 .open-memory-button:hover {
-    background: rgba(181, 141, 134, 0.85);
+    background: #24485D;
+
+    border-color: var(--game-accent);
 }
 
 
 /* =========================================
-   11. CLOSE BUTTON
+   14. CLOSE BUTTON
 ========================================= */
 
 .launch-close {
@@ -636,7 +792,7 @@ button:focus-visible {
 
     background: transparent;
 
-    color: #F5F0E9;
+    color: #F3EEE7;
 
     font-family: sans-serif;
     font-size: 34px;
@@ -661,70 +817,7 @@ button:focus-visible {
 
 
 /* =========================================
-   12. LAUNCH SCREEN MOBILE
-========================================= */
-
-@media (max-width: 650px) {
-
-    .launch-cartridge {
-        width: 101.6px;
-        height: 150px;
-    }
-
-    .launch-close {
-        top: 12px;
-        right: 15px;
-    }
-
-}
-
-/* =========================================
-   12. CLOSE BUTTON
-========================================= */
-
-.launch-close {
-    position: absolute;
-
-    top: 20px;
-    right: 25px;
-
-    z-index: 5;
-
-    width: 42px;
-    height: 42px;
-
-    padding: 0;
-
-    border: none;
-
-    background: transparent;
-
-    color: #F5F0E9;
-
-    font-family: sans-serif;
-    font-size: 34px;
-    font-weight: 300;
-
-    cursor: pointer;
-
-    opacity: 0;
-
-    transition:
-        opacity 0.3s ease,
-        transform 0.3s ease;
-}
-
-.launch-screen.active .launch-close {
-    opacity: 1;
-}
-
-.launch-close:hover {
-    transform: rotate(90deg);
-}
-
-
-/* =========================================
-   13. BODY LOCK
+   15. BODY LOCK
 ========================================= */
 
 body.launching {
@@ -733,22 +826,47 @@ body.launching {
 
 
 /* =========================================
-   14. MOBILE
+   16. MOBILE
 ========================================= */
 
 @media (max-width: 650px) {
 
-    .games-page {
-        padding: 45px 20px 75px;
-    }
+    /* PAGE */
 
     .games-hero {
-        padding: 40px 10px 55px;
+        padding: 45px 20px 25px;
     }
 
-    .hero-description {
+
+    /* HERO IMAGE */
+
+    .games-hero-image {
+        aspect-ratio: 4 / 5;
+    }
+
+    .games-hero-content {
+        padding: 15px;
+    }
+
+    .games-hero .eyebrow {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .games-hero h1 {
+        font-size: 42px;
+    }
+
+    .games-hero .hero-description {
         font-size: 11px;
         line-height: 1.8;
+    }
+
+
+    /* COLLECTION */
+
+    .game-collection {
+        padding: 40px 18px 75px;
     }
 
     .collection-heading {
@@ -756,117 +874,15 @@ body.launching {
     }
 
     .collection-heading h2 {
-        font-size: 21px;
+        font-size: 23px;
     }
+
+
+    /* CARTRIDGE SHELF */
 
     .cartridge-shelf {
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
-
-        gap: 38px 22px;
-
-        max-width: 390px;
-    }
-
-    .game-cartridge {
-        max-width: 125px;
-    }
-
-    .cartridge-name {
-        margin-top: 13px;
-
-        font-size: 10px;
-    }
-
-    .launch-close {
-        top: 12px;
-        right: 15px;
-    }
-
-    .launch-cartridge {
-    width: 101.6px;
-    height: 150px;
-
-    aspect-ratio: 21 / 31;
-}
-
-}
-
-
-/* =========================================
-   15. SMALL MOBILE
-========================================= */
-
-@media (max-width: 360px) {
-
-    .games-page {
-        padding-right: 15px;
-        padding-left: 15px;
-    }
-
-    .cartridge-shelf {
-        gap: 32px 15px;
-    }
-
-    .game-cartridge {
-        max-width: 115px;
-    }
-
-}
-
-
-/* =========================================
-   16. REDUCED MOTION
-========================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-
-        transition-duration: 0.01ms !important;
-    }
-
-}
-
-/* =========================================
-   GAMES PAGE - TITLE COLORS
-========================================= */
-
-/* Japanese subtitle */
-.games-hero .eyebrow {
-    color: #A97878;
-}
-
-/* Main title */
-.games-hero h1 {
-    color: #292A29;
-}
-
-/* Collection title */
-.collection-heading h2 {
-    color: #292A29;
-}
-
-/* Japanese description */
-.collection-heading > p:last-child {
-    color: #A97878;
-}
-
-
-/* =========================================
-   MOBILE - CARTRIDGE PROPORTIONS
-========================================= */
-
-@media (max-width: 650px) {
-
-    .cartridge-shelf {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
 
         justify-items: center;
 
@@ -896,14 +912,51 @@ body.launching {
         line-height: 1.6;
     }
 
+
+    /* LAUNCH SCREEN */
+
+    .launch-cartridge {
+        width: 101.6px;
+        height: 150px;
+
+        aspect-ratio: 21 / 31;
+    }
+
+    .launch-close {
+        top: 12px;
+        right: 15px;
+    }
+
+
+    /* LAST CARTRIDGE CENTER */
+
+    .cartridge-shelf > .game-cartridge:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+
 }
 
-/* Smaller phones */
+
+/* =========================================
+   17. SMALL MOBILE
+========================================= */
 
 @media (max-width: 360px) {
 
+    .games-hero {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .game-collection {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
     .cartridge-shelf {
         column-gap: 18px;
+        row-gap: 32px;
     }
 
     .game-cartridge {
@@ -917,147 +970,22 @@ body.launching {
 
 }
 
+
 /* =========================================
-   CARTRIDGE - TAP FEEDBACK
+   18. REDUCED MOTION
 ========================================= */
 
-/* 手機點擊回饋 */
-.game-cartridge:active .cartridge-shell {
-    transform: translateY(-3px);
+@media (prefers-reduced-motion: reduce) {
 
-    border-color: #D8C3A5;
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
 
-    background: #89847C;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
 
-    box-shadow:
-        0 0 0 2px rgba(216, 195, 165, 0.18),
-        0 0 18px rgba(216, 195, 165, 0.4),
-        0 8px 18px rgba(50, 45, 40, 0.18);
-
-    transition:
-        transform 0.12s ease,
-        box-shadow 0.12s ease,
-        background 0.12s ease,
-        border-color 0.12s ease;
-}
-
-/* 電腦滑鼠按下回饋 */
-@media (hover: hover) {
-    .game-cartridge:active .cartridge-shell {
-        transform: translateY(-3px);
-    }
-}
-/* =========================================
-   MOBILE - CENTER LAST CARTRIDGE
-========================================= */
-
-@media (max-width: 650px) {
-
-    /* 遊戲數量為奇數時，最後一個卡帶置中 */
-    .cartridge-shelf > .game-cartridge:last-child:nth-child(odd) {
-        grid-column: 1 / -1;
-        justify-self: center;
-    }
-
-}
-/* =========================================
-   GAMES HERO COVER IMAGE
-========================================= */
-
-.games-hero {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 0 65px;
-}
-
-.games-hero-image {
-    position: relative;
-
-    width: 100%;
-    aspect-ratio: 16 / 7;
-
-    overflow: hidden;
-
-    border-radius: 5px;
-    background: #E8DED3;
-}
-
-.games-hero-image > img {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-    object-position: center;
-}
-
-.games-hero-overlay {
-    position: absolute;
-    inset: 0;
-
-    background: rgba(35, 30, 27, 0.28);
-}
-
-.games-hero-content {
-    position: absolute;
-    inset: 0;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-
-    text-align: center;
-}
-
-.games-hero .eyebrow {
-    color: #F8F0E8;
-}
-
-.games-hero h1 {
-    color: #FFFFFF;
-
-    font-size: clamp(38px, 6vw, 58px);
-    font-weight: 500;
-    letter-spacing: 5px;
-
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-}
-
-.games-hero .hero-description {
-    color: #FFFFFF;
-
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
-}
-
-@media (max-width: 650px) {
-
-    .games-hero {
-        padding: 0 0 50px;
-    }
-
-    .games-hero-image {
-        aspect-ratio: 4 / 5;
-    }
-
-    .games-hero-content {
-        padding: 15px;
-    }
-
-    .games-hero .eyebrow {
-        font-size: 9px;
-        letter-spacing: 2px;
-    }
-
-    .games-hero h1 {
-        font-size: 38px;
-    }
-
-    .games-hero .hero-description {
-        font-size: 10px;
+        transition-duration: 0.01ms !important;
     }
 
 }
