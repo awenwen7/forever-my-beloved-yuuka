@@ -1,1 +1,798 @@
 
+/* =========================================
+   IMPORTANT DAYS
+   Forever My Beloved Yuuka
+========================================= */
+
+:root {
+    --bg: #FBF8F3;
+    --text: #806B5A;
+    --muted: #A18D7B;
+    --card: #F3E8E1;
+    --border: #E5DED6;
+    --accent: #B58D86;
+    --white: #FFFEFC;
+
+    /* Macaron colors */
+    --rose: #E9B9BE;
+    --yellow: #EED9A1;
+    --lavender: #C9BEDF;
+    --mint: #BBD8C8;
+    --blue: #BDD4E8;
+    --peach: #EBC5AD;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', 'Noto Serif JP', serif;
+    line-height: 1.7;
+}
+
+button {
+    font: inherit;
+}
+
+
+/* Navigation */
+
+.top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 58px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(251, 248, 243, 0.96);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+}
+
+.nav-home {
+    color: var(--accent);
+    font-size: 23px;
+    text-decoration: none;
+}
+
+.nav-back {
+    color: var(--text);
+    font-size: 12px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+}
+
+.nav-label {
+    margin-left: auto;
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+}
+
+
+/* Page */
+
+.page-container {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 35px;
+}
+
+section {
+    margin-bottom: 105px;
+}
+
+
+/* Hero */
+
+.hero {
+    min-height: 340px;
+    margin-top: 38px;
+    padding: 60px 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 15% 20%, #F1E6DC 0%, transparent 35%),
+        radial-gradient(circle at 85% 80%, #F0E3DD 0%, transparent 35%),
+        #F6EFE8;
+    border: 1px solid #EAE0D6;
+    border-radius: 5px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-eyebrow,
+.section-eyebrow {
+    display: block;
+    color: var(--accent);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    font-weight: 500;
+}
+
+.hero h1 {
+    margin: 13px 0 8px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+.hero-japanese {
+    font-size: 14px;
+    letter-spacing: 0.12em;
+}
+
+.hero-line {
+    width: 42px;
+    height: 1px;
+    margin: 22px auto;
+    background: var(--accent);
+}
+
+.hero-description {
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+}
+
+.hero-decoration {
+    position: absolute;
+    color: #D8BDB1;
+    opacity: 0.7;
+}
+
+.hero-decoration-left {
+    top: 35px;
+    left: 8%;
+    font-size: 65px;
+}
+
+.hero-decoration-right {
+    right: 9%;
+    bottom: 25px;
+    font-size: 65px;
+}
+
+
+/* Section heading */
+
+.section-heading {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.section-heading h2 {
+    margin: 7px 0;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 27px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+
+/* Countdown */
+
+.countdown-section {
+    max-width: 680px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.countdown-card {
+    position: relative;
+    padding: 42px 20px;
+    text-align: center;
+    background: linear-gradient(145deg, #F5EBE4, #F0E3DD);
+    border: 1px solid #E9DCD3;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.countdown-flower {
+    color: #C9A99D;
+    font-size: 24px;
+}
+
+.countdown-label {
+    display: block;
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+}
+
+.countdown-date {
+    margin: 8px 0;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 50px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+}
+
+.countdown-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 17px;
+}
+
+.countdown-title span {
+    color: var(--accent);
+}
+
+.countdown-divider {
+    width: 35px;
+    height: 1px;
+    margin: 25px auto;
+    background: #C9B2A6;
+}
+
+.days-counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.days-counter span {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 42px;
+    line-height: 1.2;
+}
+
+.days-counter small {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+}
+
+.countdown-since {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+
+/* Calendar */
+
+.calendar-card {
+    padding: 30px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    box-shadow: 0 5px 22px rgba(128, 107, 90, 0.035);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.calendar-month {
+    text-align: center;
+}
+
+.calendar-month h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 23px;
+    font-weight: 400;
+}
+
+.calendar-month span {
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+}
+
+.month-button {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--text);
+    background: transparent;
+    cursor: pointer;
+    font-size: 23px;
+    transition: 0.2s;
+}
+
+.month-button:hover {
+    background: var(--card);
+    border-color: var(--accent);
+}
+
+.calendar-weekdays,
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    text-align: center;
+}
+
+.calendar-weekdays {
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.calendar-weekdays span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.calendar-weekdays span:first-child {
+    color: #D29B9E;
+}
+
+.calendar-days {
+    row-gap: 8px;
+    padding-top: 13px;
+}
+
+.calendar-day {
+    position: relative;
+    min-width: 0;
+    min-height: 66px;
+    padding: 7px 2px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    transition: background 0.2s, border 0.2s;
+}
+
+.calendar-day:hover {
+    background: #F8F1EB;
+}
+
+.calendar-day.other-month {
+    opacity: 0.28;
+}
+
+.calendar-day.today .day-number {
+    border: 1px solid var(--accent);
+}
+
+.calendar-day.selected {
+    background: #F5EBE4;
+    border-color: #DCC8BD;
+}
+
+.day-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+.day-markers {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3px;
+}
+
+.day-marker {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.anniversary { background: var(--rose); }
+.birthday { background: var(--yellow); }
+.first-time { background: var(--lavender); }
+.travel { background: var(--mint); }
+.milestone { background: var(--blue); }
+.future { background: var(--peach); }
+
+.calendar-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 13px 20px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.calendar-legend span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.legend-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+
+/* Selected date */
+
+.selected-day-section {
+    margin-top: 25px;
+    padding: 25px;
+    background: #F7F2ED;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+}
+
+.selected-day-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.selected-day-heading h3 {
+    margin-top: 5px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 19px;
+    font-weight: 400;
+}
+
+.selected-heart {
+    color: var(--accent);
+    font-size: 27px;
+}
+
+.selected-day-events {
+    display: grid;
+    gap: 12px;
+}
+
+.empty-message {
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.selected-event {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.selected-event-color {
+    width: 4px;
+    min-height: 35px;
+    align-self: stretch;
+    border-radius: 5px;
+}
+
+.selected-event strong {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.selected-event small {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+
+/* Memory Journal */
+
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.memory-card {
+    padding: 23px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.memory-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(128, 107, 90, 0.07);
+}
+
+.memory-date {
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+}
+
+.memory-title {
+    margin: 7px 0;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.memory-category {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    color: var(--text);
+    font-size: 9px;
+}
+
+.category-anniversary { background: #F5E1E2; }
+.category-birthday { background: #F6EFD8; }
+.category-first-time { background: #EDE8F5; }
+.category-travel { background: #E4F0E7; }
+.category-milestone { background: #E6EFF6; }
+.category-future { background: #F6E9DF; }
+
+.memory-description {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+.memory-location {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.memory-photos {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    margin-top: 16px;
+    padding-bottom: 5px;
+    scroll-snap-type: x mandatory;
+}
+
+.memory-photos img {
+    flex: 0 0 72%;
+    width: 72%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 3px;
+    scroll-snap-align: start;
+}
+
+.no-memories {
+    grid-column: 1 / -1;
+    padding: 35px 15px;
+    color: var(--muted);
+    text-align: center;
+    font-size: 12px;
+}
+
+
+/* Future Memories */
+
+.future-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.future-card {
+    padding: 22px;
+    background: #F5EEE8;
+    border: 1px solid #E8DCD2;
+    border-radius: 5px;
+}
+
+.future-date {
+    color: var(--accent);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+}
+
+.future-title {
+    margin: 8px 0;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.future-description {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.future-remaining {
+    display: inline-block;
+    margin-top: 13px;
+    padding: 4px 10px;
+    background: #FFFCF8;
+    border-radius: 20px;
+    color: var(--accent);
+    font-size: 10px;
+}
+
+
+/* Footer */
+
+.page-footer {
+    padding: 25px 0 65px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+}
+
+.footer-heart {
+    color: var(--accent);
+    font-size: 25px;
+}
+
+.page-footer p {
+    margin: 5px 0;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 14px;
+}
+
+.page-footer span {
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+}
+
+
+/* Responsive */
+
+@media (max-width: 700px) {
+
+    .page-container {
+        padding: 0 18px;
+    }
+
+    .top-nav {
+        padding: 0 18px;
+    }
+
+    .nav-back {
+        font-size: 10px;
+    }
+
+    .nav-label {
+        font-size: 9px;
+    }
+
+    section {
+        margin-bottom: 75px;
+    }
+
+    .hero {
+        min-height: 270px;
+        margin-top: 20px;
+        padding: 45px 12px;
+    }
+
+    .hero-decoration-left {
+        left: 3%;
+        top: 15px;
+        font-size: 42px;
+    }
+
+    .hero-decoration-right {
+        right: 4%;
+        bottom: 10px;
+        font-size: 42px;
+    }
+
+    .section-heading h2 {
+        font-size: 23px;
+    }
+
+    .countdown-card {
+        padding: 33px 15px;
+    }
+
+    .countdown-date {
+        font-size: 42px;
+    }
+
+    .calendar-card {
+        padding: 18px 10px;
+    }
+
+    .calendar-day {
+        min-height: 53px;
+        gap: 3px;
+        padding: 5px 0;
+    }
+
+    .day-number {
+        width: 25px;
+        height: 25px;
+        font-size: 11px;
+    }
+
+    .calendar-days {
+        row-gap: 5px;
+    }
+
+    .calendar-legend {
+        gap: 10px 13px;
+        margin-top: 20px;
+    }
+
+    .calendar-legend span {
+        font-size: 9px;
+    }
+
+    .selected-day-section {
+        padding: 18px;
+    }
+
+    .memory-grid,
+    .future-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .memory-card {
+        padding: 19px;
+    }
+
+}
+
+@media (max-width: 380px) {
+
+    .page-container {
+        padding: 0 12px;
+    }
+
+    .calendar-card {
+        padding: 14px 6px;
+    }
+
+    .calendar-day {
+        min-height: 47px;
+    }
+
+    .calendar-weekdays span {
+        font-size: 9px;
+    }
+
+    .calendar-legend {
+        gap: 9px;
+    }
+
+}
+
