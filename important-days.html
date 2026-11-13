@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Important Days | Forever My Beloved Yuuka</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/important-days.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="top-nav">
+        <a href="index.html" class="nav-home">♡</a>
+        <a href="index.html" class="nav-back">Forever My Beloved Yuuka</a>
+        <span class="nav-label">IMPORTANT DAYS</span>
+    </nav>
+
+    <main class="page-container">
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-decoration hero-decoration-left">✿</div>
+            <div class="hero-content">
+                <span class="hero-eyebrow">OUR SPECIAL MOMENTS</span>
+                <h1>Important Days</h1>
+                <p class="hero-japanese">大切な日を、ひとつずつ。</p>
+                <div class="hero-line"></div>
+                <p class="hero-description">
+                    Every date holds a little piece of us.
+                </p>
+            </div>
+            <div class="hero-decoration hero-decoration-right">♡</div>
+        </section>
+
+
+        <!-- Anniversary Countdown -->
+        <section class="countdown-section">
+
+            <div class="section-heading">
+                <span class="section-eyebrow">A LITTLE FOREVER</span>
+                <h2>Our Anniversary</h2>
+                <p>ふたりの物語が始まった日。</p>
+            </div>
+
+            <div class="countdown-card">
+                <div class="countdown-flower">✿</div>
+
+                <span class="countdown-label">OUR STORY BEGAN</span>
+
+                <div class="countdown-date">06.29</div>
+
+                <div class="countdown-title">
+                    Forever Together <span>♡</span>
+                </div>
+
+                <div class="countdown-divider"></div>
+
+                <div class="days-counter">
+                    <span id="days-together">---</span>
+                    <small>DAYS TOGETHER</small>
+                </div>
+
+                <p class="countdown-since">
+                    Since June 29, 2024
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- Calendar -->
+        <section class="calendar-section">
+
+            <div class="section-heading">
+                <span class="section-eyebrow">OUR LITTLE CALENDAR</span>
+                <h2>Our Calendar</h2>
+                <p>ふたりの大切な日を、カレンダーに。</p>
+            </div>
+
+            <div class="calendar-card">
+
+                <div class="calendar-header">
+
+                    <button id="prev-month" class="month-button"
+                        aria-label="Previous month">
+                        ‹
+                    </button>
+
+                    <div class="calendar-month">
+                        <h3 id="calendar-month">November</h3>
+                        <span id="calendar-year">2026</span>
+                    </div>
+
+                    <button id="next-month" class="month-button"
+                        aria-label="Next month">
+                        ›
+                    </button>
+
+                </div>
+
+                <div class="calendar-weekdays">
+                    <span>Sun</span>
+                    <span>Mon</span>
+                    <span>Tue</span>
+                    <span>Wed</span>
+                    <span>Thu</span>
+                    <span>Fri</span>
+                    <span>Sat</span>
+                </div>
+
+                <div id="calendar-days" class="calendar-days"></div>
+
+                <div class="calendar-legend">
+                    <span><i class="legend-dot anniversary"></i> Anniversary</span>
+                    <span><i class="legend-dot birthday"></i> Birthday</span>
+                    <span><i class="legend-dot first-time"></i> First Time</span>
+                    <span><i class="legend-dot travel"></i> Travel</span>
+                    <span><i class="legend-dot milestone"></i> Milestone</span>
+                    <span><i class="legend-dot future"></i> Future</span>
+                </div>
+
+            </div>
+
+            <!-- Selected date -->
+            <div class="selected-day-section">
+
+                <div class="selected-day-heading">
+                    <div>
+                        <span class="section-eyebrow">ON THIS DAY</span>
+                        <h3 id="selected-date-title">Select a date</h3>
+                    </div>
+                    <span class="selected-heart">♡</span>
+                </div>
+
+                <div id="selected-day-events" class="selected-day-events">
+                    <p class="empty-message">
+                        カレンダーから日付を選んでね ♡
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Memory Journal -->
+        <section class="journal-section">
+
+            <div class="section-heading">
+                <span class="section-eyebrow">LITTLE PIECES OF US</span>
+                <h2>Memory Journal</h2>
+                <p>忘れたくない、大切な思い出。</p>
+            </div>
+
+            <div id="memory-grid" class="memory-grid"></div>
+
+        </section>
+
+
+        <!-- Future Memories -->
+        <section class="future-section">
+
+            <div class="section-heading">
+                <span class="section-eyebrow">LOOKING FORWARD</span>
+                <h2>Future Memories</h2>
+                <p>これから一緒に迎える、楽しみな日々。</p>
+            </div>
+
+            <div id="future-grid" class="future-grid"></div>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer class="page-footer">
+            <div class="footer-heart">♡</div>
+            <p>Wen & Yuuka</p>
+            <span>Every moment, with you.</span>
+        </footer>
+
+    </main>
+
+    <script src="js/important-days.js"></script>
+
+</body>
+</html>
