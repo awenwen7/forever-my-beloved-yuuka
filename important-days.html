@@ -1,158 +1,120 @@
 
 <!DOCTYPE html>
-<html lang="ja">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta name="robots" content="noindex, nofollow">
 
     <title>Important Days | Forever My Beloved Yuuka</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/important-days.css">
-
     <script src="js/important-days.js" defer></script>
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
     <nav class="top-nav">
-        <a href="index.html" class="nav-home">
-            ♡
+        <a class="nav-back" href="index.html" aria-label="Back to home">
+            <span>←</span>
+            <span>Home</span>
         </a>
-
-        <a href="index.html" class="nav-back">
-            Back
-        </a>
-
-        <span class="nav-label">
-            Important Days
-        </span>
+        <span class="nav-label">OUR SPECIAL DAYS</span>
+        <a class="nav-home" href="index.html" aria-label="Home">♡</a>
     </nav>
 
+    <main class="page-container">
 
-    <main class="container">
-
-        <!-- HERO -->
-        <section class="hero">
-
-            <p class="hero-eyebrow">
-                OUR LITTLE FOREVER
-            </p>
-
+        <header class="hero">
+            <span class="hero-eyebrow">WEN & YUUKA · OUR STORY</span>
             <h1>Important Days</h1>
-
-            <p class="hero-japanese">
-                ふたりの大切な日
-            </p>
-
+            <p class="hero-japanese">ふたりの大切な日々</p>
             <p class="hero-description">
-                Every date holds a little piece of our story.
+                Every date holds a memory.<br>
+                ひとつひとつの日に、大切な思い出を。
             </p>
+        </header>
 
-        </section>
-
-
-        <!-- ANNIVERSARY COUNTDOWN -->
-        <section class="countdown-section">
-
-            <div class="countdown-card">
-
-                <p class="countdown-label">
-                    OUR STORY BEGAN
-                </p>
-
-                <div class="countdown-date">
-                    06.29
+        <section class="together-section">
+            <div class="together-card">
+                <span class="section-kicker">OUR TIME TOGETHER</span>
+                <div class="together-number" id="days-together">---</div>
+                <div class="together-label" id="days-together-label">
+                    Days Together · 一緒に過ごした日々
                 </div>
-
-                <h2 class="countdown-title">
-                    Forever Together ♡
-                </h2>
-
-                <div class="days-counter">
-
-                    <span id="days-together">
-                        0
+                <div class="together-divider"></div>
+                <div class="anniversary-countdown">
+                    <span id="countdown-label">
+                        Days Until Our Anniversary · 次の記念日まで
                     </span>
-
-                    <span class="days-counter-label">
-                        DAYS TOGETHER
-                    </span>
-
+                    <strong>
+                        <span id="anniversary-countdown">---</span>
+                        <small>days</small>
+                    </strong>
                 </div>
-
-                <p class="countdown-since">
-                    次の記念日まで
-                </p>
-
+                <p class="together-since">Since June 29, 2024 · 2024年6月29日から</p>
             </div>
-
         </section>
 
-
-        <!-- CALENDAR -->
-        <section class="calendar-section">
-
+        <section class="search-section" id="date-search">
             <div class="section-heading">
-
-                <p class="section-eyebrow">
-                    OUR CALENDAR
-                </p>
-
-                <h2>Special Dates</h2>
-
-                <p>
-                    ふたりの特別な日をカレンダーに
-                </p>
-
+                <span class="section-kicker">FIND A SPECIAL DAY</span>
+                <h2>Search Our Memories</h2>
+                <p>大切な日や思い出を探す</p>
             </div>
 
+            <div class="search-panel">
+                <label for="date-search-input">Search by Date · 日付から探す</label>
+                <div class="date-search-row">
+                    <input type="date" id="date-search-input">
+                    <button type="button" id="date-search-button">Find Date</button>
+                </div>
+
+                <label for="memory-search-input">Search by Memory · キーワードから探す</label>
+                <div class="memory-search-row">
+                    <span class="search-icon" aria-hidden="true">⌕</span>
+                    <input
+                        type="search"
+                        id="memory-search-input"
+                        placeholder="Anniversary, Birthday, 100 Days..."
+                        autocomplete="off"
+                    >
+                    <button type="button" id="clear-search-button" aria-label="Clear search">×</button>
+                </div>
+
+                <p class="search-hint">
+                    Search by title, Japanese title, category or description.
+                </p>
+            </div>
+
+            <div class="search-results" id="search-results" hidden>
+                <div class="search-results-heading">
+                    <h3>Search Results</h3>
+                    <span id="search-result-count"></span>
+                </div>
+                <div id="search-results-list"></div>
+            </div>
+        </section>
+
+        <section class="calendar-section">
+            <div class="section-heading">
+                <span class="section-kicker">OUR CALENDAR</span>
+                <h2>Days to Remember</h2>
+                <p>ふたりの記念日カレンダー</p>
+            </div>
 
             <div class="calendar-card">
-
-                <div class="calendar-header">
-
-                    <button
-                        type="button"
-                        id="prev-month"
-                        aria-label="Previous month"
-                    >
-                        ‹
-                    </button>
-
-                    <div class="calendar-current">
-
-                        <span id="calendar-month">
-                            November
-                        </span>
-
-                        <span id="calendar-year">
-                            2026
-                        </span>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        id="next-month"
-                        aria-label="Next month"
-                    >
-                        ›
-                    </button>
-
+                <div class="calendar-toolbar">
+                    <button type="button" id="prev-month" class="month-button" aria-label="Previous month">‹</button>
+                    <h3 id="calendar-month">November 2026</h3>
+                    <button type="button" id="next-month" class="month-button" aria-label="Next month">›</button>
                 </div>
 
-
                 <div class="calendar-weekdays">
-
                     <span>Sun</span>
                     <span>Mon</span>
                     <span>Tue</span>
@@ -160,142 +122,51 @@
                     <span>Thu</span>
                     <span>Fri</span>
                     <span>Sat</span>
-
                 </div>
 
+                <div class="calendar-grid" id="calendar-grid"></div>
 
-                <div
-                    id="calendar-days"
-                    class="calendar-days"
-                ></div>
-
-
-                <!-- CALENDAR LEGEND -->
                 <div class="calendar-legend">
-
-                    <span class="legend-item anniversary">
-                        <i></i>
-                        Anniversary
-                    </span>
-
-                    <span class="legend-item birthday">
-                        <i></i>
-                        Birthday
-                    </span>
-
-                    <span class="legend-item first-time">
-                        <i></i>
-                        First Meeting
-                    </span>
-
-                    <span class="legend-item travel">
-                        <i></i>
-                        Date & Travel
-                    </span>
-
-                    <span class="legend-item milestone">
-                        <i></i>
-                        100 Days
-                    </span>
-
-                    <span class="legend-item future">
-                        <i></i>
-                        Future
-                    </span>
-
+                    <span><i class="legend-dot anniversary"></i>Anniversary</span>
+                    <span><i class="legend-dot birthday"></i>Birthday</span>
+                    <span><i class="legend-dot special"></i>Special</span>
+                    <span><i class="legend-dot milestone"></i>100 Days</span>
+                    <span><i class="legend-dot travel"></i>Travel</span>
                 </div>
-
             </div>
 
-        </section>
-
-
-        <!-- SELECTED DATE -->
-        <section class="selected-date-section">
-
-            <div class="section-heading">
-
-                <p class="section-eyebrow">
-                    ON THIS DAY
-                </p>
-
-                <h2>Selected Memories</h2>
-
-                <p id="selected-date-title">
-                    Today's Date
-                </p>
-
+            <div class="selected-date-panel">
+                <div class="selected-date-heading">
+                    <span class="section-kicker">ON THIS DAY</span>
+                    <h3 id="selected-date">November 13, 2026</h3>
+                    <p>この日の思い出</p>
+                </div>
+                <div id="selected-events" class="selected-events"></div>
             </div>
-
-            <div
-                id="selected-day-events"
-                class="selected-day-events"
-            ></div>
-
         </section>
 
-
-        <!-- MEMORY JOURNAL -->
         <section class="memory-section">
-
             <div class="section-heading">
-
-                <p class="section-eyebrow">
-                    LOOKING BACK
-                </p>
-
+                <span class="section-kicker">OUR JOURNAL</span>
                 <h2>Memory Journal</h2>
-
-                <p>
-                    小さな思い出を、ひとつずつ。
-                </p>
-
+                <p>これまでの大切な思い出</p>
             </div>
-
-            <div
-                id="memory-grid"
-                class="memory-grid"
-            ></div>
-
+            <div class="memory-grid" id="memory-grid"></div>
         </section>
 
-
-        <!-- FUTURE MEMORIES -->
         <section class="future-section">
-
             <div class="section-heading">
-
-                <p class="section-eyebrow">
-                    LOOKING FORWARD
-                </p>
-
-                <h2>Our Future</h2>
-
-                <p>
-                    これから一緒に迎える大切な日。
-                </p>
-
+                <span class="section-kicker">LOOKING FORWARD</span>
+                <h2>Future Memories</h2>
+                <p>これからふたりで迎える日々</p>
             </div>
-
-            <div
-                id="future-grid"
-                class="future-grid"
-            ></div>
-
+            <div class="future-grid" id="future-grid"></div>
         </section>
 
-
-        <!-- FOOTER -->
         <footer class="page-footer">
-
-            <p>
-                Made with love, for Yuuka ♡
-            </p>
-
-            <span>
-                Wen & Yuuka
-            </span>
-
+            <p>Forever My Beloved Yuuka</p>
+            <span>Wen & Yuuka ♡</span>
+            <small>ふたりの大切な思い出を、ひとつずつ。</small>
         </footer>
 
     </main>
