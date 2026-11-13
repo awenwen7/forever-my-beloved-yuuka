@@ -1,1 +1,682 @@
 
+/* =========================================
+   SPLATOON MEMORY PAGE
+   Bright Ink × Soft Cream
+========================================= */
+
+/* 1. COLOR VARIABLES */
+
+.splatoon-page {
+    --sp-bg: #F4F1E9;
+    --sp-surface: #FFFFFF;
+    --sp-surface-blue: #DCEBF0;
+
+    --sp-blue: #38D9F2;
+    --sp-blue-deep: #168EAE;
+    --sp-orange: #F2A12E;
+    --sp-purple: #9565C9;
+    --sp-pink: #EF8EB5;
+    --sp-green: #8DBD9D;
+
+    --sp-text: #193448;
+    --sp-muted: #71838D;
+    --sp-border: #E3E5DF;
+
+    --sp-radius: 22px;
+
+    background: var(--sp-bg);
+    color: var(--sp-text);
+    min-height: 100vh;
+    font-family: "Noto Serif JP", serif;
+    overflow: hidden;
+}
+
+
+/* 2. BASIC RESET */
+
+.splatoon-page *,
+.splatoon-page *::before,
+.splatoon-page *::after {
+    box-sizing: border-box;
+}
+
+.splatoon-page img {
+    display: block;
+    max-width: 100%;
+}
+
+.splatoon-page a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.splatoon-page button {
+    font: inherit;
+}
+
+
+/* 3. PAGE CONTAINER */
+
+.splatoon-page .sp-container {
+    width: min(1120px, calc(100% - 48px));
+    margin: 0 auto;
+}
+
+.splatoon-page .sp-section {
+    padding: 90px 0;
+}
+
+.splatoon-page .sp-section-heading {
+    margin-bottom: 38px;
+    text-align: center;
+}
+
+.splatoon-page .sp-section-label {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: var(--sp-blue-deep);
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.splatoon-page .sp-section-title {
+    margin: 0;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.splatoon-page .sp-section-description {
+    margin: 14px auto 0;
+    max-width: 620px;
+    color: var(--sp-muted);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+
+/* 4. HERO */
+
+.splatoon-page .sp-hero {
+    position: relative;
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 90px 24px;
+    overflow: hidden;
+    background: var(--sp-surface-blue);
+}
+
+.splatoon-page .sp-hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.splatoon-page .sp-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(244, 241, 233, 0.88),
+            rgba(244, 241, 233, 0.45),
+            rgba(244, 241, 233, 0.08)
+        );
+}
+
+.splatoon-page .sp-hero-content {
+    position: relative;
+    z-index: 1;
+    width: min(1120px, 100%);
+}
+
+.splatoon-page .sp-hero-eyebrow {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 9px 18px;
+    border-radius: 50px;
+    background: var(--sp-blue);
+    color: #193448;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.splatoon-page .sp-hero-title {
+    margin: 0;
+    font-size: clamp(42px, 7vw, 76px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: 1px;
+}
+
+.splatoon-page .sp-hero-subtitle {
+    margin-top: 18px;
+    color: #435C69;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.splatoon-page .sp-hero-decoration {
+    display: flex;
+    gap: 10px;
+    margin-top: 28px;
+}
+
+.splatoon-page .sp-hero-decoration span {
+    width: 42px;
+    height: 9px;
+    border-radius: 20px;
+    transform: rotate(-12deg);
+}
+
+.splatoon-page .sp-hero-decoration span:nth-child(1) {
+    background: var(--sp-blue);
+}
+
+.splatoon-page .sp-hero-decoration span:nth-child(2) {
+    background: var(--sp-orange);
+}
+
+.splatoon-page .sp-hero-decoration span:nth-child(3) {
+    background: var(--sp-purple);
+}
+
+
+/* 5. OUR STORY */
+
+.splatoon-page .sp-story {
+    position: relative;
+    padding: 100px 0;
+}
+
+.splatoon-page .sp-story-card {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 55px 60px;
+    border: 1px solid var(--sp-border);
+    border-radius: var(--sp-radius);
+    background: var(--sp-surface);
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(25, 52, 72, 0.05);
+}
+
+.splatoon-page .sp-story-text {
+    color: #586D77;
+    font-size: 15px;
+    line-height: 2.3;
+    white-space: pre-line;
+}
+
+
+/* 6. OUR MOMENTS */
+
+.splatoon-page .sp-moments-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.splatoon-page .sp-moment-card {
+    position: relative;
+    display: block;
+    min-height: 250px;
+    padding: 28px;
+    overflow: hidden;
+    border: 1px solid rgba(25, 52, 72, 0.06);
+    border-radius: var(--sp-radius);
+    background: var(--sp-surface);
+    box-shadow: 0 8px 25px rgba(25, 52, 72, 0.05);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.splatoon-page .sp-moment-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 16px 35px rgba(25, 52, 72, 0.1);
+}
+
+.splatoon-page .sp-moment-number {
+    color: var(--sp-muted);
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.splatoon-page .sp-moment-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    margin: 24px 0 18px;
+    border-radius: 18px;
+    background: var(--sp-surface-blue);
+    font-size: 27px;
+}
+
+.splatoon-page .sp-moment-title {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.splatoon-page .sp-moment-description {
+    margin-top: 9px;
+    color: var(--sp-muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.splatoon-page .sp-moment-card:nth-child(2) .sp-moment-icon {
+    background: #FFF0D9;
+}
+
+.splatoon-page .sp-moment-card:nth-child(3) .sp-moment-icon {
+    background: #EEE5F8;
+}
+
+.splatoon-page .sp-moment-card:nth-child(4) .sp-moment-icon {
+    background: #FBE7EF;
+}
+
+.splatoon-page .sp-moment-card:nth-child(5) .sp-moment-icon {
+    background: #E6F2E9;
+}
+
+.splatoon-page .sp-moment-card:nth-child(6) .sp-moment-icon {
+    background: #E8EFF3;
+}
+
+
+/* 7. SEASON CARDS */
+
+.splatoon-page .sp-season-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.splatoon-page .sp-season-card {
+    position: relative;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    overflow: hidden;
+    border-radius: var(--sp-radius);
+    background: var(--sp-surface);
+    transition: transform 0.3s ease;
+}
+
+.splatoon-page .sp-season-card:hover {
+    transform: translateY(-6px);
+}
+
+.splatoon-page .sp-season-card:nth-child(1) {
+    background: #E6F1E5;
+}
+
+.splatoon-page .sp-season-card:nth-child(2) {
+    background: #DDF0F4;
+}
+
+.splatoon-page .sp-season-card:nth-child(3) {
+    background: #F8E8D9;
+}
+
+.splatoon-page .sp-season-card:nth-child(4) {
+    background: #E9E3F2;
+}
+
+.splatoon-page .sp-season-title {
+    margin: 0;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.splatoon-page .sp-season-subtitle {
+    margin-top: 8px;
+    color: var(--sp-muted);
+    font-size: 12px;
+}
+
+
+/* 8. TIMELINE */
+
+.splatoon-page .sp-timeline {
+    display: flex;
+    gap: 28px;
+    padding: 25px 5px 35px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--sp-blue) transparent;
+}
+
+.splatoon-page .sp-timeline-item {
+    position: relative;
+    flex: 0 0 260px;
+    scroll-snap-align: start;
+}
+
+.splatoon-page .sp-timeline-dot {
+    width: 15px;
+    height: 15px;
+    margin-bottom: 20px;
+    border: 4px solid var(--sp-bg);
+    border-radius: 50%;
+    background: var(--sp-blue);
+    box-shadow: 0 0 0 2px var(--sp-blue);
+}
+
+.splatoon-page .sp-timeline-card {
+    padding: 22px;
+    border: 1px solid var(--sp-border);
+    border-radius: 18px;
+    background: var(--sp-surface);
+}
+
+.splatoon-page .sp-timeline-date {
+    color: var(--sp-blue-deep);
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.splatoon-page .sp-timeline-title {
+    margin: 12px 0 8px;
+    font-size: 17px;
+}
+
+.splatoon-page .sp-timeline-description {
+    color: var(--sp-muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* 9. MEMORY CARDS */
+
+.splatoon-page .sp-memory-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+}
+
+.splatoon-page .sp-memory-card {
+    padding: 20px;
+    border: 1px solid var(--sp-border);
+    border-radius: var(--sp-radius);
+    background: var(--sp-surface);
+    box-shadow: 0 8px 28px rgba(25, 52, 72, 0.04);
+}
+
+.splatoon-page .sp-memory-image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 16px;
+    object-fit: cover;
+    background: var(--sp-surface-blue);
+}
+
+.splatoon-page .sp-memory-date {
+    margin-top: 18px;
+    color: var(--sp-blue-deep);
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.splatoon-page .sp-memory-title {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.splatoon-page .sp-memory-description {
+    color: var(--sp-muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+
+/* 10. CHAT BUBBLES */
+
+.splatoon-page .sp-chat {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.splatoon-page .sp-chat-message {
+    max-width: 82%;
+    padding: 12px 16px;
+    border-radius: 17px;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.splatoon-page .sp-chat-message.wen {
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+    background: #DCEBF0;
+}
+
+.splatoon-page .sp-chat-message.yuuka {
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+    background: #FBE7EF;
+}
+
+.splatoon-page .sp-chat-name {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--sp-muted);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.splatoon-page .sp-chat-translation {
+    display: block;
+    margin-top: 5px;
+    color: var(--sp-muted);
+    font-size: 11px;
+}
+
+
+/* 11. FOOTER */
+
+.splatoon-page .sp-footer {
+    padding: 55px 24px;
+    background: var(--sp-surface-blue);
+    text-align: center;
+}
+
+.splatoon-page .sp-footer-title {
+    margin: 0;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.splatoon-page .sp-footer-text {
+    margin-top: 12px;
+    color: var(--sp-muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+
+/* 12. TABLET */
+
+@media (max-width: 900px) {
+    .splatoon-page .sp-moments-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .splatoon-page .sp-season-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .splatoon-page .sp-hero {
+        min-height: 520px;
+    }
+}
+
+
+/* 13. MOBILE */
+
+@media (max-width: 600px) {
+
+    .splatoon-page .sp-container {
+        width: calc(100% - 36px);
+    }
+
+    .splatoon-page .sp-section {
+        padding: 65px 0;
+    }
+
+    .splatoon-page .sp-section-heading {
+        margin-bottom: 28px;
+    }
+
+    .splatoon-page .sp-section-title {
+        font-size: 28px;
+    }
+
+    .splatoon-page .sp-section-description {
+        font-size: 13px;
+    }
+
+    /* HERO */
+
+    .splatoon-page .sp-hero {
+        min-height: 490px;
+        padding: 65px 22px;
+        align-items: flex-end;
+    }
+
+    .splatoon-page .sp-hero-overlay {
+        background:
+            linear-gradient(
+                0deg,
+                rgba(244, 241, 233, 0.95) 0%,
+                rgba(244, 241, 233, 0.65) 42%,
+                rgba(244, 241, 233, 0.05) 100%
+            );
+    }
+
+    .splatoon-page .sp-hero-title {
+        font-size: clamp(38px, 11vw, 54px);
+    }
+
+    .splatoon-page .sp-hero-subtitle {
+        font-size: 13px;
+    }
+
+    /* STORY */
+
+    .splatoon-page .sp-story {
+        padding: 65px 0;
+    }
+
+    .splatoon-page .sp-story-card {
+        padding: 32px 23px;
+    }
+
+    .splatoon-page .sp-story-text {
+        font-size: 13px;
+        line-height: 2.1;
+    }
+
+    /* MOMENTS */
+
+    .splatoon-page .sp-moments-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .splatoon-page .sp-moment-card {
+        min-height: 175px;
+        padding: 22px;
+    }
+
+    .splatoon-page .sp-moment-icon {
+        width: 48px;
+        height: 48px;
+        margin: 16px 0 12px;
+        font-size: 23px;
+    }
+
+    .splatoon-page .sp-moment-title {
+        font-size: 19px;
+    }
+
+    /* SEASONS */
+
+    .splatoon-page .sp-season-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .splatoon-page .sp-season-card {
+        min-height: 155px;
+        padding: 17px;
+    }
+
+    .splatoon-page .sp-season-title {
+        font-size: 18px;
+    }
+
+    /* TIMELINE */
+
+    .splatoon-page .sp-timeline {
+        gap: 16px;
+        margin-right: -18px;
+        padding-right: 18px;
+    }
+
+    .splatoon-page .sp-timeline-item {
+        flex-basis: 235px;
+    }
+
+    /* MEMORIES */
+
+    .splatoon-page .sp-memory-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .splatoon-page .sp-memory-card {
+        padding: 14px;
+    }
+
+    .splatoon-page .sp-memory-title {
+        font-size: 18px;
+    }
+
+    .splatoon-page .sp-chat-message {
+        max-width: 90%;
+        font-size: 12px;
+    }
+
+    /* FOOTER */
+
+    .splatoon-page .sp-footer {
+        padding: 42px 20px;
+    }
+}
+
