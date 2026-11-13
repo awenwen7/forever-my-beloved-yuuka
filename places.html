@@ -442,27 +442,87 @@ button {
     box-shadow: 0 7px 20px rgba(109,159,188,.12);
 }
 
+
+/* =========================================
+   MACARON CATEGORY ICON COLORS
+========================================= */
+
 .place-card-icon {
     width: 44px;
     height: 44px;
     flex-shrink: 0;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     border-radius: 13px;
-    background: var(--surface-blue);
-    color: var(--blue);
+
+    background: var(--icon-bg, #F3F0ED);
+    color: var(--icon-color, #A18D7B);
+
+    transition: background .25s ease, color .25s ease;
 }
 
 .place-card-icon svg {
     width: 22px;
     height: 22px;
+
     fill: none;
     stroke: currentColor;
     stroke-width: 1.6;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
+
+/* 觀光景點・商店街：天空藍 */
+.place-card-icon[data-category="sightseeing"] {
+    --icon-bg: #EDF5FC;
+    --icon-color: #8BB5DC;
+}
+
+/* 體驗・配件：草莓牛奶 */
+.place-card-icon[data-category="experience"] {
+    --icon-bg: #FCF0F3;
+    --icon-color: #D69EAF;
+}
+
+/* 咖啡廳：奶油黃 */
+.place-card-icon[data-category="cafe"] {
+    --icon-bg: #FBF5E8;
+    --icon-color: #C7AA72;
+}
+
+/* 購物・文具雜貨：薰衣草紫 */
+.place-card-icon[data-category="shopping"] {
+    --icon-bg: #F3EFFA;
+    --icon-color: #A997CF;
+}
+
+/* 車站：薄荷綠 */
+.place-card-icon[data-category="station"] {
+    --icon-bg: #EDF6F0;
+    --icon-color: #91BCA0;
+}
+
+/* 住宿：蜜桃奶茶 */
+.place-card-icon[data-category="accommodation"] {
+    --icon-bg: #F6F0EB;
+    --icon-color: #B99B87;
+}
+
+/* 餐廳：蜜桃粉 */
+.place-card-icon[data-category="restaurant"] {
+    --icon-bg: #FCF0EC;
+    --icon-color: #D5A18F;
+}
+
+/* 其他：淡紫灰 */
+.place-card-icon[data-category="other"] {
+    --icon-bg: #F1F0F7;
+    --icon-color: #A09BBF;
+}
+
 
 .place-card-info {
     min-width: 0;
@@ -1749,7 +1809,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const icon = icons[place.filterCategory] || icons.other;
 
             card.innerHTML = `
-                <div class="place-card-icon">
+                <div class="place-card-icon" data-category="${place.filterCategory}">
                     ${icon}
                 </div>
 
