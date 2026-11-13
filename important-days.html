@@ -1,932 +1,304 @@
 
-/* =========================================
-   FOREVER MY BELOVED YUUKA
-   IMPORTANT DAYS
-   Japanese & English
-========================================= */
+<!DOCTYPE html>
+<html lang="ja">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-/* =========================================
-   1. BASIC SETTINGS
-========================================= */
+    <meta name="robots" content="noindex, nofollow">
 
-const relationshipStartDate = "2024-06-29";
+    <title>Important Days | Forever My Beloved Yuuka</title>
 
-const today = new Date();
-today.setHours(0, 0, 0, 0);
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-const DAY_IN_MS = 86400000;
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="css/important-days.css">
 
-/* =========================================
-   2. IMPORTANT DAYS DATA
+    <script src="js/important-days.js" defer></script>
+</head>
 
-   Edit your memories here.
-   No in-page editing controls.
-========================================= */
+<body>
 
-const importantDays = [
+    <!-- NAVIGATION -->
+    <nav class="top-nav">
+        <a href="index.html" class="nav-home">
+            ♡
+        </a>
 
-    {
-        id: "anniversary",
-        date: "2024-06-29",
-        title: "Our Anniversary",
-        japaneseTitle: "ふたりの記念日",
-        category: "anniversary",
-        description: "The day our story began. ふたりの物語が始まった日。",
-        location: "",
-        photos: [],
-        annual: true
-    },
+        <a href="index.html" class="nav-back">
+            Back
+        </a>
 
-    {
-        id: "yuuka-birthday",
-        date: "2007-10-06",
-        title: "Yuuka's Birthday",
-        japaneseTitle: "優花の誕生日",
-        category: "birthday",
-        description: "A special day celebrating Yuuka's birth. 優花が生まれた大切な日。",
-        location: "",
-        photos: [],
-        annual: true
-    },
+        <span class="nav-label">
+            Important Days
+        </span>
+    </nav>
 
-    {
-        id: "wen-birthday",
-        date: "2004-01-27",
-        title: "Wen's Birthday",
-        japaneseTitle: "妏妏の誕生日",
-        category: "birthday",
-        description: "A special day celebrating Wen's birth. 妏妏が生まれた大切な日。",
-        location: "",
-        photos: [],
-        annual: true
-    },
 
-    {
-        id: "first-meeting",
-        date: "2026-01-20",
-        title: "Our First Meeting",
-        japaneseTitle: "初めて会った日",
-        category: "first-time",
-        description: "The day we finally met in person. 初めて直接会えた大切な日。",
-        location: "",
-        photos: [],
-        annual: false
-    },
+    <main class="container">
 
-    {
-        id: "second-date",
-        date: "2027-01-31",
-        endDate: "2027-02-06",
-        title: "Our Second Date",
-        japaneseTitle: "ふたりの二度目のデート",
-        category: "travel",
-        description: "Seven unforgettable days together in Japan. 日本で一緒に過ごす、忘れられない7日間。",
-        location: "Osaka & Kyoto, Japan",
-        photos: [],
-        annual: false
-    }
+        <!-- HERO -->
+        <section class="hero">
 
-];
-
-
-/* =========================================
-   3. CATEGORY SETTINGS
-========================================= */
-
-const categoryInfo = {
-
-    anniversary: {
-        label: "Anniversary",
-        japanese: "記念日",
-        color: "#E9B9BE"
-    },
-
-    birthday: {
-        label: "Birthday",
-        japanese: "誕生日",
-        color: "#EED9A1"
-    },
-
-    "first-time": {
-        label: "First Meeting",
-        japanese: "初めてのこと",
-        color: "#C9BEDF"
-    },
-
-    milestone: {
-        label: "Milestone",
-        japanese: "100日記念日",
-        color: "#BDD4E8"
-    },
-
-    travel: {
-        label: "Date & Travel",
-        japanese: "デート・旅行",
-        color: "#BBD8C8"
-    },
-
-    future: {
-        label: "Future",
-        japanese: "未来",
-        color: "#EBC5AD"
-    }
-
-};
-
-
-/* =========================================
-   4. DATE UTILITIES
-========================================= */
-
-function parseDate(dateString) {
-
-    const [year, month, day] = dateString.split("-").map(Number);
-
-    return new Date(year, month - 1, day);
-
-}
-
-
-function formatDate(date) {
-
-    const year = date.getFullYear();
-
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-
-    const day = String(date.getDate()).padStart(2, "0");
-
-    return `${year}-${month}-${day}`;
-
-}
-
-
-function addDays(date, days) {
-
-    const result = new Date(date);
-
-    result.setDate(result.getDate() + days);
-
-    return result;
-
-}
-
-
-function getDayDifference(dateA, dateB) {
-
-    const a = Date.UTC(
-        dateA.getFullYear(),
-        dateA.getMonth(),
-        dateA.getDate()
-    );
-
-    const b = Date.UTC(
-        dateB.getFullYear(),
-        dateB.getMonth(),
-        dateB.getDate()
-    );
-
-    return Math.round((b - a) / DAY_IN_MS);
-
-}
-
-
-function formatDisplayDate(date) {
-
-    return date.toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-    });
-
-}
-
-
-function getNextAnnualDate(event) {
-
-    const originalDate = parseDate(event.date);
-
-    let nextDate = new Date(
-        today.getFullYear(),
-        originalDate.getMonth(),
-        originalDate.getDate()
-    );
-
-    if (nextDate <= today) {
-
-        nextDate = new Date(
-            today.getFullYear() + 1,
-            originalDate.getMonth(),
-            originalDate.getDate()
-        );
-
-    }
-
-    return nextDate;
-
-}
-
-
-function getEventDateForYear(event, year) {
-
-    if (event.annual) {
-
-        const originalDate = parseDate(event.date);
-
-        return new Date(
-            year,
-            originalDate.getMonth(),
-            originalDate.getDate()
-        );
-
-    }
-
-    return parseDate(event.date);
-
-}
-
-
-function escapeHTML(value) {
-
-    return String(value ?? "").replace(/[&<>"']/g, character => {
-
-        const entities = {
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            '"': "&quot;",
-            "'": "&#039;"
-        };
-
-        return entities[character];
-
-    });
-
-}
-
-
-/* =========================================
-   5. AUTOMATIC 100-DAY MILESTONES
-
-   Day 1 = June 29, 2024
-   Generate every 100 days.
-========================================= */
-
-function generateMilestones() {
-
-    const startDate = parseDate(relationshipStartDate);
-
-    const elapsedDays = getDayDifference(startDate, today) + 1;
-
-    const lastMilestone = Math.ceil(
-        (elapsedDays + 730) / 100
-    ) * 100;
-
-    const milestones = [];
-
-    for (let days = 100; days <= lastMilestone; days += 100) {
-
-        const milestoneDate = addDays(startDate, days - 1);
-
-        milestones.push({
-
-            id: `milestone-${days}`,
-
-            date: formatDate(milestoneDate),
-
-            title: `${days.toLocaleString("en-US")} Days Together`,
-
-            japaneseTitle: `ふたりで過ごした${days.toLocaleString("en-US")}日`,
-
-            category: "milestone",
-
-            description:
-                `Our ${days.toLocaleString("en-US")}th day together. ` +
-                `ふたりで迎えた、大切な100日ごとの記念日。`,
-
-            location: "",
-
-            photos: [],
-
-            annual: false,
-
-            milestoneDays: days
-
-        });
-
-    }
-
-    return milestones;
-
-}
-
-
-const allEvents = [
-    ...importantDays,
-    ...generateMilestones()
-];
-
-
-/* =========================================
-   6. DAYS TOGETHER
-========================================= */
-
-function updateDaysTogether() {
-
-    const startDate = parseDate(relationshipStartDate);
-
-    const daysTogether = getDayDifference(startDate, today) + 1;
-
-    const daysElement = document.getElementById("days-together");
-
-    if (daysElement) {
-
-        daysElement.textContent =
-            daysTogether.toLocaleString("en-US");
-
-    }
-
-}
-
-
-/* =========================================
-   7. ANNIVERSARY COUNTDOWN
-========================================= */
-
-function updateAnniversaryCountdown() {
-
-    const startDate = parseDate(relationshipStartDate);
-
-    let nextAnniversary = new Date(
-        today.getFullYear(),
-        startDate.getMonth(),
-        startDate.getDate()
-    );
-
-    if (nextAnniversary <= today) {
-
-        nextAnniversary.setFullYear(
-            nextAnniversary.getFullYear() + 1
-        );
-
-    }
-
-    const remainingDays = getDayDifference(today, nextAnniversary);
-
-    const countdownDate = document.querySelector(".countdown-date");
-
-    if (countdownDate) {
-
-        countdownDate.textContent = "06.29";
-
-    }
-
-    const countdownLabel = document.querySelector(".countdown-label");
-
-    if (countdownLabel) {
-
-        countdownLabel.textContent = "OUR STORY BEGAN";
-
-    }
-
-    const countdownTitle = document.querySelector(".countdown-title");
-
-    if (countdownTitle) {
-
-        countdownTitle.innerHTML = `Forever Together <span>♡</span>`;
-
-    }
-
-    const sinceText = document.querySelector(".countdown-since");
-
-    if (sinceText) {
-
-        sinceText.textContent =
-            `${remainingDays} days until our anniversary · 次の記念日まで`;
-
-    }
-
-}
-
-
-/* =========================================
-   8. CALENDAR STATE
-========================================= */
-
-let currentCalendarDate = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    1
-);
-
-let selectedDate = new Date(today);
-
-
-/* =========================================
-   9. EVENTS FOR SELECTED DATE
-
-   Supports single dates and date ranges.
-========================================= */
-
-function getEventsForDate(date) {
-
-    return allEvents.filter(event => {
-
-        if (event.annual) {
-
-            const originalDate = parseDate(event.date);
-
-            return (
-                originalDate.getMonth() === date.getMonth() &&
-                originalDate.getDate() === date.getDate()
-            );
-
-        }
-
-        const startDate = parseDate(event.date);
-
-        const endDate = event.endDate
-            ? parseDate(event.endDate)
-            : startDate;
-
-        return date >= startDate && date <= endDate;
-
-    });
-
-}
-
-
-/* =========================================
-   10. CALENDAR RENDERING
-========================================= */
-
-function renderCalendar() {
-
-    const calendarGrid = document.getElementById("calendar-days");
-
-    const monthTitle = document.getElementById("calendar-month");
-
-    const yearTitle = document.getElementById("calendar-year");
-
-    if (!calendarGrid) return;
-
-    const year = currentCalendarDate.getFullYear();
-
-    const month = currentCalendarDate.getMonth();
-
-    const firstDay = new Date(year, month, 1).getDay();
-
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    if (monthTitle) {
-
-        monthTitle.textContent = currentCalendarDate.toLocaleDateString(
-            "en-US",
-            { month: "long" }
-        );
-
-    }
-
-    if (yearTitle) {
-
-        yearTitle.textContent = year;
-
-    }
-
-    let html = "";
-
-    for (let i = 0; i < firstDay; i++) {
-
-        html += `<div class="calendar-day empty"></div>`;
-
-    }
-
-    for (let day = 1; day <= daysInMonth; day++) {
-
-        const date = new Date(year, month, day);
-
-        const dateString = formatDate(date);
-
-        const events = getEventsForDate(date);
-
-        const isToday = dateString === formatDate(today);
-
-        const isSelected = dateString === formatDate(selectedDate);
-
-        const dots = events.map(event => {
-
-            const color = categoryInfo[event.category]?.color || "#E5DED6";
-
-            return `
-                <i
-                    class="calendar-event-dot ${escapeHTML(event.category)}"
-                    style="background-color: ${color};"
-                ></i>
-            `;
-
-        }).join("");
-
-        html += `
-
-            <button
-                type="button"
-                class="calendar-day
-                    ${isToday ? "today" : ""}
-                    ${isSelected ? "selected" : ""}
-                    ${events.length ? "has-event" : ""}"
-                data-date="${dateString}"
-                aria-label="${dateString}"
-            >
-
-                <span class="day-number">${day}</span>
-
-                <span class="day-dots">${dots}</span>
-
-            </button>
-
-        `;
-
-    }
-
-    calendarGrid.innerHTML = html;
-
-    calendarGrid.querySelectorAll("[data-date]").forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            selectedDate = parseDate(button.dataset.date);
-
-            renderCalendar();
-
-            renderSelectedDateEvents();
-
-        });
-
-    });
-
-}
-
-
-/* =========================================
-   11. SELECTED DATE EVENTS
-========================================= */
-
-function renderSelectedDateEvents() {
-
-    const title = document.getElementById("selected-date-title");
-
-    const container = document.getElementById("selected-day-events");
-
-    if (!container) return;
-
-    if (title) {
-
-        title.textContent = formatDisplayDate(selectedDate);
-
-    }
-
-    const events = getEventsForDate(selectedDate);
-
-    if (events.length === 0) {
-
-        container.innerHTML = `
-
-            <p class="empty-message">
-                No special memories yet. ♡
-                <br>
-                まだ特別な思い出はありません。
+            <p class="hero-eyebrow">
+                OUR LITTLE FOREVER
             </p>
 
-        `;
+            <h1>Important Days</h1>
 
-        return;
+            <p class="hero-japanese">
+                ふたりの大切な日
+            </p>
 
-    }
+            <p class="hero-description">
+                Every date holds a little piece of our story.
+            </p>
 
-    container.innerHTML = events.map(event => {
+        </section>
 
-        const category = categoryInfo[event.category] ||
-            categoryInfo.future;
 
-        const dateRange = event.endDate
-            ? `${formatDisplayDate(parseDate(event.date))} – ${formatDisplayDate(parseDate(event.endDate))}`
-            : formatDisplayDate(parseDate(event.date));
+        <!-- ANNIVERSARY COUNTDOWN -->
+        <section class="countdown-section">
 
-        return `
+            <div class="countdown-card">
 
-            <article class="selected-event-card">
+                <p class="countdown-label">
+                    OUR STORY BEGAN
+                </p>
 
-                <span
-                    class="selected-event-color"
-                    style="background-color: ${category.color};"
-                ></span>
+                <div class="countdown-date">
+                    06.29
+                </div>
 
-                <div class="selected-event-content">
+                <h2 class="countdown-title">
+                    Forever Together ♡
+                </h2>
 
-                    <span class="event-category">
-                        ${escapeHTML(category.label)}
-                        ·
-                        ${escapeHTML(category.japanese)}
+                <div class="days-counter">
+
+                    <span id="days-together">
+                        0
                     </span>
 
-                    <h3>${escapeHTML(event.title)}</h3>
-
-                    <p>${escapeHTML(event.japaneseTitle || "")}</p>
-
-                    <p>${escapeHTML(event.description)}</p>
-
-                    ${event.endDate ? `
-                        <p class="event-date-range">${escapeHTML(dateRange)}</p>
-                    ` : ""}
-
-                    ${event.location ? `
-                        <p class="event-location">
-                            ${escapeHTML(event.location)}
-                        </p>
-                    ` : ""}
+                    <span class="days-counter-label">
+                        DAYS TOGETHER
+                    </span>
 
                 </div>
 
-            </article>
-
-        `;
-
-    }).join("");
-
-}
-
-
-/* =========================================
-   12. MEMORY JOURNAL
-========================================= */
-
-function renderMemoryJournal() {
-
-    const container = document.getElementById("memory-grid");
-
-    if (!container) return;
-
-    const pastEvents = allEvents
-        .map(event => {
-
-            const eventDate = event.annual
-                ? getEventDateForYear(event, today.getFullYear())
-                : parseDate(event.date);
-
-            return {
-                ...event,
-                displayDate: eventDate
-            };
-
-        })
-        .filter(event => event.displayDate <= today)
-        .sort((a, b) => b.displayDate - a.displayDate);
-
-    if (pastEvents.length === 0) {
-
-        container.innerHTML = `
-            <p class="empty-message">
-                Our memories will appear here. ♡
-                <br>
-                ふたりの思い出がここに並びます。
-            </p>
-        `;
-
-        return;
-
-    }
-
-    container.innerHTML = pastEvents.map(event => {
-
-        const category = categoryInfo[event.category] ||
-            categoryInfo.future;
-
-        const photosHTML = (event.photos || []).length
-            ? `
-                <div class="memory-photos">
-                    ${event.photos.map(photo => `
-                        <img
-                            src="${escapeHTML(photo)}"
-                            alt="${escapeHTML(event.title)}"
-                            loading="lazy"
-                        >
-                    `).join("")}
-                </div>
-            `
-            : "";
-
-        return `
-
-            <article class="memory-card">
-
-                <div class="memory-card-date">
-                    ${formatDisplayDate(event.displayDate)}
-                </div>
-
-                <span
-                    class="memory-category"
-                    style="background-color: ${category.color};"
-                >
-                    ${escapeHTML(category.label)}
-                </span>
-
-                <h3>${escapeHTML(event.title)}</h3>
-
-                <p class="memory-japanese-title">
-                    ${escapeHTML(event.japaneseTitle || "")}
+                <p class="countdown-since">
+                    次の記念日まで
                 </p>
 
-                <p class="memory-description">
-                    ${escapeHTML(event.description)}
+            </div>
+
+        </section>
+
+
+        <!-- CALENDAR -->
+        <section class="calendar-section">
+
+            <div class="section-heading">
+
+                <p class="section-eyebrow">
+                    OUR CALENDAR
                 </p>
 
-                ${event.location ? `
-                    <p class="memory-location">
-                        ${escapeHTML(event.location)}
-                    </p>
-                ` : ""}
+                <h2>Special Dates</h2>
 
-                ${photosHTML}
+                <p>
+                    ふたりの特別な日をカレンダーに
+                </p>
 
-            </article>
-
-        `;
-
-    }).join("");
-
-}
+            </div>
 
 
-/* =========================================
-   13. FUTURE MEMORIES
-========================================= */
+            <div class="calendar-card">
 
-function renderFutureMemories() {
+                <div class="calendar-header">
 
-    const container = document.getElementById("future-grid");
+                    <button
+                        type="button"
+                        id="prev-month"
+                        aria-label="Previous month"
+                    >
+                        ‹
+                    </button>
 
-    if (!container) return;
+                    <div class="calendar-current">
 
-    const futureEvents = allEvents
-        .map(event => {
+                        <span id="calendar-month">
+                            November
+                        </span>
 
-            const nextDate = event.annual
-                ? getNextAnnualDate(event)
-                : parseDate(event.date);
+                        <span id="calendar-year">
+                            2026
+                        </span>
 
-            return {
-                ...event,
-                nextDate
-            };
+                    </div>
 
-        })
-        .filter(event => {
+                    <button
+                        type="button"
+                        id="next-month"
+                        aria-label="Next month"
+                    >
+                        ›
+                    </button>
 
-            const endDate = event.endDate
-                ? parseDate(event.endDate)
-                : event.nextDate;
+                </div>
 
-            return endDate > today;
 
-        })
-        .sort((a, b) => a.nextDate - b.nextDate);
+                <div class="calendar-weekdays">
 
-    if (futureEvents.length === 0) {
+                    <span>Sun</span>
+                    <span>Mon</span>
+                    <span>Tue</span>
+                    <span>Wed</span>
+                    <span>Thu</span>
+                    <span>Fri</span>
+                    <span>Sat</span>
 
-        container.innerHTML = `
-            <p class="empty-message">
-                More beautiful days are waiting for us. ♡
-                <br>
-                これからも、ふたりでたくさんの思い出を。
+                </div>
+
+
+                <div
+                    id="calendar-days"
+                    class="calendar-days"
+                ></div>
+
+
+                <!-- CALENDAR LEGEND -->
+                <div class="calendar-legend">
+
+                    <span class="legend-item anniversary">
+                        <i></i>
+                        Anniversary
+                    </span>
+
+                    <span class="legend-item birthday">
+                        <i></i>
+                        Birthday
+                    </span>
+
+                    <span class="legend-item first-time">
+                        <i></i>
+                        First Meeting
+                    </span>
+
+                    <span class="legend-item travel">
+                        <i></i>
+                        Date & Travel
+                    </span>
+
+                    <span class="legend-item milestone">
+                        <i></i>
+                        100 Days
+                    </span>
+
+                    <span class="legend-item future">
+                        <i></i>
+                        Future
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SELECTED DATE -->
+        <section class="selected-date-section">
+
+            <div class="section-heading">
+
+                <p class="section-eyebrow">
+                    ON THIS DAY
+                </p>
+
+                <h2>Selected Memories</h2>
+
+                <p id="selected-date-title">
+                    Today's Date
+                </p>
+
+            </div>
+
+            <div
+                id="selected-day-events"
+                class="selected-day-events"
+            ></div>
+
+        </section>
+
+
+        <!-- MEMORY JOURNAL -->
+        <section class="memory-section">
+
+            <div class="section-heading">
+
+                <p class="section-eyebrow">
+                    LOOKING BACK
+                </p>
+
+                <h2>Memory Journal</h2>
+
+                <p>
+                    小さな思い出を、ひとつずつ。
+                </p>
+
+            </div>
+
+            <div
+                id="memory-grid"
+                class="memory-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- FUTURE MEMORIES -->
+        <section class="future-section">
+
+            <div class="section-heading">
+
+                <p class="section-eyebrow">
+                    LOOKING FORWARD
+                </p>
+
+                <h2>Our Future</h2>
+
+                <p>
+                    これから一緒に迎える大切な日。
+                </p>
+
+            </div>
+
+            <div
+                id="future-grid"
+                class="future-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="page-footer">
+
+            <p>
+                Made with love, for Yuuka ♡
             </p>
-        `;
 
-        return;
+            <span>
+                Wen & Yuuka
+            </span>
 
-    }
+        </footer>
 
-    container.innerHTML = futureEvents.map(event => {
+    </main>
 
-        const category = categoryInfo[event.category] ||
-            categoryInfo.future;
-
-        const remainingDays = Math.max(
-            0,
-            getDayDifference(today, event.nextDate)
-        );
-
-        const dateLabel = event.endDate
-            ? `${formatDisplayDate(event.nextDate)} – ${formatDisplayDate(parseDate(event.endDate))}`
-            : formatDisplayDate(event.nextDate);
-
-        return `
-
-            <article class="future-card">
-
-                <div class="future-card-date">
-                    ${escapeHTML(dateLabel)}
-                </div>
-
-                <span
-                    class="future-category"
-                    style="background-color: ${category.color};"
-                >
-                    ${escapeHTML(category.label)}
-                </span>
-
-                <h3>${escapeHTML(event.title)}</h3>
-
-                <p>${escapeHTML(event.japaneseTitle || "")}</p>
-
-                <div class="future-countdown">
-                    ${remainingDays}
-                    <span>days left · あと${remainingDays}日</span>
-                </div>
-
-            </article>
-
-        `;
-
-    }).join("");
-
-}
-
-
-/* =========================================
-   14. CALENDAR NAVIGATION
-========================================= */
-
-function setupCalendarNavigation() {
-
-    const previousButton = document.getElementById("prev-month");
-
-    const nextButton = document.getElementById("next-month");
-
-    if (previousButton) {
-
-        previousButton.addEventListener("click", () => {
-
-            currentCalendarDate = new Date(
-                currentCalendarDate.getFullYear(),
-                currentCalendarDate.getMonth() - 1,
-                1
-            );
-
-            renderCalendar();
-
-        });
-
-    }
-
-    if (nextButton) {
-
-        nextButton.addEventListener("click", () => {
-
-            currentCalendarDate = new Date(
-                currentCalendarDate.getFullYear(),
-                currentCalendarDate.getMonth() + 1,
-                1
-            );
-
-            renderCalendar();
-
-        });
-
-    }
-
-}
-
-
-/* =========================================
-   15. INITIALIZE
-========================================= */
-
-function initializeImportantDays() {
-
-    updateDaysTogether();
-
-    updateAnniversaryCountdown();
-
-    renderCalendar();
-
-    renderSelectedDateEvents();
-
-    renderMemoryJournal();
-
-    renderFutureMemories();
-
-    setupCalendarNavigation();
-
-}
-
-
-/* =========================================
-   16. START
-========================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    initializeImportantDays();
-
-});
+</body>
+</html>
