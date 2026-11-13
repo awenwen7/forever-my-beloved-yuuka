@@ -40,6 +40,7 @@
             --border: #DCEAF2;
 
             --pink: #E89AAF;
+            --pink-strong: #F06292;
             --pink-light: #FCECEF;
         }
 
@@ -153,61 +154,55 @@
                 contrast(0.94);
         }
 
-     
-/* =========================================
-   HEART MARKERS
-========================================= */
+        /* =========================================
+           HEART MARKERS
+        ========================================= */
 
-.heart-marker {
-    width: 42px;
-    height: 42px;
+        .heart-marker {
+            width: 42px;
+            height: 42px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    background: #FFFFFF;
-    border: 2px solid #FFFFFF;
-    border-radius: 50%;
+            background: #FFFFFF;
+            border: 2px solid #FFFFFF;
+            border-radius: 50%;
 
-    box-shadow:
-        0 3px 10px rgba(64, 94, 114, 0.24),
-        0 0 0 1px rgba(255, 255, 255, 0.9);
+            box-shadow:
+                0 3px 10px rgba(64, 94, 114, 0.24),
+                0 0 0 1px rgba(255, 255, 255, 0.9);
 
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
 
-    cursor: pointer;
-}
+            cursor: pointer;
+        }
 
-.heart-marker svg {
-    width: 25px;
-    height: 25px;
-    display: block;
-    overflow: visible;
-}
+        .heart-marker svg {
+            width: 25px;
+            height: 25px;
+            display: block;
+            overflow: visible;
+        }
 
-/* Visited: vivid pink solid heart */
+        .heart-marker.visited {
+            color: var(--pink-strong);
+        }
 
-.heart-marker.visited {
-    color: #F06292;
-}
+        .heart-marker.planned {
+            color: var(--blue);
+        }
 
-/* Planned: blue outline heart */
+        .heart-marker:hover {
+            transform: scale(1.18);
 
-.heart-marker.planned {
-    color: #6D9FBC;
-}
-
-.heart-marker:hover {
-    transform: scale(1.18);
-
-    box-shadow:
-        0 5px 14px rgba(64, 94, 114, 0.28),
-        0 0 0 2px rgba(255, 255, 255, 0.95);
-}
-
+            box-shadow:
+                0 5px 14px rgba(64, 94, 114, 0.28),
+                0 0 0 2px rgba(255, 255, 255, 0.95);
+        }
 
         /* =========================================
            POPUP
@@ -317,6 +312,7 @@
         .map-legend {
             display: flex;
             justify-content: center;
+            align-items: center;
             flex-wrap: wrap;
             gap: 25px;
             margin-top: 25px;
@@ -330,14 +326,138 @@
             color: var(--text);
         }
 
+        /* Unified heart size */
+
         .legend-heart {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 20px;
+            height: 22px;
+
             font-family: Arial, sans-serif;
             font-size: 19px;
-            color: var(--pink);
+            line-height: 1;
+
+            color: var(--pink-strong);
+            flex-shrink: 0;
         }
 
         .legend-heart.planned {
             color: var(--blue);
+        }
+
+        /* =========================================
+           CATEGORY FILTER
+        ========================================= */
+
+        .map-filter {
+            margin-top: 30px;
+            padding: 23px 18px 19px;
+
+            background: #F7FBFE;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+        }
+
+        .filter-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 17px;
+        }
+
+        .filter-title {
+            margin: 0;
+            color: var(--blue-dark);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .filter-subtitle {
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .filter-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+
+            min-height: 37px;
+            padding: 8px 15px;
+
+            border: 1px solid var(--border);
+            border-radius: 30px;
+
+            background: #FFFFFF;
+            color: var(--text);
+
+            font-family: 'Noto Serif JP', serif;
+            font-size: 11px;
+            letter-spacing: 0.4px;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .filter-button:hover {
+            background: var(--surface-blue);
+            border-color: var(--surface-blue-deep);
+            transform: translateY(-1px);
+        }
+
+        .filter-button.active {
+            background: var(--blue);
+            border-color: var(--blue);
+            color: #FFFFFF;
+            box-shadow: 0 3px 9px rgba(109, 159, 188, 0.18);
+        }
+
+        .filter-button:focus-visible {
+            outline: 2px solid var(--blue-hover);
+            outline-offset: 3px;
+        }
+
+        .filter-count {
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            opacity: 0.75;
+        }
+
+        .filter-button.active .filter-count {
+            opacity: 0.9;
+        }
+
+        .filter-result {
+            margin: 17px 0 0;
+            text-align: center;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.5px;
+        }
+
+        .filter-result span {
+            color: var(--blue-hover);
+            font-family: Arial, sans-serif;
+            font-weight: 600;
         }
 
         /* =========================================
@@ -380,21 +500,53 @@
 
             .map-legend {
                 gap: 14px;
+                margin-top: 20px;
             }
 
             .legend-item {
                 font-size: 11px;
             }
 
-            .heart-marker {
-    width: 38px;
-    height: 38px;
-}
+            .legend-heart {
+                width: 20px;
+                height: 22px;
+                font-size: 19px;
+            }
 
-.heart-marker svg {
-    width: 23px;
-    height: 23px;
-}
+            .map-filter {
+                margin-top: 23px;
+                padding: 19px 12px 16px;
+            }
+
+            .filter-heading {
+                flex-direction: column;
+                gap: 6px;
+                margin-bottom: 15px;
+            }
+
+            .filter-buttons {
+                gap: 8px;
+            }
+
+            .filter-button {
+                min-height: 35px;
+                padding: 7px 12px;
+                font-size: 10px;
+            }
+
+            .filter-result {
+                font-size: 10px;
+            }
+
+            .heart-marker {
+                width: 38px;
+                height: 38px;
+            }
+
+            .heart-marker svg {
+                width: 23px;
+                height: 23px;
+            }
         }
 
     </style>
@@ -433,11 +585,16 @@
 
             </div>
 
+
             <div id="japan-map"></div>
+
 
             <p class="map-description">
                 地図を動かして、ふたりの足跡を探そう。
             </p>
+
+
+            <!-- MAP LEGEND -->
 
             <div class="map-legend">
 
@@ -450,6 +607,127 @@
                     <span class="legend-heart planned">♡</span>
                     <span>これから行きたい場所</span>
                 </div>
+
+            </div>
+
+
+            <!-- CATEGORY FILTER -->
+
+            <div class="map-filter">
+
+                <div class="filter-heading">
+
+                    <h3 class="filter-title">
+                        地点から探す
+                    </h3>
+
+                    <span class="filter-subtitle">
+                        カテゴリーを選択してください
+                    </span>
+
+                </div>
+
+
+                <div class="filter-buttons" id="filter-buttons">
+
+                    <button
+                        type="button"
+                        class="filter-button active"
+                        data-filter="all"
+                        aria-pressed="true"
+                    >
+                        全部
+                        <span class="filter-count">0</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-button"
+                        data-filter="station"
+                        aria-pressed="false"
+                    >
+                        駅
+                        <span class="filter-count">0</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-button"
+                        data-filter="sightseeing"
+                        aria-pressed="false"
+                    >
+                        観光スポット
+                        <span class="filter-count">0</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-button"
+                        data-filter="restaurant"
+                        aria-pressed="false"
+                    >
+                        レストラン
+                        <span class="filter-count">0</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-button"
+                        data-filter="cafe"
+                        aria-pressed="false"
+                    >
+                        カフェ
+                        <span class="filter-count">0</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-button"
+                        data-filter="accommodation"
+                        aria-pressed="false"
+                    >
+                        宿泊
+                        <span class="filter-count">0</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-button"
+                        data-filter="shopping"
+                        aria-pressed="false"
+                    >
+                        ショッピング
+                        <span class="filter-count">0</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-button"
+                        data-filter="experience"
+                        aria-pressed="false"
+                    >
+                        体験
+                        <span class="filter-count">0</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-button"
+                        data-filter="other"
+                        aria-pressed="false"
+                    >
+                        その他
+                        <span class="filter-count">0</span>
+                    </button>
+
+                </div>
+
+
+                <p class="filter-result" id="filter-result">
+                    表示中：
+                    <span>0</span>
+                    件
+                </p>
 
             </div>
 
@@ -552,6 +830,16 @@
            visited = pink solid heart
            planned = blue outline heart
 
+           filterCategory:
+           station
+           sightseeing
+           restaurant
+           cafe
+           accommodation
+           shopping
+           experience
+           other
+
         ========================================= */
 
         const places = [
@@ -563,6 +851,7 @@
             {
                 name: "心斎橋筋商店街",
                 category: "商店街",
+                filterCategory: "shopping",
                 lat: 34.6739,
                 lng: 135.5013,
                 status: "visited"
@@ -571,6 +860,7 @@
             {
                 name: "戎橋",
                 category: "景點",
+                filterCategory: "sightseeing",
                 lat: 34.6687,
                 lng: 135.5013,
                 status: "visited"
@@ -579,6 +869,7 @@
             {
                 name: "四ツ橋駅（Y14）",
                 category: "車站",
+                filterCategory: "station",
                 lat: 34.6756,
                 lng: 135.4957,
                 status: "visited"
@@ -587,6 +878,7 @@
             {
                 name: "Via Inn Prime Shinsaibashi-Yotsubashi",
                 category: "飯店",
+                filterCategory: "accommodation",
                 lat: 34.6755,
                 lng: 135.4967,
                 status: "visited"
@@ -595,6 +887,7 @@
             {
                 name: "glänta osaka 心斎橋店",
                 category: "アクセサリー・ペアリング",
+                filterCategory: "shopping",
                 lat: 34.6705,
                 lng: 135.5014,
                 status: "visited"
@@ -603,6 +896,7 @@
             {
                 name: "irodori 文房具と雑貨のお店（大丸心斎橋店）",
                 category: "文房具・雑貨",
+                filterCategory: "shopping",
                 lat: 34.6744,
                 lng: 135.5015,
                 status: "visited"
@@ -611,6 +905,7 @@
             {
                 name: "星乃珈琲店 心斎橋ジャパンライフ店",
                 category: "カフェ",
+                filterCategory: "cafe",
                 lat: 34.6703,
                 lng: 135.5025,
                 status: "visited"
@@ -624,6 +919,7 @@
             {
                 name: "石切参道商店街",
                 category: "商店街",
+                filterCategory: "shopping",
                 lat: 34.6810,
                 lng: 135.6500,
                 status: "visited"
@@ -632,6 +928,7 @@
             {
                 name: "石切劔箭神社",
                 category: "神社",
+                filterCategory: "sightseeing",
                 lat: 34.6797,
                 lng: 135.6550,
                 status: "visited"
@@ -640,6 +937,7 @@
             {
                 name: "新石切駅",
                 category: "車站",
+                filterCategory: "station",
                 lat: 34.6793,
                 lng: 135.6404,
                 status: "visited"
@@ -648,6 +946,7 @@
             {
                 name: "ICHIcafe",
                 category: "カフェ",
+                filterCategory: "cafe",
                 lat: 34.6818276,
                 lng: 135.6451207,
                 status: "visited"
@@ -661,6 +960,7 @@
             {
                 name: "谷町四丁目駅",
                 category: "車站",
+                filterCategory: "station",
                 lat: 34.6814,
                 lng: 135.5178,
                 status: "visited"
@@ -669,6 +969,7 @@
             {
                 name: "セブン-イレブン 大阪内本町２丁目店",
                 category: "コンビニ",
+                filterCategory: "other",
                 lat: 34.6835,
                 lng: 135.5150,
                 status: "visited"
@@ -681,80 +982,85 @@
            HEART ICON
         ========================================= */
 
-       
-function createHeartIcon(status) {
+        function createHeartIcon(status) {
 
-    const isVisited = status === "visited";
+            const isVisited = status === "visited";
 
-    const heartSvg = isVisited
-        ? `
-            <svg viewBox="0 0 24 24"
-                 xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M12 21.2
-                    C10.8 20.1 2.5 13.3 2.5 8.5
-                    C2.5 5.4 4.7 3.3 7.4 3.3
-                    C9.3 3.3 10.9 4.4 12 6
-                    C13.1 4.4 14.7 3.3 16.6 3.3
-                    C19.3 3.3 21.5 5.4 21.5 8.5
-                    C21.5 13.3 13.2 20.1 12 21.2 Z"
-                    fill="currentColor"
-                    stroke="currentColor"
-                    stroke-width="0.5"
-                    stroke-linejoin="round"
-                />
-            </svg>
-        `
-        : `
-            <svg viewBox="0 0 24 24"
-                 xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M12 21.2
-                    C10.8 20.1 2.5 13.3 2.5 8.5
-                    C2.5 5.4 4.7 3.3 7.4 3.3
-                    C9.3 3.3 10.9 4.4 12 6
-                    C13.1 4.4 14.7 3.3 16.6 3.3
-                    C19.3 3.3 21.5 5.4 21.5 8.5
-                    C21.5 13.3 13.2 20.1 12 21.2 Z"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-            </svg>
-        `;
+            const heartSvg = isVisited
+                ? `
+                    <svg viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 21.2
+                            C10.8 20.1 2.5 13.3 2.5 8.5
+                            C2.5 5.4 4.7 3.3 7.4 3.3
+                            C9.3 3.3 10.9 4.4 12 6
+                            C13.1 4.4 14.7 3.3 16.6 3.3
+                            C19.3 3.3 21.5 5.4 21.5 8.5
+                            C21.5 13.3 13.2 20.1 12 21.2 Z"
+                            fill="currentColor"
+                            stroke="currentColor"
+                            stroke-width="0.5"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                `
+                : `
+                    <svg viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 21.2
+                            C10.8 20.1 2.5 13.3 2.5 8.5
+                            C2.5 5.4 4.7 3.3 7.4 3.3
+                            C9.3 3.3 10.9 4.4 12 6
+                            C13.1 4.4 14.7 3.3 16.6 3.3
+                            C19.3 3.3 21.5 5.4 21.5 8.5
+                            C21.5 13.3 13.2 20.1 12 21.2 Z"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                `;
 
-    const className = isVisited
-        ? "heart-marker visited"
-        : "heart-marker planned";
+            const className = isVisited
+                ? "heart-marker visited"
+                : "heart-marker planned";
 
-    return L.divIcon({
+            return L.divIcon({
 
-        className: "heart-icon-wrapper",
+                className: "heart-icon-wrapper",
 
-        html: `
-            <div class="${className}">
-                ${heartSvg}
-            </div>
-        `,
+                html: `
+                    <div class="${className}">
+                        ${heartSvg}
+                    </div>
+                `,
 
-        iconSize: [42, 42],
+                iconSize: [42, 42],
 
-        iconAnchor: [21, 21],
+                iconAnchor: [21, 21],
 
-        popupAnchor: [0, -23]
+                popupAnchor: [0, -23]
 
-    });
-}
-
+            });
+        }
 
 
         /* =========================================
-           ADD PLACE MARKERS
+           MARKER LAYER
         ========================================= */
 
-        const markerBounds = [];
+        const markerLayer = L.layerGroup().addTo(map);
+
+        const markerRecords = [];
+
+
+        /* =========================================
+           CREATE PLACE MARKERS
+        ========================================= */
 
         places.forEach(function (place) {
 
@@ -800,19 +1106,141 @@ function createHeartIcon(status) {
 
             marker.bindPopup(popupContent);
 
-            marker.addTo(map);
 
-            markerBounds.push([
-                place.lat,
-                place.lng
-            ]);
+            markerRecords.push({
+                marker: marker,
+                category: place.filterCategory
+            });
 
         });
 
 
         /* =========================================
+           CATEGORY FILTER
+        ========================================= */
+
+        const filterButtons = document.querySelectorAll(
+            ".filter-button"
+        );
+
+        const filterResult = document.getElementById(
+            "filter-result"
+        );
+
+
+        /* Count places in each category */
+
+        function updateFilterCounts() {
+
+            filterButtons.forEach(function (button) {
+
+                const category = button.dataset.filter;
+
+                const count = category === "all"
+                    ? places.length
+                    : places.filter(function (place) {
+                        return place.filterCategory === category;
+                    }).length;
+
+                const countElement = button.querySelector(
+                    ".filter-count"
+                );
+
+                countElement.textContent = count;
+
+            });
+
+        }
+
+
+        /* Display selected category */
+
+        function filterPlaces(category) {
+
+            markerLayer.clearLayers();
+
+            let visibleCount = 0;
+
+            markerRecords.forEach(function (record) {
+
+                const shouldShow =
+                    category === "all" ||
+                    record.category === category;
+
+                if (shouldShow) {
+
+                    markerLayer.addLayer(record.marker);
+
+                    visibleCount++;
+
+                }
+
+            });
+
+
+            /* Update active button */
+
+            filterButtons.forEach(function (button) {
+
+                const isActive =
+                    button.dataset.filter === category;
+
+                button.classList.toggle("active", isActive);
+
+                button.setAttribute(
+                    "aria-pressed",
+                    isActive ? "true" : "false"
+                );
+
+            });
+
+
+            /* Update visible count */
+
+            filterResult.innerHTML = `
+                表示中：
+                <span>${visibleCount} / ${places.length}</span>
+                件
+            `;
+
+        }
+
+
+        /* Filter button click events */
+
+        filterButtons.forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                const selectedCategory = button.dataset.filter;
+
+                filterPlaces(selectedCategory);
+
+            });
+
+        });
+
+
+        /* Initial state */
+
+        updateFilterCounts();
+
+        filterPlaces("all");
+
+
+        /* =========================================
            AUTOMATIC MAP VIEW
         ========================================= */
+
+        const markerBounds = places.map(function (place) {
+
+            return [
+                place.lat,
+                place.lng
+            ];
+
+        });
+
 
         if (markerBounds.length > 0) {
 
