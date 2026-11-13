@@ -12,10 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    >
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
     <style>
         /* =========================================
@@ -25,7 +22,6 @@
         :root {
             --bg: #F5FAFD;
             --surface: #FFFFFF;
-
             --surface-blue: #E7F2F8;
             --surface-blue-light: #DCEEF6;
             --surface-blue-deep: #B7D8E9;
@@ -36,7 +32,6 @@
 
             --text: #526F82;
             --muted: #819EAF;
-
             --border: #DCEAF2;
 
             --pink: #E89AAF;
@@ -325,8 +320,6 @@
             font-size: 12px;
             color: var(--text);
         }
-
-        /* Unified heart size */
 
         .legend-heart {
             display: inline-flex;
@@ -630,92 +623,47 @@
 
                 <div class="filter-buttons" id="filter-buttons">
 
-                    <button
-                        type="button"
-                        class="filter-button active"
-                        data-filter="all"
-                        aria-pressed="true"
-                    >
+                    <button type="button" class="filter-button active" data-filter="all" aria-pressed="true">
                         全部
                         <span class="filter-count">0</span>
                     </button>
 
-                    <button
-                        type="button"
-                        class="filter-button"
-                        data-filter="station"
-                        aria-pressed="false"
-                    >
+                    <button type="button" class="filter-button" data-filter="station" aria-pressed="false">
                         駅
                         <span class="filter-count">0</span>
                     </button>
 
-                    <button
-                        type="button"
-                        class="filter-button"
-                        data-filter="sightseeing"
-                        aria-pressed="false"
-                    >
+                    <button type="button" class="filter-button" data-filter="sightseeing" aria-pressed="false">
                         観光スポット
                         <span class="filter-count">0</span>
                     </button>
 
-                    <button
-                        type="button"
-                        class="filter-button"
-                        data-filter="restaurant"
-                        aria-pressed="false"
-                    >
+                    <button type="button" class="filter-button" data-filter="restaurant" aria-pressed="false">
                         レストラン
                         <span class="filter-count">0</span>
                     </button>
 
-                    <button
-                        type="button"
-                        class="filter-button"
-                        data-filter="cafe"
-                        aria-pressed="false"
-                    >
+                    <button type="button" class="filter-button" data-filter="cafe" aria-pressed="false">
                         カフェ
                         <span class="filter-count">0</span>
                     </button>
 
-                    <button
-                        type="button"
-                        class="filter-button"
-                        data-filter="accommodation"
-                        aria-pressed="false"
-                    >
+                    <button type="button" class="filter-button" data-filter="accommodation" aria-pressed="false">
                         宿泊
                         <span class="filter-count">0</span>
                     </button>
 
-                    <button
-                        type="button"
-                        class="filter-button"
-                        data-filter="shopping"
-                        aria-pressed="false"
-                    >
+                    <button type="button" class="filter-button" data-filter="shopping" aria-pressed="false">
                         ショッピング
                         <span class="filter-count">0</span>
                     </button>
 
-                    <button
-                        type="button"
-                        class="filter-button"
-                        data-filter="experience"
-                        aria-pressed="false"
-                    >
+                    <button type="button" class="filter-button" data-filter="experience" aria-pressed="false">
                         体験
                         <span class="filter-count">0</span>
                     </button>
 
-                    <button
-                        type="button"
-                        class="filter-button"
-                        data-filter="other"
-                        aria-pressed="false"
-                    >
+                    <button type="button" class="filter-button" data-filter="other" aria-pressed="false">
                         その他
                         <span class="filter-count">0</span>
                     </button>
@@ -829,17 +777,6 @@
            status:
            visited = pink solid heart
            planned = blue outline heart
-
-           filterCategory:
-           station
-           sightseeing
-           restaurant
-           cafe
-           accommodation
-           shopping
-           experience
-           other
-
         ========================================= */
 
         const places = [
@@ -859,7 +796,7 @@
 
             {
                 name: "戎橋",
-                category: "景點",
+                category: "観光スポット",
                 filterCategory: "sightseeing",
                 lat: 34.6687,
                 lng: 135.5013,
@@ -868,7 +805,7 @@
 
             {
                 name: "四ツ橋駅",
-                category: "車站",
+                category: "駅",
                 filterCategory: "station",
                 lat: 34.6756,
                 lng: 135.4957,
@@ -877,7 +814,7 @@
 
             {
                 name: "ヴィアインプライム心斎橋四ツ橋",
-                category: "飯店",
+                category: "ホテル",
                 filterCategory: "accommodation",
                 lat: 34.6755,
                 lng: 135.4967,
@@ -894,20 +831,20 @@
             },
 
             {
-                name: "irodori 文房具と雑貨のお店（大丸心斎橋店）",
-                category: "文房具・雑貨",
-                filterCategory: "shopping",
-                lat: 34.6744,
-                lng: 135.5015,
-                status: "visited"
-            },
-
-            {
                 name: "星乃珈琲店 心斎橋ジャパンライフ店",
                 category: "カフェ",
                 filterCategory: "cafe",
                 lat: 34.6703,
                 lng: 135.5025,
+                status: "visited"
+            },
+
+            {
+                name: "JILLSTUART（大丸心斎橋店）",
+                category: "コスメ・ショッピング",
+                filterCategory: "shopping",
+                lat: 34.6739,
+                lng: 135.5012,
                 status: "visited"
             },
 
@@ -936,7 +873,7 @@
 
             {
                 name: "新石切駅",
-                category: "車站",
+                category: "駅",
                 filterCategory: "station",
                 lat: 34.6793,
                 lng: 135.6404,
@@ -952,6 +889,15 @@
                 status: "visited"
             },
 
+            {
+                name: "irodori 文房具と雑貨のお店",
+                category: "文房具・雑貨",
+                filterCategory: "shopping",
+                lat: 34.6817,
+                lng: 135.6451,
+                status: "visited"
+            },
+
 
             /* -------------------------------------
                CENTRAL OSAKA
@@ -959,7 +905,7 @@
 
             {
                 name: "谷町四丁目駅",
-                category: "車站",
+                category: "駅",
                 filterCategory: "station",
                 lat: 34.6814,
                 lng: 135.5178,
@@ -1071,9 +1017,6 @@
                 }
             );
 
-
-            /* Popup content */
-
             const isVisited = place.status === "visited";
 
             const statusText = isVisited
@@ -1083,7 +1026,6 @@
             const statusClass = isVisited
                 ? ""
                 : "planned";
-
 
             const popupContent = `
                 <div class="place-popup">
@@ -1103,9 +1045,7 @@
                 </div>
             `;
 
-
             marker.bindPopup(popupContent);
-
 
             markerRecords.push({
                 marker: marker,
@@ -1127,8 +1067,6 @@
             "filter-result"
         );
 
-
-        /* Count places in each category */
 
         function updateFilterCounts() {
 
@@ -1153,8 +1091,6 @@
         }
 
 
-        /* Display selected category */
-
         function filterPlaces(category) {
 
             markerLayer.clearLayers();
@@ -1178,8 +1114,6 @@
             });
 
 
-            /* Update active button */
-
             filterButtons.forEach(function (button) {
 
                 const isActive =
@@ -1195,8 +1129,6 @@
             });
 
 
-            /* Update visible count */
-
             filterResult.innerHTML = `
                 表示中：
                 <span>${visibleCount} / ${places.length}</span>
@@ -1205,8 +1137,6 @@
 
         }
 
-
-        /* Filter button click events */
 
         filterButtons.forEach(function (button) {
 
@@ -1221,7 +1151,9 @@
         });
 
 
-        /* Initial state */
+        /* =========================================
+           INITIAL STATE
+        ========================================= */
 
         updateFilterCounts();
 
