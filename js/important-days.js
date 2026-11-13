@@ -13,7 +13,6 @@
 const relationshipStartDate = "2024-06-29";
 
 const today = new Date();
-
 today.setHours(0, 0, 0, 0);
 
 const DAY_IN_MS = 86400000;
@@ -66,7 +65,7 @@ const importantDays = [
 
     {
         id: "first-meeting",
-        date: "2025-01-20",
+        date: "2026-01-20",
         title: "Our First Meeting",
         japaneseTitle: "初めて会った日",
         category: "special",
@@ -152,9 +151,7 @@ function parseDate(dateString) {
 function formatDate(date) {
 
     const year = date.getFullYear();
-
     const month = String(date.getMonth() + 1).padStart(2, "0");
-
     const day = String(date.getDate()).padStart(2, "0");
 
     return `${year}-${month}-${day}`;
@@ -165,7 +162,6 @@ function formatDate(date) {
 function addDays(date, days) {
 
     const result = new Date(date);
-
     result.setDate(result.getDate() + days);
 
     return result;
@@ -228,21 +224,27 @@ function getNextAnnualDate(event) {
 }
 
 
-function getEventDateForYear(event, year) {
+function getMostRecentAnnualDate(event) {
 
-    if (event.annual) {
+    const originalDate = parseDate(event.date);
 
-        const originalDate = parseDate(event.date);
+    let recentDate = new Date(
+        today.getFullYear(),
+        originalDate.getMonth(),
+        originalDate.getDate()
+    );
 
-        return new Date(
-            year,
+    if (recentDate > today) {
+
+        recentDate = new Date(
+            today.getFullYear() - 1,
             originalDate.getMonth(),
             originalDate.getDate()
         );
 
     }
 
-    return parseDate(event.date);
+    return recentDate;
 
 }
 
@@ -330,11 +332,8 @@ const milestoneEvents = generateMilestones();
 ========================================= */
 
 const allEvents = [
-
     ...importantDays,
-
     ...milestoneEvents
-
 ];
 
 
@@ -348,9 +347,7 @@ function updateDaysTogether() {
 
     const daysTogether = getDayDifference(startDate, today) + 1;
 
-    const daysElement =
-        document.getElementById("days-together") ||
-        document.getElementById("daysTogether");
+    const daysElement = document.getElementById("days-together");
 
     if (daysElement) {
 
@@ -364,7 +361,8 @@ function updateDaysTogether() {
 
     if (labelElement) {
 
-        labelElement.textContent = "Days Together · 一緒に過ごした日々";
+        labelElement.textContent =
+            "Days Together · 一緒に過ごした日々";
 
     }
 
@@ -393,11 +391,13 @@ function updateAnniversaryCountdown() {
 
     }
 
-    const remainingDays = getDayDifference(today, nextAnniversary);
+    const remainingDays = getDayDifference(
+        today,
+        nextAnniversary
+    );
 
     const countdownElement =
-        document.getElementById("anniversary-countdown") ||
-        document.getElementById("countdown-number");
+        document.getElementById("anniversary-countdown");
 
     if (countdownElement) {
 
@@ -405,21 +405,11 @@ function updateAnniversaryCountdown() {
 
     }
 
-    const countdownLabel =
-        document.getElementById("countdown-label");
-
-    if (countdownLabel) {
-
-        countdownLabel.textContent =
-            "Days Until Our Anniversary · 次の記念日まで";
-
-    }
-
 }
 
 
 /* =========================================
-   9. CALENDAR ELEMENTS
+   9. CALENDAR STATE & ELEMENTS
 ========================================= */
 
 let currentCalendarDate = new Date(
@@ -435,17 +425,13 @@ function getCalendarElements() {
 
     return {
 
-        monthTitle:
-            document.getElementById("calendar-month"),
+        monthTitle: document.getElementById("calendar-month"),
 
-        calendarGrid:
-            document.getElementById("calendar-grid"),
+        calendarGrid: document.getElementById("calendar-grid"),
 
-        selectedTitle:
-            document.getElementById("selected-date"),
+        selectedTitle: document.getElementById("selected-date"),
 
-        selectedEvents:
-            document.getElementById("selected-events")
+        selectedEvents: document.getElementById("selected-events")
 
     };
 
@@ -491,7 +477,6 @@ function renderCalendar() {
     if (!elements.calendarGrid) return;
 
     const year = currentCalendarDate.getFullYear();
-
     const month = currentCalendarDate.getMonth();
 
     const firstDay = new Date(year, month, 1).getDay();
@@ -500,38 +485,20 @@ function renderCalendar() {
 
     if (elements.monthTitle) {
 
-        const monthName = currentCalendarDate.toLocaleDateString(
-            "en-US",
-            {
+        elements.monthTitle.textContent =
+            currentCalendarDate.toLocaleDateString("en-US", {
                 month: "long",
                 year: "numeric"
-            }
-        );
-
-        elements.monthTitle.textContent = monthName;
+            });
 
     }
 
     let calendarHTML = "";
 
-    const weekdayNames = [
-        "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
-    ];
-
-    weekdayNames.forEach(day => {
-
-        calendarHTML += `
-            <div class="calendar-weekday">
-                ${day}
-            </div>
-        `;
-
-    });
-
     for (let i = 0; i < firstDay; i++) {
 
         calendarHTML += `
-            <div class="calendar-day empty"></div>
+            <div class="calendar-day empty" aria-hidden="true"></div>
         `;
 
     }
@@ -549,45 +516,35 @@ function renderCalendar() {
         const isSelected =
             dateString === formatDate(selectedDate);
 
-        const hasEvents = events.length > 0;
+        const eventColors = [
+            ...new Set(
+                events.map(event =>
+                    categoryInfo[event.category]?.color
+                ).filter(Boolean)
+            )
+        ];
 
-        const eventColors = events
-            .map(event => categoryInfo[event.category]?.color)
-            .filter(Boolean);
-
-        const dotsHTML = eventColors.slice(0, 3).map(color => {
-
-            return `
-                <span
-                    class="calendar-event-dot"
-                    style="background-color: ${color};"
-                ></span>
-            `;
-
-        }).join("");
+        const dotsHTML = eventColors.slice(0, 3).map(color => `
+            <span
+                class="calendar-event-dot"
+                style="background-color: ${color};"
+            ></span>
+        `).join("");
 
         calendarHTML += `
-
             <button
                 type="button"
                 class="calendar-day
                     ${isToday ? "today" : ""}
                     ${isSelected ? "selected" : ""}
-                    ${hasEvents ? "has-event" : ""}"
+                    ${events.length ? "has-event" : ""}"
                 data-date="${dateString}"
-                aria-label="${dateString}"
+                aria-label="${dateString}${events.length ? ", has special day" : ""}"
+                aria-pressed="${isSelected}"
             >
-
-                <span class="calendar-day-number">
-                    ${day}
-                </span>
-
-                <span class="calendar-event-dots">
-                    ${dotsHTML}
-                </span>
-
+                <span class="calendar-day-number">${day}</span>
+                <span class="calendar-event-dots">${dotsHTML}</span>
             </button>
-
         `;
 
     }
@@ -603,7 +560,6 @@ function renderCalendar() {
                 selectedDate = parseDate(button.dataset.date);
 
                 renderCalendar();
-
                 renderSelectedDateEvents();
 
             });
@@ -635,15 +591,10 @@ function renderSelectedDateEvents() {
     if (events.length === 0) {
 
         elements.selectedEvents.innerHTML = `
-
             <div class="empty-state">
-
                 <p>No special memories yet.</p>
-
                 <p>まだ特別な思い出はありません。</p>
-
             </div>
-
         `;
 
         return;
@@ -652,11 +603,10 @@ function renderSelectedDateEvents() {
 
     elements.selectedEvents.innerHTML = events.map(event => {
 
-        const category = categoryInfo[event.category] ||
-            categoryInfo.memory;
+        const category =
+            categoryInfo[event.category] || categoryInfo.memory;
 
         return `
-
             <article class="selected-event-card">
 
                 <span
@@ -672,17 +622,13 @@ function renderSelectedDateEvents() {
                         ${escapeHTML(category.japanese)}
                     </span>
 
-                    <h3>
-                        ${escapeHTML(event.title)}
-                    </h3>
+                    <h3>${escapeHTML(event.title)}</h3>
 
                     <p class="event-japanese-title">
                         ${escapeHTML(event.japaneseTitle || "")}
                     </p>
 
-                    <p>
-                        ${escapeHTML(event.description)}
-                    </p>
+                    <p>${escapeHTML(event.description)}</p>
 
                     ${event.location ? `
                         <p class="event-location">
@@ -693,7 +639,6 @@ function renderSelectedDateEvents() {
                 </div>
 
             </article>
-
         `;
 
     }).join("");
@@ -705,50 +650,36 @@ function renderSelectedDateEvents() {
    13. MEMORY JOURNAL
 ========================================= */
 
+function getPastEventDate(event) {
+
+    return event.annual
+        ? getMostRecentAnnualDate(event)
+        : parseDate(event.date);
+
+}
+
+
 function renderMemoryJournal() {
 
-    const container =
-        document.getElementById("memory-grid") ||
-        document.getElementById("memory-journal");
+    const container = document.getElementById("memory-grid");
 
     if (!container) return;
 
     const pastEvents = allEvents
-        .filter(event => {
-
-            const eventDate = event.annual
-                ? getEventDateForYear(event, today.getFullYear())
-                : parseDate(event.date);
-
-            return eventDate <= today;
-
-        })
-        .sort((a, b) => {
-
-            const dateA = a.annual
-                ? getEventDateForYear(a, today.getFullYear())
-                : parseDate(a.date);
-
-            const dateB = b.annual
-                ? getEventDateForYear(b, today.getFullYear())
-                : parseDate(b.date);
-
-            return dateB - dateA;
-
-        });
+        .map(event => ({
+            ...event,
+            displayDate: getPastEventDate(event)
+        }))
+        .filter(event => event.displayDate <= today)
+        .sort((a, b) => b.displayDate - a.displayDate);
 
     if (pastEvents.length === 0) {
 
         container.innerHTML = `
-
             <div class="empty-state">
-
                 <p>Our memories will appear here.</p>
-
                 <p>ふたりの思い出がここに並びます。</p>
-
             </div>
-
         `;
 
         return;
@@ -757,17 +688,13 @@ function renderMemoryJournal() {
 
     container.innerHTML = pastEvents.map(event => {
 
-        const category = categoryInfo[event.category] ||
-            categoryInfo.memory;
-
-        const eventDate = event.annual
-            ? getEventDateForYear(event, today.getFullYear())
-            : parseDate(event.date);
+        const category =
+            categoryInfo[event.category] || categoryInfo.memory;
 
         const photosHTML = (event.photos || []).length > 0
             ? `
                 <div class="memory-photos">
-                    ${(event.photos || []).map(photo => `
+                    ${event.photos.map(photo => `
                         <img
                             src="${escapeHTML(photo)}"
                             alt="${escapeHTML(event.title)}"
@@ -779,11 +706,10 @@ function renderMemoryJournal() {
             : "";
 
         return `
-
             <article class="memory-card">
 
                 <div class="memory-card-date">
-                    ${formatDisplayDate(eventDate)}
+                    ${formatDisplayDate(event.displayDate)}
                 </div>
 
                 <span
@@ -793,9 +719,7 @@ function renderMemoryJournal() {
                     ${escapeHTML(category.label)}
                 </span>
 
-                <h3>
-                    ${escapeHTML(event.title)}
-                </h3>
+                <h3>${escapeHTML(event.title)}</h3>
 
                 <p class="memory-japanese-title">
                     ${escapeHTML(event.japaneseTitle || "")}
@@ -814,7 +738,6 @@ function renderMemoryJournal() {
                 ${photosHTML}
 
             </article>
-
         `;
 
     }).join("");
@@ -828,9 +751,7 @@ function renderMemoryJournal() {
 
 function renderFutureMemories() {
 
-    const container =
-        document.getElementById("future-grid") ||
-        document.getElementById("future-memories");
+    const container = document.getElementById("future-grid");
 
     if (!container) return;
 
@@ -853,15 +774,10 @@ function renderFutureMemories() {
     if (futureEvents.length === 0) {
 
         container.innerHTML = `
-
             <div class="empty-state">
-
                 <p>More beautiful days are waiting for us.</p>
-
                 <p>これからも、ふたりでたくさんの思い出を。</p>
-
             </div>
-
         `;
 
         return;
@@ -870,8 +786,8 @@ function renderFutureMemories() {
 
     container.innerHTML = futureEvents.map(event => {
 
-        const category = categoryInfo[event.category] ||
-            categoryInfo.memory;
+        const category =
+            categoryInfo[event.category] || categoryInfo.memory;
 
         const remainingDays = getDayDifference(
             today,
@@ -879,7 +795,6 @@ function renderFutureMemories() {
         );
 
         return `
-
             <article class="future-card">
 
                 <div class="future-card-date">
@@ -893,13 +808,9 @@ function renderFutureMemories() {
                     ${escapeHTML(category.label)}
                 </span>
 
-                <h3>
-                    ${escapeHTML(event.title)}
-                </h3>
+                <h3>${escapeHTML(event.title)}</h3>
 
-                <p>
-                    ${escapeHTML(event.japaneseTitle || "")}
-                </p>
+                <p>${escapeHTML(event.japaneseTitle || "")}</p>
 
                 <div class="future-countdown">
                     ${remainingDays}
@@ -907,7 +818,6 @@ function renderFutureMemories() {
                 </div>
 
             </article>
-
         `;
 
     }).join("");
@@ -934,20 +844,14 @@ function changeCalendarMonth(amount) {
 
 function setupCalendarNavigation() {
 
-    const previousButton =
-        document.getElementById("prev-month") ||
-        document.getElementById("calendar-prev");
+    const previousButton = document.getElementById("prev-month");
 
-    const nextButton =
-        document.getElementById("next-month") ||
-        document.getElementById("calendar-next");
+    const nextButton = document.getElementById("next-month");
 
     if (previousButton) {
 
         previousButton.addEventListener("click", () => {
-
             changeCalendarMonth(-1);
-
         });
 
     }
@@ -955,9 +859,7 @@ function setupCalendarNavigation() {
     if (nextButton) {
 
         nextButton.addEventListener("click", () => {
-
             changeCalendarMonth(1);
-
         });
 
     }
@@ -966,7 +868,259 @@ function setupCalendarNavigation() {
 
 
 /* =========================================
-   16. INITIALIZE PAGE
+   16. DATE SEARCH
+========================================= */
+
+function setupDateSearch() {
+
+    const dateInput =
+        document.getElementById("date-search-input");
+
+    const searchButton =
+        document.getElementById("date-search-button");
+
+    if (!dateInput || !searchButton) return;
+
+    function searchDate() {
+
+        if (!dateInput.value) {
+
+            dateInput.focus();
+            return;
+
+        }
+
+        const date = parseDate(dateInput.value);
+
+        selectedDate = date;
+
+        currentCalendarDate = new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            1
+        );
+
+        renderCalendar();
+        renderSelectedDateEvents();
+
+        document.querySelector(".calendar-section")
+            ?.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+    }
+
+    searchButton.addEventListener("click", searchDate);
+
+    dateInput.addEventListener("keydown", event => {
+
+        if (event.key === "Enter") {
+            searchDate();
+        }
+
+    });
+
+}
+
+
+/* =========================================
+   17. MEMORY SEARCH
+========================================= */
+
+function getSearchDate(event) {
+
+    return event.annual
+        ? getNextAnnualDate(event)
+        : parseDate(event.date);
+
+}
+
+
+function searchEvents(keyword) {
+
+    const query = keyword.trim().toLowerCase();
+
+    if (!query) return [];
+
+    return allEvents
+        .filter(event => {
+
+            const category =
+                categoryInfo[event.category] || categoryInfo.memory;
+
+            const searchableText = [
+
+                event.title,
+                event.japaneseTitle,
+                event.description,
+                event.location,
+                event.date,
+                event.category,
+                category.label,
+                category.japanese,
+                event.milestoneDays
+
+            ].join(" ").toLowerCase();
+
+            return searchableText.includes(query);
+
+        })
+        .map(event => ({
+            ...event,
+            searchDate: getSearchDate(event)
+        }))
+        .sort((a, b) => a.searchDate - b.searchDate);
+
+}
+
+
+function renderSearchResults(keyword) {
+
+    const resultsContainer =
+        document.getElementById("search-results");
+
+    const resultsList =
+        document.getElementById("search-results-list");
+
+    const resultCount =
+        document.getElementById("search-result-count");
+
+    if (!resultsContainer || !resultsList || !resultCount) return;
+
+    const query = keyword.trim();
+
+    if (!query) {
+
+        resultsContainer.hidden = true;
+        resultsList.innerHTML = "";
+        return;
+
+    }
+
+    const results = searchEvents(query);
+
+    resultsContainer.hidden = false;
+
+    resultCount.textContent =
+        `${results.length} result${results.length === 1 ? "" : "s"}`;
+
+    if (results.length === 0) {
+
+        resultsList.innerHTML = `
+            <div class="empty-state">
+                <p>No memories found.</p>
+                <p>該当する思い出は見つかりませんでした。</p>
+            </div>
+        `;
+
+        return;
+
+    }
+
+    resultsList.innerHTML = results.map(event => {
+
+        const category =
+            categoryInfo[event.category] || categoryInfo.memory;
+
+        return `
+            <button
+                type="button"
+                class="search-result-item"
+                data-event-date="${formatDate(event.searchDate)}"
+            >
+
+                <span
+                    class="search-result-color"
+                    style="background-color: ${category.color};"
+                ></span>
+
+                <span class="search-result-content">
+
+                    <span class="search-result-date">
+                        ${formatDisplayDate(event.searchDate)}
+                    </span>
+
+                    <span class="search-result-title">
+                        ${escapeHTML(event.title)}
+                    </span>
+
+                    <span class="search-result-japanese">
+                        ${escapeHTML(event.japaneseTitle || "")}
+                    </span>
+
+                </span>
+
+                <span class="search-result-arrow">›</span>
+
+            </button>
+        `;
+
+    }).join("");
+
+    resultsList
+        .querySelectorAll(".search-result-item")
+        .forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const date = parseDate(button.dataset.eventDate);
+
+                selectedDate = date;
+
+                currentCalendarDate = new Date(
+                    date.getFullYear(),
+                    date.getMonth(),
+                    1
+                );
+
+                renderCalendar();
+                renderSelectedDateEvents();
+
+                document.querySelector(".calendar-section")
+                    ?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+            });
+
+        });
+
+}
+
+
+function setupMemorySearch() {
+
+    const searchInput =
+        document.getElementById("memory-search-input");
+
+    const clearButton =
+        document.getElementById("clear-search-button");
+
+    if (!searchInput || !clearButton) return;
+
+    searchInput.addEventListener("input", () => {
+
+        renderSearchResults(searchInput.value);
+
+    });
+
+    clearButton.addEventListener("click", () => {
+
+        searchInput.value = "";
+
+        renderSearchResults("");
+
+        searchInput.focus();
+
+    });
+
+}
+
+
+/* =========================================
+   18. INITIALIZE PAGE
 ========================================= */
 
 function initializeImportantDays() {
@@ -985,11 +1139,15 @@ function initializeImportantDays() {
 
     setupCalendarNavigation();
 
+    setupDateSearch();
+
+    setupMemorySearch();
+
 }
 
 
 /* =========================================
-   17. START
+   19. START
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
