@@ -138,7 +138,11 @@ body {
     visibility: hidden;
     transition: opacity .3s ease, visibility .3s ease;
 }
-.menu-overlay.active { opacity: 1; visibility: visible; }
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
 .side-menu {
     position: fixed;
     top: 0;
@@ -149,31 +153,37 @@ body {
     height: 100dvh;
     padding: 35px 25px 40px;
     overflow-y: auto;
-    background: #806B5A;
-    color: #FFF9F0;
+    background: #FBF8F3;
+    color: #806B5A;
     transform: translateX(-100%);
     transition: transform .35s ease;
     text-align: left;
 }
-.side-menu.active { transform: translateX(0); }
+.side-menu.active {
+    transform: translateX(0);
+}
+
 .menu-close {
     position: absolute;
     top: 13px;
     right: 17px;
     border: 0;
     background: none;
-    color: #FFF9F0;
+    color: #806B5A;
     font-size: 29px;
     font-weight: 300;
     cursor: pointer;
 }
+
 .menu-heading {
     margin: 22px 0 18px;
     font-size: 17px;
     font-weight: 500;
     letter-spacing: .8px;
     text-align: center;
+    color: #806B5A;
 }
+
 .menu-socials {
     display: flex;
     justify-content: center;
@@ -181,64 +191,103 @@ body {
     gap: 27px;
     margin: 0 auto 25px;
 }
+
 .menu-social-icon {
     width: 25px;
     height: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #FFF9F0;
+    color: #806B5A;
     opacity: .95;
 }
-.menu-social-icon svg { width: 23px; height: 23px; fill: currentColor; }
+.menu-social-icon svg {
+    width: 23px;
+    height: 23px;
+    fill: currentColor;
+}
+
 .menu-social-icon.notion-icon {
     width: 21px;
     height: 21px;
-    border: 1.5px solid #FFF9F0;
+    border: 1.5px solid #806B5A;
     border-radius: 3px;
     font-family: Arial, sans-serif;
     font-size: 15px;
     font-weight: 700;
 }
+
 .menu-divider {
     width: 100%;
     height: 1px;
     margin: 0 auto 23px;
-    background: rgba(255,249,240,.3);
+    background: #E5DED6;
 }
+
 .menu-label {
     margin: 0 0 30px;
-    color: #FFF9F0;
+    color: #806B5A;
     font-size: 12px;
     letter-spacing: 3px;
     text-align: center;
 }
-.menu-section { margin-bottom: 27px; }
+
+.menu-section {
+    margin-bottom: 27px;
+}
+
 .menu-section-title {
     margin-bottom: 13px;
-    color: #D8C9BB;
     font-size: 10px;
     letter-spacing: 2.5px;
 }
-.menu-links { display: flex; flex-direction: column; gap: 5px; }
+
+/* HOME：乾燥玫瑰 */
+.menu-section:first-child .menu-section-title {
+    color: #B58D86;
+}
+
+/* MEMORIES：柔和霧藍 */
+.menu-section:nth-child(2) .menu-section-title {
+    color: #8DAFC3;
+}
+
+.menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .menu-link {
     display: block;
     width: 100%;
     padding: 10px 12px;
     border-left: 2px solid transparent;
     border-radius: 4px;
-    color: #FFF9F0;
+    color: #806B5A;
     text-decoration: none;
     font-size: 12px;
     letter-spacing: .2px;
     line-height: 1.6;
     transition: background .2s ease, border-color .2s ease;
 }
-.menu-link:hover { background: rgba(255,249,240,.1); }
-.menu-link.active {
-    background: rgba(255,249,240,.13);
-    border-left-color: #E8D5C3;
-    color: #FFFFFF;
+
+.menu-link:hover {
+    background: #F3E8E1;
+}
+
+/* HOME 選取效果 */
+.menu-section:first-child .menu-link.active {
+    background: rgba(181,141,134,.13);
+    border-left-color: #B58D86;
+    color: #806B5A;
+}
+
+/* MEMORIES 選取效果 */
+.menu-section:nth-child(2) .menu-link.active {
+    background: rgba(141,175,195,.16);
+    border-left-color: #8DAFC3;
+    color: #806B5A;
 }
 
 /* 音樂播放器 */
@@ -502,31 +551,37 @@ footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px;
     <div class="menu-divider"></div>
     <div class="menu-label">MENU</div>
 
-    <div class="menu-links" id="menu-links">
-        <div class="menu-section">
-            <div class="menu-section-title">HOME</div>
-            <a href="index.html#home" class="menu-link">Home｜首頁</a>
-            <a href="index.html#about-website" class="menu-link">About Us｜關於我們</a>
-            <a href="index.html#our-days" class="menu-link">Our Days｜相遇與倒數</a>
-            <a href="index.html#osaka-weather" class="menu-link">Weather｜大阪天氣（詳細七天）</a>
-            <a href="important-days.html" class="menu-link">Important Days｜重要日子</a>
-        </div>
+   
+<div class="menu-links" id="menu-links">
 
-        <div class="menu-section">
-            <div class="menu-section-title">MEMORIES</div>
-            <a href="photos.html" class="menu-link">Photos｜照片</a>
-            <a href="gifts.html" class="menu-link">Illustrations &amp; Gifts｜插畫與禮物</a>
-            <a href="movies.html" class="menu-link">Movies｜電影</a>
-            <a href="games.html" class="menu-link">Games｜遊戲</a>
-            <a href="little-things.html" class="menu-link">Little Things｜生活小事</a>
-            <a href="music.html" class="menu-link">Music｜音樂</a>
-            <a href="letters.html" class="menu-link">Letters｜信件</a>
-            <a href="places.html" class="menu-link">Places｜一起去過的地方</a>
-            <a href="timeline.html" class="menu-link">Timeline｜回憶時間軸</a>
-            <a href="food.html" class="menu-link">Food</a>
-            <a href="wishlist.html" class="menu-link">Wishlist｜願望清單</a>
-        </div>
+    <div class="menu-section">
+        <div class="menu-section-title">HOME</div>
+
+        <a href="index.html#home" class="menu-link">ホーム｜Home</a>
+        <a href="index.html#about-website" class="menu-link">私たちについて｜About Us</a>
+        <a href="index.html#our-days" class="menu-link">ふたりの日々｜Our Days</a>
+        <a href="index.html#osaka-weather" class="menu-link">大阪の天気｜Osaka Weather</a>
+        <a href="important-days.html" class="menu-link">大切な記念日｜Important Days</a>
     </div>
+
+    <div class="menu-section">
+        <div class="menu-section-title">MEMORIES</div>
+
+        <a href="photos.html" class="menu-link">写真｜Photos</a>
+        <a href="gifts.html" class="menu-link">イラストと贈り物｜Illustrations & Gifts</a>
+        <a href="movies.html" class="menu-link">映画｜Movies</a>
+        <a href="games.html" class="menu-link">ゲーム｜Games</a>
+        <a href="little-things.html" class="menu-link">日々の小さなこと｜Little Things</a>
+        <a href="music.html" class="menu-link">音楽｜Music</a>
+        <a href="letters.html" class="menu-link">手紙｜Letters</a>
+        <a href="places.html" class="menu-link">ふたりで訪れた場所｜Places</a>
+        <a href="timeline.html" class="menu-link">思い出のタイムライン｜Timeline</a>
+        <a href="food.html" class="menu-link">ふたりの食べもの｜Food</a>
+        <a href="wishlist.html" class="menu-link">いつか叶えたいこと｜Wishlist</a>
+    </div>
+
+</div>
+
 </nav>
 
 <div class="menu-overlay" id="menu-overlay"></div>
