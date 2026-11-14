@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+
+  <title>ふたりの島 | Animal Crossing</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/animal-crossing.css">
+</head>
+
+<body class="ac-page">
+
+  <header class="ac-topbar">
+    <a class="ac-back" href="games.html">← GAMES</a>
+    <div class="ac-top-title">ふたりの島</div>
+    <div class="ac-weather">☀️</div>
+  </header>
+
+  <main class="ac-main">
+
+    <section class="ac-heading">
+      <div class="ac-leaf">🍃</div>
+      <p class="ac-eyebrow">ISLAND SERVICE TERMINAL</p>
+      <h1>ふたりの島</h1>
+      <p class="ac-subtitle">WEN & YUUKA'S ISLAND</p>
+    </section>
+
+    <section class="ac-menu-panel">
+
+      <div class="ac-panel-heading">
+        <span>サービスをえらんでね！</span>
+        <span class="ac-panel-decoration">✿</span>
+      </div>
+
+      <div class="ac-grid">
+
+        <button class="ac-tile tile-mint" data-page="passport">
+          <span class="ac-icon">🪪</span>
+          <span class="ac-name">パスポート</span>
+          <span class="ac-en">PASSPORT</span>
+        </button>
+
+        <button class="ac-tile tile-blue" data-page="music">
+          <span class="ac-icon">🎵</span>
+          <span class="ac-name">ミュージック</span>
+          <span class="ac-en">MUSIC</span>
+        </button>
+
+        <button class="ac-tile tile-green" data-page="photos">
+          <span class="ac-icon">📷</span>
+          <span class="ac-name">島の写真</span>
+          <span class="ac-en">PHOTO ALBUM</span>
+        </button>
+
+        <button class="ac-tile tile-purple" data-page="dream">
+          <span class="ac-icon">🌙</span>
+          <span class="ac-name">夢の島</span>
+          <span class="ac-en">DREAM ISLAND</span>
+        </button>
+
+        <button class="ac-tile tile-yellow" data-page="design">
+          <span class="ac-icon">🌳</span>
+          <span class="ac-name">島づくり</span>
+          <span class="ac-en">ISLAND DESIGN</span>
+        </button>
+
+        <button class="ac-tile tile-orange" data-page="home">
+          <span class="ac-icon">🏡</span>
+          <span class="ac-name">おうち</span>
+          <span class="ac-en">OUR HOME</span>
+        </button>
+
+        <button class="ac-tile tile-pink" data-page="bulletin">
+          <span class="ac-icon">📌</span>
+          <span class="ac-name">島のおしらせ</span>
+          <span class="ac-en">ISLAND BULLETIN</span>
+          <span class="ac-notice-dot">!</span>
+        </button>
+
+        <button class="ac-tile tile-coral" data-page="events">
+          <span class="ac-icon">🎉</span>
+          <span class="ac-name">イベント</span>
+          <span class="ac-en">EVENTS</span>
+        </button>
+
+        <button class="ac-tile tile-rose" data-page="memories">
+          <span class="ac-icon">💗</span>
+          <span class="ac-name">ふたりの記録</span>
+          <span class="ac-en">OUR MEMORIES</span>
+        </button>
+
+      </div>
+
+      <div class="ac-panel-footer">
+        <span>●</span>
+        <span class="active-dot">●</span>
+        <span>●</span>
+      </div>
+
+    </section>
+
+    <p class="ac-footer-note">
+      ふたりの大切な島へようこそ ♡
+    </p>
+
+  </main>
+
+  <!-- 內容視窗 -->
+  <div class="ac-modal" id="acModal" aria-hidden="true">
+    <div class="ac-modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+
+      <button class="ac-close" id="closeModal" aria-label="Close">×</button>
+
+      <div class="ac-modal-icon" id="modalIcon">🍃</div>
+      <p class="ac-modal-en" id="modalEnglish"></p>
+      <h2 id="modalTitle"></h2>
+
+      <div class="ac-modal-content" id="modalContent"></div>
+
+    </div>
+  </div>
+
+  <script src="js/animal-crossing.js"></script>
+</body>
+</html>
