@@ -1027,3 +1027,81 @@ body.ac-body {
     }
 
 }
+
+/* =========================================
+   FINAL FIX — SQUARE BUTTONS
+   強制所有按鈕維持正方形
+========================================= */
+
+/* 桌面版 */
+
+.ac-menu-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px 6px;
+}
+
+.ac-menu-button {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ac-icon-tile {
+    width: min(100%, 112px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+
+    flex: 0 0 auto;
+
+    border-radius: 38px;
+}
+
+
+/* 手機版 */
+
+@media (max-width: 600px) {
+
+    .ac-menu-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px 4px;
+    }
+
+    .ac-menu-button {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .ac-icon-tile {
+        width: min(100%, 84px);
+        height: auto;
+        aspect-ratio: 1 / 1;
+
+        flex: 0 0 auto;
+
+        padding: 9px;
+        border-radius: 27px;
+    }
+
+    .ac-button-title {
+        margin-top: 7px;
+    }
+
+}
+
+
+/* 更窄的手機 */
+
+@media (max-width: 360px) {
+
+    .ac-icon-tile {
+        width: min(100%, 76px);
+        height: auto;
+        aspect-ratio: 1 / 1;
+
+        padding: 8px;
+        border-radius: 24px;
+    }
+
+}
