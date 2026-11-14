@@ -1,3 +1,4 @@
+
 /* =========================================
    1. ELEMENTS
 ========================================= */
@@ -16,7 +17,34 @@ const acMenuButtons = document.querySelectorAll(".ac-menu-button");
 
 
 /* =========================================
-   2. SECTION CONTENT
+   2. CURRENT DATE
+========================================= */
+
+const acCurrentDate = document.getElementById("acCurrentDate");
+
+function updateAcDate() {
+
+    if (!acCurrentDate) return;
+
+    const dateParts = new Intl.DateTimeFormat("ja-JP", {
+        timeZone: "Asia/Tokyo",
+        month: "numeric",
+        day: "numeric"
+    }).formatToParts(new Date());
+
+    const month = dateParts.find(part => part.type === "month").value;
+
+    const day = dateParts.find(part => part.type === "day").value;
+
+    acCurrentDate.textContent = `${month}月${day}日`;
+
+}
+
+updateAcDate();
+
+
+/* =========================================
+   3. SECTION CONTENT
 ========================================= */
 
 const acSections = {
@@ -244,7 +272,7 @@ const acSections = {
 
 
 /* =========================================
-   3. OPEN MODAL
+   4. OPEN MODAL
 ========================================= */
 
 function openAcSection(sectionName) {
@@ -269,7 +297,7 @@ function openAcSection(sectionName) {
 
 
 /* =========================================
-   4. CLOSE MODAL
+   5. CLOSE MODAL
 ========================================= */
 
 function closeAcModal() {
@@ -284,7 +312,7 @@ function closeAcModal() {
 
 
 /* =========================================
-   5. MENU BUTTON EVENTS
+   6. MENU BUTTON EVENTS
 ========================================= */
 
 acMenuButtons.forEach((button) => {
@@ -301,7 +329,7 @@ acMenuButtons.forEach((button) => {
 
 
 /* =========================================
-   6. CLOSE BUTTON
+   7. CLOSE BUTTON
 ========================================= */
 
 acModalClose.addEventListener("click", () => {
@@ -312,7 +340,7 @@ acModalClose.addEventListener("click", () => {
 
 
 /* =========================================
-   7. BACKDROP CLICK
+   8. BACKDROP CLICK
 ========================================= */
 
 acModal.addEventListener("click", (event) => {
@@ -327,7 +355,7 @@ acModal.addEventListener("click", (event) => {
 
 
 /* =========================================
-   8. ESCAPE KEY
+   9. ESCAPE KEY
 ========================================= */
 
 document.addEventListener("keydown", (event) => {
