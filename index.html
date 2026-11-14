@@ -1,27 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-
 <title>Forever My Beloved Yuuka</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
-
-/* 基本設定 */
-
-* {
-    box-sizing: border-box;
-}
-
+* { box-sizing: border-box; }
 body {
     margin: 0;
     padding: 0 20px 60px;
@@ -30,1044 +20,90 @@ body {
     font-family: 'Noto Serif JP', serif;
     text-align: center;
 }
-
 .container {
     width: 100%;
     max-width: 680px;
     margin: 0 auto;
     padding-top: 66px;
 }
-  
-/* ==============================
-   音樂播放器
-============================== */
 
-.music-player {
-    width: 100%;
-    max-width: 100%;
-    margin: 15px auto 20px;
-    padding: 12px 14px;
-    font-family: 'Noto Serif JP', serif;
-    color: #806B5A;
-    border: 1px solid #E5DED6;
-    border-radius: 12px;
-    background: transparent;
-}
-
-
-/* 播放器上半部 */
-
-.player-main {
-    display: grid;
-    grid-template-columns: 108px minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-}
-
-
-/* 封面與黑膠唱片容器 */
-
-.player-art {
-    width: 108px;
-    height: 62px;
-    position: relative;
-    flex-shrink: 0;
-}
-
-
-/* 音樂封面 */
-
-.album-cover {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 2;
-    width: 62px;
-    height: 62px;
-    display: block;
-    object-fit: cover;
-    border-radius: 3px;
-    box-shadow: 0 2px 5px rgba(128, 107, 90, 0.15);
-}
-
-
-/* 黑膠唱片 */
-
-.vinyl-record {
-    width: 62px;
-    height: 62px;
-    position: absolute;
-    left: 46.5px;
-    top: 0;
-    z-index: 1;
-    border-radius: 50%;
-    overflow: hidden;
-
-    background:
-        radial-gradient(
-            circle,
-            #3A3938 0%,
-            #171717 35%,
-            #292827 36%,
-            #111111 39%,
-            #292827 40%,
-            #111111 43%,
-            #242322 44%,
-            #101010 48%,
-            #292827 49%,
-            #111111 53%,
-            #242322 54%,
-            #101010 58%,
-            #292827 59%,
-            #111111 64%,
-            #242322 65%,
-            #101010 70%,
-            #292827 71%,
-            #111111 100%
-        );
-
-    box-shadow:
-        0 2px 5px rgba(0, 0, 0, 0.2),
-        inset 0 0 4px rgba(255, 255, 255, 0.12);
-}
-
-
-/* 黑膠唱片中心圓形封面 */
-
-.vinyl-label {
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #D6B9A9;
-    z-index: 2;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.35);
-}
-
-
-/* 黑膠中心孔 */
-
-.vinyl-record::after {
-    content: "";
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background: #FBF8F3;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    z-index: 3;
-}
-
-
-/* 播放時黑膠旋轉 */
-
-.vinyl-record.is-playing {
-    animation: vinyl-rotate 5s linear infinite;
-}
-
-@keyframes vinyl-rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-
-/* 歌曲資訊 */
-
-.player-info {
-    min-width: 0;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 3px;
-    margin-left: 6px;
-}
-
-.now-playing {
-    font-size: 9px;
-    letter-spacing: 1px;
-    font-weight: 700;
-    color: #806B5A;
-    white-space: nowrap;
-}
-
-.song-title {
-    font-size: 12px;
-    font-weight: 700;
-    color: #806B5A;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.song-artist {
-    font-size: 10px;
-    font-weight: 700;
-    color: #A18D7B;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-
-/* 播放控制按鈕 */
-
-.player-controls {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 9px;
-    flex-shrink: 0;
-}
-
-.player-controls button {
-    width: 35px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #D8C8BA;
-    border-radius: 50%;
-    background: transparent;
-    color: #806B5A;
-    cursor: pointer;
-    padding: 0;
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-.player-controls button:hover {
-    background: #F3E8E1;
-    transform: scale(1.05);
-}
-
-.player-controls button svg {
-    width: 17px;
-    height: 17px;
-    fill: #806B5A;
-    stroke: none;
-}
-
-.player-controls .play-button {
-    width: 42px;
-    height: 42px;
-    background: #B58D86;
-    border: 1px solid #B58D86;
-}
-
-.player-controls .play-button:hover {
-    background: #A78078;
-}
-
-.player-controls .play-button svg {
-    width: 19px;
-    height: 19px;
-    fill: #FFFFFF;
-}
-
-
-/* 播放進度與時間 */
-
-.player-progress-row {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 5px;
-    margin: 10px 0 0;
-}
-
-.progress-bar {
-    order: 1;
-    width: 100%;
-    height: 3px;
-    appearance: none;
-    -webkit-appearance: none;
-    background: #E5D8CC;
-    border-radius: 10px;
-    outline: none;
-    cursor: pointer;
-}
-
-.progress-bar::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #A18D7B;
-}
-
-.progress-bar::-moz-range-thumb {
-    width: 9px;
-    height: 9px;
-    border: none;
-    border-radius: 50%;
-    background: #A18D7B;
-}
-
-.player-time-row {
-    order: 2;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.player-time,
-.remaining-time {
-    font-size: 10px;
-    color: #A18D7B;
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-}
-
-
-/* ==============================
-   首頁照片
-============================== */
-
-.cover-photo {
-    width: 100%;
-    max-width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-    border-radius: 12px;
-    display: block;
-    margin: 30px auto;
-}
-
-
-/* 標題 */
-
-.site-title {
-    margin: 35px 0 12px;
-    font-size: 28px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    line-height: 1.6;
-}
-
-.subtitle {
-    font-size: 15px;
-    color: #A18D7B;
-    letter-spacing: 2px;
-    margin: 8px 0;
-}
-
-.description {
-    font-size: 13px;
-    color: #A18D7B;
-    letter-spacing: 1px;
-    margin: 15px 0 45px;
-}
-
-
-/* 倒數工具 */
-
-.countdown-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-    margin: 35px 0 55px;
-}
-
-.countdown-card {
-    background: #F3E8E1;
-    border-radius: 12px;
-    padding: 25px 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.countdown-label {
-    width: 100%;
-    text-align: center;
-    font-size: 15px;
-    letter-spacing: 1.15px;
-    margin-bottom: 18px;
-    color: #947B66;
-}
-
-.countdown-number {
-    width: 100%;
-    text-align: center;
-    font-size: 39px;
-    font-weight: 500;
-    letter-spacing: 1.15px;
-    line-height: 1.3;
-    font-variant-numeric: tabular-nums;
-}
-
-.countdown-unit {
-    width: 100%;
-    text-align: center;
-    font-size: 14px;
-    margin-top: 9px;
-    letter-spacing: 1.15px;
-    color: #A18D7B;
-}
-
-
-/* 相遇時間 */
-
-.meeting-time-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    width: 100%;
-    align-items: center;
-    justify-items: center;
-    gap: 2px;
-}
-
-.meeting-time-item {
-    min-width: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.meeting-time-number {
-    font-family: 'Noto Serif JP', serif;
-    color: #806B5A;
-    font-size: clamp(20px, 5.5vw, 34px);
-    font-weight: 500;
-    line-height: 1.5;
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-}
-
-.meeting-time-label {
-    font-family: 'Noto Serif JP', serif;
-    color: #A18D7B;
-    font-size: 9px;
-    font-weight: 500;
-    margin-top: 7px;
-    letter-spacing: 0.3px;
-    white-space: nowrap;
-}
-
-.meeting-footer {
-    font-family: 'Noto Serif JP', serif;
-    color: #A18D7B;
-    font-size: 11px;
-    letter-spacing: 1px;
-    margin-top: 15px;
-}
-
-
-/* ==============================
-   大阪天氣區域
-============================== */
-
-.weather-section {
-    margin: 45px 0 60px;
-    padding: 24px 18px 18px;
-    background: #F3E8E1;
-    border-radius: 12px;
-}
-
-.weather-section .section-title {
-    margin-bottom: 10px;
-}
-
-.section-title {
-    font-size: 19px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
-}
-
-.section-subtitle {
-    font-size: 12px;
-    color: #A18D7B;
-    letter-spacing: 1px;
-}
-
-
-/* 今日天氣左右排列 */
-
-.weather-current {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    margin-top: 22px;
-}
-
-
-/* 左側天氣圖示與溫度 */
-
-.weather-main {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 0;
-}
-
-.weather-main-icon {
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    color: #947B66;
-}
-
-.weather-main-icon svg {
-    width: 38px;
-    height: 38px;
-    stroke-width: 1.35;
-}
-
-.weather-main-info {
-    text-align: left;
-    min-width: 0;
-}
-
-.weather-temperature {
-    font-size: 30px;
-    line-height: 1.2;
-    font-weight: 500;
-    color: #806B5A;
-    font-variant-numeric: tabular-nums;
-}
-
-.weather-description {
-    margin-top: 5px;
-    font-size: 11px;
-    color: #947B66;
-    white-space: nowrap;
-}
-
-
-/* 右側天氣資訊 */
-
-.weather-details {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 5px;
-    text-align: right;
-    font-size: 10px;
-    line-height: 1.5;
-    color: #947B66;
-    white-space: nowrap;
-}
-
-
-/* 最後更新時間 */
-
-.weather-updated {
-    margin-top: 13px;
-    text-align: right;
-    font-size: 9px;
-    letter-spacing: 0.3px;
-    color: #A18D7B;
-}
-
-
-/* 一週天氣 */
-
-.weekly-weather {
-    margin-top: 19px;
-    padding-top: 15px;
-    border-top: 1px solid rgba(161, 141, 123, 0.22);
-}
-
-.weekly-weather-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    font-size: 12px;
-    letter-spacing: 0.8px;
-    color: #806B5A;
-}
-
-.weekly-weather-en {
-    font-size: 9px;
-    letter-spacing: 1px;
-    color: #B5A393;
-}
-
-
-/* 七天排列 */
-
-.weekly-weather-list {
-    display: grid;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-    gap: 3px;
-    width: 100%;
-}
-
-.weekly-day {
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 7px;
-}
-
-.weekly-day-name {
-    font-size: 10px;
-    color: #A18D7B;
-}
-
-.weekly-day-icon {
-    height: 21px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #947B66;
-}
-
-.weekly-day-icon svg {
-    width: 18px;
-    height: 18px;
-    stroke-width: 1.35;
-}
-
-.weekly-day-max {
-    font-size: 10px;
-    font-weight: 600;
-    color: #806B5A;
-    font-variant-numeric: tabular-nums;
-}
-
-.weekly-day-min {
-    font-size: 10px;
-    color: #A18D7B;
-    font-variant-numeric: tabular-nums;
-}
-
-.weekly-day-rain {
-    font-size: 9px;
-    color: #A18D7B;
-}
-
-.weekly-loading {
-    grid-column: 1 / -1;
-    padding: 10px 0;
-    text-align: center;
-    font-size: 10px;
-    color: #A18D7B;
-}
-
-
-/* ==============================
-   收藏分類
-============================== */
-
-.memories-section {
-    margin-top: 60px;
-}
-
-.memories-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    margin-top: 30px;
-}
-
-.memory-card {
-    min-height: 125px;
-    padding: 20px 8px;
-    background: #F3E8E1;
-    border-radius: 12px;
-    color: #806B5A;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease;
-}
-
-.memory-card:hover {
-    transform: translateY(-4px);
-    background: #EDE0D7;
-}
-
-.memory-card svg {
-    width: 25px;
-    height: 25px;
-    stroke-width: 1.3;
-    color: #947B66;
-}
-
-.memory-name {
-    font-size: 13px;
-    letter-spacing: 0.5px;
-}
-
-.memory-japanese {
-    font-size: 10px;
-    color: #A18D7B;
-    margin-top: -7px;
-}
-
-
-/* 頁尾 */
-
-footer {
-    margin-top: 65px;
-    font-size: 11px;
-    color: #B5A393;
-    letter-spacing: 1px;
-    line-height: 2;
-}
-
-
-/* ==============================
-   手機版
-============================== */
-
-@media (max-width: 480px) {
-
-    body {
-        padding: 0 15px 45px;
-    }
-
-    .music-player {
-        padding: 10px 9px;
-    }
-
-    .player-main {
-        grid-template-columns: 84px minmax(0, 1fr) auto;
-        gap: 6px;
-    }
-
-    .player-art {
-        width: 87.5px;
-        height: 50px;
-    }
-
-    .player-info {
-        margin-left: 6px;
-    }
-
-    .album-cover {
-        width: 50px;
-        height: 50px;
-    }
-
-    .vinyl-record {
-        width: 50px;
-        height: 50px;
-        left: 37.5px;
-        top: 0;
-    }
-
-    .vinyl-label {
-        width: 21px;
-        height: 21px;
-    }
-
-    .vinyl-record::after {
-        width: 4px;
-        height: 4px;
-    }
-
-    .now-playing {
-        font-size: 8px;
-        letter-spacing: 0.6px;
-    }
-
-    .song-title {
-        font-size: 11px;
-    }
-
-    .song-artist {
-        font-size: 9px;
-    }
-
-    .player-controls {
-        gap: 6px;
-    }
-
-    .player-controls button {
-        width: 31px;
-        height: 31px;
-    }
-
-    .player-controls button svg {
-        width: 15px;
-        height: 15px;
-    }
-
-    .player-controls .play-button {
-        width: 37px;
-        height: 37px;
-    }
-
-    .player-controls .play-button svg {
-        width: 17px;
-        height: 17px;
-    }
-
-    .cover-photo {
-        margin-top: 20px;
-    }
-
-    .site-title {
-        font-size: 23px;
-    }
-
-    .countdown-grid {
-        gap: 10px;
-    }
-
-    .countdown-card {
-        padding: 22px 8px;
-    }
-
-    .countdown-label {
-        font-size: 15px;
-        margin-bottom: 18px;
-    }
-
-    .countdown-number {
-        font-size: 32px;
-    }
-
-    .countdown-unit {
-        font-size: 14px;
-        margin-top: 9px;
-    }
-
-    .meeting-time-number {
-        font-size: clamp(19px, 5.5vw, 26px);
-    }
-
-    .meeting-time-label {
-        font-size: 8px;
-    }
-
-    .memories-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-
-    .memory-card {
-        min-height: 118px;
-    }
-
-    /* 手機版天氣 */
-
-    .weather-section {
-        padding: 22px 12px 17px;
-    }
-
-    .weather-current {
-        gap: 6px;
-    }
-
-    .weather-main {
-        gap: 8px;
-    }
-
-    .weather-main-icon {
-        width: 34px;
-        height: 34px;
-    }
-
-    .weather-main-icon svg {
-        width: 32px;
-        height: 32px;
-    }
-
-    .weather-temperature {
-        font-size: 26px;
-    }
-
-    .weather-description {
-        font-size: 10px;
-    }
-
-    .weather-details {
-        font-size: 9px;
-        gap: 5px;
-    }
-
-    .weekly-weather-list {
-        gap: 1px;
-    }
-
-    .weekly-day {
-        gap: 7px;
-    }
-
-    .weekly-day-name {
-        font-size: 9px;
-    }
-
-    .weekly-day-icon svg {
-        width: 16px;
-        height: 16px;
-    }
-
-    .weekly-day-max,
-    .weekly-day-min {
-        font-size: 9px;
-    }
-
-    .weekly-day-rain {
-        font-size: 8px;
-    }
-
-}
-
-
-/* 平板與電腦 */
-
-@media (min-width: 600px) {
-
-    .meeting-time-grid {
-        column-gap: 12px;
-    }
-
-    .meeting-time-number {
-        font-size: 34px;
-    }
-}
-
-
-/* ==============================
-   固定導覽列
-============================== */
-
+/* 固定導覽列 */
 .site-header {
     position: fixed;
-    top: 0px;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
-
     width: calc(100% - 30px);
     max-width: 680px;
     height: 46px;
-
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-
     padding: 0 9px;
     background: #806B5A;
     border-radius: 0 0 10px 10px;
-    box-shadow: 0 3px 10px rgba(80, 60, 45, 0.12);
+    box-shadow: 0 3px 10px rgba(80,60,45,.12);
 }
-
-/* 左右按鈕 */
-
 .nav-button {
+    justify-self: start;
     width: 34px;
     height: 34px;
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: 0;
-    border: none;
+    border: 0;
     border-radius: 7px;
     background: transparent;
     color: #FFF9F0;
     cursor: pointer;
 }
-
-.nav-button svg {
-    width: 20px;
-    height: 20px;
-    stroke-width: 1.7;
-}
-
-/* 中央網站標題 */
-
+.nav-button svg { width: 20px; height: 20px; stroke-width: 1.7; }
 .nav-title {
     color: #FFF9F0;
     font-size: 15px;
-    letter-spacing: 0.5px;
+    letter-spacing: .5px;
     white-space: nowrap;
     text-align: center;
 }
-
-/* 語言切換按鈕 */
-
 .language-button {
     justify-self: end;
-    height: 31px;
+    width: 34px;
+    height: 34px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-
-    padding: 0 9px;
-    border: none;
-    border-radius: 20px;
-    background: #FFF9F0;
-    color: #806B5A;
-
-    font-family: inherit;
-    font-size: 10px;
-    white-space: nowrap;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #FFF9F0;
     cursor: pointer;
 }
+.language-button svg { width: 18px; height: 18px; }
 
-.language-button svg {
-    width: 13px;
-    height: 13px;
-}
-
-
-    /* ==============================
-   語言選單
-============================== */
-
+/* 語言選單 */
 .language-menu {
     position: fixed;
     top: 56px;
     right: max(24px, calc((100vw - 680px) / 2 + 9px));
     z-index: 1001;
-
     width: 145px;
     padding: 7px;
-
     background: #FFF9F0;
     border: 1px solid #E8DED3;
     border-radius: 10px;
-    box-shadow: 0 5px 18px rgba(80, 60, 45, 0.15);
+    box-shadow: 0 5px 18px rgba(80,60,45,.15);
 }
-
-.language-menu[hidden] {
-    display: none;
-}
-
+.language-menu[hidden] { display: none; }
 .language-option {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 12px 10px;
-    border: none;
+    border: 0;
     background: transparent;
     color: #806B5A;
     font-family: inherit;
@@ -1075,107 +111,55 @@ footer {
     text-align: left;
     cursor: pointer;
 }
+.language-check { font-size: 15px; font-weight: bold; }
+.language-option.active .language-check::before { content: "✓"; }
 
-.language-option + .language-option {
-    border-top: 1px solid #E9DED3;
-}
-
-.language-check {
-    font-size: 15px;
-    font-weight: bold;
-}
-
-.language-option.active .language-check::before {
-    content: "✓";
-}
-
-/* ==========================
-   側邊漢堡選單
-========================== */
-
+/* 側邊選單 */
 .menu-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(40, 30, 24, 0.35);
     z-index: 1090;
+    background: rgba(40,30,24,.35);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity .3s ease, visibility .3s ease;
 }
-
-.menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
+.menu-overlay.active { opacity: 1; visibility: visible; }
 .side-menu {
     position: fixed;
     top: 0;
     left: 0;
-    width: min(290px, 82vw);
+    z-index: 1100;
+    width: min(340px, 88vw);
+    height: 100vh;
     height: 100dvh;
-    padding: 35px 25px;
+    padding: 35px 25px 40px;
+    overflow-y: auto;
     background: #806B5A;
     color: #FFF9F0;
-    z-index: 1100;
     transform: translateX(-100%);
-    transition: transform 0.35s ease;
-    overflow-y: auto;
+    transition: transform .35s ease;
+    text-align: left;
 }
-
-.side-menu.active {
-    transform: translateX(0);
-}
-
+.side-menu.active { transform: translateX(0); }
 .menu-close {
     position: absolute;
     top: 13px;
     right: 17px;
-    border: none;
+    border: 0;
     background: none;
     color: #FFF9F0;
     font-size: 29px;
     font-weight: 300;
     cursor: pointer;
 }
-
 .menu-heading {
-    font-size: 16px;
-    letter-spacing: 1px;
-    margin: 25px 0 35px;
-    text-align: center;
-}
-
-.menu-label {
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: #D8C9BB;
-    margin-bottom: 20px;
-}
-  
-/* ==============================
-   漢堡選單內容
-============================== */
-
-/* 側邊選單寬度與內距 */
-
-.side-menu {
-    width: min(340px, 88vw);
-    padding: 35px 25px 40px;
-}
-
-/* 頂部網站名稱 */
-
-.menu-heading {
-    font-size: 17px;
-    letter-spacing: 0.8px;
-    font-weight: 500;
-    text-align: center;
     margin: 22px 0 18px;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: .8px;
+    text-align: center;
 }
-
-/* 社群圖示 */
-
 .menu-socials {
     display: flex;
     justify-content: center;
@@ -1183,7 +167,6 @@ footer {
     gap: 27px;
     margin: 0 auto 25px;
 }
-
 .menu-social-icon {
     width: 25px;
     height: 25px;
@@ -1191,15 +174,9 @@ footer {
     justify-content: center;
     align-items: center;
     color: #FFF9F0;
-    opacity: 0.95;
+    opacity: .95;
 }
-
-.menu-social-icon svg {
-    width: 23px;
-    height: 23px;
-    fill: currentColor;
-}
-
+.menu-social-icon svg { width: 23px; height: 23px; fill: currentColor; }
 .menu-social-icon.notion-icon {
     width: 21px;
     height: 21px;
@@ -1209,48 +186,27 @@ footer {
     font-size: 15px;
     font-weight: 700;
 }
-
-/* 分隔線 */
-
 .menu-divider {
     width: 100%;
     height: 1px;
-    background: rgba(255, 249, 240, 0.3);
     margin: 0 auto 23px;
+    background: rgba(255,249,240,.3);
 }
-
-/* MENU 標題 */
-
 .menu-label {
+    margin: 0 0 30px;
+    color: #FFF9F0;
     font-size: 12px;
     letter-spacing: 3px;
-    color: #FFF9F0;
     text-align: center;
-    margin: 0 0 30px;
 }
-
-/* 分類區域 */
-
-.menu-section {
-    margin-bottom: 27px;
-}
-
+.menu-section { margin-bottom: 27px; }
 .menu-section-title {
+    margin-bottom: 13px;
+    color: #D8C9BB;
     font-size: 10px;
     letter-spacing: 2.5px;
-    color: #D8C9BB;
-    margin-bottom: 13px;
-    text-align: left;
 }
-
-/* 導覽連結 */
-
-.menu-links {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
+.menu-links { display: flex; flex-direction: column; gap: 5px; }
 .menu-link {
     display: block;
     width: 100%;
@@ -1259,735 +215,403 @@ footer {
     border-radius: 4px;
     color: #FFF9F0;
     text-decoration: none;
-    font-family: 'Noto Serif JP', serif;
     font-size: 12px;
-    letter-spacing: 0.2px;
+    letter-spacing: .2px;
     line-height: 1.6;
-    text-align: left;
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease;
+    transition: background .2s ease, border-color .2s ease;
 }
-
-.menu-link:hover {
-    background: rgba(255, 249, 240, 0.1);
-}
-
-/* 目前所在頁面 */
-
+.menu-link:hover { background: rgba(255,249,240,.1); }
 .menu-link.active {
-    background: rgba(255, 249, 240, 0.13);
+    background: rgba(255,249,240,.13);
     border-left-color: #E8D5C3;
     color: #FFFFFF;
 }
 
-/* 手機小螢幕 */
-
-@media (max-height: 650px) {
-    .side-menu {
-        padding-top: 25px;
-    }
-
-    .menu-heading {
-        margin-top: 15px;
-    }
-
-    .menu-section {
-        margin-bottom: 20px;
-    }
-
-    .menu-link {
-        padding-top: 8px;
-        padding-bottom: 8px;
-    }
+/* 音樂播放器 */
+.music-player {
+    width: 100%;
+    margin: 15px auto 20px;
+    padding: 12px 14px;
+    color: #806B5A;
+    border: 1px solid #E5DED6;
+    border-radius: 12px;
+    background: transparent;
 }
-  /* ==============================
-   導覽列比例修復
-============================== */
-
-.site-header {
-    width: calc(100% - 30px);
-    max-width: 680px;
-    height: 46px;
-
+.player-main {
     display: grid;
-    grid-template-columns: 34px minmax(0, 1fr) 34px;
+    grid-template-columns: 108px minmax(0,1fr) auto;
     align-items: center;
-    justify-items: center;
-
-    padding: 0 9px;
+    gap: 10px;
+    width: 100%;
 }
-
-.site-header .nav-button {
-    justify-self: start;
+.player-art { position: relative; width: 108px; height: 62px; flex-shrink: 0; }
+.album-cover {
+    position: absolute; left: 0; top: 0; z-index: 2;
+    width: 62px; height: 62px; display: block;
+    object-fit: cover; border-radius: 3px;
+    box-shadow: 0 2px 5px rgba(128,107,90,.15);
 }
-
-.site-header .nav-title {
-    justify-self: center;
-    font-size: 15px;
-    white-space: nowrap;
+.vinyl-record {
+    position: absolute; left: 46.5px; top: 0; z-index: 1;
+    width: 62px; height: 62px; overflow: hidden; border-radius: 50%;
+    background: radial-gradient(circle,#3A3938 0%,#171717 35%,#292827 36%,#111 39%,#292827 40%,#111 43%,#242322 44%,#101010 48%,#292827 49%,#111 53%,#242322 54%,#101010 58%,#292827 59%,#111 64%,#242322 65%,#101010 70%,#292827 71%,#111 100%);
+    box-shadow: 0 2px 5px rgba(0,0,0,.2), inset 0 0 4px rgba(255,255,255,.12);
 }
-
-.site-header .language-button {
-    justify-self: end;
-    width: 34px;
-    padding: 0;
-    border-radius: 50%;
+.vinyl-label {
+    position: absolute; left: 50%; top: 50%; z-index: 2;
+    width: 25px; height: 25px; transform: translate(-50%,-50%);
+    border-radius: 50%; object-fit: cover; border: 2px solid #D6B9A9;
 }
+.vinyl-record::after {
+    content: ""; position: absolute; left: 50%; top: 50%; z-index: 3;
+    width: 5px; height: 5px; transform: translate(-50%,-50%);
+    border-radius: 50%; background: #FBF8F3; border: 1px solid rgba(0,0,0,.3);
+}
+.vinyl-record.is-playing { animation: vinyl-rotate 5s linear infinite; }
+@keyframes vinyl-rotate { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+.player-info {
+    min-width: 0; margin-left: 6px; display: flex; flex-direction: column;
+    justify-content: center; gap: 3px; text-align: left;
+}
+.now-playing { color: #806B5A; font-size: 9px; letter-spacing: 1px; font-weight: 700; white-space: nowrap; }
+.song-title { color: #806B5A; font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.song-artist { color: #A18D7B; font-size: 10px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.player-controls { display: flex; justify-content: flex-end; align-items: center; gap: 9px; flex-shrink: 0; }
+.player-controls button {
+    width: 35px; height: 35px; display: flex; justify-content: center; align-items: center;
+    padding: 0; border: 1px solid #D8C8BA; border-radius: 50%;
+    background: transparent; color: #806B5A; cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+}
+.player-controls button:hover { background: #F3E8E1; transform: scale(1.05); }
+.player-controls button svg { width: 17px; height: 17px; fill: #806B5A; stroke: none; }
+.player-controls .play-button { width: 42px; height: 42px; background: #B58D86; border-color: #B58D86; }
+.player-controls .play-button:hover { background: #A78078; }
+.player-controls .play-button svg { width: 19px; height: 19px; fill: #FFFFFF; }
+.player-progress-row { display: flex; flex-direction: column; width: 100%; gap: 5px; margin: 10px 0 0; }
+.progress-bar {
+    order: 1; width: 100%; height: 3px; appearance: none; -webkit-appearance: none;
+    background: #E5D8CC; border-radius: 10px; outline: none; cursor: pointer;
+}
+.progress-bar::-webkit-slider-thumb { -webkit-appearance: none; width: 9px; height: 9px; border-radius: 50%; background: #A18D7B; }
+.progress-bar::-moz-range-thumb { width: 9px; height: 9px; border: 0; border-radius: 50%; background: #A18D7B; }
+.player-time-row { order: 2; display: flex; justify-content: space-between; width: 100%; }
+.player-time, .remaining-time { color: #A18D7B; font-size: 10px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
-.site-header .language-button svg {
-    width: 17px;
-    height: 17px;
+/* 首頁照片與標題 */
+.cover-photo { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 12px; display: block; margin: 30px auto; }
+.site-title { margin: 35px 0 12px; font-size: 28px; font-weight: 500; letter-spacing: 1px; line-height: 1.6; }
+.subtitle { margin: 8px 0; color: #A18D7B; font-size: 15px; letter-spacing: 2px; }
+.description { margin: 15px 0 45px; color: #A18D7B; font-size: 13px; letter-spacing: 1px; }
+
+/* 倒數 */
+.countdown-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin: 35px 0 55px; }
+.countdown-card {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 25px 12px; border-radius: 12px; background: #F3E8E1; text-align: center;
+}
+.countdown-label { width: 100%; margin-bottom: 18px; color: #947B66; font-size: 15px; letter-spacing: 1.15px; }
+.countdown-number { width: 100%; font-size: 39px; font-weight: 500; letter-spacing: 1.15px; line-height: 1.3; font-variant-numeric: tabular-nums; }
+.countdown-unit { width: 100%; margin-top: 9px; color: #A18D7B; font-size: 14px; letter-spacing: 1.15px; }
+.meeting-time-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); width: 100%; align-items: center; justify-items: center; gap: 2px; }
+.meeting-time-item { min-width: 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.meeting-time-number { color: #806B5A; font-size: clamp(20px,5.5vw,34px); font-weight: 500; line-height: 1.5; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.meeting-time-label { margin-top: 7px; color: #A18D7B; font-size: 9px; font-weight: 500; letter-spacing: .3px; white-space: nowrap; }
+.meeting-footer { margin-top: 15px; color: #A18D7B; font-size: 11px; letter-spacing: 1px; }
+
+/* 天氣 */
+.weather-section { margin: 45px 0 60px; padding: 24px 18px 18px; border-radius: 12px; background: #F3E8E1; }
+.weather-section .section-title { margin-bottom: 10px; }
+.section-title { margin-bottom: 12px; font-size: 19px; font-weight: 500; letter-spacing: 2px; }
+.section-subtitle { color: #A18D7B; font-size: 12px; letter-spacing: 1px; }
+.weather-current { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 22px; }
+.weather-main { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.weather-main-icon { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #947B66; }
+.weather-main-icon svg { width: 38px; height: 38px; stroke-width: 1.35; }
+.weather-main-info { min-width: 0; text-align: left; }
+.weather-temperature { color: #806B5A; font-size: 30px; line-height: 1.2; font-weight: 500; font-variant-numeric: tabular-nums; }
+.weather-description { margin-top: 5px; color: #947B66; font-size: 11px; white-space: nowrap; }
+.weather-details { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; color: #947B66; font-size: 10px; line-height: 1.5; text-align: right; white-space: nowrap; }
+.weather-updated { margin-top: 13px; color: #A18D7B; font-size: 9px; letter-spacing: .3px; text-align: right; }
+.weekly-weather { margin-top: 19px; padding-top: 15px; border-top: 1px solid rgba(161,141,123,.22); }
+.weekly-weather-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; color: #806B5A; font-size: 12px; letter-spacing: .8px; }
+.weekly-weather-en { color: #B5A393; font-size: 9px; letter-spacing: 1px; }
+.weekly-weather-list { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); gap: 3px; width: 100%; }
+.weekly-day { min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 7px; }
+.weekly-day-name { color: #A18D7B; font-size: 10px; }
+.weekly-day-icon { height: 21px; display: flex; align-items: center; justify-content: center; color: #947B66; }
+.weekly-day-icon svg { width: 18px; height: 18px; stroke-width: 1.35; }
+.weekly-day-max { color: #806B5A; font-size: 10px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.weekly-day-min { color: #A18D7B; font-size: 10px; font-variant-numeric: tabular-nums; }
+.weekly-day-rain { color: #A18D7B; font-size: 9px; }
+.weekly-loading { grid-column: 1/-1; padding: 10px 0; color: #A18D7B; font-size: 10px; text-align: center; }
+
+/* 回憶分類 */
+.memories-section { margin-top: 60px; }
+.memories-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 30px; }
+.memory-card {
+    min-height: 125px; padding: 20px 8px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px;
+    border-radius: 12px; background: #F3E8E1; color: #806B5A;
+    text-decoration: none; transition: transform .25s ease, background .25s ease;
+}
+.memory-card:hover { transform: translateY(-4px); background: #EDE0D7; }
+.memory-card svg { width: 25px; height: 25px; color: #947B66; stroke-width: 1.3; }
+.memory-name { font-size: 13px; letter-spacing: .5px; }
+.memory-japanese { margin-top: -7px; color: #A18D7B; font-size: 10px; }
+footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px; line-height: 2; }
+
+/* 手機版 */
+@media (max-width: 480px) {
+    body { padding: 0 15px 45px; }
+    .music-player { padding: 10px 9px; }
+    .player-main { grid-template-columns: 84px minmax(0,1fr) auto; gap: 6px; }
+    .player-art { width: 87.5px; height: 50px; }
+    .player-info { margin-left: 6px; }
+    .album-cover { width: 50px; height: 50px; }
+    .vinyl-record { width: 50px; height: 50px; left: 37.5px; }
+    .vinyl-label { width: 21px; height: 21px; }
+    .vinyl-record::after { width: 4px; height: 4px; }
+    .now-playing { font-size: 8px; letter-spacing: .6px; }
+    .song-title { font-size: 11px; }
+    .song-artist { font-size: 9px; }
+    .player-controls { gap: 6px; }
+    .player-controls button { width: 31px; height: 31px; }
+    .player-controls button svg { width: 15px; height: 15px; }
+    .player-controls .play-button { width: 37px; height: 37px; }
+    .player-controls .play-button svg { width: 17px; height: 17px; }
+    .cover-photo { margin-top: 20px; }
+    .site-title { font-size: 23px; }
+    .countdown-grid { gap: 10px; }
+    .countdown-card { padding: 22px 8px; }
+    .countdown-label { font-size: 15px; margin-bottom: 18px; }
+    .countdown-number { font-size: 32px; }
+    .countdown-unit { margin-top: 9px; font-size: 14px; }
+    .meeting-time-number { font-size: clamp(19px,5.5vw,26px); }
+    .meeting-time-label { font-size: 8px; }
+    .memories-grid { grid-template-columns: repeat(2,1fr); gap: 12px; }
+    .memory-card { min-height: 118px; }
+    .weather-section { padding: 22px 12px 17px; }
+    .weather-current { gap: 6px; }
+    .weather-main { gap: 8px; }
+    .weather-main-icon { width: 34px; height: 34px; }
+    .weather-main-icon svg { width: 32px; height: 32px; }
+    .weather-temperature { font-size: 26px; }
+    .weather-description { font-size: 10px; }
+    .weather-details { gap: 5px; font-size: 9px; }
+    .weekly-weather-list { gap: 1px; }
+    .weekly-day { gap: 7px; }
+    .weekly-day-name { font-size: 9px; }
+    .weekly-day-icon svg { width: 16px; height: 16px; }
+    .weekly-day-max, .weekly-day-min { font-size: 9px; }
+    .weekly-day-rain { font-size: 8px; }
+}
+@media (min-width: 600px) {
+    .meeting-time-grid { column-gap: 12px; }
+    .meeting-time-number { font-size: 34px; }
+}
+@media (max-height: 650px) {
+    .side-menu { padding-top: 25px; }
+    .menu-heading { margin-top: 15px; }
+    .menu-section { margin-bottom: 20px; }
+    .menu-link { padding-top: 8px; padding-bottom: 8px; }
 }
 </style>
 </head>
 
-
 <body>
 
-    
-<!-- ==============================
-     固定導覽列
-============================== -->
-
+<!-- 固定導覽列 -->
 <header class="site-header">
-
-    
-<!-- 左側漢堡選單 -->
-<nav class="side-menu" id="side-menu" aria-hidden="true">
-
-    <!-- 關閉按鈕 -->
-    <button
-        class="menu-close"
-        id="menu-close"
-        aria-label="關閉選單"
-        type="button"
-    >
-        ×
+    <button class="nav-button" id="menu-toggle" type="button" aria-label="開啟選單" aria-expanded="false">
+        <i data-lucide="menu"></i>
     </button>
+    <div class="nav-title">Wen &amp; Yuuka</div>
+    <button class="language-button" id="language-toggle" type="button" aria-label="語言選單">
+        <i data-lucide="globe"></i>
+    </button>
+</header>
 
-    <!-- 網站名稱 -->
-    <div class="menu-heading">
-        ♡ Wen & Yuuka ♡
-    </div>
+<!-- 側邊漢堡選單 -->
+<nav class="side-menu" id="side-menu" aria-hidden="true">
+    <button class="menu-close" id="menu-close" aria-label="關閉選單" type="button">×</button>
+    <div class="menu-heading">♡ Wen &amp; Yuuka ♡</div>
 
-    <!-- 社群圖示 -->
     <div class="menu-socials">
-
-        <!-- Twitter -->
         <span class="menu-social-icon" title="Twitter">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M23.953 4.57a10 10 0 0 1-2.825.775
-                4.958 4.958 0 0 0 2.163-2.723
-                9.99 9.99 0 0 1-3.127 1.195
-                4.92 4.92 0 0 0-8.384 4.482
-                A13.98 13.98 0 0 1 1.64 3.162
-                a4.822 4.822 0 0 0-.666 2.475
-                4.92 4.92 0 0 0 2.188 4.1
-                4.903 4.903 0 0 1-2.23-.616v.06
-                a4.926 4.926 0 0 0 3.946 4.827
-                4.936 4.936 0 0 1-2.224.084
-                4.936 4.936 0 0 0 4.6 3.42
-                A9.874 9.874 0 0 1 0 19.54
-                a13.94 13.94 0 0 0 7.548 2.212
-                c9.057 0 14.01-7.503 14.01-14.01
-                0-.213-.005-.425-.014-.636
-                a10.012 10.012 0 0 0 2.46-2.548z"/>
-            </svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.953 4.57a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723 9.99 9.99 0 0 1-3.127 1.195 4.92 4.92 0 0 0-8.384 4.482A13.98 13.98 0 0 1 1.64 3.162a4.822 4.822 0 0 0-.666 2.475 4.92 4.92 0 0 0 2.188 4.1 4.903 4.903 0 0 1-2.23-.616v.06a4.926 4.926 0 0 0 3.946 4.827 4.936 4.936 0 0 1-2.224.084 4.936 4.936 0 0 0 4.6 3.42A9.874 9.874 0 0 1 0 19.54a13.94 13.94 0 0 0 7.548 2.212c9.057 0 14.01-7.503 14.01-14.01 0-.213-.005-.425-.014-.636a10.012 10.012 0 0 0 2.46-2.548z"/></svg>
         </span>
-
-        <!-- YouTube -->
         <span class="menu-social-icon" title="YouTube">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136
-                C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.376.55
-                A3.016 3.016 0 0 0 .502 6.186
-                C0 8.07 0 12 0 12s0 3.93.502 5.814
-                a3.016 3.016 0 0 0 2.122 2.136
-                C4.495 20.5 12 20.5 12 20.5s7.505 0 9.376-.55
-                a3.016 3.016 0 0 0 2.122-2.136
-                C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.6 15.5v-7l6.3 3.5-6.3 3.5z"/>
-            </svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.376.55A3.016 3.016 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136C4.495 20.5 12 20.5 12 20.5s7.505 0 9.376-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.6 15.5v-7l6.3 3.5-6.3 3.5z"/></svg>
         </span>
-
-        <!-- Notion -->
-        <span class="menu-social-icon notion-icon" title="Notion">
-            N
-        </span>
-
+        <span class="menu-social-icon notion-icon" title="Notion">N</span>
     </div>
 
-    <!-- 分隔線 -->
     <div class="menu-divider"></div>
-
-    <!-- MENU -->
-    <div class="menu-label">
-        MENU
-    </div>
+    <div class="menu-label">MENU</div>
 
     <div class="menu-links" id="menu-links">
-
-        <!-- HOME -->
         <div class="menu-section">
-
-            <div class="menu-section-title">
-                HOME
-            </div>
-
-            <a href="index.html#home" class="menu-link">
-                Home｜首頁
-            </a>
-
-            <a href="index.html#about-website" class="menu-link">
-                About Us｜關於我們
-            </a>
-
-            <a href="index.html#our-days" class="menu-link">
-                Our Days｜相遇與倒數
-            </a>
-
-            <a href="index.html#osaka-weather" class="menu-link">
-                Weather｜大阪天氣（詳細七天）
-            </a>
-
-            <a href="important-days.html" class="menu-link">
-                Important Days｜重要日子
-            </a>
-
+            <div class="menu-section-title">HOME</div>
+            <a href="index.html#home" class="menu-link">Home｜首頁</a>
+            <a href="index.html#about-website" class="menu-link">About Us｜關於我們</a>
+            <a href="index.html#our-days" class="menu-link">Our Days｜相遇與倒數</a>
+            <a href="index.html#osaka-weather" class="menu-link">Weather｜大阪天氣（詳細七天）</a>
+            <a href="important-days.html" class="menu-link">Important Days｜重要日子</a>
         </div>
 
-        <!-- MEMORIES -->
         <div class="menu-section">
-
-            <div class="menu-section-title">
-                MEMORIES
-            </div>
-
-            <a href="photos.html" class="menu-link">
-                Photos｜照片
-            </a>
-
-            <a href="gifts.html" class="menu-link">
-                Illustrations & Gifts｜插畫與禮物
-            </a>
-
-            <a href="movies.html" class="menu-link">
-                Movies｜電影
-            </a>
-
-            <a href="games.html" class="menu-link">
-                Games｜遊戲
-            </a>
-
-            <a href="little-things.html" class="menu-link">
-                Little Things｜生活小事
-            </a>
-
-            <a href="music.html" class="menu-link">
-                Music｜音樂
-            </a>
-
-            <a href="letters.html" class="menu-link">
-                Letters｜信件
-            </a>
-
-            <a href="places.html" class="menu-link">
-                Places｜一起去過的地方
-            </a>
-
-            <a href="timeline.html" class="menu-link">
-                Timeline｜回憶時間軸
-            </a>
-
-            <a href="food.html" class="menu-link">
-                Food
-            </a>
-
-            <a href="wishlist.html" class="menu-link">
-                Wishlist｜願望清單
-            </a>
-
+            <div class="menu-section-title">MEMORIES</div>
+            <a href="photos.html" class="menu-link">Photos｜照片</a>
+            <a href="gifts.html" class="menu-link">Illustrations &amp; Gifts｜插畫與禮物</a>
+            <a href="movies.html" class="menu-link">Movies｜電影</a>
+            <a href="games.html" class="menu-link">Games｜遊戲</a>
+            <a href="little-things.html" class="menu-link">Little Things｜生活小事</a>
+            <a href="music.html" class="menu-link">Music｜音樂</a>
+            <a href="letters.html" class="menu-link">Letters｜信件</a>
+            <a href="places.html" class="menu-link">Places｜一起去過的地方</a>
+            <a href="timeline.html" class="menu-link">Timeline｜回憶時間軸</a>
+            <a href="food.html" class="menu-link">Food</a>
+            <a href="wishlist.html" class="menu-link">Wishlist｜願望清單</a>
         </div>
-
     </div>
-
 </nav>
 
-    
-<main class="container" id="home">    
+<div class="menu-overlay" id="menu-overlay"></div>
 
-    <!-- ==========================
-         音樂播放器
-    =========================== -->
+<!-- 語言選單 -->
+<div class="language-menu" id="language-menu" hidden>
+    <button class="language-option active" type="button" data-lang="ja">
+        <span>日本語</span>
+        <span class="language-check"></span>
+    </button>
+</div>
 
+<main class="container" id="home">
+
+    <!-- 音樂播放器 -->
     <div class="music-player" id="music-player">
-    
         <audio id="audio-player" preload="metadata"></audio>
-
         <div class="player-main">
-
-            <!-- 專輯封面與黑膠唱片 -->
-
             <div class="player-art">
-
-                <img
-                    id="album-cover"
-                    class="album-cover"
-                    src="images/music-covers/odori-ko.jpg"
-                    alt="Album cover"
-                    onerror="this.style.visibility='hidden'"
-                >
-
+                <img id="album-cover" class="album-cover" src="images/music-covers/odori-ko.jpg" alt="Album cover" onerror="this.style.visibility='hidden'">
                 <div class="vinyl-record" id="vinyl-record">
-
-                    <img
-                        id="vinyl-label"
-                        class="vinyl-label"
-                        src="images/music-covers/odori-ko.jpg"
-                        alt="Vinyl label"
-                    >
-
+                    <img id="vinyl-label" class="vinyl-label" src="images/music-covers/odori-ko.jpg" alt="Vinyl label">
                 </div>
-
             </div>
-
-
-            <!-- 歌曲資訊 -->
 
             <div class="player-info">
-
-                <span class="now-playing">
-                    ♡ NOW PLAYING ♡
-                </span>
-
-                <span class="song-title" id="song-title">
-                    踊り子
-                </span>
-
-                <span class="song-artist" id="song-artist">
-                    Vaundy
-                </span>
-
+                <span class="now-playing">♡ NOW PLAYING ♡</span>
+                <span class="song-title" id="song-title">踊り子</span>
+                <span class="song-artist" id="song-artist">Vaundy</span>
             </div>
-
-
-            <!-- 播放控制 -->
 
             <div class="player-controls">
-
-                <button
-                    onclick="previousTrack()"
-                    aria-label="Previous track"
-                >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M6 5H9V19H6Z"/>
-                        <path d="M19 5V19L9 12Z"/>
-                    </svg>
+                <button onclick="previousTrack()" aria-label="Previous track" type="button">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5H9V19H6Z"/><path d="M19 5V19L9 12Z"/></svg>
                 </button>
-
-                <button
-                    class="play-button"
-                    id="play-button"
-                    onclick="togglePlay()"
-                    aria-label="Play"
-                >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M7 4.5L20 12L7 19.5Z"/>
-                    </svg>
+                <button class="play-button" id="play-button" onclick="togglePlay()" aria-label="Play" type="button">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5L20 12L7 19.5Z"/></svg>
                 </button>
-
-                <button
-                    onclick="nextTrack()"
-                    aria-label="Next track"
-                >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M15 5H18V19H15Z"/>
-                        <path d="M5 5V19L15 12Z"/>
-                    </svg>
+                <button onclick="nextTrack()" aria-label="Next track" type="button">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5H18V19H15Z"/><path d="M5 5V19L15 12Z"/></svg>
                 </button>
-
             </div>
-
         </div>
-
-
-        <!-- 播放進度與時間 -->
 
         <div class="player-progress-row">
-
-            <input
-                type="range"
-                class="progress-bar"
-                id="progress-bar"
-                min="0"
-                max="100"
-                value="0"
-                step="0.1"
-                aria-label="播放進度"
-            >
-
+            <input type="range" class="progress-bar" id="progress-bar" min="0" max="100" value="0" step="0.1" aria-label="播放進度">
             <div class="player-time-row">
-
-                <span class="player-time" id="player-time">
-                    0:00
-                </span>
-
-                <span class="remaining-time" id="remaining-time">
-                    -0:00
-                </span>
-
+                <span class="player-time" id="player-time">0:00</span>
+                <span class="remaining-time" id="remaining-time">-0:00</span>
             </div>
-
         </div>
-
     </div>
 
-
-    <!-- 首頁代表照片 -->
-
-    <img
-        src="images/cover.jpg"
-        alt="Wen & Yuuka"
-    class="cover-photo" id="recent-photos"
-        >
-
+    <!-- 首頁照片 -->
+    <img src="images/cover.jpg" alt="Wen &amp; Yuuka" class="cover-photo" id="recent-photos">
 
     <!-- 網站標題 -->
-
-    <h1 class="site-title" id="about-website">
-    Forever My Beloved Yuuka
-    </h1>
-
-    <p class="subtitle">
-        Wen & Yuuka ♡
-    </p>
-
-    <p class="description">
-        ふたりの大切な思い出を、ひとつずつ。
-    </p>
-
+    <h1 class="site-title" id="about-website">Forever My Beloved Yuuka</h1>
+    <p class="subtitle">Wen &amp; Yuuka ♡</p>
+    <p class="description">ふたりの大切な思い出を、ひとつずつ。</p>
 
     <!-- 倒數工具 -->
-
     <section class="countdown-grid" id="our-days">
-    
-        <!-- 下次約會倒數 -->
-
         <div class="countdown-card">
-
-            <div class="countdown-label">
-                次のデートまで
-            </div>
-
-            <div
-                class="countdown-number"
-                id="date-countdown"
-            >
-                --
-            </div>
-
-            <div class="countdown-unit">
-                DAYS
-            </div>
-
+            <div class="countdown-label">次のデートまで</div>
+            <div class="countdown-number" id="date-countdown">--</div>
+            <div class="countdown-unit">DAYS</div>
         </div>
 
-
-        <!-- 相遇天數與時間 -->
-
         <div class="countdown-card">
-
-            <div class="countdown-label">
-                優花と出会った日
-            </div>
-
+            <div class="countdown-label">優花と出会った日</div>
             <div class="meeting-time-grid">
-
-                <div class="meeting-time-item">
-
-                    <div
-                        class="meeting-time-number"
-                        id="meeting-days"
-                    >
-                        --
-                    </div>
-
-                    <div class="meeting-time-label">
-                        DAYS
-                    </div>
-
-                </div>
-
-                <div class="meeting-time-item">
-
-                    <div
-                        class="meeting-time-number"
-                        id="meeting-hours"
-                    >
-                        00
-                    </div>
-
-                    <div class="meeting-time-label">
-                        HOURS
-                    </div>
-
-                </div>
-
-                <div class="meeting-time-item">
-
-                    <div
-                        class="meeting-time-number"
-                        id="meeting-minutes"
-                    >
-                        00
-                    </div>
-
-                    <div class="meeting-time-label">
-                        MINUTES
-                    </div>
-
-                </div>
-
-                <div class="meeting-time-item">
-
-                    <div
-                        class="meeting-time-number"
-                        id="meeting-seconds"
-                    >
-                        00
-                    </div>
-
-                    <div class="meeting-time-label">
-                        SECONDS
-                    </div>
-
-                </div>
-
+                <div class="meeting-time-item"><div class="meeting-time-number" id="meeting-days">--</div><div class="meeting-time-label">DAYS</div></div>
+                <div class="meeting-time-item"><div class="meeting-time-number" id="meeting-hours">00</div><div class="meeting-time-label">HOURS</div></div>
+                <div class="meeting-time-item"><div class="meeting-time-number" id="meeting-minutes">00</div><div class="meeting-time-label">MINUTES</div></div>
+                <div class="meeting-time-item"><div class="meeting-time-number" id="meeting-seconds">00</div><div class="meeting-time-label">SECONDS</div></div>
             </div>
-
-            <div class="meeting-footer">
-                2024.06.29 — これからも一緒に
-            </div>
-
+            <div class="meeting-footer">2024.06.29 — これからも一緒に</div>
         </div>
-
     </section>
 
-
-    <!-- ==========================
-         大阪天氣區域
-    =========================== -->
-
+    <!-- 大阪天氣 -->
     <section class="weather-section" id="osaka-weather">
-    
-        <div class="section-title">
-            大阪の天気
-        </div>
-
-        <div class="section-subtitle">
-            大阪府 │ 東大阪市
-        </div>
-
-
-        <!-- 今日天氣 -->
+        <div class="section-title">大阪の天気</div>
+        <div class="section-subtitle">大阪府 │ 東大阪市</div>
 
         <div class="weather-current">
-
             <div class="weather-main">
-
-                <div id="weather-icon" class="weather-main-icon">
-                    <i data-lucide="cloud-sun"></i>
-                </div>
-
+                <div id="weather-icon" class="weather-main-icon"><i data-lucide="cloud-sun"></i></div>
                 <div class="weather-main-info">
-
-                    <div id="weather-temperature" class="weather-temperature">
-                        --°C
-                    </div>
-
-                    <div id="weather-description" class="weather-description">
-                        天気を読み込み中...
-                    </div>
-
+                    <div id="weather-temperature" class="weather-temperature">--°C</div>
+                    <div id="weather-description" class="weather-description">天気を読み込み中...</div>
                 </div>
-
             </div>
-
-
             <div class="weather-details">
-
-                <div id="weather-feels">
-                    体感 --°C
-                </div>
-
-                <div id="weather-humidity">
-                    湿度 --%
-                </div>
-
-                <div id="weather-wind">
-                    風速 -- km/h
-                </div>
-
-                <div id="weather-range">
-                    最高 --° ／ 最低 --°
-                </div>
-
+                <div id="weather-feels">体感 --°C</div>
+                <div id="weather-humidity">湿度 --%</div>
+                <div id="weather-wind">風速 -- km/h</div>
+                <div id="weather-range">最高 --° ／ 最低 --°</div>
             </div>
-
         </div>
 
-
-        <!-- 最後更新時間 -->
-
-        <div class="weather-updated" id="weather-updated">
-            最終更新 --:--（日本時間）
-        </div>
-
-
-        <!-- 一週間天氣 -->
-
+        <div class="weather-updated" id="weather-updated">最終更新 --:--（日本時間）</div>
         <div class="weekly-weather">
-
-            <div class="weekly-weather-heading">
-                <span>一週間の天気</span>
-                <span class="weekly-weather-en">WEEKLY</span>
-            </div>
-
+            <div class="weekly-weather-heading"><span>一週間の天気</span><span class="weekly-weather-en">WEEKLY</span></div>
             <div id="weekly-weather-list" class="weekly-weather-list">
-
-                <div class="weekly-loading">
-                    天気予報を読み込み中...
-                </div>
-
+                <div class="weekly-loading">天気予報を読み込み中...</div>
             </div>
-
         </div>
-
     </section>
 
-
-    <!-- 12 個回憶收藏分類 -->
-
-<section class="memories-section" id="our-memories">
-    
-        <div class="section-title">
-            MEMORIES COLLECTION
-        </div>
-
-        <div class="section-subtitle">
-            ふたりの大切な記録
-        </div>
+    <!-- 回憶收藏分類 -->
+    <section class="memories-section" id="our-memories">
+        <div class="section-title">MEMORIES COLLECTION</div>
+        <div class="section-subtitle">ふたりの大切な記録</div>
 
         <div class="memories-grid">
-
-
-            <a href="photos.html" class="memory-card">
-                <i data-lucide="camera"></i>
-                <span class="memory-name">Photos</span>
-                <span class="memory-japanese">ふたりの写真</span>
-            </a>
-
-
-            <a href="gifts.html" class="memory-card">
-                <i data-lucide="gift"></i>
-                <span class="memory-name">Illustrations & Gifts</span>
-                <span class="memory-japanese">イラストと贈り物</span>
-            </a>
-
-
-            <a href="movies.html" class="memory-card">
-                <i data-lucide="clapperboard"></i>
-                <span class="memory-name">Movies</span>
-                <span class="memory-japanese">映画</span>
-            </a>
-
-
-            <a href="games.html" class="memory-card">
-                <i data-lucide="gamepad-2"></i>
-                <span class="memory-name">Games</span>
-                <span class="memory-japanese">ふたりのゲーム</span>
-            </a>
-
-
-            <a href="important-days.html" class="memory-card">
-                <i data-lucide="calendar-heart"></i>
-                <span class="memory-name">Important Days</span>
-                <span class="memory-japanese">大切な記念日</span>
-            </a>
-
-
-            <a href="little-things.html" class="memory-card">
-                <i data-lucide="heart"></i>
-                <span class="memory-name">Little Things</span>
-                <span class="memory-japanese">小さな日常</span>
-            </a>
-
-
-            <a href="music.html" class="memory-card">
-                <i data-lucide="music-2"></i>
-                <span class="memory-name">Music</span>
-                <span class="memory-japanese">ふたりの音楽</span>
-            </a>
-
-
-            <a href="letters.html" class="memory-card">
-                <i data-lucide="mail"></i>
-                <span class="memory-name">Letters</span>
-                <span class="memory-japanese">手紙とメッセージ</span>
-            </a>
-
-
-            <a href="places.html" class="memory-card">
-                <i data-lucide="map-pin"></i>
-                <span class="memory-name">Places</span>
-                <span class="memory-japanese">ふたりで行った場所</span>
-            </a>
-
-
-            <a href="timeline.html" class="memory-card">
-                <i data-lucide="clock-3"></i>
-                <span class="memory-name">Timeline</span>
-                <span class="memory-japanese">ふたりの時間軸</span>
-            </a>
-
-
-            <a href="food.html" class="memory-card">
-                <i data-lucide="utensils"></i>
-                <span class="memory-name">Food</span>
-                <span class="memory-japanese">ふたりのごはん</span>
-            </a>
-
-
-            <a href="wishlist.html" class="memory-card">
-                <i data-lucide="sparkles"></i>
-                <span class="memory-name">Wishlist</span>
-                <span class="memory-japanese">いつか叶えたいこと</span>
-            </a>
-
-
+            <a href="photos.html" class="memory-card"><i data-lucide="camera"></i><span class="memory-name">Photos</span><span class="memory-japanese">ふたりの写真</span></a>
+            <a href="gifts.html" class="memory-card"><i data-lucide="gift"></i><span class="memory-name">Illustrations &amp; Gifts</span><span class="memory-japanese">イラストと贈り物</span></a>
+            <a href="movies.html" class="memory-card"><i data-lucide="clapperboard"></i><span class="memory-name">Movies</span><span class="memory-japanese">映画</span></a>
+            <a href="games.html" class="memory-card"><i data-lucide="gamepad-2"></i><span class="memory-name">Games</span><span class="memory-japanese">ふたりのゲーム</span></a>
+            <a href="important-days.html" class="memory-card"><i data-lucide="calendar-heart"></i><span class="memory-name">Important Days</span><span class="memory-japanese">大切な記念日</span></a>
+            <a href="little-things.html" class="memory-card"><i data-lucide="heart"></i><span class="memory-name">Little Things</span><span class="memory-japanese">小さな日常</span></a>
+            <a href="music.html" class="memory-card"><i data-lucide="music-2"></i><span class="memory-name">Music</span><span class="memory-japanese">ふたりの音楽</span></a>
+            <a href="letters.html" class="memory-card"><i data-lucide="mail"></i><span class="memory-name">Letters</span><span class="memory-japanese">手紙とメッセージ</span></a>
+            <a href="places.html" class="memory-card"><i data-lucide="map-pin"></i><span class="memory-name">Places</span><span class="memory-japanese">ふたりで行った場所</span></a>
+            <a href="timeline.html" class="memory-card"><i data-lucide="clock-3"></i><span class="memory-name">Timeline</span><span class="memory-japanese">ふたりの時間軸</span></a>
+            <a href="food.html" class="memory-card"><i data-lucide="utensils"></i><span class="memory-name">Food</span><span class="memory-japanese">ふたりのごはん</span></a>
+            <a href="wishlist.html" class="memory-card"><i data-lucide="sparkles"></i><span class="memory-name">Wishlist</span><span class="memory-japanese">いつか叶えたいこと</span></a>
         </div>
-
     </section>
 
-
-    <!-- 頁尾 -->
-
-    <footer>
-        Made with love, for Yuuka ♡
-        <br>
-        Wen & Yuuka
-    </footer>
-
-
+    <footer>Made with love, for Yuuka ♡<br>Wen &amp; Yuuka</footer>
 </main>
 
-
 <script>
-
-/* ==============================
-   音樂播放器
-============================== */
-
+/* 音樂播放器 */
 const audio = document.getElementById("audio-player");
 const progressBar = document.getElementById("progress-bar");
 const playButton = document.getElementById("play-button");
@@ -1995,360 +619,120 @@ const vinylRecord = document.getElementById("vinyl-record");
 const albumCover = document.getElementById("album-cover");
 const vinylLabel = document.getElementById("vinyl-label");
 
-
-/* 歌曲清單與專輯封面 */
-
 const tracks = [
-
-    {
-        title: "踊り子",
-        artist: "Vaundy",
-        src: "music/踊り子.mp3",
-        cover: "images/music-covers/odori-ko.jpg"
-    },
-
-    {
-        title: "金木犀の夜",
-        artist: "きのこ帝国",
-        src: "music/金木犀の夜.mp3",
-        cover: "images/music-covers/kinmokusei.jpg"
-    },
-
-    {
-        title: "21",
-        artist: "Gracie Abrams",
-        src: "music/21.mp3",
-        cover: "images/music-covers/21.jpg"
-    },
-
-    {
-        title: "her",
-        artist: "JVKE",
-        src: "music/her.mp3",
-        cover: "images/music-covers/her.jpg"
-    },
-
-    {
-        title: "梅雨",
-        artist: "ゲシュタルト乙女",
-        src: "music/梅雨.mp3",
-        cover: "images/music-covers/tsuyu.jpg"
-    }
-
+    { title: "踊り子", artist: "Vaundy", src: "music/踊り子.mp3", cover: "images/music-covers/odori-ko.jpg" },
+    { title: "金木犀の夜", artist: "きのこ帝国", src: "music/金木犀の夜.mp3", cover: "images/music-covers/kinmokusei.jpg" },
+    { title: "21", artist: "Gracie Abrams", src: "music/21.mp3", cover: "images/music-covers/21.jpg" },
+    { title: "her", artist: "JVKE", src: "music/her.mp3", cover: "images/music-covers/her.jpg" },
+    { title: "梅雨", artist: "ゲシュタルト乙女", src: "music/梅雨.mp3", cover: "images/music-covers/tsuyu.jpg" }
 ];
-
 let currentTrack = 0;
 
-
-/* 實心播放圖示 */
-
-const playIcon = `
-<svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M7 4.5L20 12L7 19.5Z"/>
-</svg>
-`;
-
-
-/* 實心暫停圖示 */
-
-const pauseIcon = `
-<svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M6 4H10V20H6Z"/>
-    <path d="M14 4H18V20H14Z"/>
-</svg>
-`;
-
-
-/* 時間格式 */
+const playIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5L20 12L7 19.5Z"/></svg>`;
+const pauseIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4H10V20H6Z"/><path d="M14 4H18V20H14Z"/></svg>`;
 
 function formatTime(seconds) {
-
-    if (!Number.isFinite(seconds) || seconds < 0) {
-        seconds = 0;
-    }
-
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = Math.floor(seconds % 60);
-
-    return minutes + ":" +
-        String(remainingSeconds).padStart(2, "0");
-
+    if (!Number.isFinite(seconds) || seconds < 0) seconds = 0;
+    return Math.floor(seconds / 60) + ":" + String(Math.floor(seconds % 60)).padStart(2, "0");
 }
-
-
-/* 更新黑膠旋轉狀態 */
-
 function updateVinylAnimation() {
-
-    if (!audio.paused && !audio.ended) {
-        vinylRecord.classList.add("is-playing");
-    } else {
-        vinylRecord.classList.remove("is-playing");
-    }
-
+    vinylRecord.classList.toggle("is-playing", !audio.paused && !audio.ended);
 }
-
-
-/* 載入歌曲 */
-
 function loadTrack() {
-
     const track = tracks[currentTrack];
-
     audio.pause();
     vinylRecord.classList.remove("is-playing");
-
     audio.src = track.src;
     audio.load();
-
-    document.getElementById("song-title").textContent =
-        track.title;
-
-    document.getElementById("song-artist").textContent =
-        track.artist;
-
+    document.getElementById("song-title").textContent = track.title;
+    document.getElementById("song-artist").textContent = track.artist;
     albumCover.style.visibility = "visible";
     albumCover.src = track.cover;
     vinylLabel.src = track.cover;
-
-    document.getElementById("player-time").textContent =
-        "0:00";
-
-    document.getElementById("remaining-time").textContent =
-        "-0:00";
-
+    document.getElementById("player-time").textContent = "0:00";
+    document.getElementById("remaining-time").textContent = "-0:00";
     progressBar.value = 0;
     progressBar.max = 100;
-
     playButton.innerHTML = playIcon;
     playButton.setAttribute("aria-label", "Play");
-
 }
-
-
-/* 播放與暫停 */
-
 function togglePlay() {
-
     if (audio.paused) {
-
-        audio.play().catch(error => {
-            console.log("無法播放音樂：", error);
-        });
-
+        audio.play().catch(error => console.log("無法播放音樂：", error));
     } else {
-
         audio.pause();
-
     }
-
 }
-
-
-/* 下一首 */
-
 function nextTrack() {
-
     currentTrack = (currentTrack + 1) % tracks.length;
-
     loadTrack();
-
-    audio.play().catch(error => {
-        console.log("無法播放音樂：", error);
-    });
-
+    audio.play().catch(error => console.log("無法播放音樂：", error));
 }
-
-
-/* 上一首 */
-
 function previousTrack() {
-
-    currentTrack =
-        (currentTrack - 1 + tracks.length) % tracks.length;
-
+    currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
     loadTrack();
-
-    audio.play().catch(error => {
-        console.log("無法播放音樂：", error);
-    });
-
+    audio.play().catch(error => console.log("無法播放音樂：", error));
 }
-
-
-/* 播放與暫停圖示、黑膠動畫 */
-
 audio.addEventListener("play", () => {
-
     playButton.innerHTML = pauseIcon;
     playButton.setAttribute("aria-label", "Pause");
     updateVinylAnimation();
-
 });
-
-
 audio.addEventListener("pause", () => {
-
     playButton.innerHTML = playIcon;
     playButton.setAttribute("aria-label", "Play");
     updateVinylAnimation();
-
 });
-
-
 audio.addEventListener("ended", () => {
-
     updateVinylAnimation();
-
+    nextTrack();
 });
-
-
-/* 取得歌曲長度 */
-
 audio.addEventListener("loadedmetadata", () => {
-
     if (Number.isFinite(audio.duration)) {
-
         progressBar.max = audio.duration;
-
-        document.getElementById("remaining-time").textContent =
-            "-" + formatTime(audio.duration);
-
+        document.getElementById("remaining-time").textContent = "-" + formatTime(audio.duration);
     }
-
 });
-
-
-/* 更新播放進度 */
-
 audio.addEventListener("timeupdate", () => {
-
-    const duration = Number.isFinite(audio.duration)
-        ? audio.duration
-        : 0;
-
+    const duration = Number.isFinite(audio.duration) ? audio.duration : 0;
     const currentTime = audio.currentTime;
-    const remaining = Math.max(0, duration - currentTime);
-
-    document.getElementById("player-time").textContent =
-        formatTime(currentTime);
-
-    document.getElementById("remaining-time").textContent =
-        "-" + formatTime(remaining);
-
-    if (duration > 0) {
-        progressBar.value = currentTime;
-    }
-
+    document.getElementById("player-time").textContent = formatTime(currentTime);
+    document.getElementById("remaining-time").textContent = "-" + formatTime(Math.max(0, duration - currentTime));
+    if (duration > 0) progressBar.value = currentTime;
 });
-
-
-/* 拖曳播放進度 */
-
 progressBar.addEventListener("input", () => {
-
-    if (Number.isFinite(audio.duration)) {
-        audio.currentTime = Number(progressBar.value);
-    }
-
+    if (Number.isFinite(audio.duration)) audio.currentTime = Number(progressBar.value);
 });
-
-
-/* 歌曲播放完畢，自動下一首 */
-
-audio.addEventListener("ended", nextTrack);
-
-
-/* 初始化播放器 */
-
 loadTrack();
 
-
-/* ==============================
-   下次約會倒數
-============================== */
-
+/* 倒數 */
 function updateDateCountdown() {
-
     const today = new Date();
-
-    const todayDate = new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate()
-    );
-
+    const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     const dateTarget = new Date(2027, 0, 31);
-
-    const dateDifference = Math.ceil(
-        (dateTarget - todayDate) / 86400000
-    );
-
-    document.getElementById("date-countdown").textContent =
-        dateDifference >= 0 ? dateDifference : 0;
-
+    const dateDifference = Math.ceil((dateTarget - todayDate) / 86400000);
+    document.getElementById("date-countdown").textContent = dateDifference >= 0 ? dateDifference : 0;
 }
-
-
-/* ==============================
-   優花と出会った日
-   天、時、分、秒
-============================== */
-
 function updateMeetingCounter() {
-
     const start = new Date("2024-06-29T00:00:00+09:00");
     const now = new Date();
-
-    let diff = Math.max(
-        0,
-        now.getTime() - start.getTime()
-    );
-
+    const diff = Math.max(0, now.getTime() - start.getTime());
     const days = Math.floor(diff / 86400000);
-
-    const hours = Math.floor(
-        (diff % 86400000) / 3600000
-    );
-
-    const minutes = Math.floor(
-        (diff % 3600000) / 60000
-    );
-
-    const seconds = Math.floor(
-        (diff % 60000) / 1000
-    );
-
-    document.getElementById("meeting-days").textContent =
-        days;
-
-    document.getElementById("meeting-hours").textContent =
-        String(hours).padStart(2, "0");
-
-    document.getElementById("meeting-minutes").textContent =
-        String(minutes).padStart(2, "0");
-
-    document.getElementById("meeting-seconds").textContent =
-        String(seconds).padStart(2, "0");
-
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const minutes = Math.floor((diff % 3600000) / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
+    document.getElementById("meeting-days").textContent = days;
+    document.getElementById("meeting-hours").textContent = String(hours).padStart(2, "0");
+    document.getElementById("meeting-minutes").textContent = String(minutes).padStart(2, "0");
+    document.getElementById("meeting-seconds").textContent = String(seconds).padStart(2, "0");
 }
-
-
-/* 啟動倒數 */
-
 updateDateCountdown();
 updateMeetingCounter();
-
 setInterval(updateMeetingCounter, 1000);
 setInterval(updateDateCountdown, 60000);
 
-
-/* ==============================
-   大阪・東大阪の天気
-============================== */
-
+/* 大阪・東大阪天氣 */
 async function loadOsakaWeather() {
-
     const icon = document.getElementById("weather-icon");
     const temperature = document.getElementById("weather-temperature");
     const description = document.getElementById("weather-description");
@@ -2358,285 +742,112 @@ async function loadOsakaWeather() {
     const range = document.getElementById("weather-range");
     const updated = document.getElementById("weather-updated");
     const weeklyList = document.getElementById("weekly-weather-list");
-
     if (!icon || !temperature || !description) return;
 
-    const url =
-        "https://api.open-meteo.com/v1/forecast" +
-        "?latitude=34.6794" +
-        "&longitude=135.6009" +
+    const url = "https://api.open-meteo.com/v1/forecast" +
+        "?latitude=34.6794&longitude=135.6009" +
         "&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,is_day" +
         "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max" +
-        "&timezone=Asia%2FTokyo" +
-        "&forecast_days=7";
-
-
-    /* 天氣代碼對應 Lucide 圖示 */
+        "&timezone=Asia%2FTokyo&forecast_days=7";
 
     function getWeatherInfo(code, isDay = 1) {
-
         const weatherTypes = {
-
-            0: ["晴れ", isDay ? "sun" : "moon"],
-            1: ["おおむね晴れ", isDay ? "sun" : "moon"],
-            2: ["晴れ時々曇り", isDay ? "cloud-sun" : "cloud-moon"],
-            3: ["曇り", "cloud"],
-
-            45: ["霧", "cloud-fog"],
-            48: ["霧", "cloud-fog"],
-
-            51: ["弱い霧雨", "cloud-drizzle"],
-            53: ["霧雨", "cloud-drizzle"],
-            55: ["強い霧雨", "cloud-rain"],
-            56: ["凍結性の霧雨", "cloud-drizzle"],
-            57: ["強い凍結性の霧雨", "cloud-rain"],
-
-            61: ["弱い雨", "cloud-rain"],
-            63: ["雨", "cloud-rain"],
-            65: ["強い雨", "cloud-rain"],
-            66: ["凍結性の雨", "cloud-rain"],
-            67: ["強い凍結性の雨", "cloud-rain"],
-
-            71: ["弱い雪", "cloud-snow"],
-            73: ["雪", "cloud-snow"],
-            75: ["強い雪", "cloud-snow"],
-            77: ["雪あられ", "cloud-snow"],
-
-            80: ["にわか雨", "cloud-drizzle"],
-            81: ["雨", "cloud-rain"],
-            82: ["強いにわか雨", "cloud-rain"],
-
-            85: ["にわか雪", "cloud-snow"],
-            86: ["強いにわか雪", "cloud-snow"],
-
-            95: ["雷雨", "cloud-lightning"],
-            96: ["ひょうを伴う雷雨", "cloud-lightning"],
-            99: ["強い雷雨", "cloud-lightning"]
-
+            0:["晴れ",isDay?"sun":"moon"], 1:["おおむね晴れ",isDay?"sun":"moon"],
+            2:["晴れ時々曇り",isDay?"cloud-sun":"cloud-moon"], 3:["曇り","cloud"],
+            45:["霧","cloud-fog"], 48:["霧","cloud-fog"],
+            51:["弱い霧雨","cloud-drizzle"], 53:["霧雨","cloud-drizzle"],
+            55:["強い霧雨","cloud-rain"], 56:["凍結性の霧雨","cloud-drizzle"],
+            57:["強い凍結性の霧雨","cloud-rain"], 61:["弱い雨","cloud-rain"],
+            63:["雨","cloud-rain"], 65:["強い雨","cloud-rain"], 66:["凍結性の雨","cloud-rain"],
+            67:["強い凍結性の雨","cloud-rain"], 71:["弱い雪","cloud-snow"],
+            73:["雪","cloud-snow"], 75:["強い雪","cloud-snow"], 77:["雪あられ","cloud-snow"],
+            80:["にわか雨","cloud-drizzle"], 81:["雨","cloud-rain"], 82:["強いにわか雨","cloud-rain"],
+            85:["にわか雪","cloud-snow"], 86:["強いにわか雪","cloud-snow"],
+            95:["雷雨","cloud-lightning"], 96:["ひょうを伴う雷雨","cloud-lightning"],
+            99:["強い雷雨","cloud-lightning"]
         };
-
-        return weatherTypes[code] || ["天気情報", "cloud"];
-
+        return weatherTypes[code] || ["天気情報","cloud"];
     }
 
-
     try {
-
         const response = await fetch(url);
-
-        if (!response.ok) {
-            throw new Error("Weather data unavailable");
-        }
-
+        if (!response.ok) throw new Error("Weather data unavailable");
         const data = await response.json();
-
         const current = data.current;
         const daily = data.daily;
+        const todayWeather = getWeatherInfo(current.weather_code, current.is_day);
 
+        icon.innerHTML = '<i data-lucide="' + todayWeather[1] + '"></i>';
+        temperature.textContent = Math.round(current.temperature_2m) + "°C";
+        description.textContent = todayWeather[0];
+        feels.textContent = "体感 " + Math.round(current.apparent_temperature) + "°C";
+        humidity.textContent = "湿度 " + current.relative_humidity_2m + "%";
+        wind.textContent = "風速 " + Math.round(current.wind_speed_10m) + " km/h";
+        range.textContent = "最高 " + Math.round(daily.temperature_2m_max[0]) + "° ／ 最低 " + Math.round(daily.temperature_2m_min[0]) + "°";
+        updated.textContent = "最終更新 " + new Date().toLocaleTimeString("ja-JP", {
+            timeZone: "Asia/Tokyo", hour: "2-digit", minute: "2-digit", hour12: false
+        }) + "（日本時間）";
 
-        /* 今日の天氣 */
-
-        const todayWeather = getWeatherInfo(
-            current.weather_code,
-            current.is_day
-        );
-
-        icon.innerHTML =
-            '<i data-lucide="' + todayWeather[1] + '"></i>';
-
-        temperature.textContent =
-            Math.round(current.temperature_2m) + "°C";
-
-        description.textContent =
-            todayWeather[0];
-
-        feels.textContent =
-            "体感 " + Math.round(current.apparent_temperature) + "°C";
-
-        humidity.textContent =
-            "湿度 " + current.relative_humidity_2m + "%";
-
-        wind.textContent =
-            "風速 " + Math.round(current.wind_speed_10m) + " km/h";
-
-        range.textContent =
-            "最高 " + Math.round(daily.temperature_2m_max[0]) + "°" +
-            " ／ 最低 " + Math.round(daily.temperature_2m_min[0]) + "°";
-
-
-        /* 日本時間最後更新時間 */
-
-        updated.textContent =
-            "最終更新 " +
-            new Date().toLocaleTimeString("ja-JP", {
-                timeZone: "Asia/Tokyo",
-                hour: "2-digit",
-                minute: "2-digit",
-                hour12: false
-            }) +
-            "（日本時間）";
-
-
-        /* 一週間天氣 */
-
-        if (weeklyList) {
-
-            weeklyList.innerHTML = "";
-
-            daily.time.forEach((date, index) => {
-
-                const dayWeather = getWeatherInfo(
-                    daily.weather_code[index]
-                );
-
-                const dateObject = new Date(
-                    date + "T00:00:00+09:00"
-                );
-
-                const dayName = dateObject.toLocaleDateString(
-                    "ja-JP",
-                    {
-                        timeZone: "Asia/Tokyo",
-                        weekday: "short"
-                    }
-                );
-
-                const rainChance =
-                    daily.precipitation_probability_max[index];
-
-                const day = document.createElement("div");
-                day.className = "weekly-day";
-
-                day.innerHTML = `
-                    <div class="weekly-day-name">
-                        ${index === 0 ? "今日" : dayName}
-                    </div>
-
-                    <div class="weekly-day-icon">
-                        <i data-lucide="${dayWeather[1]}"></i>
-                    </div>
-
-                    <div class="weekly-day-max">
-                        ${Math.round(daily.temperature_2m_max[index])}°
-                    </div>
-
-                    <div class="weekly-day-min">
-                        ${Math.round(daily.temperature_2m_min[index])}°
-                    </div>
-
-                    <div class="weekly-day-rain">
-                        ${rainChance == null ? "--" : rainChance + "%"}
-                    </div>
-                `;
-
-                weeklyList.appendChild(day);
-
-            });
-
-        }
-
-
-        /* 更新動態產生的 Lucide 圖示 */
-
+        weeklyList.innerHTML = "";
+        daily.time.forEach((date, index) => {
+            const dayWeather = getWeatherInfo(daily.weather_code[index]);
+            const dateObject = new Date(date + "T00:00:00+09:00");
+            const dayName = dateObject.toLocaleDateString("ja-JP", { timeZone:"Asia/Tokyo", weekday:"short" });
+            const rainChance = daily.precipitation_probability_max[index];
+            const day = document.createElement("div");
+            day.className = "weekly-day";
+            day.innerHTML = `
+                <div class="weekly-day-name">${index === 0 ? "今日" : dayName}</div>
+                <div class="weekly-day-icon"><i data-lucide="${dayWeather[1]}"></i></div>
+                <div class="weekly-day-max">${Math.round(daily.temperature_2m_max[index])}°</div>
+                <div class="weekly-day-min">${Math.round(daily.temperature_2m_min[index])}°</div>
+                <div class="weekly-day-rain">${rainChance == null ? "--" : rainChance + "%"}</div>
+            `;
+            weeklyList.appendChild(day);
+        });
         lucide.createIcons();
-
-
     } catch (error) {
-
-        description.textContent =
-            "天気情報を取得できませんでした";
-
+        description.textContent = "天気情報を取得できませんでした";
         feels.textContent = "";
         humidity.textContent = "";
         wind.textContent = "";
-
-        if (weeklyList) {
-
-            weeklyList.innerHTML =
-                '<div class="weekly-loading">' +
-                '天気予報を取得できませんでした' +
-                '</div>';
-
-        }
-
+        weeklyList.innerHTML = '<div class="weekly-loading">天気予報を取得できませんでした</div>';
         console.error("Weather error:", error);
-
     }
-
 }
-
-
-/* 初次載入 */
-
 loadOsakaWeather();
-
-
-/* 每 30 分鐘自動更新 */
-
 setInterval(loadOsakaWeather, 30 * 60 * 1000);
 
-
-/* 收藏分類線條圖示 */
-
-lucide.createIcons();
-
-/* ==============================
-   語言選單功能
-============================== */
-
+/* 語言選單 */
 const languageToggle = document.getElementById("language-toggle");
 const languageMenu = document.getElementById("language-menu");
 const languageOptions = document.querySelectorAll(".language-option");
+let currentLanguage = "ja";
 
-// 開啟或關閉語言選單
-
-languageToggle.addEventListener("click", () => {
+function updateLanguageCheck() {
+    languageOptions.forEach(option => {
+        option.classList.toggle("active", option.dataset.lang === currentLanguage);
+    });
+}
+languageToggle.addEventListener("click", event => {
+    event.stopPropagation();
     languageMenu.hidden = !languageMenu.hidden;
 });
-
-// 點擊選單以外的地方，自動關閉
-
-document.addEventListener("click", (event) => {
-    if (
-        !languageToggle.contains(event.target) &&
-        !languageMenu.contains(event.target)
-    ) {
+document.addEventListener("click", event => {
+    if (!languageToggle.contains(event.target) && !languageMenu.contains(event.target)) {
         languageMenu.hidden = true;
     }
 });
-
-// 設定預設語言：日語
-
-let currentLanguage = "ja";
-
-// 更新勾勾
-
-function updateLanguageCheck() {
-    languageOptions.forEach((option) => {
-        option.classList.toggle(
-            "active",
-            option.dataset.lang === currentLanguage
-        );
-    });
-}
-
-updateLanguageCheck();
-// 點擊語言選項
-
-languageOptions.forEach((option) => {
+languageOptions.forEach(option => {
     option.addEventListener("click", () => {
         currentLanguage = option.dataset.lang;
-
         updateLanguageCheck();
-
         languageMenu.hidden = true;
     });
 });
+updateLanguageCheck();
 
-/* ==========================
-   漢堡選單開啟與關閉
-========================== */
-
+/* 漢堡選單開啟與關閉 */
 const menuToggle = document.getElementById("menu-toggle");
 const sideMenu = document.getElementById("side-menu");
 const menuOverlay = document.getElementById("menu-overlay");
@@ -2645,106 +856,54 @@ const menuClose = document.getElementById("menu-close");
 function openSideMenu() {
     sideMenu.classList.add("active");
     menuOverlay.classList.add("active");
-
     sideMenu.setAttribute("aria-hidden", "false");
     menuToggle.setAttribute("aria-expanded", "true");
-
     document.body.style.overflow = "hidden";
 }
-
 function closeSideMenu() {
     sideMenu.classList.remove("active");
     menuOverlay.classList.remove("active");
-
     sideMenu.setAttribute("aria-hidden", "true");
     menuToggle.setAttribute("aria-expanded", "false");
-
     document.body.style.overflow = "";
 }
-
 menuToggle.addEventListener("click", openSideMenu);
 menuClose.addEventListener("click", closeSideMenu);
 menuOverlay.addEventListener("click", closeSideMenu);
- 
-/* ==============================
-   漢堡選單頁面辨識
-============================== */
 
+/* 側邊選單目前頁面辨識 */
 const menuLinks = document.querySelectorAll(".menu-link");
-
-/* 判斷目前所在頁面 */
-
 function updateActiveMenuLink() {
-
-    const currentPath =
-        window.location.pathname.split("/").pop() || "index.html";
-
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
     const currentHash = window.location.hash;
-
     menuLinks.forEach(link => {
-
         const linkURL = new URL(link.href);
-
-        const linkPath =
-            linkURL.pathname.split("/").pop() || "index.html";
-
+        const linkPath = linkURL.pathname.split("/").pop() || "index.html";
         const linkHash = linkURL.hash;
-
         let isActive = false;
-
         if (linkPath === currentPath) {
-
             if (linkPath === "index.html") {
-
-                isActive =
-                    linkHash === currentHash &&
-                    (currentHash !== "" || linkHash === "#home");
-
+                isActive = linkHash === currentHash && (currentHash !== "" || linkHash === "#home");
             } else {
-
                 isActive = true;
-
             }
-
         }
-
         link.classList.toggle("active", isActive);
-
-        if (isActive) {
-            link.setAttribute("aria-current", "page");
-        } else {
-            link.removeAttribute("aria-current");
-        }
-
+        if (isActive) link.setAttribute("aria-current", "page");
+        else link.removeAttribute("aria-current");
     });
-
 }
-
-/* 初次載入時辨識頁面 */
-
 updateActiveMenuLink();
-
-/* 點擊選單項目後關閉菜單 */
-
-menuLinks.forEach(link => {
-
-    link.addEventListener("click", () => {
-        closeSideMenu();
-    });
-
-});
-
-/* 按下 ESC 關閉菜單 */
-
+menuLinks.forEach(link => link.addEventListener("click", closeSideMenu));
 document.addEventListener("keydown", event => {
-
     if (event.key === "Escape") {
         closeSideMenu();
+        languageMenu.hidden = true;
     }
-
 });
-   
-</script>
 
+/* 初始化所有 Lucide 圖示 */
+lucide.createIcons();
+</script>
 </body>
 </html>
