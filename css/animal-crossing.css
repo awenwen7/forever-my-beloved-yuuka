@@ -1,18 +1,31 @@
+
 /* =========================================
    1. ROOT
 ========================================= */
 
 :root {
-    --ac-mint: #b9d9c9;
-    --ac-mint-dark: #86b9a2;
+    --ac-mint: #96D5AD;
+    --ac-mint-dark: #6EAE86;
 
-    --ac-cream: #fbf7e9;
-    --ac-panel: #fffdf5;
+    --ac-cream: #EBE1BC;
+    --ac-dot: #F4EDCF;
+    --ac-panel: #F4F1E4;
 
-    --ac-brown: #78634f;
-    --ac-muted: #a18d78;
+    --ac-brown: #78634F;
+    --ac-muted: #A18D78;
 
-    --ac-border: #e9dfcb;
+    --ac-border: #E5DCC4;
+
+    /* 9 CATEGORY COLORS */
+    --ac-passport: #94C38E;
+    --ac-music: #D0D957;
+    --ac-photos: #EA926B;
+    --ac-dream: #C69CD2;
+    --ac-design: #E8DD6C;
+    --ac-home: #C9EA85;
+    --ac-bulletin: #C36561;
+    --ac-events: #EEAB3C;
+    --ac-memories: #8E83C7;
 
     --ac-shadow:
         0 8px 24px rgba(112, 91, 65, 0.09);
@@ -33,12 +46,13 @@ html {
 
 body.ac-body {
     min-height: 100vh;
+
     background-color: var(--ac-cream);
 
     background-image:
         radial-gradient(
-            #eadfc8 0.8px,
-            transparent 0.8px
+            var(--ac-dot) 1px,
+            transparent 1px
         );
 
     background-size: 15px 15px;
@@ -126,7 +140,7 @@ body.ac-body {
 
 
 .ac-header-caption {
-    color: #6f927f;
+    color: #6F927F;
 
     font-family: Arial, sans-serif;
     font-size: 9px;
@@ -161,7 +175,7 @@ body.ac-body {
 .ac-intro-eyebrow {
     margin-bottom: 13px;
 
-    color: #9ba98d;
+    color: #8BAE91;
 
     font-family: Arial, sans-serif;
     font-size: 10px;
@@ -171,7 +185,7 @@ body.ac-body {
 
 
 .ac-intro h1 {
-    color: #806d54;
+    color: #806D54;
 
     font-size: clamp(28px, 5vw, 39px);
     font-weight: 600;
@@ -182,7 +196,7 @@ body.ac-body {
 .ac-intro-description {
     margin-top: 12px;
 
-    color: #a18e77;
+    color: #A18E77;
     font-size: 12px;
     letter-spacing: 1px;
 }
@@ -192,7 +206,7 @@ body.ac-body {
     position: absolute;
     top: 28px;
 
-    color: #d7bca0;
+    color: #D7BCA0;
     font-size: 23px;
     opacity: 0.7;
 }
@@ -216,7 +230,7 @@ body.ac-body {
 
     margin-top: 22px;
 
-    color: #c79d91;
+    color: #C79D91;
     font-size: 13px;
 }
 
@@ -225,7 +239,7 @@ body.ac-body {
 .ac-intro-divider span:last-child {
     width: 48px;
     height: 1px;
-    background: #e4d5bf;
+    background: #DCCFAF;
 }
 
 
@@ -238,8 +252,8 @@ body.ac-body {
 
     background: var(--ac-panel);
 
-    border: 1px solid #eee5d4;
-    border-radius: 25px;
+    border: 1px solid #E8E1CF;
+    border-radius: 32px;
 
     box-shadow: var(--ac-shadow);
 }
@@ -250,17 +264,17 @@ body.ac-body {
     align-items: center;
     justify-content: space-between;
 
-    margin-bottom: 27px;
+    margin-bottom: 23px;
     padding-bottom: 17px;
 
-    border-bottom: 1px dashed #e8ddc9;
+    border-bottom: 1px dashed #DED5BE;
 }
 
 
 .ac-panel-eyebrow {
     margin-bottom: 5px;
 
-    color: #b6a48b;
+    color: #A99B7C;
 
     font-family: Arial, sans-serif;
     font-size: 9px;
@@ -270,7 +284,7 @@ body.ac-body {
 
 
 .ac-panel-heading h2 {
-    color: #78634f;
+    color: #78634F;
 
     font-size: 19px;
     font-weight: 600;
@@ -278,8 +292,26 @@ body.ac-body {
 }
 
 
-.ac-panel-leaf {
-    font-size: 25px;
+/* CURRENT DATE */
+
+.ac-current-date {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 76px;
+    padding: 8px 13px;
+
+    background: #E8EEDB;
+
+    border-radius: 18px;
+
+    color: #6F9275;
+
+    font-family: "Noto Serif JP", serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 
@@ -291,7 +323,7 @@ body.ac-body {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
 
-    gap: 30px 22px;
+    gap: 19px 15px;
 }
 
 
@@ -319,7 +351,7 @@ body.ac-body {
 
 
 .ac-menu-button:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
 }
 
 
@@ -339,23 +371,26 @@ body.ac-body {
 
     padding: 17px;
 
-    border: 3px solid rgba(255,255,255,0.8);
-    border-radius: 25px;
+    border: 3px solid rgba(255,255,255,0.75);
+    border-radius: 31px;
 
     box-shadow:
-        0 4px 0 rgba(130, 110, 82, 0.09),
-        0 7px 14px rgba(120, 100, 75, 0.08);
+        0 4px 0 rgba(130, 110, 82, 0.08),
+        0 7px 14px rgba(120, 100, 75, 0.07);
 
     transition:
         box-shadow 0.2s ease,
-        transform 0.2s ease;
+        transform 0.2s ease,
+        filter 0.2s ease;
 }
 
 
 .ac-menu-button:hover .ac-icon-tile {
     box-shadow:
-        0 5px 0 rgba(130, 110, 82, 0.08),
-        0 10px 20px rgba(120, 100, 75, 0.14);
+        0 5px 0 rgba(130, 110, 82, 0.07),
+        0 10px 20px rgba(120, 100, 75, 0.13);
+
+    filter: brightness(1.035);
 }
 
 
@@ -369,47 +404,79 @@ body.ac-body {
 }
 
 
-/* ICON TILE COLORS */
+/* =========================================
+   CATEGORY COLORS
+========================================= */
+
+/* 01 PASSPORT */
 
 .tile-peach {
-    background: #f5d8bd;
+    background: var(--ac-passport);
 }
+
+
+/* 02 MUSIC */
 
 .tile-lavender {
-    background: #ded8ef;
+    background: var(--ac-music);
 }
+
+
+/* 03 PHOTO ALBUM */
 
 .tile-pink {
-    background: #f3d6df;
+    background: var(--ac-photos);
 }
+
+
+/* 04 DREAM ISLAND */
 
 .tile-blue {
-    background: #d5e8ef;
+    background: var(--ac-dream);
 }
+
+
+/* 05 ISLAND DESIGN */
 
 .tile-green {
-    background: #d7e9cb;
+    background: var(--ac-design);
 }
+
+
+/* 06 OUR HOME */
 
 .tile-yellow {
-    background: #f5e6ad;
+    background: var(--ac-home);
 }
+
+
+/* 07 ISLAND BULLETIN */
 
 .tile-orange {
-    background: #f3d6b8;
+    background: var(--ac-bulletin);
 }
+
+
+/* 08 EVENTS */
 
 .tile-mint {
-    background: #cce8db;
+    background: var(--ac-events);
 }
+
+
+/* 09 OUR MEMORIES */
 
 .tile-purple {
-    background: #e6d9eb;
+    background: var(--ac-memories);
 }
 
 
+/* =========================================
+   BUTTON TEXT
+========================================= */
+
 .ac-button-title {
-    margin-top: 12px;
+    margin-top: 10px;
 
     color: #796650;
 
@@ -422,9 +489,9 @@ body.ac-body {
 
 
 .ac-button-subtitle {
-    margin-top: 4px;
+    margin-top: 3px;
 
-    color: #b4a38e;
+    color: #A99B84;
 
     font-family: Arial, sans-serif;
     font-size: 8px;
@@ -445,12 +512,12 @@ body.ac-body {
     justify-content: center;
     gap: 12px;
 
-    margin-top: 32px;
-    padding-top: 17px;
+    margin-top: 25px;
+    padding-top: 16px;
 
-    border-top: 1px dashed #e8ddc9;
+    border-top: 1px dashed #DED5BE;
 
-    color: #b09c82;
+    color: #A99B84;
 
     font-size: 10px;
     letter-spacing: 1px;
@@ -458,14 +525,7 @@ body.ac-body {
 
 
 .ac-panel-footer span:nth-child(2) {
-    color: #d2a29c;
-}
-
-
-.ac-panel-footer span:last-child {
-    font-family: Arial, sans-serif;
-    font-size: 9px;
-    letter-spacing: 1.5px;
+    color: #D2A29C;
 }
 
 
@@ -476,7 +536,7 @@ body.ac-body {
 .ac-footer {
     padding: 35px 10px 10px;
 
-    color: #aa9a84;
+    color: #AA9A84;
     text-align: center;
 }
 
@@ -492,7 +552,7 @@ body.ac-body {
 
     margin-top: 8px;
 
-    color: #c0a18f;
+    color: #A18E77;
 
     font-family: Arial, sans-serif;
     font-size: 9px;
@@ -544,10 +604,10 @@ body.ac-body {
 
     padding: 34px;
 
-    background: #fffdf7;
+    background: #F4F1E4;
 
-    border: 1px solid #eee3d0;
-    border-radius: 23px;
+    border: 1px solid #E5DCC4;
+    border-radius: 30px;
 
     box-shadow:
         0 15px 50px rgba(48, 42, 32, 0.2);
@@ -574,15 +634,15 @@ body.ac-body {
     top: 13px;
     right: 17px;
 
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
 
     border: 0;
     border-radius: 50%;
 
-    background: #f3eadc;
+    background: #E8EEDB;
 
-    color: #8c7964;
+    color: #718C72;
     font-size: 23px;
 
     cursor: pointer;
@@ -594,12 +654,12 @@ body.ac-body {
 
     padding: 4px 0 24px;
 
-    border-bottom: 1px dashed #e6dac8;
+    border-bottom: 1px dashed #DED5BE;
 }
 
 
 .ac-modal-heading p {
-    color: #b19d84;
+    color: #A99B84;
 
     font-family: Arial, sans-serif;
     font-size: 9px;
@@ -611,7 +671,7 @@ body.ac-body {
 .ac-modal-heading h2 {
     margin-top: 8px;
 
-    color: #78634f;
+    color: #78634F;
 
     font-size: 22px;
     font-weight: 600;
@@ -624,7 +684,7 @@ body.ac-body {
 
     margin-top: 8px;
 
-    color: #d3a39b;
+    color: #D3A39B;
 }
 
 
@@ -640,7 +700,7 @@ body.ac-body {
 .ac-empty-state {
     padding: 35px 15px;
 
-    color: #a7957f;
+    color: #A7957F;
     text-align: center;
 }
 
@@ -655,7 +715,7 @@ body.ac-body {
 .ac-empty-state h3 {
     margin-bottom: 8px;
 
-    color: #88735c;
+    color: #88735C;
     font-size: 15px;
     font-weight: 600;
 }
@@ -679,10 +739,10 @@ body.ac-body {
 .ac-passport-card {
     overflow: hidden;
 
-    background: #f7f1e5;
+    background: #F7F1E5;
 
-    border: 1px solid #e8ddca;
-    border-radius: 15px;
+    border: 1px solid #E8DDCA;
+    border-radius: 20px;
 }
 
 
@@ -694,7 +754,7 @@ body.ac-body {
 
     object-fit: cover;
 
-    background: #e9e4d7;
+    background: #E9E4D7;
 }
 
 
@@ -705,7 +765,7 @@ body.ac-body {
 
 
 .ac-passport-info h3 {
-    color: #78634f;
+    color: #78634F;
     font-size: 14px;
 }
 
@@ -713,7 +773,7 @@ body.ac-body {
 .ac-passport-info p {
     margin-top: 5px;
 
-    color: #aa987f;
+    color: #AA987F;
     font-family: Arial, sans-serif;
     font-size: 9px;
     letter-spacing: 1px;
@@ -728,14 +788,14 @@ body.ac-body {
     background:
         repeating-linear-gradient(
             90deg,
-            #bd936c 0,
-            #bd936c 4px,
-            #c9a17a 4px,
-            #c9a17a 9px
+            #BD936C 0,
+            #BD936C 4px,
+            #C9A17A 4px,
+            #C9A17A 9px
         );
 
-    border: 8px solid #a97d58;
-    border-radius: 9px;
+    border: 8px solid #A97D58;
+    border-radius: 18px;
 
     box-shadow:
         inset 0 0 0 2px rgba(255,255,255,0.18);
@@ -745,7 +805,7 @@ body.ac-body {
 .ac-bulletin-title {
     margin-bottom: 15px;
 
-    color: #fff8e9;
+    color: #FFF8E9;
     text-align: center;
 
     font-size: 16px;
@@ -759,9 +819,9 @@ body.ac-body {
     margin-top: 12px;
     padding: 17px;
 
-    background: #fff9e9;
+    background: #FFF9E9;
 
-    border-radius: 3px;
+    border-radius: 12px;
 
     box-shadow: 0 3px 6px rgba(70, 45, 25, 0.15);
 
@@ -775,7 +835,7 @@ body.ac-body {
 
 
 .ac-bulletin-paper h3 {
-    color: #806b53;
+    color: #806B53;
     font-size: 13px;
 }
 
@@ -783,7 +843,7 @@ body.ac-body {
 .ac-bulletin-paper p {
     margin-top: 8px;
 
-    color: #9d8a72;
+    color: #9D8A72;
     font-size: 11px;
     line-height: 1.9;
 }
@@ -794,7 +854,7 @@ body.ac-body {
 
     margin-top: 10px;
 
-    color: #b4a28b;
+    color: #B4A28B;
     font-family: Arial, sans-serif;
     font-size: 9px;
     text-align: right;
@@ -860,30 +920,36 @@ body.ac-body {
 
     .ac-panel {
         padding: 23px 15px 18px;
-        border-radius: 19px;
+        border-radius: 26px;
     }
 
     .ac-panel-heading {
-        margin-bottom: 23px;
+        margin-bottom: 20px;
     }
 
     .ac-panel-heading h2 {
         font-size: 17px;
     }
 
+    .ac-current-date {
+        min-width: 70px;
+        padding: 7px 10px;
+        font-size: 11px;
+    }
+
     .ac-menu-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 25px 8px;
+        gap: 17px 7px;
     }
 
     .ac-icon-tile {
         max-width: none;
         padding: 11px;
-        border-radius: 19px;
+        border-radius: 24px;
     }
 
     .ac-button-title {
-        margin-top: 9px;
+        margin-top: 8px;
         font-size: 10px;
     }
 
@@ -894,12 +960,13 @@ body.ac-body {
 
     .ac-panel-footer {
         gap: 8px;
+        margin-top: 21px;
         font-size: 9px;
     }
 
     .ac-modal-window {
         padding: 28px 19px 22px;
-        border-radius: 19px;
+        border-radius: 25px;
     }
 
     .ac-modal-heading h2 {
@@ -909,6 +976,7 @@ body.ac-body {
     .ac-bulletin-board {
         padding: 13px;
         border-width: 6px;
+        border-radius: 14px;
     }
 
 }
