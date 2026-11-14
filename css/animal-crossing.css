@@ -1,408 +1,931 @@
-/* =====================================
-   ANIMAL CROSSING
-   FURTARI NO SHIMA
-===================================== */
+/* =========================================
+   1. ROOT
+========================================= */
 
-.ac-page {
-  --ac-mint: #a9d9ca;
-  --ac-cream: #fff9e9;
-  --ac-brown: #75624d;
-  --ac-dark: #66543f;
-  --ac-border: #e8dfc8;
+:root {
+    --ac-mint: #b9d9c9;
+    --ac-mint-dark: #86b9a2;
 
-  margin: 0;
-  min-height: 100vh;
-  color: var(--ac-dark);
-  font-family: "Nunito", "Noto Sans JP", sans-serif;
+    --ac-cream: #fbf7e9;
+    --ac-panel: #fffdf5;
 
-  background-color: #f8f2df;
-  background-image: radial-gradient(
-    #e8dfc8 1.2px,
-    transparent 1.2px
-  );
-  background-size: 13px 13px;
+    --ac-brown: #78634f;
+    --ac-muted: #a18d78;
+
+    --ac-border: #e9dfcb;
+
+    --ac-shadow:
+        0 8px 24px rgba(112, 91, 65, 0.09);
 }
 
-.ac-page * {
-  box-sizing: border-box;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.ac-topbar {
-  width: 100%;
-  min-height: 58px;
-  padding: 0 20px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
 
-  background: var(--ac-mint);
-  border-bottom: 3px solid #8fc5b5;
-  color: #526d5e;
+html {
+    scroll-behavior: smooth;
 }
+
+
+body.ac-body {
+    min-height: 100vh;
+    background-color: var(--ac-cream);
+
+    background-image:
+        radial-gradient(
+            #eadfc8 0.8px,
+            transparent 0.8px
+        );
+
+    background-size: 15px 15px;
+
+    color: var(--ac-brown);
+
+    font-family:
+        "Noto Serif JP",
+        serif;
+}
+
+
+/* =========================================
+   2. HEADER
+========================================= */
+
+.ac-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    height: 62px;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+
+    padding: 0 5%;
+
+    background: var(--ac-mint);
+
+    border-bottom: 3px solid rgba(255,255,255,0.55);
+
+    box-shadow:
+        0 3px 12px rgba(93, 132, 112, 0.12);
+}
+
 
 .ac-back {
-  color: #526d5e;
-  text-decoration: none;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    width: fit-content;
+
+    color: #547967;
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
 }
 
-.ac-top-title {
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 2px;
+
+.ac-back span:first-child {
+    font-family: serif;
+    font-size: 27px;
+    line-height: 1;
 }
 
-.ac-weather {
-  text-align: right;
+
+.ac-island-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #557967;
+
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
 }
 
-.ac-main {
-  width: min(100% - 30px, 720px);
-  margin: 0 auto;
-  padding: 35px 0 45px;
-}
-
-.ac-heading {
-  text-align: center;
-  margin-bottom: 24px;
-}
 
 .ac-leaf {
-  font-size: 28px;
-  margin-bottom: 5px;
+    font-size: 17px;
 }
 
-.ac-eyebrow {
-  margin: 0;
-  color: #9b987b;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 3px;
+
+.ac-header-right {
+    display: flex;
+    justify-content: flex-end;
 }
 
-.ac-heading h1 {
-  margin: 8px 0 3px;
-  font-size: clamp(27px, 6vw, 36px);
-  letter-spacing: 4px;
-  color: #6f846b;
+
+.ac-header-caption {
+    color: #6f927f;
+
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
 }
 
-.ac-subtitle {
-  margin: 0;
-  color: #a59a7e;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 2px;
+
+/* =========================================
+   3. MAIN
+========================================= */
+
+.ac-main {
+    width: min(100% - 36px, 1000px);
+    margin: 0 auto;
+    padding: 55px 0 35px;
 }
 
-.ac-menu-panel {
-  padding: 24px;
-  border: 4px solid #e9dfc6;
-  border-radius: 28px;
-  background: var(--ac-cream);
-  box-shadow:
-    0 7px 0 #e3d8bd,
-    0 12px 25px rgba(110, 91, 61, 0.08);
+
+/* =========================================
+   4. INTRO
+========================================= */
+
+.ac-intro {
+    position: relative;
+    text-align: center;
+
+    padding: 15px 15px 38px;
 }
+
+
+.ac-intro-eyebrow {
+    margin-bottom: 13px;
+
+    color: #9ba98d;
+
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+
+.ac-intro h1 {
+    color: #806d54;
+
+    font-size: clamp(28px, 5vw, 39px);
+    font-weight: 600;
+    letter-spacing: 5px;
+}
+
+
+.ac-intro-description {
+    margin-top: 12px;
+
+    color: #a18e77;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+
+.ac-intro-decoration {
+    position: absolute;
+    top: 28px;
+
+    color: #d7bca0;
+    font-size: 23px;
+    opacity: 0.7;
+}
+
+
+.ac-decoration-left {
+    left: 12%;
+}
+
+
+.ac-decoration-right {
+    right: 12%;
+}
+
+
+.ac-intro-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+
+    margin-top: 22px;
+
+    color: #c79d91;
+    font-size: 13px;
+}
+
+
+.ac-intro-divider span:first-child,
+.ac-intro-divider span:last-child {
+    width: 48px;
+    height: 1px;
+    background: #e4d5bf;
+}
+
+
+/* =========================================
+   5. PANEL
+========================================= */
+
+.ac-panel {
+    padding: 30px 38px 22px;
+
+    background: var(--ac-panel);
+
+    border: 1px solid #eee5d4;
+    border-radius: 25px;
+
+    box-shadow: var(--ac-shadow);
+}
+
 
 .ac-panel-heading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  color: #89795d;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 27px;
+    padding-bottom: 17px;
+
+    border-bottom: 1px dashed #e8ddc9;
 }
 
-.ac-panel-decoration {
-  color: #d8b77a;
-  font-size: 18px;
+
+.ac-panel-eyebrow {
+    margin-bottom: 5px;
+
+    color: #b6a48b;
+
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
 }
 
-.ac-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+
+.ac-panel-heading h2 {
+    color: #78634f;
+
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: 2px;
 }
 
-.ac-tile {
-  position: relative;
-  min-width: 0;
-  aspect-ratio: 1 / 1;
-  padding: 12px 5px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-
-  border: 3px solid rgba(255,255,255,0.75);
-  border-radius: 20px;
-  color: #665b4a;
-  font-family: inherit;
-  cursor: pointer;
-
-  box-shadow:
-    0 4px 0 rgba(113, 97, 70, 0.12),
-    inset 0 2px 5px rgba(255,255,255,0.4);
-
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease;
+.ac-panel-leaf {
+    font-size: 25px;
 }
 
-.ac-tile:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 7px 0 rgba(113, 97, 70, 0.12),
-    inset 0 2px 5px rgba(255,255,255,0.4);
+
+/* =========================================
+   6. MENU GRID
+========================================= */
+
+.ac-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 30px 22px;
 }
 
-.ac-tile:active {
-  transform: translateY(2px);
-  box-shadow: none;
+
+.ac-menu-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-width: 0;
+
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+
+    color: var(--ac-brown);
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
 }
 
-.ac-icon {
-  font-size: clamp(27px, 6vw, 39px);
-  line-height: 1.2;
-  filter: drop-shadow(0 2px 1px rgba(80,70,50,0.12));
+
+.ac-menu-button:hover {
+    transform: translateY(-5px);
 }
 
-.ac-name {
-  font-size: clamp(10px, 2.5vw, 13px);
-  font-weight: 800;
-  white-space: nowrap;
+
+.ac-menu-button:active {
+    transform: scale(0.96);
 }
 
-.ac-en {
-  font-size: clamp(7px, 1.8vw, 9px);
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  opacity: 0.68;
+
+.ac-icon-tile {
+    width: 100%;
+    max-width: 145px;
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 17px;
+
+    border: 3px solid rgba(255,255,255,0.8);
+    border-radius: 25px;
+
+    box-shadow:
+        0 4px 0 rgba(130, 110, 82, 0.09),
+        0 7px 14px rgba(120, 100, 75, 0.08);
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
 }
 
-.tile-mint { background: #b9e0d5; }
-.tile-blue { background: #c4d9ee; }
-.tile-green { background: #c9e4b9; }
-.tile-purple { background: #d4cbed; }
-.tile-yellow { background: #e9e2ad; }
-.tile-orange { background: #f0d1ad; }
-.tile-pink { background: #f0c9d5; }
-.tile-coral { background: #f1c5ad; }
-.tile-rose { background: #eac5d4; }
 
-.ac-notice-dot {
-  position: absolute;
-  top: 7px;
-  right: 9px;
-  width: 19px;
-  height: 19px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #e98c70;
-  color: white;
-  font-size: 11px;
-  font-weight: 900;
+.ac-menu-button:hover .ac-icon-tile {
+    box-shadow:
+        0 5px 0 rgba(130, 110, 82, 0.08),
+        0 10px 20px rgba(120, 100, 75, 0.14);
 }
+
+
+.ac-icon-tile img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+
+/* ICON TILE COLORS */
+
+.tile-peach {
+    background: #f5d8bd;
+}
+
+.tile-lavender {
+    background: #ded8ef;
+}
+
+.tile-pink {
+    background: #f3d6df;
+}
+
+.tile-blue {
+    background: #d5e8ef;
+}
+
+.tile-green {
+    background: #d7e9cb;
+}
+
+.tile-yellow {
+    background: #f5e6ad;
+}
+
+.tile-orange {
+    background: #f3d6b8;
+}
+
+.tile-mint {
+    background: #cce8db;
+}
+
+.tile-purple {
+    background: #e6d9eb;
+}
+
+
+.ac-button-title {
+    margin-top: 12px;
+
+    color: #796650;
+
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+    text-align: center;
+}
+
+
+.ac-button-subtitle {
+    margin-top: 4px;
+
+    color: #b4a38e;
+
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   7. PANEL FOOTER
+========================================= */
 
 .ac-panel-footer {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 23px;
-  color: #d7cfb9;
-  font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    margin-top: 32px;
+    padding-top: 17px;
+
+    border-top: 1px dashed #e8ddc9;
+
+    color: #b09c82;
+
+    font-size: 10px;
+    letter-spacing: 1px;
 }
 
-.ac-panel-footer .active-dot {
-  color: #8bbda9;
+
+.ac-panel-footer span:nth-child(2) {
+    color: #d2a29c;
 }
 
-.ac-footer-note {
-  text-align: center;
-  margin-top: 25px;
-  color: #9a8d75;
-  font-size: 12px;
-  letter-spacing: 1px;
+
+.ac-panel-footer span:last-child {
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
 }
 
-/* =====================================
-   MODAL
-===================================== */
+
+/* =========================================
+   8. PAGE FOOTER
+========================================= */
+
+.ac-footer {
+    padding: 35px 10px 10px;
+
+    color: #aa9a84;
+    text-align: center;
+}
+
+
+.ac-footer p {
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+
+.ac-footer span {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #c0a18f;
+
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   9. MODAL
+========================================= */
 
 .ac-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  padding: 20px;
+    position: fixed;
+    inset: 0;
+    z-index: 300;
 
-  display: none;
-  align-items: center;
-  justify-content: center;
+    display: none;
+    align-items: center;
+    justify-content: center;
 
-  background: rgba(74, 67, 53, 0.48);
-  backdrop-filter: blur(4px);
+    padding: 20px;
 }
 
-.ac-modal.is-open {
-  display: flex;
+
+.ac-modal.active {
+    display: flex;
 }
 
-.ac-modal-card {
-  position: relative;
-  width: min(100%, 480px);
-  max-height: 85vh;
-  overflow-y: auto;
-  padding: 35px 25px 28px;
 
-  text-align: center;
-  border: 5px solid #eadfc8;
-  border-radius: 26px;
-  background: #fffaf0;
-  box-shadow: 0 8px 0 #d9cbb0;
+.ac-modal-backdrop {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(75, 69, 57, 0.48);
+
+    backdrop-filter: blur(4px);
 }
 
-.ac-close {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  width: 34px;
-  height: 34px;
-  border: none;
-  border-radius: 50%;
-  background: #eee4d2;
-  color: #76644d;
-  font-size: 24px;
-  cursor: pointer;
+
+.ac-modal-window {
+    position: relative;
+    z-index: 1;
+
+    width: min(100%, 650px);
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    padding: 34px;
+
+    background: #fffdf7;
+
+    border: 1px solid #eee3d0;
+    border-radius: 23px;
+
+    box-shadow:
+        0 15px 50px rgba(48, 42, 32, 0.2);
+
+    animation: ac-modal-in 0.25s ease;
 }
 
-.ac-modal-icon {
-  font-size: 42px;
-  margin-bottom: 5px;
+
+@keyframes ac-modal-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
-.ac-modal-en {
-  margin: 0;
-  color: #a49a80;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 2px;
+
+.ac-modal-close {
+    position: absolute;
+    top: 13px;
+    right: 17px;
+
+    width: 34px;
+    height: 34px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: #f3eadc;
+
+    color: #8c7964;
+    font-size: 23px;
+
+    cursor: pointer;
 }
 
-.ac-modal-card h2 {
-  margin: 8px 0 20px;
-  color: #72886d;
-  font-size: 23px;
+
+.ac-modal-heading {
+    text-align: center;
+
+    padding: 4px 0 24px;
+
+    border-bottom: 1px dashed #e6dac8;
 }
+
+
+.ac-modal-heading p {
+    color: #b19d84;
+
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+
+.ac-modal-heading h2 {
+    margin-top: 8px;
+
+    color: #78634f;
+
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+
+.ac-modal-heading span {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #d3a39b;
+}
+
 
 .ac-modal-content {
-  color: #776b58;
-  font-size: 14px;
-  line-height: 1.9;
-  text-align: left;
+    padding-top: 25px;
 }
 
-.ac-info-box {
-  padding: 17px;
-  margin-top: 12px;
-  border-radius: 15px;
-  background: #f4eddd;
+
+/* =========================================
+   10. MODAL CONTENT
+========================================= */
+
+.ac-empty-state {
+    padding: 35px 15px;
+
+    color: #a7957f;
+    text-align: center;
 }
 
-.ac-info-box h3 {
-  margin: 0 0 6px;
-  font-size: 14px;
-  color: #7d8f73;
-}
-
-.ac-info-box p {
-  margin: 0;
-}
-
-.ac-notice {
-  padding: 15px;
-  margin-bottom: 12px;
-  border: 2px solid #e8d8b8;
-  border-radius: 10px;
-  background: #fffdf5;
-  box-shadow: 0 3px 0 #e8dfcf;
-}
-
-.ac-notice-date {
-  display: block;
-  margin-bottom: 5px;
-  color: #b18d65;
-  font-size: 10px;
-  font-weight: 800;
-}
-
-.ac-notice h3 {
-  margin: 0 0 5px;
-  color: #7d8066;
-  font-size: 15px;
-}
-
-.ac-notice p {
-  margin: 0;
-  font-size: 13px;
-}
-
-.ac-empty {
-  padding: 25px 15px;
-  border-radius: 16px;
-  background: #f4eddd;
-  text-align: center;
-}
 
 .ac-empty-icon {
-  display: block;
-  font-size: 32px;
-  margin-bottom: 8px;
+    margin-bottom: 13px;
+
+    font-size: 34px;
 }
 
-.ac-empty p {
-  margin: 0;
+
+.ac-empty-state h3 {
+    margin-bottom: 8px;
+
+    color: #88735c;
+    font-size: 15px;
+    font-weight: 600;
 }
 
-/* =====================================
-   MOBILE
-===================================== */
 
-@media (max-width: 480px) {
-  .ac-topbar {
-    min-height: 52px;
-    padding: 0 13px;
-  }
+.ac-empty-state p {
+    font-size: 11px;
+    line-height: 2;
+}
 
-  .ac-main {
-    width: calc(100% - 20px);
-    padding-top: 27px;
-  }
 
-  .ac-menu-panel {
-    padding: 17px 12px;
-    border-radius: 23px;
-  }
+/* PASSPORT */
 
-  .ac-grid {
-    gap: 9px;
-  }
+.ac-passport-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px;
+}
 
-  .ac-tile {
-    border-radius: 16px;
-    border-width: 2px;
-    gap: 4px;
-  }
 
-  .ac-modal-card {
-    padding: 32px 18px 23px;
-  }
+.ac-passport-card {
+    overflow: hidden;
+
+    background: #f7f1e5;
+
+    border: 1px solid #e8ddca;
+    border-radius: 15px;
+}
+
+
+.ac-passport-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+
+    display: block;
+
+    object-fit: cover;
+
+    background: #e9e4d7;
+}
+
+
+.ac-passport-info {
+    padding: 13px;
+    text-align: center;
+}
+
+
+.ac-passport-info h3 {
+    color: #78634f;
+    font-size: 14px;
+}
+
+
+.ac-passport-info p {
+    margin-top: 5px;
+
+    color: #aa987f;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+
+/* BULLETIN BOARD */
+
+.ac-bulletin-board {
+    padding: 20px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #bd936c 0,
+            #bd936c 4px,
+            #c9a17a 4px,
+            #c9a17a 9px
+        );
+
+    border: 8px solid #a97d58;
+    border-radius: 9px;
+
+    box-shadow:
+        inset 0 0 0 2px rgba(255,255,255,0.18);
+}
+
+
+.ac-bulletin-title {
+    margin-bottom: 15px;
+
+    color: #fff8e9;
+    text-align: center;
+
+    font-size: 16px;
+    letter-spacing: 2px;
+
+    text-shadow: 0 1px 2px rgba(80,50,25,0.3);
+}
+
+
+.ac-bulletin-paper {
+    margin-top: 12px;
+    padding: 17px;
+
+    background: #fff9e9;
+
+    border-radius: 3px;
+
+    box-shadow: 0 3px 6px rgba(70, 45, 25, 0.15);
+
+    transform: rotate(-0.5deg);
+}
+
+
+.ac-bulletin-paper:nth-child(even) {
+    transform: rotate(0.6deg);
+}
+
+
+.ac-bulletin-paper h3 {
+    color: #806b53;
+    font-size: 13px;
+}
+
+
+.ac-bulletin-paper p {
+    margin-top: 8px;
+
+    color: #9d8a72;
+    font-size: 11px;
+    line-height: 1.9;
+}
+
+
+.ac-bulletin-paper small {
+    display: block;
+
+    margin-top: 10px;
+
+    color: #b4a28b;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    text-align: right;
+}
+
+
+/* =========================================
+   11. RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .ac-header {
+        height: 56px;
+        padding: 0 15px;
+    }
+
+    .ac-back {
+        gap: 4px;
+        font-size: 9px;
+    }
+
+    .ac-island-name {
+        gap: 5px;
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+
+    .ac-header-caption {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .ac-main {
+        width: calc(100% - 22px);
+        padding-top: 35px;
+    }
+
+    .ac-intro {
+        padding-bottom: 28px;
+    }
+
+    .ac-intro-decoration {
+        top: 20px;
+        font-size: 17px;
+    }
+
+    .ac-decoration-left {
+        left: 5%;
+    }
+
+    .ac-decoration-right {
+        right: 5%;
+    }
+
+    .ac-intro h1 {
+        font-size: 29px;
+    }
+
+    .ac-intro-description {
+        font-size: 10px;
+    }
+
+    .ac-panel {
+        padding: 23px 15px 18px;
+        border-radius: 19px;
+    }
+
+    .ac-panel-heading {
+        margin-bottom: 23px;
+    }
+
+    .ac-panel-heading h2 {
+        font-size: 17px;
+    }
+
+    .ac-menu-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 25px 8px;
+    }
+
+    .ac-icon-tile {
+        max-width: none;
+        padding: 11px;
+        border-radius: 19px;
+    }
+
+    .ac-button-title {
+        margin-top: 9px;
+        font-size: 10px;
+    }
+
+    .ac-button-subtitle {
+        font-size: 7px;
+        letter-spacing: 0.5px;
+    }
+
+    .ac-panel-footer {
+        gap: 8px;
+        font-size: 9px;
+    }
+
+    .ac-modal-window {
+        padding: 28px 19px 22px;
+        border-radius: 19px;
+    }
+
+    .ac-modal-heading h2 {
+        font-size: 19px;
+    }
+
+    .ac-bulletin-board {
+        padding: 13px;
+        border-width: 6px;
+    }
+
+}
+
+
+@media (max-width: 360px) {
+
+    .ac-button-title {
+        font-size: 9px;
+    }
+
+    .ac-button-subtitle {
+        font-size: 6px;
+    }
+
+    .ac-icon-tile {
+        padding: 9px;
+    }
+
 }
