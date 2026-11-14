@@ -990,23 +990,33 @@ const menuLinks = document.querySelectorAll(".menu-link");
 function updateActiveMenuLink() {
     const currentPath = window.location.pathname.split("/").pop() || "index.html";
     const currentHash = window.location.hash;
+
     menuLinks.forEach(link => {
         const linkURL = new URL(link.href);
         const linkPath = linkURL.pathname.split("/").pop() || "index.html";
         const linkHash = linkURL.hash;
+
         let isActive = false;
+
         if (linkPath === currentPath) {
             if (linkPath === "index.html") {
-                isActive = linkHash === currentHash && (currentHash !== "" || linkHash === "#home");
+                isActive = linkHash === currentHash &&
+                    (currentHash !== "" || linkHash === "#home");
             } else {
                 isActive = true;
             }
         }
+
         link.classList.toggle("active", isActive);
-        if (isActive) link.setAttribute("aria-current", "page");
-        else link.removeAttribute("aria-current");
+
+        if (isActive) {
+            link.setAttribute("aria-current", "page");
+        } else {
+            link.removeAttribute("aria-current");
+        }
     });
 }
+
 updateActiveMenuLink();
 menuLinks.forEach(link => link.addEventListener("click", closeSideMenu));
 document.addEventListener("keydown", event => {
