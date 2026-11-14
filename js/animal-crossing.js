@@ -1,194 +1,344 @@
+/* =========================================
+   1. ELEMENTS
+========================================= */
 
-/* =====================================
-   ANIMAL CROSSING
-   FURTARI NO SHIMA
-===================================== */
+const acModal = document.getElementById("acModal");
 
-const islandPages = {
-  passport: {
-    icon: "🪪",
-    title: "パスポート",
-    english: "PASSPORT",
-    content: `
-      <div class="ac-info-box">
-        <h3>WEN'S PASSPORT</h3>
-        <p>プレイヤーのプロフィールや島の情報を記録します。</p>
-      </div>
-      <div class="ac-info-box">
-        <h3>YUUKA'S PASSPORT</h3>
-        <p>ふたりのパスポートを同じページに並べて保存します。</p>
-      </div>
-    `
-  },
+const acModalClose = document.getElementById("acModalClose");
 
-  music: {
-    icon: "🎵",
-    title: "ミュージック",
-    english: "MUSIC",
-    content: `
-      <div class="ac-empty">
-        <span class="ac-empty-icon">🎶</span>
-        <p>まだ曲が登録されていません。</p>
-        <p>お気に入りの音楽を追加してね ♡</p>
-      </div>
-    `
-  },
+const acModalTitle = document.getElementById("acModalTitle");
 
-  photos: {
-    icon: "📷",
-    title: "島の写真",
-    english: "PHOTO ALBUM",
-    content: `
-      <div class="ac-empty">
-        <span class="ac-empty-icon">🌷</span>
-        <p>ふたりの島で撮った写真を保存します。</p>
-        <p>思い出の写真をここに追加してね。</p>
-      </div>
-    `
-  },
+const acModalEnglish = document.getElementById("acModalEnglish");
 
-  dream: {
-    icon: "🌙",
-    title: "夢の島",
-    english: "DREAM ISLAND",
-    content: `
-      <div class="ac-empty">
-        <span class="ac-empty-icon">✨</span>
-        <p>夢の中で出会った景色を保存します。</p>
-      </div>
-    `
-  },
+const acModalContent = document.getElementById("acModalContent");
 
-  design: {
-    icon: "🌳",
-    title: "島づくり",
-    english: "ISLAND DESIGN",
-    content: `
-      <div class="ac-empty">
-        <span class="ac-empty-icon">🌿</span>
-        <p>島の地形や道、橋、坂道など。</p>
-        <p>ふたりの島づくりの記録です。</p>
-      </div>
-    `
-  },
+const acMenuButtons = document.querySelectorAll(".ac-menu-button");
 
-  home: {
-    icon: "🏡",
-    title: "おうち",
-    english: "OUR HOME",
-    content: `
-      <div class="ac-empty">
-        <span class="ac-empty-icon">🪴</span>
-        <p>おうちの外観やお部屋の写真を保存します。</p>
-      </div>
-    `
-  },
 
-  bulletin: {
-    icon: "📌",
-    title: "島のおしらせ",
-    english: "ISLAND BULLETIN",
-    content: `
-      <div class="ac-notice">
-        <span class="ac-notice-date">WELCOME</span>
-        <h3>ふたりの島へようこそ！</h3>
-        <p>ここはふたりだけの小さな島。</p>
-      </div>
+/* =========================================
+   2. SECTION CONTENT
+========================================= */
 
-      <div class="ac-notice">
-        <span class="ac-notice-date">ISLAND NEWS</span>
-        <h3>島のニュース</h3>
-        <p>新しい思い出ができたら、ここにお知らせを追加してね。</p>
-      </div>
+const acSections = {
 
-      <div class="ac-notice">
-        <span class="ac-notice-date">SPECIAL NOTE</span>
-        <h3>ふたりへのメモ ♡</h3>
-        <p>これからも一緒に、たくさんの思い出を作ろうね。</p>
-      </div>
-    `
-  },
+    passport: {
+        title: "パスポート",
+        english: "PASSPORT",
 
-  events: {
-    icon: "🎉",
-    title: "イベント",
-    english: "EVENTS",
-    content: `
-      <div class="ac-empty">
-        <span class="ac-empty-icon">🎂</span>
-        <p>誕生日や季節のイベントなど、</p>
-        <p>ふたりで過ごした特別な日を保存します。</p>
-      </div>
-    `
-  },
+        content: `
+            <div class="ac-passport-grid">
 
-  memories: {
-    icon: "💗",
-    title: "ふたりの記録",
-    english: "OUR MEMORIES",
-    content: `
-      <div class="ac-empty">
-        <span class="ac-empty-icon">💕</span>
-        <p>ふたりだけの大切な思い出。</p>
-        <p>忘れたくない瞬間をここに残そう。</p>
-      </div>
-    `
-  }
+                <article class="ac-passport-card">
+
+                    <img
+                        class="ac-passport-photo"
+                        src="images/animal-crossing/passport/wen.jpg"
+                        alt="Wen's passport"
+                    >
+
+                    <div class="ac-passport-info">
+                        <h3>Wen</h3>
+                        <p>ISLAND RESIDENT</p>
+                    </div>
+
+                </article>
+
+
+                <article class="ac-passport-card">
+
+                    <img
+                        class="ac-passport-photo"
+                        src="images/animal-crossing/passport/yuuka.jpg"
+                        alt="Yuuka's passport"
+                    >
+
+                    <div class="ac-passport-info">
+                        <h3>Yuuka</h3>
+                        <p>ISLAND RESIDENT</p>
+                    </div>
+
+                </article>
+
+            </div>
+        `
+    },
+
+
+    music: {
+        title: "ミュージック",
+        english: "MUSIC",
+
+        content: `
+            <div class="ac-empty-state">
+
+                <div class="ac-empty-icon">♫</div>
+
+                <h3>島の音楽</h3>
+
+                <p>
+                    これからふたりのお気に入りの音楽を<br>
+                    少しずつ追加していこう。
+                </p>
+
+            </div>
+        `
+    },
+
+
+    photos: {
+        title: "島の写真",
+        english: "PHOTO ALBUM",
+
+        content: `
+            <div class="ac-empty-state">
+
+                <div class="ac-empty-icon">📷</div>
+
+                <h3>島で撮った写真</h3>
+
+                <p>
+                    ふたりで過ごした島の日々を<br>
+                    写真に残していこう。
+                </p>
+
+            </div>
+        `
+    },
+
+
+    dream: {
+        title: "夢の島",
+        english: "DREAM ISLAND",
+
+        content: `
+            <div class="ac-empty-state">
+
+                <div class="ac-empty-icon">☁</div>
+
+                <h3>夢の中の島</h3>
+
+                <p>
+                    夢番地や訪れた島の記録を<br>
+                    ここに残していこう。
+                </p>
+
+            </div>
+        `
+    },
+
+
+    design: {
+        title: "島づくり",
+        english: "ISLAND DESIGN",
+
+        content: `
+            <div class="ac-empty-state">
+
+                <div class="ac-empty-icon">🌳</div>
+
+                <h3>ふたりの島づくり</h3>
+
+                <p>
+                    島の地形や道、橋や坂など<br>
+                    ふたりで作った島の記録。
+                </p>
+
+            </div>
+        `
+    },
+
+
+    home: {
+        title: "おうち",
+        english: "OUR HOME",
+
+        content: `
+            <div class="ac-empty-state">
+
+                <div class="ac-empty-icon">🏡</div>
+
+                <h3>ふたりのおうち</h3>
+
+                <p>
+                    おうちの外観やお部屋のインテリアを<br>
+                    ここに記録していこう。
+                </p>
+
+            </div>
+        `
+    },
+
+
+    bulletin: {
+        title: "島のおしらせ",
+        english: "ISLAND BULLETIN",
+
+        content: `
+            <div class="ac-bulletin-board">
+
+                <h3 class="ac-bulletin-title">
+                    ふたりの島のおしらせ
+                </h3>
+
+                <div class="ac-bulletin-paper">
+
+                    <h3>📌 おしらせ</h3>
+
+                    <p>
+                        まだおしらせはありません。<br>
+                        これから島での出来事を<br>
+                        少しずつ書き残していこう。
+                    </p>
+
+                    <small>FROM OUR ISLAND ♡</small>
+
+                </div>
+
+            </div>
+        `
+    },
+
+
+    events: {
+        title: "イベント",
+        english: "EVENTS",
+
+        content: `
+            <div class="ac-empty-state">
+
+                <div class="ac-empty-icon">🎈</div>
+
+                <h3>島のイベント</h3>
+
+                <p>
+                    誕生日や季節のイベントなど<br>
+                    ふたりで楽しんだ日を記録しよう。
+                </p>
+
+            </div>
+        `
+    },
+
+
+    memories: {
+        title: "ふたりの記録",
+        english: "OUR MEMORIES",
+
+        content: `
+            <div class="ac-empty-state">
+
+                <div class="ac-empty-icon">♡</div>
+
+                <h3>ふたりの大切な思い出</h3>
+
+                <p>
+                    この島で過ごした特別な時間を<br>
+                    ひとつずつ残していこう。
+                </p>
+
+            </div>
+        `
+    }
+
 };
 
 
-/* =====================================
-   OPEN MODAL
-===================================== */
+/* =========================================
+   3. OPEN MODAL
+========================================= */
 
-const modal = document.getElementById("acModal");
-const modalIcon = document.getElementById("modalIcon");
-const modalTitle = document.getElementById("modalTitle");
-const modalEnglish = document.getElementById("modalEnglish");
-const modalContent = document.getElementById("modalContent");
+function openAcSection(sectionName) {
 
-const menuButtons = document.querySelectorAll(".ac-tile");
+    const section = acSections[sectionName];
 
-menuButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const pageName = button.dataset.page;
-    const page = islandPages[pageName];
+    if (!section) return;
 
-    if (!page) return;
+    acModalTitle.textContent = section.title;
 
-    modalIcon.textContent = page.icon;
-    modalTitle.textContent = page.title;
-    modalEnglish.textContent = page.english;
-    modalContent.innerHTML = page.content;
+    acModalEnglish.textContent = section.english;
 
-    modal.classList.add("is-open");
-    modal.setAttribute("aria-hidden", "false");
+    acModalContent.innerHTML = section.content;
+
+    acModal.classList.add("active");
+
+    acModal.setAttribute("aria-hidden", "false");
+
     document.body.style.overflow = "hidden";
-  });
-});
 
-
-/* =====================================
-   CLOSE MODAL
-===================================== */
-
-function closeIslandModal() {
-  modal.classList.remove("is-open");
-  modal.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
 }
 
-document.getElementById("closeModal")
-  .addEventListener("click", closeIslandModal);
 
-modal.addEventListener("click", (event) => {
-  if (event.target === modal) {
-    closeIslandModal();
-  }
+/* =========================================
+   4. CLOSE MODAL
+========================================= */
+
+function closeAcModal() {
+
+    acModal.classList.remove("active");
+
+    acModal.setAttribute("aria-hidden", "true");
+
+    document.body.style.overflow = "";
+
+}
+
+
+/* =========================================
+   5. MENU BUTTON EVENTS
+========================================= */
+
+acMenuButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        const sectionName = button.dataset.section;
+
+        openAcSection(sectionName);
+
+    });
+
 });
 
+
+/* =========================================
+   6. CLOSE BUTTON
+========================================= */
+
+acModalClose.addEventListener("click", () => {
+
+    closeAcModal();
+
+});
+
+
+/* =========================================
+   7. BACKDROP CLICK
+========================================= */
+
+acModal.addEventListener("click", (event) => {
+
+    if (event.target.hasAttribute("data-close-modal")) {
+
+        closeAcModal();
+
+    }
+
+});
+
+
+/* =========================================
+   8. ESCAPE KEY
+========================================= */
+
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && modal.classList.contains("is-open")) {
-    closeIslandModal();
-  }
+
+    if (
+        event.key === "Escape" &&
+        acModal.classList.contains("active")
+    ) {
+
+        closeAcModal();
+
+    }
+
 });
