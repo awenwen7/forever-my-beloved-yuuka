@@ -35,9 +35,9 @@ body {
     width: 100%;
     max-width: 680px;
     margin: 0 auto;
+    padding-top: 66px;
 }
-
-
+  
 /* ==============================
    音樂播放器
 ============================== */
@@ -1037,11 +1037,6 @@ footer {
     height: 13px;
 }
 
-/* 預留導覽列空間 */
-
-.container {
-    padding-top: 66px;
-}
 
     /* ==============================
    語言選單
@@ -1306,7 +1301,44 @@ footer {
         padding-bottom: 8px;
     }
 }
-  
+  /* ==============================
+   導覽列比例修復
+============================== */
+
+.site-header {
+    width: calc(100% - 30px);
+    max-width: 680px;
+    height: 46px;
+
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr) 34px;
+    align-items: center;
+    justify-items: center;
+
+    padding: 0 9px;
+}
+
+.site-header .nav-button {
+    justify-self: start;
+}
+
+.site-header .nav-title {
+    justify-self: center;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.site-header .language-button {
+    justify-self: end;
+    width: 34px;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.site-header .language-button svg {
+    width: 17px;
+    height: 17px;
+}
 </style>
 </head>
 
