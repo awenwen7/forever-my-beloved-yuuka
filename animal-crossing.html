@@ -1,132 +1,239 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
 
-  <title>ふたりの島 | Animal Crossing</title>
+    <title>ふたりの島 | Animal Crossing</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link rel="stylesheet" href="css/animal-crossing.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="css/animal-crossing.css">
 </head>
 
-<body class="ac-page">
+<body class="ac-body">
 
-  <header class="ac-topbar">
-    <a class="ac-back" href="games.html">← GAMES</a>
-    <div class="ac-top-title">ふたりの島</div>
-    <div class="ac-weather">☀️</div>
-  </header>
+    <!-- TOP NAVIGATION -->
+    <header class="ac-header">
 
-  <main class="ac-main">
+        <a href="games.html" class="ac-back" aria-label="ゲーム一覧へ戻る">
+            <span>‹</span>
+            <span>GAMES</span>
+        </a>
 
-    <section class="ac-heading">
-      <div class="ac-leaf">🍃</div>
-      <p class="ac-eyebrow">ISLAND SERVICE TERMINAL</p>
-      <h1>ふたりの島</h1>
-      <p class="ac-subtitle">WEN & YUUKA'S ISLAND</p>
-    </section>
+        <div class="ac-island-name">
+            <span class="ac-leaf">🍃</span>
+            <span>ふたりの島</span>
+        </div>
 
-    <section class="ac-menu-panel">
+        <div class="ac-header-right">
+            <span class="ac-header-caption">OUR ISLAND</span>
+        </div>
 
-      <div class="ac-panel-heading">
-        <span>サービスをえらんでね！</span>
-        <span class="ac-panel-decoration">✿</span>
-      </div>
+    </header>
 
-      <div class="ac-grid">
 
-        <button class="ac-tile tile-mint" data-page="passport">
-          <span class="ac-icon">🪪</span>
-          <span class="ac-name">パスポート</span>
-          <span class="ac-en">PASSPORT</span>
-        </button>
+    <main class="ac-main">
 
-        <button class="ac-tile tile-blue" data-page="music">
-          <span class="ac-icon">🎵</span>
-          <span class="ac-name">ミュージック</span>
-          <span class="ac-en">MUSIC</span>
-        </button>
+        <!-- ISLAND INTRODUCTION -->
+        <section class="ac-intro">
 
-        <button class="ac-tile tile-green" data-page="photos">
-          <span class="ac-icon">📷</span>
-          <span class="ac-name">島の写真</span>
-          <span class="ac-en">PHOTO ALBUM</span>
-        </button>
+            <div class="ac-intro-decoration ac-decoration-left">✿</div>
+            <div class="ac-intro-decoration ac-decoration-right">✿</div>
 
-        <button class="ac-tile tile-purple" data-page="dream">
-          <span class="ac-icon">🌙</span>
-          <span class="ac-name">夢の島</span>
-          <span class="ac-en">DREAM ISLAND</span>
-        </button>
+            <p class="ac-intro-eyebrow">
+                WELCOME TO OUR ISLAND
+            </p>
 
-        <button class="ac-tile tile-yellow" data-page="design">
-          <span class="ac-icon">🌳</span>
-          <span class="ac-name">島づくり</span>
-          <span class="ac-en">ISLAND DESIGN</span>
-        </button>
+            <h1>ふたりの島</h1>
 
-        <button class="ac-tile tile-orange" data-page="home">
-          <span class="ac-icon">🏡</span>
-          <span class="ac-name">おうち</span>
-          <span class="ac-en">OUR HOME</span>
-        </button>
+            <p class="ac-intro-description">
+                ふたりで過ごす、のんびりとした島の暮らし。
+            </p>
 
-        <button class="ac-tile tile-pink" data-page="bulletin">
-          <span class="ac-icon">📌</span>
-          <span class="ac-name">島のおしらせ</span>
-          <span class="ac-en">ISLAND BULLETIN</span>
-          <span class="ac-notice-dot">!</span>
-        </button>
+            <div class="ac-intro-divider">
+                <span></span>
+                <span>♡</span>
+                <span></span>
+            </div>
 
-        <button class="ac-tile tile-coral" data-page="events">
-          <span class="ac-icon">🎉</span>
-          <span class="ac-name">イベント</span>
-          <span class="ac-en">EVENTS</span>
-        </button>
+        </section>
 
-        <button class="ac-tile tile-rose" data-page="memories">
-          <span class="ac-icon">💗</span>
-          <span class="ac-name">ふたりの記録</span>
-          <span class="ac-en">OUR MEMORIES</span>
-        </button>
 
-      </div>
+        <!-- CATEGORY PANEL -->
+        <section class="ac-panel">
 
-      <div class="ac-panel-footer">
-        <span>●</span>
-        <span class="active-dot">●</span>
-        <span>●</span>
-      </div>
+            <div class="ac-panel-heading">
 
-    </section>
+                <div>
+                    <p class="ac-panel-eyebrow">ISLAND MENU</p>
+                    <h2>島のメニュー</h2>
+                </div>
 
-    <p class="ac-footer-note">
-      ふたりの大切な島へようこそ ♡
-    </p>
+                <span class="ac-panel-leaf">🍃</span>
 
-  </main>
+            </div>
 
-  <!-- 內容視窗 -->
-  <div class="ac-modal" id="acModal" aria-hidden="true">
-    <div class="ac-modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
 
-      <button class="ac-close" id="closeModal" aria-label="Close">×</button>
+            <!-- PAGE 01 -->
+            <div class="ac-menu-page active" data-menu-page="1">
 
-      <div class="ac-modal-icon" id="modalIcon">🍃</div>
-      <p class="ac-modal-en" id="modalEnglish"></p>
-      <h2 id="modalTitle"></h2>
+                <div class="ac-menu-grid">
 
-      <div class="ac-modal-content" id="modalContent"></div>
+                    <!-- PASSPORT -->
+                    <button class="ac-menu-button" data-section="passport">
+                        <span class="ac-icon-tile tile-peach">
+                            <img src="images/animal-crossing/icons/passport.png" alt="">
+                        </span>
+                        <span class="ac-button-title">パスポート</span>
+                        <span class="ac-button-subtitle">PASSPORT</span>
+                    </button>
+
+
+                    <!-- MUSIC -->
+                    <button class="ac-menu-button" data-section="music">
+                        <span class="ac-icon-tile tile-lavender">
+                            <img src="images/animal-crossing/icons/music.png" alt="">
+                        </span>
+                        <span class="ac-button-title">ミュージック</span>
+                        <span class="ac-button-subtitle">MUSIC</span>
+                    </button>
+
+
+                    <!-- PHOTO ALBUM -->
+                    <button class="ac-menu-button" data-section="photos">
+                        <span class="ac-icon-tile tile-pink">
+                            <img src="images/animal-crossing/icons/photos.png" alt="">
+                        </span>
+                        <span class="ac-button-title">島の写真</span>
+                        <span class="ac-button-subtitle">PHOTO ALBUM</span>
+                    </button>
+
+
+                    <!-- DREAM ISLAND -->
+                    <button class="ac-menu-button" data-section="dream">
+                        <span class="ac-icon-tile tile-blue">
+                            <img src="images/animal-crossing/icons/dream.png" alt="">
+                        </span>
+                        <span class="ac-button-title">夢の島</span>
+                        <span class="ac-button-subtitle">DREAM ISLAND</span>
+                    </button>
+
+
+                    <!-- ISLAND DESIGN -->
+                    <button class="ac-menu-button" data-section="design">
+                        <span class="ac-icon-tile tile-green">
+                            <img src="images/animal-crossing/icons/design.png" alt="">
+                        </span>
+                        <span class="ac-button-title">島づくり</span>
+                        <span class="ac-button-subtitle">ISLAND DESIGN</span>
+                    </button>
+
+
+                    <!-- OUR HOME -->
+                    <button class="ac-menu-button" data-section="home">
+                        <span class="ac-icon-tile tile-yellow">
+                            <img src="images/animal-crossing/icons/home.png" alt="">
+                        </span>
+                        <span class="ac-button-title">おうち</span>
+                        <span class="ac-button-subtitle">OUR HOME</span>
+                    </button>
+
+
+                    <!-- ISLAND BULLETIN -->
+                    <button class="ac-menu-button" data-section="bulletin">
+                        <span class="ac-icon-tile tile-orange">
+                            <img src="images/animal-crossing/icons/bulletin.png" alt="">
+                        </span>
+                        <span class="ac-button-title">島のおしらせ</span>
+                        <span class="ac-button-subtitle">BULLETIN</span>
+                    </button>
+
+
+                    <!-- EVENTS -->
+                    <button class="ac-menu-button" data-section="events">
+                        <span class="ac-icon-tile tile-mint">
+                            <img src="images/animal-crossing/icons/events.png" alt="">
+                        </span>
+                        <span class="ac-button-title">イベント</span>
+                        <span class="ac-button-subtitle">EVENTS</span>
+                    </button>
+
+
+                    <!-- OUR MEMORIES -->
+                    <button class="ac-menu-button" data-section="memories">
+                        <span class="ac-icon-tile tile-purple">
+                            <img src="images/animal-crossing/icons/memories.png" alt="">
+                        </span>
+                        <span class="ac-button-title">ふたりの記録</span>
+                        <span class="ac-button-subtitle">OUR MEMORIES</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="ac-panel-footer">
+                <span>ふたりだけの小さな島</span>
+                <span>♡</span>
+                <span>PAGE 01</span>
+            </div>
+
+        </section>
+
+
+        <!-- ISLAND FOOTER -->
+        <footer class="ac-footer">
+            <p>Made with love, just for us.</p>
+            <span>WEN & YUUKA ♡</span>
+        </footer>
+
+    </main>
+
+
+    <!-- CATEGORY MODAL -->
+    <div class="ac-modal" id="acModal" aria-hidden="true">
+
+        <div class="ac-modal-backdrop" data-close-modal></div>
+
+        <section
+            class="ac-modal-window"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="acModalTitle"
+        >
+
+            <button
+                class="ac-modal-close"
+                id="acModalClose"
+                type="button"
+                aria-label="閉じる"
+            >
+                ×
+            </button>
+
+            <div class="ac-modal-heading">
+                <p id="acModalEnglish"></p>
+                <h2 id="acModalTitle"></h2>
+                <span>♡</span>
+            </div>
+
+            <div class="ac-modal-content" id="acModalContent"></div>
+
+        </section>
 
     </div>
-  </div>
 
-  <script src="js/animal-crossing.js"></script>
+
+    <script src="js/animal-crossing.js"></script>
+
 </body>
 </html>
