@@ -263,7 +263,7 @@ body.ac-body {
     background: var(--ac-panel);
 
     border: 1px solid #E8E1CF;
-    border-radius: 50px;
+    border-radius: 60px;
 
     box-shadow: var(--ac-shadow);
 }
@@ -333,14 +333,20 @@ body.ac-body {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
 
-    gap: 13px 9px;
+    width: 100%;
+    max-width: 660px;
+    margin: 0 auto;
+
+    gap: 10px 12px;
 }
+
 
 .ac-menu-button {
     display: flex;
     flex-direction: column;
     align-items: center;
 
+    width: 100%;
     min-width: 0;
 
     padding: 0;
@@ -372,6 +378,7 @@ body.ac-body {
 .ac-icon-tile {
     width: 100%;
     max-width: 145px;
+
     aspect-ratio: 1 / 1;
 
     display: flex;
@@ -485,7 +492,7 @@ body.ac-body {
 ========================================= */
 
 .ac-button-title {
-    margin-top: 10px;
+    margin-top: 7px;
 
     color: #796650;
 
@@ -927,10 +934,10 @@ body.ac-body {
         font-size: 10px;
     }
 
-   .ac-panel {
-    padding: 23px 15px 18px;
-    border-radius: 34px;
-}
+    .ac-panel {
+        padding: 23px 15px 18px;
+        border-radius: 34px;
+    }
 
     .ac-panel-heading {
         margin-bottom: 20px;
@@ -946,13 +953,27 @@ body.ac-body {
         font-size: 11px;
     }
 
+    /* MOBILE MENU */
+
     .ac-menu-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px 5px;
-}
+        width: 100%;
+        max-width: none;
+
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+
+        gap: 12px 5px;
+    }
+
+    .ac-menu-button {
+        width: 100%;
+    }
 
     .ac-icon-tile {
+        width: 100%;
         max-width: none;
+
+        aspect-ratio: 1 / 1;
+
         padding: 11px;
         border-radius: 30px;
     }
