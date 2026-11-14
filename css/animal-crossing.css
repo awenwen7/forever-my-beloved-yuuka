@@ -50,22 +50,24 @@ body.ac-body {
     background-color: var(--ac-cream);
 
     background-image:
-        radial-gradient(circle, var(--ac-dot) 2px, transparent 2.5px),
-        radial-gradient(circle, var(--ac-dot) 2px, transparent 2.5px),
-        radial-gradient(circle, var(--ac-dot) 2px, transparent 2.5px),
-        radial-gradient(circle, var(--ac-dot) 2px, transparent 2.5px);
+    radial-gradient(
+        circle,
+        var(--ac-dot) 2px,
+        transparent 2.5px
+    ),
+    radial-gradient(
+        circle,
+        var(--ac-dot) 2px,
+        transparent 2.5px
+    );
 
-    background-size:
-        52px 52px,
-        52px 52px,
-        52px 52px,
-        52px 52px;
+background-size:
+    52px 52px,
+    52px 52px;
 
-    background-position:
-        0 0,
-        26px 13px,
-        13px 39px,
-        39px 26px;
+background-position:
+    0 0,
+    26px 26px;
 
     color: var(--ac-brown);
 
