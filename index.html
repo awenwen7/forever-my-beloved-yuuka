@@ -30,7 +30,7 @@ body {
 /* 固定導覽列 */
 .site-header {
     position: fixed;
-    top: 0;
+    top: 0px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
@@ -43,45 +43,59 @@ body {
     padding: 0 9px;
     background: #806B5A;
     border-radius: 0 0 10px 10px;
-    box-shadow: 0 3px 10px rgba(80,60,45,.12);
+    box-shadow: 0 3px 10px rgba(80, 60, 45, 0.12);
 }
+
 .nav-button {
-    justify-self: start;
     width: 34px;
     height: 34px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
-    border: 0;
+    border: none;
     border-radius: 7px;
     background: transparent;
     color: #FFF9F0;
     cursor: pointer;
 }
-.nav-button svg { width: 20px; height: 20px; stroke-width: 1.7; }
+
+.nav-button svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.7;
+}
+
 .nav-title {
     color: #FFF9F0;
     font-size: 15px;
-    letter-spacing: .5px;
+    letter-spacing: 0.5px;
     white-space: nowrap;
     text-align: center;
 }
+
 .language-button {
     justify-self: end;
-    width: 34px;
-    height: 34px;
+    height: 31px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
-    border: 0;
-    border-radius: 50%;
-    background: transparent;
-    color: #FFF9F0;
+    gap: 5px;
+    padding: 0 9px;
+    border: none;
+    border-radius: 20px;
+    background: #FFF9F0;
+    color: #806B5A;
+    font-family: inherit;
+    font-size: 10px;
+    white-space: nowrap;
     cursor: pointer;
 }
-.language-button svg { width: 18px; height: 18px; }
+
+.language-button svg {
+    width: 13px;
+    height: 13px;
+}
 
 /* 語言選單 */
 .language-menu {
@@ -423,13 +437,51 @@ footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px;
 
 <!-- 固定導覽列 -->
 <header class="site-header">
-    <button class="nav-button" id="menu-toggle" type="button" aria-label="開啟選單" aria-expanded="false">
-        <i data-lucide="menu"></i>
+
+    <button
+        class="nav-button"
+        id="menu-toggle"
+        aria-label="開啟選單"
+        aria-expanded="false"
+        type="button"
+    >
+        <svg viewBox="0 0 24 24" fill="none">
+            <path
+                d="M4 7H20M4 12H20M4 17H20"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+            />
+        </svg>
     </button>
-    <div class="nav-title">Wen &amp; Yuuka</div>
-    <button class="language-button" id="language-toggle" type="button" aria-label="語言選單">
-        <i data-lucide="globe"></i>
+
+    <div class="nav-title">
+        ♡ Wen & Yuuka ♡
+    </div>
+
+    <button
+        class="language-button"
+        id="language-toggle"
+        aria-label="切換語言"
+        aria-expanded="false"
+        type="button"
+    >
+        <svg viewBox="0 0 24 24" fill="none">
+            <circle
+                cx="12"
+                cy="12"
+                r="9"
+                stroke="currentColor"
+                stroke-width="1.5"
+            />
+            <path
+                d="M3 12H21M12 3C14.5 5.5 15.5 8.5 15.5 12S14.5 18.5 12 21M12 3C9.5 5.5 8.5 8.5 8.5 12S9.5 18.5 12 21"
+                stroke="currentColor"
+                stroke-width="1.3"
+            />
+        </svg>
     </button>
+
 </header>
 
 <!-- 側邊漢堡選單 -->
@@ -481,10 +533,17 @@ footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px;
 
 <!-- 語言選單 -->
 <div class="language-menu" id="language-menu" hidden>
-    <button class="language-option active" type="button" data-lang="ja">
+
+    <button class="language-option active" data-lang="ja" type="button">
         <span>日本語</span>
         <span class="language-check"></span>
     </button>
+
+    <button class="language-option" data-lang="zh" type="button">
+        <span>繁體中文</span>
+        <span class="language-check"></span>
+    </button>
+
 </div>
 
 <main class="container" id="home">
