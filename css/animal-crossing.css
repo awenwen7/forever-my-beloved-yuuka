@@ -50,12 +50,22 @@ body.ac-body {
     background-color: var(--ac-cream);
 
     background-image:
-        radial-gradient(
-            var(--ac-dot) 1px,
-            transparent 1px
-        );
+        radial-gradient(circle, var(--ac-dot) 2px, transparent 2.5px),
+        radial-gradient(circle, var(--ac-dot) 2px, transparent 2.5px),
+        radial-gradient(circle, var(--ac-dot) 2px, transparent 2.5px),
+        radial-gradient(circle, var(--ac-dot) 2px, transparent 2.5px);
 
-    background-size: 15px 15px;
+    background-size:
+        52px 52px,
+        52px 52px,
+        52px 52px,
+        52px 52px;
+
+    background-position:
+        0 0,
+        26px 13px,
+        13px 39px,
+        39px 26px;
 
     color: var(--ac-brown);
 
@@ -253,7 +263,7 @@ body.ac-body {
     background: var(--ac-panel);
 
     border: 1px solid #E8E1CF;
-    border-radius: 32px;
+    border-radius: 50px;
 
     box-shadow: var(--ac-shadow);
 }
@@ -323,9 +333,8 @@ body.ac-body {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
 
-    gap: 19px 15px;
+    gap: 13px 9px;
 }
-
 
 .ac-menu-button {
     display: flex;
@@ -372,7 +381,7 @@ body.ac-body {
     padding: 17px;
 
     border: 3px solid rgba(255,255,255,0.75);
-    border-radius: 31px;
+    border-radius: 38px;
 
     box-shadow:
         0 4px 0 rgba(130, 110, 82, 0.08),
@@ -918,10 +927,10 @@ body.ac-body {
         font-size: 10px;
     }
 
-    .ac-panel {
-        padding: 23px 15px 18px;
-        border-radius: 26px;
-    }
+   .ac-panel {
+    padding: 23px 15px 18px;
+    border-radius: 34px;
+}
 
     .ac-panel-heading {
         margin-bottom: 20px;
@@ -938,14 +947,14 @@ body.ac-body {
     }
 
     .ac-menu-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 17px 7px;
-    }
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px 5px;
+}
 
     .ac-icon-tile {
         max-width: none;
         padding: 11px;
-        border-radius: 24px;
+        border-radius: 30px;
     }
 
     .ac-button-title {
