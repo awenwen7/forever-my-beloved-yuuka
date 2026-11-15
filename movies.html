@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-
+<script src="https://unpkg.com/lucide@latest"></script>
 <style>
 :root {
     --bg: #E8E7E2;
@@ -1089,13 +1089,322 @@ input {
     transform: none;
 }
 }  
+
+/* =========================================
+   SHARED NAVIGATION
+========================================= */
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1200;
+    width: 100%;
+    max-width: 680px;
+    height: 46px;
+    padding: 0 14px;
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+    align-items: center;
+    background: #806B5A;
+    color: #FBF8F3;
+}
+
+.nav-button,
+.language-button {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #FBF8F3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.nav-button svg,
+.language-button svg {
+    width: 21px;
+    height: 21px;
+    stroke-width: 1.7;
+}
+
+.nav-title {
+    text-align: center;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+/* LANGUAGE MENU */
+
+.language-menu {
+    display: none;
+    position: fixed;
+    top: 54px;
+    right: max(14px, calc((100vw - 680px) / 2 + 14px));
+    z-index: 1300;
+    width: 150px;
+    padding: 7px;
+    background: #FBF8F3;
+    border: 1px solid #E5DED6;
+    border-radius: 9px;
+    box-shadow: 0 5px 18px rgba(60, 45, 35, .12);
+}
+
+.language-menu.active {
+    display: block;
+}
+
+.language-option {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    color: #806B5A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.language-option.active {
+    color: #B58D86;
+}
+
+.language-option svg {
+    width: 15px;
+    height: 15px;
+}
+
+/* SIDE MENU */
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1090;
+    background: rgba(40, 32, 27, .35);
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s ease;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1100;
+    width: min(340px, 88vw);
+    height: 100vh;
+    height: 100dvh;
+    padding: 35px 25px 40px;
+    overflow-y: auto;
+    background: #FBF8F3;
+    color: #806B5A;
+    transform: translateX(-100%);
+    transition: transform .35s ease;
+    text-align: left;
+}
+
+.side-menu.active {
+    transform: translateX(0);
+}
+
+.menu-close {
+    display: block;
+    margin-left: auto;
+    padding: 5px;
+    border: none;
+    background: transparent;
+    color: #806B5A;
+    cursor: pointer;
+}
+
+.menu-close svg {
+    width: 22px;
+    height: 22px;
+}
+
+.menu-heading {
+    margin: 12px 0 20px;
+    text-align: center;
+    font-family: Georgia, serif;
+    font-size: 19px;
+    letter-spacing: 1px;
+}
+
+.menu-socials {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 25px;
+}
+
+.menu-socials a {
+    color: #806B5A;
+}
+
+.menu-socials svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 1.6;
+}
+
+.menu-divider {
+    height: 1px;
+    margin: 15px 0 20px;
+    background: #E5DED6;
+}
+
+.menu-label {
+    margin-bottom: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #A18D7B;
+}
+
+.menu-section {
+    margin-bottom: 15px;
+}
+
+.menu-section-title {
+    margin-bottom: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.menu-link {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: #806B5A;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background .2s ease;
+}
+
+.menu-link:hover {
+    background: #F3E8E1;
+}
+
+.menu-link.active {
+    background: #F3E8E1;
+    color: #B58D86;
+}
+
+/* DESKTOP MENU */
+
+@media (min-width: 769px) {
+    .menu-links {
+        gap: 1px;
+    }
+
+    .menu-link {
+        padding: 5px 12px;
+        font-size: 11px;
+        line-height: 1.35;
+    }
+
+    .menu-section {
+        margin-bottom: 8px;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-<main class="container">
+<!-- 固定導覽列：從這裡開始 -->
+<header class="site-header">
 
+  <button class="nav-button" id="menu-toggle"
+    aria-label="Open menu" aria-expanded="false">
+    <i data-lucide="menu"></i>
+  </button>
+
+  <div class="nav-title">♡ Wen &amp; Yuuka ♡</div>
+
+  <button class="language-button" id="language-toggle"
+    aria-label="Change language">
+    <i data-lucide="globe"></i>
+  </button>
+
+</header>
+<!-- 固定導覽列：到這裡結束 -->
+
+<!-- 側邊選單 -->
+<nav class="side-menu" id="side-menu" aria-hidden="true">
+
+  <button class="menu-close" id="menu-close" aria-label="Close menu">
+    <i data-lucide="x"></i>
+  </button>
+
+  <div class="menu-heading">♡ Wen &amp; Yuuka ♡</div>
+
+  <div class="menu-socials">
+    <a href="https://x.com/_awen7" target="_blank" rel="noopener">
+      <i data-lucide="twitter"></i>
+    </a>
+    <a href="https://youtube.com/playlist?list=PLRUbGBTaFHnvHvLbeXV1Fbs-R1oQ9p-Ol&si=H0mvf07D8bgm6zHt" target="_blank" rel="noopener">
+      <i data-lucide="youtube"></i>
+    </a>
+    <a href="https://github.com/awenwen7/forever-my-beloved-yuuka" target="_blank" rel="noopener">
+      <i data-lucide="github"></i>
+    </a>
+  </div>
+
+  <div class="menu-divider"></div>
+  <div class="menu-label">MENU</div>
+
+  <div class="menu-section">
+    <div class="menu-section-title">HOME</div>
+    <div class="menu-links">
+      <a class="menu-link" href="index.html">Home</a>
+    </div>
+  </div>
+
+  <div class="menu-section">
+    <div class="menu-section-title">MEMORIES</div>
+    <div class="menu-links">
+      <a class="menu-link" href="movies.html">Movies</a>
+    </div>
+  </div>
+
+</nav>
+
+<div class="menu-overlay" id="menu-overlay"></div>
+<div class="language-menu" id="language-menu">
+
+  <button class="language-option active" data-lang="ja">
+    <span>日本語</span>
+    <i data-lucide="check"></i>
+  </button>
+
+  <button class="language-option" data-lang="zh-TW">
+    <span>繁體中文</span>
+  </button>
+
+</div>
+<main class="container">
     <header class="hero">
         <div class="eyebrow">WEN & YUUKA · PRIVATE CINEMA</div>
         <h1>OUR CINEMA</h1>
@@ -1534,6 +1843,91 @@ document.addEventListener("keydown", event => {
 /* Start */
 
 renderMovies();
+    
+/* =========================================
+   NAVIGATION MENU
+========================================= */
+
+const menuToggle = document.getElementById("menu-toggle");
+const menuClose = document.getElementById("menu-close");
+const sideMenu = document.getElementById("side-menu");
+const menuOverlay = document.getElementById("menu-overlay");
+
+function openSideMenu() {
+    sideMenu.classList.add("active");
+    menuOverlay.classList.add("active");
+    sideMenu.setAttribute("aria-hidden", "false");
+    menuToggle.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+}
+
+function closeSideMenu() {
+    sideMenu.classList.remove("active");
+    menuOverlay.classList.remove("active");
+    sideMenu.setAttribute("aria-hidden", "true");
+    menuToggle.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+}
+
+menuToggle.addEventListener("click", openSideMenu);
+menuClose.addEventListener("click", closeSideMenu);
+menuOverlay.addEventListener("click", closeSideMenu);
+
+/* LANGUAGE MENU */
+
+const languageToggle = document.getElementById("language-toggle");
+const languageMenu = document.getElementById("language-menu");
+const languageOptions = document.querySelectorAll(".language-option");
+
+languageToggle.addEventListener("click", function () {
+    languageMenu.classList.toggle("active");
+});
+
+languageOptions.forEach(option => {
+    option.addEventListener("click", function () {
+        languageOptions.forEach(item => {
+            item.classList.remove("active");
+            const check = item.querySelector("svg");
+            if (check) check.remove();
+        });
+
+        this.classList.add("active");
+
+        const checkIcon = document.createElement("i");
+        checkIcon.setAttribute("data-lucide", "check");
+        this.appendChild(checkIcon);
+
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+
+        languageMenu.classList.remove("active");
+    });
+});
+
+/* CLOSE WITH ESCAPE */
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        closeSideMenu();
+        languageMenu.classList.remove("active");
+    }
+});
+
+/* ACTIVE PAGE */
+
+document.querySelectorAll(".menu-link").forEach(link => {
+    if (link.getAttribute("href") === "movies.html") {
+        link.classList.add("active");
+    }
+});
+
+/* ICONS */
+
+if (window.lucide) {
+    lucide.createIcons();
+}
+
 </script>
 
 </body>
