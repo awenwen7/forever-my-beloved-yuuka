@@ -439,17 +439,17 @@
     }
 
     .menu-heading {
-        margin: 0 0 10px;
-        font-size: 17px;
-    }
+    margin: 22px 0 12px;
+    font-size: 17px;
+}
 
-    .menu-socials {
-        margin-bottom: 13px;
-    }
+.menu-socials {
+    margin: 0 auto 18px;
+}
 
-    .menu-divider {
-        margin-bottom: 12px;
-    }
+.menu-divider {
+    margin: 0 auto 15px;
+}
 
     .menu-label {
         margin-bottom: 12px;
