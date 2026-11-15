@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="css/navigation.css">
 <style>
 :root {
     --bg: #FBF8F3;
@@ -34,189 +34,6 @@ body {
     color: var(--text);
     font-family: "Noto Serif JP", serif;
 }
-
-
-/* Navigation */
-
-.site-header {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    width: calc(100% - 30px);
-    max-width: 680px;
-    height: 46px;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    padding: 0 9px;
-    background: #806B5A;
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0 3px 10px rgba(80, 60, 45, 0.12);
-}
-
-.nav-button {
-    width: 34px;
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    border: none;
-    border-radius: 7px;
-    background: transparent;
-    color: #FFF9F0;
-    cursor: pointer;
-}
-
-.nav-button svg {
-    width: 20px;
-    height: 20px;
-    stroke-width: 1.7;
-}
-
-.nav-title {
-    color: #FFF9F0;
-    font-size: 15px;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
-    text-align: center;
-}
-
-.language-button {
-    justify-self: end;
-    width: 34px;
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    border: none;
-    border-radius: 7px;
-    background: transparent;
-    color: #FFF9F0;
-    cursor: pointer;
-}
-
-.language-button svg {
-    width: 20px;
-    height: 20px;
-}
-
-.container {
-    padding-top: 66px;
-}
-
-/* Language menu */
-
-.language-menu {
-    position: fixed;
-    top: 56px;
-    right: max(24px, calc((100vw - 680px) / 2 + 9px));
-    z-index: 1001;
-    width: 145px;
-    padding: 7px;
-    background: #FFF9F0;
-    border: 1px solid #E8DED3;
-    border-radius: 10px;
-    box-shadow: 0 5px 18px rgba(80, 60, 45, 0.15);
-}
-
-.language-menu[hidden] {
-    display: none;
-}
-
-.language-option {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 10px;
-    border: none;
-    background: transparent;
-    color: #806B5A;
-    font-family: inherit;
-    font-size: 13px;
-    text-align: left;
-    cursor: pointer;
-}
-
-.language-option + .language-option {
-    border-top: 1px solid #E9DED3;
-}
-
-.language-check {
-    font-size: 15px;
-    font-weight: bold;
-}
-
-.language-option.active .language-check::before {
-    content: "✓";
-}
-
-/* Side menu */
-
-.menu-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(40, 30, 24, 0.35);
-    z-index: 1090;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.side-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: min(290px, 82vw);
-    height: 100dvh;
-    padding: 35px 25px;
-    background: #806B5A;
-    color: #FFF9F0;
-    z-index: 1100;
-    transform: translateX(-100%);
-    transition: transform 0.35s ease;
-    overflow-y: auto;
-}
-
-.side-menu.active {
-    transform: translateX(0);
-}
-
-.menu-close {
-    position: absolute;
-    top: 13px;
-    right: 17px;
-    border: none;
-    background: none;
-    color: #FFF9F0;
-    font-size: 29px;
-    font-weight: 300;
-    cursor: pointer;
-}
-
-.menu-heading {
-    font-size: 16px;
-    letter-spacing: 1px;
-    margin: 25px 0 35px;
-    text-align: center;
-}
-
-.menu-label {
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: #D8C9BB;
-    margin-bottom: 20px;
-}
-
 
 /* Main layout */
 
@@ -849,111 +666,11 @@ body {
     .filter-select {
         font-size: 11px;
     }
-
-    .nav-title {
-        font-size: 13px;
-    }
-
 }
 </style>
 </head>
 
-<body>
-
-<!-- Navigation -->
-
-<!-- 固定導覽列 -->
-<header class="site-header">
-
-    <button
-        class="nav-button"
-        id="menu-toggle"
-        aria-label="開啟選單"
-        aria-expanded="false"
-        type="button"
-    >
-        <svg viewBox="0 0 24 24" fill="none">
-            <path
-                d="M4 7H20M4 12H20M4 17H20"
-                stroke="currentColor"
-                stroke-width="1.7"
-                stroke-linecap="round"
-            />
-        </svg>
-    </button>
-
-    <div class="nav-title">
-        ♡ Wen & Yuuka ♡
-    </div>
-
-    <button
-        class="language-button"
-        id="language-toggle"
-        aria-label="切換語言"
-        aria-expanded="false"
-        type="button"
-    >
-        <svg viewBox="0 0 24 24" fill="none">
-            <circle
-                cx="12"
-                cy="12"
-                r="9"
-                stroke="currentColor"
-                stroke-width="1.5"
-            />
-            <path
-                d="M3 12H21M12 3C14.5 5.5 15.5 8.5 15.5 12S14.5 18.5 12 21M12 3C9.5 5.5 8.5 8.5 8.5 12S9.5 18.5 12 21"
-                stroke="currentColor"
-                stroke-width="1.3"
-            />
-        </svg>
-    </button>
-
-</header>
-
-<!-- 語言選單 -->
-<div class="language-menu" id="language-menu" hidden>
-
-    <button class="language-option" data-lang="ja" type="button">
-        <span>日本語</span>
-        <span class="language-check"></span>
-    </button>
-
-    <button class="language-option" data-lang="zh" type="button">
-        <span>繁體中文</span>
-        <span class="language-check"></span>
-    </button>
-
-</div>
-
-<!-- 漢堡選單遮罩 -->
-<div class="menu-overlay" id="menu-overlay"></div>
-
-<!-- 左側漢堡選單 -->
-<nav class="side-menu" id="side-menu" aria-hidden="true">
-
-    <button
-        class="menu-close"
-        id="menu-close"
-        aria-label="關閉選單"
-        type="button"
-    >
-        ×
-    </button>
-
-    <div class="menu-heading">
-        ♡ Wen & Yuuka ♡
-    </div>
-
-    <div class="menu-label">MENU</div>
-
-    <div class="menu-links" id="menu-links">
-        <!-- 導覽項目 -->
-    </div>
-
-</nav>
-
-
+<body data-page-title="Music Library" data-nav-color="#806B5A">
 <main class="container">
 
     <header class="page-heading">
@@ -1137,80 +854,6 @@ body {
 <script src="js/songs.js"></script>
 
 <script>
-
-/* Navigation */
-
-const menuToggle = document.getElementById("menu-toggle");
-const sideMenu = document.getElementById("side-menu");
-const menuOverlay = document.getElementById("menu-overlay");
-const menuClose = document.getElementById("menu-close");
-
-function openSideMenu() {
-    sideMenu.classList.add("active");
-    menuOverlay.classList.add("active");
-    sideMenu.setAttribute("aria-hidden", "false");
-    menuToggle.setAttribute("aria-expanded", "true");
-    document.body.style.overflow = "hidden";
-}
-
-function closeSideMenu() {
-    sideMenu.classList.remove("active");
-    menuOverlay.classList.remove("active");
-    sideMenu.setAttribute("aria-hidden", "true");
-    menuToggle.setAttribute("aria-expanded", "false");
-    document.body.style.overflow = "";
-}
-
-menuToggle.addEventListener("click", openSideMenu);
-menuClose.addEventListener("click", closeSideMenu);
-menuOverlay.addEventListener("click", closeSideMenu);
-
-
-/* Language menu */
-
-const languageToggle = document.getElementById("language-toggle");
-const languageMenu = document.getElementById("language-menu");
-const languageOptions = document.querySelectorAll(".language-option");
-
-let currentLanguage = "ja";
-
-function updateLanguageCheck() {
-    languageOptions.forEach((option) => {
-        option.classList.toggle(
-            "active",
-            option.dataset.lang === currentLanguage
-        );
-    });
-}
-
-languageToggle.addEventListener("click", () => {
-    languageMenu.hidden = !languageMenu.hidden;
-    languageToggle.setAttribute(
-        "aria-expanded",
-        String(!languageMenu.hidden)
-    );
-});
-
-languageOptions.forEach((option) => {
-    option.addEventListener("click", () => {
-        currentLanguage = option.dataset.lang;
-        updateLanguageCheck();
-        languageMenu.hidden = true;
-        languageToggle.setAttribute("aria-expanded", "false");
-    });
-});
-
-document.addEventListener("click", (event) => {
-    if (
-        !languageToggle.contains(event.target) &&
-        !languageMenu.contains(event.target)
-    ) {
-        languageMenu.hidden = true;
-        languageToggle.setAttribute("aria-expanded", "false");
-    }
-});
-
-updateLanguageCheck();
 
 /* Music data */
 
@@ -1555,6 +1198,8 @@ if (songData.length > 0) {
         '<div class="empty-message">曲がまだ登録されていません。</div>';
 }
 </script>
+
+<script src="js/navigation.js"></script>
 
 </body>
 </html>
