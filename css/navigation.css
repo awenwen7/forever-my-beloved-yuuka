@@ -479,6 +479,33 @@
 ========================================= */
 
 @media (max-width: 480px) {
+
+    .site-header {
+        width: calc(100% - 40px);
+        max-width: 680px;
+        height: 46px;
+        padding: 0 7px;
+        grid-template-columns: 36px 1fr 36px;
+        border-radius: 0 0 14px 14px;
+    }
+
+    .nav-button,
+    .language-button {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+
+    .nav-button svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .language-button svg {
+        width: 16px;
+        height: 16px;
+    }
+
     .nav-title {
         font-size: 14px;
     }
