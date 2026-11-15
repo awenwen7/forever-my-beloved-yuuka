@@ -240,8 +240,10 @@
     background: transparent;
     color: var(--menu-text);
 
+    font-family: inherit;
     font-size: 29px;
     font-weight: 300;
+    line-height: normal;
 
     cursor: pointer;
 }
