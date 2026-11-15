@@ -7,14 +7,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const pageTitle = "♡ Wen & Yuuka ♡";
 
-    const navColor =
-        document.body.dataset.navColor || "#806B5A";
+   /* =====================================
+   PAGE NAVIGATION SETTINGS
+===================================== */
 
-    document.documentElement.style.setProperty(
-        "--nav-bg",
-        navColor
-    );
+const navColor =
+    document.body.dataset.navColor || "#806B5A";
 
+const navWidth =
+    document.body.dataset.navWidth || "680px";
+
+document.documentElement.style.setProperty(
+    "--nav-bg",
+    navColor
+);
+
+document.documentElement.style.setProperty(
+    "--nav-width",
+    navWidth
+);
     /* =====================================
        NAVIGATION HTML
     ===================================== */
