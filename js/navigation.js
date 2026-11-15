@@ -6,12 +6,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =====================================
-       PAGE SETTINGS
-       Each page can customize its title
-       and navigation bar color.
-    ===================================== */
-
     const pageTitle =
         document.body.dataset.pageTitle || "♡ Wen & Yuuka ♡";
 
@@ -30,12 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const navigationHTML = `
         <header class="site-header">
 
-            <button
-                class="nav-button"
-                id="menu-toggle"
-                aria-label="Open menu"
-                aria-expanded="false"
-            >
+            <button class="nav-button"
+                    id="menu-toggle"
+                    aria-label="Open menu"
+                    aria-expanded="false">
                 <svg viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="1.7"
                      stroke-linecap="round">
@@ -45,12 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <div class="nav-title">${pageTitle}</div>
 
-            <button
-                class="language-button"
-                id="language-toggle"
-                aria-label="Select language"
-                aria-expanded="false"
-            >
+            <button class="language-button"
+                    id="language-toggle"
+                    aria-label="Select language"
+                    aria-expanded="false">
                 <svg viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="1.6"
                      stroke-linecap="round" stroke-linejoin="round">
@@ -80,31 +70,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 ♡ Wen &amp; Yuuka ♡
             </div>
 
+            <div class="menu-label">MENU</div>
+
             <div class="menu-socials">
 
                 <a class="menu-social-icon"
                    href="https://x.com/_awen7"
                    target="_blank"
                    rel="noopener noreferrer"
-                   aria-label="X">
-                    <span>𝕏</span>
-                </a>
+                   aria-label="X">𝕏</a>
 
                 <a class="menu-social-icon"
                    href="https://www.youtube.com/playlist?list="
                    target="_blank"
                    rel="noopener noreferrer"
-                   aria-label="YouTube">
-                    <span>▶</span>
-                </a>
+                   aria-label="YouTube">▶</a>
 
                 <a class="menu-social-icon"
                    href="https://github.com/awenwen7/forever-my-beloved-yuuka"
                    target="_blank"
                    rel="noopener noreferrer"
-                   aria-label="GitHub">
-                    <span>⌘</span>
-                </a>
+                   aria-label="GitHub">⌘</a>
 
             </div>
 
@@ -118,24 +104,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <div class="menu-links">
 
-                        <a class="menu-link" href="index.html#home">
-                            Home
+                        <a class="menu-link"
+                           href="index.html#home">
+                           ホーム｜Home
                         </a>
 
-                        <a class="menu-link" href="index.html#about-website">
-                            About
+                        <a class="menu-link"
+                           href="index.html#about-website">
+                           私たちについて｜About Us
                         </a>
 
-                        <a class="menu-link" href="index.html#our-days">
-                            Our Days
+                        <a class="menu-link"
+                           href="index.html#our-days">
+                           ふたりの日々｜Our Days
                         </a>
 
-                        <a class="menu-link" href="index.html#osaka-weather">
-                            Osaka Weather
+                        <a class="menu-link"
+                           href="index.html#osaka-weather">
+                           大阪の天気｜Osaka Weather
                         </a>
 
-                        <a class="menu-link" href="important-days.html">
-                            Important Days
+                        <a class="menu-link"
+                           href="important-days.html">
+                           大切な記念日｜Important Days
                         </a>
 
                     </div>
@@ -149,17 +140,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <div class="menu-links">
 
-                        <a class="menu-link" href="photos.html">Photos</a>
-                        <a class="menu-link" href="gifts.html">Gifts</a>
-                        <a class="menu-link" href="movies.html">Our Cinema</a>
-                        <a class="menu-link" href="games.html">Our Games</a>
-                        <a class="menu-link" href="little-things.html">Little Things</a>
-                        <a class="menu-link" href="music.html">Music</a>
-                        <a class="menu-link" href="letters.html">Letters</a>
-                        <a class="menu-link" href="places.html">Places</a>
-                        <a class="menu-link" href="timeline.html">Timeline</a>
-                        <a class="menu-link" href="food.html">Food</a>
-                        <a class="menu-link" href="wishlist.html">Wishlist</a>
+                        <a class="menu-link" href="photos.html">
+                            写真｜Photos
+                        </a>
+
+                        <a class="menu-link" href="gifts.html">
+                            イラストと贈り物｜Illustrations & Gifts
+                        </a>
+
+                        <a class="menu-link" href="movies.html">
+                            映画｜Movies
+                        </a>
+
+                        <a class="menu-link" href="games.html">
+                            ゲーム｜Games
+                        </a>
+
+                        <a class="menu-link" href="little-things.html">
+                            日々の小さなこと｜Little Things
+                        </a>
+
+                        <a class="menu-link" href="music.html">
+                            音楽｜Music
+                        </a>
+
+                        <a class="menu-link" href="letters.html">
+                            手紙｜Letters
+                        </a>
+
+                        <a class="menu-link" href="places.html">
+                            ふたりで訪れた場所｜Places
+                        </a>
+
+                        <a class="menu-link" href="timeline.html">
+                            思い出のタイムライン｜Timeline
+                        </a>
+
+                        <a class="menu-link" href="food.html">
+                            ふたりの食べもの｜Food
+                        </a>
+
+                        <a class="menu-link" href="wishlist.html">
+                            いつか叶えたいこと｜Wishlist
+                        </a>
 
                     </div>
                 </section>
@@ -239,9 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateLanguageCheck() {
         document.querySelectorAll(".language-option")
             .forEach(option => {
-                const check = option.querySelector(
-                    ".language-check"
-                );
+                const check = option.querySelector(".language-check");
 
                 check.textContent =
                     option.dataset.language === currentLanguage
@@ -250,7 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
 
-    languageToggle.addEventListener("click", (event) => {
+    languageToggle.addEventListener("click", event => {
         event.stopPropagation();
 
         languageMenu.hidden = !languageMenu.hidden;
@@ -277,7 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-    document.addEventListener("click", (event) => {
+    document.addEventListener("click", event => {
         if (
             !languageMenu.contains(event.target) &&
             !languageToggle.contains(event.target)
@@ -308,30 +329,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href
             );
 
-            const samePage =
-                linkURL.pathname === currentPath;
-
-            const sameHash =
-                linkURL.hash === currentHash;
-
             if (
-                samePage &&
-                (linkURL.hash === "" || sameHash)
+                linkURL.pathname === currentPath &&
+                (linkURL.hash === "" || linkURL.hash === currentHash)
             ) {
                 link.classList.add("active");
                 link.setAttribute("aria-current", "page");
             }
 
-            link.addEventListener("click", () => {
-                closeSideMenu();
-            });
+            link.addEventListener("click", closeSideMenu);
         });
 
     /* =====================================
        ESCAPE KEY
     ===================================== */
 
-    document.addEventListener("keydown", (event) => {
+    document.addEventListener("keydown", event => {
         if (event.key === "Escape") {
             closeSideMenu();
 
@@ -345,4 +358,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
-
