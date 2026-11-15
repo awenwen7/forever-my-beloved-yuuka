@@ -70,27 +70,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <div class="menu-label">MENU</div>
 
-            <div class="menu-socials">
+           
+<div class="menu-socials">
 
-                <a class="menu-social-icon"
-                   href="https://x.com/_awen7"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   aria-label="X">𝕏</a>
+    <!-- X / Twitter -->
+    <a class="menu-social-icon"
+       href="https://x.com/_awen7"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="X">
+        <svg viewBox="0 0 24 24"
+             fill="currentColor"
+             aria-hidden="true">
+            <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-8.1L5 22H1.8l7.3-8.4L1.3 2h6.5l4.4 7.5L18.9 2zm-1.1 17.9h1.7L6.7 4H4.9l12.9 15.9z"/>
+        </svg>
+    </a>
 
-                <a class="menu-social-icon"
-                   href="https://www.youtube.com/playlist?list="
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   aria-label="YouTube">▶</a>
+    <!-- YouTube -->
+    <a class="menu-social-icon"
+       href="https://www.youtube.com/playlist?list="
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="YouTube">
+        <svg viewBox="0 0 24 24"
+             fill="currentColor"
+             aria-hidden="true">
+            <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.8V8.2l6.3 3.8-6.3 3.8z"/>
+        </svg>
+    </a>
 
-                <a class="menu-social-icon"
-                   href="https://github.com/awenwen7/forever-my-beloved-yuuka"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   aria-label="GitHub">⌘</a>
+    <!-- GitHub -->
+    <a class="menu-social-icon"
+       href="https://github.com/awenwen7/forever-my-beloved-yuuka"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="GitHub">
+        <svg viewBox="0 0 24 24"
+             fill="currentColor"
+             aria-hidden="true">
+            <path d="M12 .9a11.1 11.1 0 0 0-3.5 21.6c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.8.1-.8.1-.8 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.4 1.2a11.7 11.7 0 0 1 6.2 0c2.4-1.5 3.4-1.2 3.4-1.2.7 1.7.3 2.9.1 3.2.8.9 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.4.3.8 1 .8 2v3c0 .3.2.7.8.6A11.1 11.1 0 0 0 12 .9z"/>
+        </svg>
+    </a>
 
-            </div>
+</div>
+
 
             <div class="menu-divider"></div>
 
