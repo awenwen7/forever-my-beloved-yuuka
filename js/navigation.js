@@ -6,9 +6,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const pageTitle =
-        document.body.dataset.pageTitle || "♡ Wen & Yuuka ♡";
-
+    const pageTitle = "♡ Wen & Yuuka ♡";
     const navColor =
         document.body.dataset.navColor || "#806B5A";
 
