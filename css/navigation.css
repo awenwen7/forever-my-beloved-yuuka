@@ -1,10 +1,8 @@
-
 /* =========================================
    SHARED NAVIGATION
    Forever My Beloved Yuuka
 ========================================= */
 
-/* 每個頁面可以自行設定導覽列顏色 */
 :root {
     --nav-bg: #806B5A;
     --nav-text: #FFF9F0;
@@ -120,7 +118,7 @@
     position: fixed;
     top: 56px;
     right: max(24px, calc((100vw - 680px) / 2 + 9px));
-    z-index: 1100;
+    z-index: 1300;
 
     width: 145px;
     padding: 6px;
@@ -203,16 +201,20 @@
     height: 100vh;
     height: 100dvh;
 
-    padding: 22px 22px 28px;
+    padding: 35px 25px 40px;
 
     overflow-y: auto;
     overscroll-behavior: contain;
 
     background: var(--menu-bg);
+    color: var(--menu-text);
+
     box-shadow: 5px 0 24px rgba(70, 55, 42, 0.12);
 
-    transform: translateX(-105%);
-    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+    transition: transform 0.35s ease;
+
+    text-align: left;
 }
 
 .side-menu.active {
@@ -220,6 +222,10 @@
 }
 
 .menu-close {
+    position: absolute;
+    top: 13px;
+    right: 17px;
+
     width: 34px;
     height: 34px;
 
@@ -227,13 +233,15 @@
     align-items: center;
     justify-content: center;
 
-    margin-left: auto;
-
+    padding: 0;
     border: none;
     border-radius: 8px;
 
     background: transparent;
     color: var(--menu-text);
+
+    font-size: 29px;
+    font-weight: 300;
 
     cursor: pointer;
 }
@@ -248,12 +256,13 @@
 }
 
 .menu-heading {
-    margin: 5px 0 15px;
+    margin: 22px 0 18px;
 
     color: var(--menu-text);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 25px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 17px;
     font-weight: 500;
+    letter-spacing: 0.8px;
     text-align: center;
 }
 
@@ -265,35 +274,45 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 17px;
+    gap: 27px;
 
-    margin-bottom: 22px;
+    margin: 0 auto 25px;
 }
 
 .menu-social-icon {
-    width: 32px;
-    height: 32px;
+    width: 25px;
+    height: 25px;
 
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
-    color: var(--menu-muted);
-    border-radius: 50%;
+    color: #806B5A;
+    opacity: 0.95;
 
-    transition:
-        color 0.2s ease,
-        background 0.2s ease;
+    transition: opacity 0.2s ease;
 }
 
 .menu-social-icon:hover {
-    color: var(--nav-accent);
-    background: var(--menu-card);
+    opacity: 0.65;
 }
 
 .menu-social-icon svg {
-    width: 17px;
-    height: 17px;
+    width: 23px;
+    height: 23px;
+    fill: currentColor;
+}
+
+.menu-social-icon.notion-icon {
+    width: 21px;
+    height: 21px;
+
+    border: 1.5px solid #806B5A;
+    border-radius: 3px;
+
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
 }
 
 /* =========================================
@@ -301,89 +320,112 @@
 ========================================= */
 
 .menu-divider {
+    width: 100%;
     height: 1px;
-    margin: 14px 0;
+
+    margin: 0 auto 23px;
 
     background: var(--menu-border);
 }
 
 .menu-label {
-    margin: 0 0 9px;
+    margin: 0 0 15px;
 
-    color: var(--menu-muted);
-    font-size: 10px;
-    letter-spacing: 2px;
-    font-weight: 600;
+    color: var(--menu-text);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-align: center;
 }
 
 .menu-section {
-    margin-bottom: 17px;
+    margin-bottom: 27px;
 }
 
 .menu-section-title {
-    margin: 0 0 9px;
+    margin: 0 0 13px;
 
+    color: var(--menu-accent, var(--nav-accent));
+    font-family: 'Noto Serif JP', serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+}
+
+.menu-section.home-section .menu-section-title {
     color: var(--nav-accent);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 17px;
-    font-weight: 600;
-    letter-spacing: 1px;
+}
+
+.menu-section.memories-section .menu-section-title {
+    color: var(--nav-blue);
 }
 
 .menu-links {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 5px;
 }
 
 .menu-link {
-    min-height: 35px;
+    display: block;
+    width: 100%;
 
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    padding: 7px 9px;
+    padding: 10px 12px;
 
     color: var(--menu-text);
     background: transparent;
 
-    border: 1px solid transparent;
-    border-radius: 7px;
+    border-left: 2px solid transparent;
+    border-radius: 4px;
 
     font-family: 'Noto Serif JP', serif;
     font-size: 12px;
+    letter-spacing: 0.2px;
+    line-height: 1.6;
     text-decoration: none;
 
     transition:
         background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease;
+        border-color 0.2s ease;
 }
 
 .menu-link:hover {
     background: var(--menu-card);
 }
 
-.menu-link svg {
-    width: 15px;
-    height: 15px;
-    flex-shrink: 0;
-    color: var(--menu-muted);
-}
-
 /* HOME active state */
-.menu-section:first-child .menu-link.active {
-    color: var(--nav-accent);
-    background: rgba(181, 141, 134, 0.12);
-    border-color: rgba(181, 141, 134, 0.2);
+.menu-section.home-section .menu-link.active {
+    background: rgba(181, 141, 134, 0.13);
+    border-left-color: var(--nav-accent);
 }
 
 /* MEMORIES active state */
-.menu-section:nth-child(2) .menu-link.active {
-    color: var(--nav-blue);
-    background: rgba(141, 175, 195, 0.13);
-    border-color: rgba(141, 175, 195, 0.25);
+.menu-section.memories-section .menu-link.active {
+    background: rgba(141, 175, 195, 0.16);
+    border-left-color: var(--nav-blue);
+}
+
+/* =========================================
+   SHORT HEIGHT SCREENS
+========================================= */
+
+@media (max-height: 650px) {
+    .side-menu {
+        padding-top: 25px;
+    }
+
+    .menu-heading {
+        margin-top: 15px;
+    }
+
+    .menu-section {
+        margin-bottom: 20px;
+    }
+
+    .menu-link {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
 }
 
 /* =========================================
@@ -393,15 +435,12 @@
 @media (min-width: 769px) {
     .side-menu {
         overflow-y: hidden;
-    }
-
-    .side-menu {
         padding: 15px 22px 18px;
     }
 
     .menu-heading {
         margin: 0 0 10px;
-        font-size: 23px;
+        font-size: 17px;
     }
 
     .menu-socials {
@@ -409,26 +448,29 @@
     }
 
     .menu-divider {
-        margin: 9px 0;
+        margin-bottom: 12px;
+    }
+
+    .menu-label {
+        margin-bottom: 12px;
     }
 
     .menu-section {
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }
 
     .menu-section-title {
         margin-bottom: 5px;
-        font-size: 16px;
     }
 
     .menu-links {
-        gap: 3px 5px;
+        gap: 1px;
     }
 
     .menu-link {
-        min-height: 30px;
-        padding: 5px 8px;
+        padding: 5px 12px;
         font-size: 11px;
+        line-height: 1.35;
     }
 }
 
@@ -446,4 +488,3 @@
         padding-right: 19px;
     }
 }
-
