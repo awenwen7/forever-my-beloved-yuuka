@@ -1096,7 +1096,7 @@ input {
 <body
     data-page-title="Our Cinema"
     data-nav-color="#777873"
-    data-nav-width="600px"
+    data-nav-width="calc(100% - 30px)"
 >
 <main class="container">
 
@@ -1538,6 +1538,13 @@ document.addEventListener("keydown", event => {
 /* Start */
 
 renderMovies();
+  /* =========================================
+   MOVIE PAGE NAVIGATION WIDTH
+========================================= */
+
+body[data-page-title="Our Cinema"] .site-header {
+    max-width: 1110px;
+}  
 </script>
 
 <script src="js/navigation.js"></script>
