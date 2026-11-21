@@ -543,6 +543,52 @@ footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px;
 .home-section {
     margin-bottom: 0 !important;
 }
+
+/* 手機版天氣：上方兩欄、下方兩欄 */
+@media (max-width: 480px) {
+
+    /* 上方：大阪天氣、今日天氣 */
+    .weather-top-layout {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px 8px;
+    }
+
+    /* 下方詳細資訊：橫向兩欄 */
+    .weather-info-third {
+        grid-column: 1 / -1;
+        width: 100%;
+        align-items: stretch;
+        gap: 8px;
+        margin-top: 5px;
+    }
+
+    .weather-details {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: center;
+        justify-items: center;
+        gap: 10px 6px;
+        font-size: 9px;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    #weather-range {
+        margin-top: 0;
+    }
+
+    /* 最終更新時間 */
+    .weather-updated {
+        width: 100%;
+        margin-top: 2px;
+        font-size: 7px;
+        text-align: right;
+        white-space: nowrap;
+    }
+
+}
+    
 </style>
 </head>
 
