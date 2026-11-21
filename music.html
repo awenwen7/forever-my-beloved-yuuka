@@ -1076,13 +1076,32 @@ progressBar.addEventListener("input", () => {
 );
 });
 
-/* Volume */
 
-audio.volume = 0.7;
+/* Volume Control */
+
+function setVolume(value) {
+    const volume = Math.max(0, Math.min(1, Number(value)));
+
+    audio.muted = false;
+    audio.volume = volume;
+
+    volumeBar.value = volume;
+}
 
 volumeBar.addEventListener("input", () => {
-    audio.volume = Number(volumeBar.value);
+    setVolume(volumeBar.value);
 });
+
+volumeBar.addEventListener("change", () => {
+    setVolume(volumeBar.value);
+});
+
+audio.addEventListener("volumechange", () => {
+    volumeBar.value = audio.muted ? 0 : audio.volume;
+});
+
+setVolume(0.7);
+
 
 
 /* Song list and filters */
@@ -1192,7 +1211,6 @@ searchInput.addEventListener("input", renderSongList);
 
 if (songData.length > 0) {
     loadSong(currentIndex);
-    audio.volume = 0.7;
 } else {
     songList.innerHTML =
         '<div class="empty-message">曲がまだ登録されていません。</div>';
