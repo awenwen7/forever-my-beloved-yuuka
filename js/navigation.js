@@ -394,38 +394,61 @@ document.documentElement.style.setProperty(
     updateLanguageCheck();
 
 
-    /* =====================================
-       ACTIVE MENU LINK
-    ===================================== */
 
-    const currentPath = window.location.pathname;
-    const currentHash = window.location.hash;
+/* =====================================
+   ACTIVE MENU LINK
+===================================== */
 
-    document.querySelectorAll(".menu-link")
-        .forEach(link => {
+const currentPath = window.location.pathname;
+const currentHash = window.location.hash;
 
-            const linkURL = new URL(
-                link.href,
-                window.location.href
+document.querySelectorAll(".menu-link")
+    .forEach(link => {
+
+        const linkURL = new URL(
+            link.href,
+            window.location.href
+        );
+
+        if (
+            linkURL.pathname === currentPath &&
+            (
+                linkURL.hash === "" ||
+                linkURL.hash === currentHash
+            )
+        ) {
+            link.classList.add("active");
+
+            link.setAttribute(
+                "aria-current",
+                "page"
             );
+        }
 
-            if (
-                linkURL.pathname === currentPath &&
-                (
-                    linkURL.hash === "" ||
-                    linkURL.hash === currentHash
-                )
-            ) {
-                link.classList.add("active");
+        link.addEventListener("click", event => {
 
-                link.setAttribute(
-                    "aria-current",
-                    "page"
-                );
+            // About Us：開啟介紹彈窗
+            if (link.href.includes("#about-website")) {
+                event.preventDefault();
+
+                closeSideMenu();
+
+                const aboutModal = document.getElementById("aboutModal");
+
+                if (aboutModal) {
+                    aboutModal.hidden = false;
+                    aboutModal.setAttribute("aria-hidden", "false");
+                    document.body.style.overflow = "hidden";
+                }
+
+                return;
             }
 
-            link.addEventListener("click", closeSideMenu);
+            // 其他選單項目維持原本功能
+            closeSideMenu();
         });
+
+    });
 
 
     /* =====================================
