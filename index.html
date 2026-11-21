@@ -555,14 +555,14 @@ footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px;
 
     /* 下方詳細資訊：四項橫向排列 */
     .weather-info-third {
-        grid-column: 1 / -1;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 6px;
-        margin-top: 5px;
-    }
+    grid-column: 1 / -1;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    margin-top: 5px;
+}
 
     .weather-details {
         width: 100%;
@@ -582,14 +582,15 @@ footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px;
         margin-top: 0;
     }
 
-    /* 最終更新時間：第二行靠右 */
-    .weather-updated {
-        width: 100%;
-        margin-top: 0;
-        font-size: 7px;
-        text-align: right;
-        white-space: nowrap;
-    }
+    /* 最終更新時間：與天氣資訊同一行 */
+.weather-updated {
+    width: auto;
+    margin-top: 0;
+    font-size: 7px;
+    text-align: left;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
 
 }
     
