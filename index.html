@@ -128,15 +128,15 @@ body {
     background: #F7F1EB;
 }
 
-/* 左右並排 */
+/* 三欄式配置 */
 .weather-top-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
-/* 左側日期與地點 */
+/* 第一欄：日期與地點 */
 .weather-info-left {
     min-width: 0;
     text-align: left;
@@ -175,7 +175,7 @@ body {
     white-space: nowrap;
 }
 
-/* 右側今日天氣 */
+/* 第二欄：今日天氣 */
 .weather-info-right {
     min-width: 0;
     display: flex;
@@ -186,20 +186,22 @@ body {
 }
 
 .weather-today-label {
+    width: 100%;
     margin-bottom: 10px;
     color: #806B5A;
     font-size: 12px;
     letter-spacing: 1px;
+    text-align: center;
 }
 
-/* 天氣圖示與溫度 */
+/* 天氣圖示、溫度、描述垂直排列 */
 .weather-main {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 5px;
 }
 
 .weather-main-icon {
@@ -221,9 +223,11 @@ body {
 .weather-main-info {
     min-width: 0;
     display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    gap: 9px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    text-align: center;
 }
 
 .weather-temperature {
@@ -232,35 +236,53 @@ body {
     line-height: 1.2;
     font-weight: 500;
     font-variant-numeric: tabular-nums;
+    text-align: center;
 }
 
 .weather-description {
     margin-top: 0;
     color: #947B66;
     font-size: 11px;
+    text-align: center;
 }
 
-/* 天氣詳細資訊 */
-.weather-details {
+/* 第三欄：詳細資訊 */
+.weather-info-third {
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    margin-top: 10px;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+    text-align: right;
+}
+
+.weather-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
     color: #947B66;
     font-size: 10px;
     line-height: 1.5;
-    text-align: center;
+    text-align: right;
     white-space: nowrap;
+}
+
+#weather-range {
+    margin-top: 5px;
 }
 
 /* 更新時間 */
 .weather-updated {
-    margin-top: 10px;
+    width: 100%;
+    margin-top: 3px;
     color: #A18D7B;
     font-size: 8px;
     letter-spacing: .1px;
-    text-align: center;
+    text-align: right;
+    white-space: nowrap;
 }
 
 /* 一週天氣 */
@@ -597,7 +619,7 @@ footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px;
 
     <div class="weather-top-layout">
 
-        <!-- 左側：日期與地點 -->
+        <!-- 第一欄：日期與地點 -->
         <div class="weather-info-left">
 
             <div class="section-title">大阪の天気</div>
@@ -613,7 +635,7 @@ footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px;
 
         </div>
 
-        <!-- 右側：今日天氣 -->
+        <!-- 第二欄：今日天氣 -->
         <div class="weather-info-right">
 
             <div class="weather-today-label">今日の天気</div>
@@ -632,6 +654,11 @@ footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px;
                 </div>
 
             </div>
+
+        </div>
+
+        <!-- 第三欄：詳細資訊 -->
+        <div class="weather-info-third">
 
             <div class="weather-details">
                 <div id="weather-feels">体感 --°C</div>
@@ -665,7 +692,6 @@ footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px;
     </div>
 
 </section>
-
 
     <!-- 回憶收藏分類 -->
     <section class="memories-section" id="our-memories">
