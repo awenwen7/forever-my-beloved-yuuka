@@ -119,25 +119,184 @@ body {
 .meeting-time-label { margin-top: 7px; color: #A18D7B; font-size: 9px; font-weight: 500; letter-spacing: .3px; white-space: nowrap; }
 .meeting-footer { margin-top: 15px; color: #A18D7B; font-size: 11px; letter-spacing: 1px; }
 
+
 /* 天氣 */
-.weather-section { margin: 45px 0 60px; padding: 24px 18px 18px; border-radius: 12px; background: #F7F1EB; }
-.weather-section .section-title { margin-bottom: 10px; }
-.section-title { margin-bottom: 12px; font-size: 19px; font-weight: 500; letter-spacing: 2px; }
-.section-subtitle { color: #A18D7B; font-size: 12px; letter-spacing: 1px; }
-.weather-current { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 22px; }
-.weather-main { display: flex; align-items: center; gap: 12px; min-width: 0; }
-.weather-main-icon { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #947B66; }
-.weather-main-icon svg { width: 38px; height: 38px; stroke-width: 1.35; }
-.weather-main-info { min-width: 0; text-align: left; }
-.weather-temperature { color: #806B5A; font-size: 30px; line-height: 1.2; font-weight: 500; font-variant-numeric: tabular-nums; }
-.weather-description { margin-top: 5px; color: #947B66; font-size: 11px; white-space: nowrap; }
-.weather-details { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; color: #947B66; font-size: 10px; line-height: 1.5; text-align: right; white-space: nowrap; }
-.weather-updated { margin-top: 13px; color: #A18D7B; font-size: 9px; letter-spacing: .3px; text-align: right; }
-.weekly-weather { margin-top: 19px; padding-top: 15px; border-top: 1px solid rgba(161,141,123,.22); }
-.weekly-weather-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; color: #806B5A; font-size: 12px; letter-spacing: .8px; }
-.weekly-weather-en { color: #B5A393; font-size: 9px; letter-spacing: 1px; }
-.weekly-weather-list { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); gap: 3px; width: 100%; }
-.weekly-day { min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 7px; }
+.weather-section {
+    margin: 45px 0 60px;
+    padding: 24px 18px 18px;
+    border-radius: 12px;
+    background: #F7F1EB;
+}
+
+/* 左右並排 */
+.weather-top-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 左側日期與地點 */
+.weather-info-left {
+    min-width: 0;
+    text-align: left;
+}
+
+.weather-info-left .section-title {
+    margin-bottom: 12px;
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.weather-date {
+    margin: 10px 0 14px;
+    text-align: left;
+}
+
+#weather-date {
+    color: #806B5A;
+    font-size: 15px;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+#weather-weekday {
+    margin-top: 6px;
+    color: #A18D7B;
+    font-size: 10px;
+    letter-spacing: .3px;
+}
+
+.weather-info-left .section-subtitle {
+    color: #A18D7B;
+    font-size: 10px;
+    letter-spacing: .3px;
+    white-space: nowrap;
+}
+
+/* 右側今日天氣 */
+.weather-info-right {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.weather-today-label {
+    margin-bottom: 10px;
+    color: #806B5A;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+/* 天氣圖示與溫度 */
+.weather-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.weather-main-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #947B66;
+}
+
+.weather-main-icon svg {
+    width: 38px;
+    height: 38px;
+    stroke-width: 1.35;
+}
+
+.weather-main-info {
+    min-width: 0;
+    text-align: center;
+}
+
+.weather-temperature {
+    color: #806B5A;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+}
+
+.weather-description {
+    margin-top: 5px;
+    color: #947B66;
+    font-size: 11px;
+}
+
+/* 天氣詳細資訊 */
+.weather-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    color: #947B66;
+    font-size: 10px;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* 更新時間 */
+.weather-updated {
+    margin-top: 10px;
+    color: #A18D7B;
+    font-size: 8px;
+    letter-spacing: .1px;
+    text-align: center;
+}
+
+/* 一週天氣 */
+.weekly-weather {
+    margin-top: 22px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(161,141,123,.22);
+}
+
+.weekly-weather-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #806B5A;
+    font-size: 12px;
+    letter-spacing: .8px;
+}
+
+.weekly-weather-en {
+    color: #B5A393;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.weekly-weather-list {
+    display: grid;
+    grid-template-columns: repeat(7,minmax(0,1fr));
+    gap: 3px;
+    width: 100%;
+}
+
+.weekly-day {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+
 .weekly-day-date {
     color: #806B5A;
     font-size: 10px;
@@ -150,31 +309,140 @@ body {
     color: #A18D7B;
     font-size: 9px;
     white-space: nowrap;
-}.weekly-day-icon { height: 21px; display: flex; align-items: center; justify-content: center; color: #947B66; }
-.weekly-day-icon svg { width: 18px; height: 18px; stroke-width: 1.35; }
-.weekly-day-max { color: #806B5A; font-size: 10px; font-weight: 600; font-variant-numeric: tabular-nums; }
-.weekly-day-min { color: #A18D7B; font-size: 10px; font-variant-numeric: tabular-nums; }
-.weekly-day-rain { color: #A18D7B; font-size: 9px; }
-.weekly-loading { grid-column: 1/-1; padding: 10px 0; color: #A18D7B; font-size: 10px; text-align: center; }
-/* WEATHER DATE */
-.weather-date {
-    margin: 10px 0 14px;
+}
+
+.weekly-day-icon {
+    height: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #947B66;
+}
+
+.weekly-day-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 1.35;
+}
+
+.weekly-day-max {
+    color: #806B5A;
+    font-size: 10px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.weekly-day-min {
+    color: #A18D7B;
+    font-size: 10px;
+    font-variant-numeric: tabular-nums;
+}
+
+.weekly-day-rain {
+    color: #A18D7B;
+    font-size: 9px;
+}
+
+.weekly-loading {
+    grid-column: 1/-1;
+    padding: 10px 0;
+    color: #A18D7B;
+    font-size: 10px;
     text-align: center;
 }
 
-#weather-date {
-    color: #806B5A;
-    font-family: 'Noto Serif JP', serif;
-    font-size: 18px;
-    letter-spacing: 1.5px;
+/* 手機版 */
+@media (max-width: 480px) {
+
+    .weather-section {
+        padding: 22px 12px 17px;
+    }
+
+    .weather-top-layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+    }
+
+    .weather-info-left .section-title {
+        font-size: 16px;
+        letter-spacing: .5px;
+    }
+
+    #weather-date {
+        font-size: 13px;
+    }
+
+    #weather-weekday {
+        font-size: 9px;
+    }
+
+    .weather-info-left .section-subtitle {
+        font-size: 9px;
+        letter-spacing: 0;
+    }
+
+    .weather-today-label {
+        font-size: 11px;
+    }
+
+    .weather-main-icon {
+        width: 34px;
+        height: 34px;
+    }
+
+    .weather-main-icon svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .weather-temperature {
+        font-size: 26px;
+    }
+
+    .weather-description {
+        font-size: 10px;
+    }
+
+    .weather-details {
+        gap: 5px;
+        font-size: 9px;
+    }
+
+    .weather-updated {
+        font-size: 7px;
+    }
+
+    .weekly-weather-list {
+        gap: 1px;
+    }
+
+    .weekly-day {
+        gap: 7px;
+    }
+
+    .weekly-day-date {
+        font-size: 9px;
+    }
+
+    .weekly-day-name {
+        font-size: 8px;
+    }
+
+    .weekly-day-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .weekly-day-max,
+    .weekly-day-min {
+        font-size: 9px;
+    }
+
+    .weekly-day-rain {
+        font-size: 8px;
+    }
 }
 
-#weather-weekday {
-    margin-top: 5px;
-    color: #A18D7B;
-    font-size: 11px;
-    letter-spacing: 1px;
-}
     
 /* 回憶分類 */
 .memories-section { margin-top: 60px; }
@@ -319,41 +587,81 @@ footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px;
         </div>
     </section>
 
-    <!-- 大阪天氣 -->
-    <section class="weather-section" id="osaka-weather">
-        <div class="section-title">大阪の天気</div>
+   
+<!-- 大阪天氣 -->
+<section class="weather-section" id="osaka-weather">
 
-<div class="weather-date">
-    <div id="weather-date">----</div>
-    <div id="weather-weekday">----</div>
-</div>
+    <div class="weather-top-layout">
 
-<div class="section-subtitle">大阪府 │ 東大阪市</div>
+        <!-- 左側：日期與地點 -->
+        <div class="weather-info-left">
 
-        <div class="weather-current">
+            <div class="section-title">大阪の天気</div>
+
+            <div class="weather-date">
+                <div id="weather-date">----</div>
+                <div id="weather-weekday">----</div>
+            </div>
+
+            <div class="section-subtitle">
+                大阪府 │ 東大阪市
+            </div>
+
+        </div>
+
+        <!-- 右側：今日天氣 -->
+        <div class="weather-info-right">
+
+            <div class="weather-today-label">今日の天気</div>
+
             <div class="weather-main">
-                <div id="weather-icon" class="weather-main-icon"><i data-lucide="cloud-sun"></i></div>
+
+                <div id="weather-icon" class="weather-main-icon">
+                    <i data-lucide="cloud-sun"></i>
+                </div>
+
                 <div class="weather-main-info">
                     <div id="weather-temperature" class="weather-temperature">--°C</div>
-                    <div id="weather-description" class="weather-description">天気を読み込み中...</div>
+                    <div id="weather-description" class="weather-description">
+                        天気を読み込み中...
+                    </div>
                 </div>
+
             </div>
+
             <div class="weather-details">
                 <div id="weather-feels">体感 --°C</div>
                 <div id="weather-humidity">湿度 --%</div>
                 <div id="weather-wind">風速 -- km/h</div>
                 <div id="weather-range">最高 --° ／ 最低 --°</div>
             </div>
+
+            <div class="weather-updated" id="weather-updated">
+                最終更新 --:--（日本時間）
+            </div>
+
         </div>
 
-        <div class="weather-updated" id="weather-updated">最終更新 --:--（日本時間）</div>
-        <div class="weekly-weather">
-            <div class="weekly-weather-heading"><span>一週間の天気</span><span class="weekly-weather-en">WEEKLY</span></div>
-            <div id="weekly-weather-list" class="weekly-weather-list">
-                <div class="weekly-loading">天気予報を読み込み中...</div>
+    </div>
+
+    <!-- 一週間の天気 -->
+    <div class="weekly-weather">
+
+        <div class="weekly-weather-heading">
+            <span>一週間の天気</span>
+            <span class="weekly-weather-en">WEEKLY</span>
+        </div>
+
+        <div id="weekly-weather-list" class="weekly-weather-list">
+            <div class="weekly-loading">
+                天気予報を読み込み中...
             </div>
         </div>
-    </section>
+
+    </div>
+
+</section>
+
 
     <!-- 回憶收藏分類 -->
     <section class="memories-section" id="our-memories">
