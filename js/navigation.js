@@ -26,6 +26,7 @@ document.documentElement.style.setProperty(
     "--nav-width",
     navWidth
 );
+   
     /* =====================================
        NAVIGATION HTML
     ===================================== */
