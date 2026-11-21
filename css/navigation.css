@@ -481,7 +481,7 @@
 @media (max-width: 480px) {
 
     .site-header {
-        width: calc(100% - 40px);
+        width: 92%;
         max-width: 680px;
         height: 46px;
         padding: 0 7px;
