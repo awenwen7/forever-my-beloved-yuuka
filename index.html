@@ -138,14 +138,44 @@ body {
 .weekly-weather-en { color: #B5A393; font-size: 9px; letter-spacing: 1px; }
 .weekly-weather-list { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); gap: 3px; width: 100%; }
 .weekly-day { min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 7px; }
-.weekly-day-name { color: #A18D7B; font-size: 10px; }
-.weekly-day-icon { height: 21px; display: flex; align-items: center; justify-content: center; color: #947B66; }
+.weekly-day-date {
+    color: #806B5A;
+    font-size: 10px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.weekly-day-name {
+    color: #A18D7B;
+    font-size: 9px;
+    white-space: nowrap;
+}.weekly-day-icon { height: 21px; display: flex; align-items: center; justify-content: center; color: #947B66; }
 .weekly-day-icon svg { width: 18px; height: 18px; stroke-width: 1.35; }
 .weekly-day-max { color: #806B5A; font-size: 10px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .weekly-day-min { color: #A18D7B; font-size: 10px; font-variant-numeric: tabular-nums; }
 .weekly-day-rain { color: #A18D7B; font-size: 9px; }
 .weekly-loading { grid-column: 1/-1; padding: 10px 0; color: #A18D7B; font-size: 10px; text-align: center; }
+/* WEATHER DATE */
+.weather-date {
+    margin: 10px 0 14px;
+    text-align: center;
+}
 
+#weather-date {
+    color: #806B5A;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+}
+
+#weather-weekday {
+    margin-top: 5px;
+    color: #A18D7B;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+    
 /* 回憶分類 */
 .memories-section { margin-top: 60px; }
 .memories-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 30px; }
@@ -201,7 +231,8 @@ footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px;
     .weather-details { gap: 5px; font-size: 9px; }
     .weekly-weather-list { gap: 1px; }
     .weekly-day { gap: 7px; }
-    .weekly-day-name { font-size: 9px; }
+    .weekly-day-date { font-size: 9px; }
+    .weekly-day-name { font-size: 8px; }
     .weekly-day-icon svg { width: 16px; height: 16px; }
     .weekly-day-max, .weekly-day-min { font-size: 9px; }
     .weekly-day-rain { font-size: 8px; }
@@ -291,7 +322,13 @@ footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px;
     <!-- 大阪天氣 -->
     <section class="weather-section" id="osaka-weather">
         <div class="section-title">大阪の天気</div>
-        <div class="section-subtitle">大阪府 │ 東大阪市</div>
+
+<div class="weather-date">
+    <div id="weather-date">----</div>
+    <div id="weather-weekday">----</div>
+</div>
+
+<div class="section-subtitle">大阪府 │ 東大阪市</div>
 
         <div class="weather-current">
             <div class="weather-main">
@@ -621,7 +658,38 @@ updateDateCountdown();
 updateMeetingCounter();
 setInterval(updateMeetingCounter, 1000);
 setInterval(updateDateCountdown, 60000);
+/* =====================================
+   WEATHER DATE
+===================================== */
 
+function updateWeatherDate() {
+    const now = new Date();
+
+    const date = new Intl.DateTimeFormat("ja-JP", {
+        timeZone: "Asia/Tokyo",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    }).format(now);
+
+    const weekdayJP = new Intl.DateTimeFormat("ja-JP", {
+        timeZone: "Asia/Tokyo",
+        weekday: "long"
+    }).format(now);
+
+    const weekdayEN = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Asia/Tokyo",
+        weekday: "long"
+    }).format(now);
+
+    document.getElementById("weather-date").textContent = date;
+
+    document.getElementById("weather-weekday").textContent =
+        `${weekdayJP} · ${weekdayEN}`;
+}
+
+updateWeatherDate();
+setInterval(updateWeatherDate, 60000);
 /* 大阪・東大阪天氣 */
 async function loadOsakaWeather() {
     const icon = document.getElementById("weather-icon");
@@ -683,17 +751,36 @@ async function loadOsakaWeather() {
         daily.time.forEach((date, index) => {
             const dayWeather = getWeatherInfo(daily.weather_code[index]);
             const dateObject = new Date(date + "T00:00:00+09:00");
-            const dayName = dateObject.toLocaleDateString("ja-JP", { timeZone:"Asia/Tokyo", weekday:"short" });
+
+const monthDay = new Intl.DateTimeFormat("ja-JP", {
+    timeZone: "Asia/Tokyo",
+    month: "2-digit",
+    day: "2-digit"
+}).format(dateObject);
+
+const dayName = new Intl.DateTimeFormat("ja-JP", {
+    timeZone: "Asia/Tokyo",
+    weekday: "long"
+}).format(dateObject);
             const rainChance = daily.precipitation_probability_max[index];
             const day = document.createElement("div");
             day.className = "weekly-day";
             day.innerHTML = `
-                <div class="weekly-day-name">${index === 0 ? "今日" : dayName}</div>
-                <div class="weekly-day-icon"><i data-lucide="${dayWeather[1]}"></i></div>
-                <div class="weekly-day-max">${Math.round(daily.temperature_2m_max[index])}°</div>
-                <div class="weekly-day-min">${Math.round(daily.temperature_2m_min[index])}°</div>
-                <div class="weekly-day-rain">${rainChance == null ? "--" : rainChance + "%"}</div>
-            `;
+    <div class="weekly-day-date">${monthDay}</div>
+    <div class="weekly-day-name">${index === 0 ? "今日 · " : ""}${dayName}</div>
+    <div class="weekly-day-icon">
+        <i data-lucide="${dayWeather[1]}"></i>
+    </div>
+    <div class="weekly-day-max">
+        ${Math.round(daily.temperature_2m_max[index])}°
+    </div>
+    <div class="weekly-day-min">
+        ${Math.round(daily.temperature_2m_min[index])}°
+    </div>
+    <div class="weekly-day-rain">
+        ${rainChance == null ? "--" : rainChance + "%"}
+    </div>
+`;
             weeklyList.appendChild(day);
         });
         lucide.createIcons();
