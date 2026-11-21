@@ -544,7 +544,7 @@ footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px;
     margin-bottom: 0 !important;
 }
 
-/* 手機版天氣：上方兩欄、下方兩欄 */
+/* 手機版天氣：詳細資訊兩行排列 */
 @media (max-width: 480px) {
 
     /* 上方：大阪天氣、今日天氣 */
@@ -553,23 +553,27 @@ footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px;
         gap: 14px 8px;
     }
 
-    /* 下方詳細資訊：橫向兩欄 */
+    /* 下方詳細資訊：四項橫向排列 */
     .weather-info-third {
         grid-column: 1 / -1;
         width: 100%;
+        display: flex;
+        flex-direction: column;
         align-items: stretch;
-        gap: 8px;
+        gap: 6px;
         margin-top: 5px;
     }
 
     .weather-details {
         width: 100%;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
         align-items: center;
-        justify-items: center;
-        gap: 10px 6px;
-        font-size: 9px;
+        justify-content: space-between;
+        gap: 4px;
+        font-size: 8px;
+        line-height: 1.5;
         text-align: center;
         white-space: nowrap;
     }
@@ -578,10 +582,10 @@ footer { margin-top: 65px; color: #B5A393; font-size: 11px; letter-spacing: 1px;
         margin-top: 0;
     }
 
-    /* 最終更新時間 */
+    /* 最終更新時間：第二行靠右 */
     .weather-updated {
         width: 100%;
-        margin-top: 2px;
+        margin-top: 0;
         font-size: 7px;
         text-align: right;
         white-space: nowrap;
