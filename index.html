@@ -196,30 +196,34 @@ body {
 .weather-main {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 8px;
 }
 
 .weather-main-icon {
-    width: 42px;
-    height: 42px;
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #947B66;
+    flex-shrink: 0;
 }
 
 .weather-main-icon svg {
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     stroke-width: 1.35;
 }
 
 .weather-main-info {
     min-width: 0;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 9px;
 }
 
 .weather-temperature {
@@ -231,7 +235,7 @@ body {
 }
 
 .weather-description {
-    margin-top: 5px;
+    margin-top: 0;
     color: #947B66;
     font-size: 11px;
 }
