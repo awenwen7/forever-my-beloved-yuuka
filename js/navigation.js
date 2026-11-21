@@ -444,8 +444,39 @@ document.querySelectorAll(".menu-link")
                 return;
             }
 
-            // 其他選單項目維持原本功能
-            closeSideMenu();
+           // 首頁區塊跳轉
+const targetHash = linkURL.hash;
+
+if (
+    linkURL.pathname === window.location.pathname &&
+    targetHash
+) {
+    event.preventDefault();
+    closeSideMenu();
+
+    const target = document.querySelector(targetHash);
+
+    if (target) {
+        history.replaceState(null, "", targetHash);
+
+        const offset = targetHash === "#osaka-weather" ? 125 : 66;
+
+        const top =
+            target.getBoundingClientRect().top +
+            window.scrollY -
+            offset;
+
+        window.scrollTo({
+            top: Math.max(0, top),
+            behavior: "smooth"
+        });
+    }
+
+    return;
+}
+
+// 其他頁面連結維持原本功能
+closeSideMenu();
         });
 
     });
