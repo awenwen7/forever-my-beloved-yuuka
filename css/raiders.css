@@ -1445,3 +1445,428 @@ button {
     }
 
 }
+
+/* =========================================
+   13. BLACK & WHITE FILM ARCHIVE
+========================================= */
+
+.film-archive {
+    width: 100%;
+    margin-top: 90px;
+    padding-top: 55px;
+    border-top: 1px solid var(--raiders-border);
+}
+
+.film-heading {
+    margin-bottom: 35px;
+}
+
+.film-eyebrow {
+    display: block;
+    margin-bottom: 14px;
+    color: var(--raiders-cyan);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.film-heading h3 {
+    color: var(--raiders-white);
+    font-size: clamp(32px, 5vw, 55px);
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1.1;
+}
+
+.film-heading h3 span {
+    color: var(--raiders-cyan);
+}
+
+.film-heading p {
+    margin-top: 13px;
+    color: #888888;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.film-total {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 7px 12px;
+    color: var(--raiders-cyan);
+    background: rgba(29, 223, 206, 0.08);
+    border: 1px solid rgba(29, 223, 206, 0.25);
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================================
+   FILM CONTROLS
+========================================= */
+
+.film-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.film-counter {
+    min-width: 125px;
+    color: #aaaaaa;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.film-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--raiders-cyan);
+    background: #1b1b1b;
+    border: 1px solid var(--raiders-border);
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.film-arrow:hover {
+    color: var(--raiders-black);
+    background: var(--raiders-cyan);
+    border-color: var(--raiders-cyan);
+    transform: translateY(-2px);
+}
+
+.film-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* =========================================
+   FILM STRIP
+========================================= */
+
+.film-strip {
+    position: relative;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #141414 0 45%,
+            transparent 50%
+        ) 0 0 / 28px 14px repeat-x,
+
+        radial-gradient(
+            ellipse at center,
+            #141414 0 45%,
+            transparent 50%
+        ) 0 100% / 28px 14px repeat-x,
+
+        #080808;
+
+    border: 1px solid #292929;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--raiders-cyan) #111111;
+
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.film-strip::-webkit-scrollbar {
+    height: 6px;
+}
+
+.film-strip::-webkit-scrollbar-track {
+    background: #111111;
+}
+
+.film-strip::-webkit-scrollbar-thumb {
+    background: var(--raiders-cyan);
+}
+
+.film-track {
+    display: flex;
+    align-items: stretch;
+    gap: 14px;
+
+    width: max-content;
+    min-width: 100%;
+
+    padding: 22px 20px;
+
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.film-track:active {
+    cursor: grabbing;
+}
+
+
+/* =========================================
+   INDIVIDUAL FILM FRAME
+========================================= */
+
+.film-frame {
+    flex: 0 0 clamp(240px, 32vw, 390px);
+
+    min-width: 0;
+    padding: 10px;
+
+    background: #111111;
+    border: 1px solid #303030;
+
+    transition:
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.film-frame:hover {
+    border-color: var(--raiders-cyan);
+    transform: translateY(-3px);
+}
+
+.film-frame img {
+    display: block;
+
+    width: 100%;
+    aspect-ratio: 4 / 3;
+
+    object-fit: contain;
+    object-position: center;
+
+    background: #050505;
+
+    cursor: zoom-in;
+    -webkit-user-drag: none;
+}
+
+.film-frame span {
+    display: block;
+
+    padding-top: 12px;
+
+    color: #999999;
+
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   14. FILM LIGHTBOX
+========================================= */
+
+.film-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+
+    padding: 50px 35px;
+
+    background: rgba(0, 0, 0, 0.96);
+    backdrop-filter: blur(12px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.film-lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.lightbox-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: min(100%, 1100px);
+    max-height: 100%;
+}
+
+.lightbox-image {
+    display: block;
+
+    max-width: 100%;
+    max-height: 78vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border: 1px solid #333333;
+    background: #080808;
+}
+
+.lightbox-counter {
+    margin-top: 20px;
+
+    color: var(--raiders-cyan);
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 45px;
+    height: 45px;
+
+    color: #ffffff;
+    background: #1b1b1b;
+    border: 1px solid #444444;
+
+    font-size: 20px;
+
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.lightbox-close:hover {
+    color: var(--raiders-black);
+    background: var(--raiders-cyan);
+    border-color: var(--raiders-cyan);
+}
+
+.lightbox-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 45px;
+
+    width: 45px;
+    height: 45px;
+
+    color: var(--raiders-cyan);
+    background: #1b1b1b;
+    border: 1px solid #444444;
+
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.lightbox-arrow:hover {
+    color: var(--raiders-black);
+    background: var(--raiders-cyan);
+    border-color: var(--raiders-cyan);
+}
+
+
+/* =========================================
+   15. FILM ARCHIVE MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+
+    .film-archive {
+        margin-top: 65px;
+        padding-top: 40px;
+    }
+
+    .film-heading {
+        margin-bottom: 25px;
+    }
+
+    .film-heading h3 {
+        font-size: 34px;
+    }
+
+    .film-heading p {
+        font-size: 9px;
+        line-height: 1.8;
+    }
+
+    .film-controls {
+        gap: 10px;
+    }
+
+    .film-arrow {
+        width: 36px;
+        height: 36px;
+    }
+
+    .film-counter {
+        min-width: 115px;
+        font-size: 9px;
+    }
+
+    .film-track {
+        gap: 10px;
+        padding: 20px 14px;
+    }
+
+    .film-frame {
+        flex-basis: 78vw;
+        padding: 8px;
+    }
+
+    .film-frame span {
+        font-size: 8px;
+    }
+
+    .film-lightbox {
+        gap: 8px;
+        padding: 55px 12px;
+    }
+
+    .lightbox-image {
+        max-width: 100%;
+        max-height: 70vh;
+    }
+
+    .lightbox-arrow {
+        flex: 0 0 34px;
+        width: 34px;
+        height: 34px;
+        font-size: 12px;
+    }
+
+    .lightbox-close {
+        top: 12px;
+        right: 12px;
+        width: 38px;
+        height: 38px;
+    }
+
+}
