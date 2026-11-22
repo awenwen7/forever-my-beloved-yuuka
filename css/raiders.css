@@ -392,23 +392,15 @@ button {
 
 
 
+/* =========================================
+   HERO TITLE
+========================================= */
+
 .hero-title {
 
     display: flex;
 
     flex-direction: column;
-
-    background: linear-gradient(
-        to bottom,
-        #f96611 0%,
-        #f96611 45%,
-        #1ddfce 100%
-    );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
 
     font-size: clamp(65px, 10vw, 145px);
 
@@ -418,20 +410,44 @@ button {
 
     letter-spacing: -7px;
 
-    font-style: italic;
-
 }
 
+/* SPLATOON：上方白色、不斜體 */
 
-.hero-title span {
+.hero-title .splatoon-white {
+
+    display: block;
 
     color: #ffffff;
 
-    background: none;
-
     -webkit-text-fill-color: #ffffff;
 
-    text-shadow: none;
+    font-style: normal;
+
+}
+
+/* RAIDERS：下方橘色漸層至藍色、斜體 */
+
+.hero-title .raiders-gradient {
+
+    display: block;
+
+    background: linear-gradient(
+        to bottom,
+        #f96611 0%,
+        #f96611 45%,
+        #1ddfce 100%
+    );
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    color: transparent;
+
+    font-style: italic;
 
 }
 
