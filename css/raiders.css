@@ -397,7 +397,16 @@ button {
 
     flex-direction: column;
 
-    color: var(--raiders-white);
+    background: linear-gradient(
+        100deg,
+        #f96611 0%,
+        #1ddfce 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 
     font-size: clamp(65px, 10vw, 145px);
 
@@ -414,9 +423,11 @@ button {
 
 .hero-title span {
 
-    color: var(--raiders-cyan);
+    color: transparent;
 
-    text-shadow: 5px 5px 0 rgba(47, 184, 127, 0.2);
+    -webkit-text-fill-color: transparent;
+
+    text-shadow: none;
 
 }
 
