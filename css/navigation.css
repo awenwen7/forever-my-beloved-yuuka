@@ -542,9 +542,8 @@ body[data-nav-theme="raiders"] .site-header {
 
 body[data-nav-theme="raiders"] .nav-button,
 body[data-nav-theme="raiders"] .language-button {
-    color: #1ddfce;
+    color: #ffffff;
 }
-
 /* LANGUAGE MENU */
 
 body[data-nav-theme="raiders"] .language-menu {
@@ -597,6 +596,7 @@ body[data-nav-theme="raiders"] .menu-social-icon.notion-icon {
     border-color: #1ddfce;
 }
 
+
 /* MENU SECTIONS */
 
 body[data-nav-theme="raiders"] .menu-divider {
@@ -612,7 +612,7 @@ body[data-nav-theme="raiders"] .menu-section.home-section .menu-section-title {
 }
 
 body[data-nav-theme="raiders"] .menu-section.memories-section .menu-section-title {
-    color: #2fb87f;
+    color: #f96611;
 }
 
 /* MENU LINKS */
@@ -631,6 +631,6 @@ body[data-nav-theme="raiders"] .menu-section.home-section .menu-link.active {
 }
 
 body[data-nav-theme="raiders"] .menu-section.memories-section .menu-link.active {
-    background: rgba(47, 184, 127, 0.13);
-    border-left-color: #2fb87f;
+    background: rgba(249, 102, 17, 0.13);
+    border-left-color: #f96611;
 }
