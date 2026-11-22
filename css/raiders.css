@@ -391,6 +391,7 @@ button {
 }
 
 
+
 .hero-title {
 
     display: flex;
@@ -398,8 +399,9 @@ button {
     flex-direction: column;
 
     background: linear-gradient(
-        100deg,
+        to bottom,
         #f96611 0%,
+        #f96611 45%,
         #1ddfce 100%
     );
 
@@ -423,14 +425,15 @@ button {
 
 .hero-title span {
 
-    color: transparent;
+    color: #ffffff;
 
-    -webkit-text-fill-color: transparent;
+    background: none;
+
+    -webkit-text-fill-color: #ffffff;
 
     text-shadow: none;
 
 }
-
 
 .hero-description {
 
