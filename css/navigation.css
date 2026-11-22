@@ -515,3 +515,122 @@
         padding-right: 19px;
     }
 }
+
+/* =========================================
+   SPLATOON RAIDERS NAVIGATION THEME
+========================================= */
+
+body[data-nav-theme="raiders"] {
+
+    --nav-bg: #0e0e0e;
+    --nav-text: #1ddfce;
+    --nav-accent: #1ddfce;
+    --nav-blue: #2fb87f;
+
+    --menu-bg: #151515;
+    --menu-text: #f8f8f8;
+    --menu-muted: #b5b5b5;
+    --menu-border: #303030;
+    --menu-card: #242424;
+}
+
+/* TOP NAVIGATION */
+
+body[data-nav-theme="raiders"] .site-header {
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.35);
+}
+
+body[data-nav-theme="raiders"] .nav-button,
+body[data-nav-theme="raiders"] .language-button {
+    color: #1ddfce;
+}
+
+/* LANGUAGE MENU */
+
+body[data-nav-theme="raiders"] .language-menu {
+    background: #151515;
+    border-color: #303030;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+body[data-nav-theme="raiders"] .language-option {
+    color: #f8f8f8;
+}
+
+body[data-nav-theme="raiders"] .language-option:hover {
+    background: #242424;
+}
+
+body[data-nav-theme="raiders"] .language-check {
+    color: #1ddfce;
+}
+
+/* MENU OVERLAY */
+
+body[data-nav-theme="raiders"] .menu-overlay {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* SIDE MENU */
+
+body[data-nav-theme="raiders"] .side-menu {
+    background: #151515;
+    color: #f8f8f8;
+    box-shadow: 5px 0 24px rgba(0, 0, 0, 0.45);
+}
+
+body[data-nav-theme="raiders"] .menu-close {
+    color: #1ddfce;
+}
+
+body[data-nav-theme="raiders"] .menu-heading {
+    color: #1ddfce;
+}
+
+/* SOCIAL ICONS */
+
+body[data-nav-theme="raiders"] .menu-social-icon {
+    color: #1ddfce;
+}
+
+body[data-nav-theme="raiders"] .menu-social-icon.notion-icon {
+    border-color: #1ddfce;
+}
+
+/* MENU SECTIONS */
+
+body[data-nav-theme="raiders"] .menu-divider {
+    background: #303030;
+}
+
+body[data-nav-theme="raiders"] .menu-label {
+    color: #1ddfce;
+}
+
+body[data-nav-theme="raiders"] .menu-section.home-section .menu-section-title {
+    color: #1ddfce;
+}
+
+body[data-nav-theme="raiders"] .menu-section.memories-section .menu-section-title {
+    color: #2fb87f;
+}
+
+/* MENU LINKS */
+
+body[data-nav-theme="raiders"] .menu-link {
+    color: #f8f8f8;
+}
+
+body[data-nav-theme="raiders"] .menu-link:hover {
+    background: #242424;
+}
+
+body[data-nav-theme="raiders"] .menu-section.home-section .menu-link.active {
+    background: rgba(29, 223, 206, 0.12);
+    border-left-color: #1ddfce;
+}
+
+body[data-nav-theme="raiders"] .menu-section.memories-section .menu-link.active {
+    background: rgba(47, 184, 127, 0.13);
+    border-left-color: #2fb87f;
+}
