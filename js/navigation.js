@@ -275,7 +275,27 @@ document.documentElement.style.setProperty(
         navigationHTML
     );
 
+/* =====================================
+   PAGE ROOT PATH
+===================================== */
 
+const navRoot =
+    document.body.dataset.navRoot || "";
+
+document.querySelectorAll(".menu-link").forEach(link => {
+
+    const href = link.getAttribute("href");
+
+    if (
+        href &&
+        !href.startsWith("http") &&
+        !href.startsWith("#") &&
+        !href.startsWith("/")
+    ) {
+        link.setAttribute("href", navRoot + href);
+    }
+
+});
     /* =====================================
        ELEMENTS
     ===================================== */
