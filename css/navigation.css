@@ -666,27 +666,10 @@ body[data-nav-theme="raiders"] .menu-social-icon:has(svg):nth-child(3) {
     color: #ffffff;
 }
 /* =========================================
-   RAIDERS - GAMING STREET MENU FONT
+   RAIDERS - MENU FONT
 ========================================= */
 
 body[data-nav-theme="raiders"] .side-menu,
 body[data-nav-theme="raiders"] .side-menu * {
-    font-family: 'Rajdhani', sans-serif;
-}
-
-body[data-nav-theme="raiders"] .menu-heading {
-    font-weight: 700;
-    letter-spacing: 2px;
-}
-
-body[data-nav-theme="raiders"] .menu-label,
-body[data-nav-theme="raiders"] .menu-section-title {
-    font-weight: 700;
-    letter-spacing: 2px;
-}
-
-body[data-nav-theme="raiders"] .menu-link {
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.6px;
+    font-family: Arial, sans-serif;
 }
