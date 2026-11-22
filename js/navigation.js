@@ -403,84 +403,78 @@ document.documentElement.style.setProperty(
 const currentPath = window.location.pathname;
 const currentHash = window.location.hash;
 
-document.querySelectorAll(".menu-link")
-    .forEach(link => {
+document.querySelectorAll(".menu-link").forEach(link => {
 
-        const linkURL = new URL(
-            link.href,
-            window.location.href
-        );
+    const linkURL = new URL(link.href, window.location.href);
 
-        if (
-            linkURL.pathname === currentPath &&
-            (
-                linkURL.hash === "" ||
-                linkURL.hash === currentHash
-            )
-        ) {
-            link.classList.add("active");
-
-            link.setAttribute(
-                "aria-current",
-                "page"
-            );
-        }
-
-        link.addEventListener("click", event => {
-
-            // About Us：開啟介紹彈窗
-            if (link.href.includes("#about-website")) {
-                event.preventDefault();
-
-                closeSideMenu();
-
-                const aboutModal = document.getElementById("aboutModal");
-
-                if (aboutModal) {
-                    aboutModal.hidden = false;
-                    aboutModal.setAttribute("aria-hidden", "false");
-                    document.body.style.overflow = "hidden";
-                }
-
-                return;
-            }
-
-           // 首頁區塊跳轉
-const targetHash = linkURL.hash;
-
-if (
-    linkURL.pathname === window.location.pathname &&
-    targetHash
-) {
-    event.preventDefault();
-    closeSideMenu();
-
-    const target = document.querySelector(targetHash);
-
-    if (target) {
-        history.replaceState(null, "", targetHash);
-
-        const offset = targetHash === "#osaka-weather" ? 125 : 66;
-
-        const top =
-            target.getBoundingClientRect().top +
-            window.scrollY -
-            offset;
-
-        window.scrollTo({
-            top: Math.max(0, top),
-            behavior: "smooth"
-        });
+    // 標示目前所在頁面
+    if (
+        linkURL.pathname === currentPath &&
+        (
+            linkURL.hash === "" ||
+            linkURL.hash === currentHash
+        )
+    ) {
+        link.classList.add("active");
+        link.setAttribute("aria-current", "page");
     }
 
-    return;
-}
+    link.addEventListener("click", event => {
 
-// 其他頁面連結維持原本功能
-closeSideMenu();
-        });
+        // About Us：開啟介紹彈窗
+        if (linkURL.hash === "#about-website") {
+            event.preventDefault();
+            closeSideMenu();
+
+            const aboutModal =
+                document.getElementById("aboutModal");
+
+            if (aboutModal) {
+                aboutModal.hidden = false;
+                aboutModal.setAttribute("aria-hidden", "false");
+                document.body.style.overflow = "hidden";
+            }
+
+            return;
+        }
+
+        // 判斷是否為目前頁面的錨點
+        if (
+            linkURL.pathname === window.location.pathname &&
+            linkURL.hash
+        ) {
+            event.preventDefault();
+            closeSideMenu();
+
+            const target =
+                document.querySelector(linkURL.hash);
+
+            if (!target) return;
+
+            history.pushState(null, "", linkURL.hash);
+
+            const offset =
+                linkURL.hash === "#osaka-weather" ? 125 : 66;
+
+            const top =
+                target.getBoundingClientRect().top +
+                window.scrollY -
+                offset;
+
+            window.scrollTo({
+                top: Math.max(0, top),
+                behavior: "smooth"
+            });
+
+            return;
+        }
+
+        // 其他頁面連結照常跳轉
+        closeSideMenu();
 
     });
+
+});
 
 
     /* =====================================
