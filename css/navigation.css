@@ -648,3 +648,20 @@ body[data-nav-theme="raiders"] .menu-heading {
 body[data-nav-theme="raiders"] .menu-label {
     color: #ffffff;
 }
+
+/* RAIDERS SOCIAL ICON COLORS */
+
+/* Twitter：維持原本青色 */
+body[data-nav-theme="raiders"] .menu-social-icon:has(svg) {
+    color: #1ddfce;
+}
+
+/* YouTube：橘色 */
+body[data-nav-theme="raiders"] .menu-social-icon:has(svg):nth-child(2) {
+    color: #f96611;
+}
+
+/* GitHub：白色 */
+body[data-nav-theme="raiders"] .menu-social-icon:has(svg):nth-child(3) {
+    color: #ffffff;
+}
