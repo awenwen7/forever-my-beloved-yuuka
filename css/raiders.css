@@ -834,13 +834,9 @@ button {
 
 
 .adventure-label {
-
-    color: var(--raiders-cyan);
-
+    color: var(--raiders-orange);
     font-size: 10px;
-
     font-weight: 900;
-
     letter-spacing: 2px;
 
 }
