@@ -291,21 +291,16 @@ button {
 
     overflow: hidden;
 
-    background:
-
-        radial-gradient(
-            ellipse at 78% 45%,
-            rgba(29, 223, 206, 0.12),
-            transparent 38%
+        background:
+        linear-gradient(
+            rgba(14, 14, 14, 0.35),
+            rgba(14, 14, 14, 0.70)
         ),
+        url("../images/raiders/cover.jpg");
 
-        radial-gradient(
-            ellipse at 15% 85%,
-            rgba(249, 102, 17, 0.08),
-            transparent 32%
-        ),
-
-        var(--raiders-black);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
 }
 
