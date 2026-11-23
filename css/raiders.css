@@ -2153,3 +2153,26 @@ button {
 .snapshot-lightbox-media[hidden] {
     display: none !important;
 }
+/* =========================================
+   DESKTOP FILM ARCHIVE WIDTH FIX
+========================================= */
+
+@media (min-width: 651px) {
+
+    .film-archive {
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+    }
+
+    .film-strip {
+        width: 100%;
+        max-width: none;
+    }
+
+}
+/* SPACE BETWEEN FILM AND SCROLLBAR */
+
+.film-strip {
+    padding-bottom: 12px;
+}
