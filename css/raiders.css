@@ -2135,3 +2135,31 @@ button {
 .snapshot-lightbox-media[hidden] {
     display: none !important;
 }
+/* =========================================
+   RESTORE BLACK & WHITE FILM SCROLLBAR
+========================================= */
+
+.film-strip {
+    scrollbar-width: thin;
+    scrollbar-color: var(--raiders-cyan) #111111;
+}
+
+.film-strip::-webkit-scrollbar {
+    display: block;
+    width: auto;
+    height: 6px;
+}
+
+.film-strip::-webkit-scrollbar-track {
+    background: #111111;
+    border-radius: 10px;
+}
+
+.film-strip::-webkit-scrollbar-thumb {
+    background: var(--raiders-cyan);
+    border-radius: 10px;
+}
+
+.film-strip::-webkit-scrollbar-thumb:hover {
+    background: var(--raiders-green);
+}
