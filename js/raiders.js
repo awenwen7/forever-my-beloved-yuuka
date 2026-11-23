@@ -199,13 +199,16 @@ if ("IntersectionObserver" in window) {
 }
 
 
+
 /* =========================================
    06. BLACK & WHITE FILM ARCHIVE
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    const filmStrip = document.querySelector(".film-strip");
     const filmTrack = document.getElementById("filmTrack");
+
     const filmPrev = document.getElementById("filmPrev");
     const filmNext = document.getElementById("filmNext");
     const filmCounter = document.getElementById("filmCounter");
@@ -221,9 +224,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const lightboxPrev = document.getElementById("lightboxPrev");
     const lightboxNext = document.getElementById("lightboxNext");
 
-    if (!filmTrack || filmFrames.length === 0) return;
+    if (!filmStrip || !filmTrack || filmFrames.length === 0) return;
 
     let currentIndex = 0;
+    let isDragging = false;
+    let hasDragged = false;
+    let startX = 0;
+    let scrollStart = 0;
 
     const totalFrames = filmFrames.length;
 
@@ -239,8 +246,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!filmCounter) return;
 
-        const trackRect = filmTrack.getBoundingClientRect();
-        const center = trackRect.left + trackRect.width / 2;
+        const stripRect = filmStrip.getBoundingClientRect();
+        const center = stripRect.left + stripRect.width / 2;
 
         let closestIndex = 0;
         let closestDistance = Infinity;
@@ -281,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
             getComputedStyle(filmTrack).gap
         ) || 0;
 
-        filmTrack.scrollBy({
+        filmStrip.scrollBy({
             left: direction * (frameWidth + gap),
             behavior: "smooth"
         });
@@ -300,8 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    filmTrack.addEventListener("scroll", updateFilmCounter);
-
+    filmStrip.addEventListener("scroll", updateFilmCounter);
     window.addEventListener("resize", updateFilmCounter);
 
 
@@ -309,18 +315,19 @@ document.addEventListener("DOMContentLoaded", () => {
        DRAG TO SCROLL
     ------------------------------------- */
 
-    let isDragging = false;
-    let startX = 0;
-    let scrollStart = 0;
+    filmStrip.addEventListener("dragstart", (event) => {
+        event.preventDefault();
+    });
 
-    filmTrack.addEventListener("mousedown", (event) => {
+    filmStrip.addEventListener("mousedown", (event) => {
 
-        if (event.target.closest(".film-frame")) {
-            isDragging = true;
-            startX = event.pageX;
-            scrollStart = filmTrack.scrollLeft;
-            filmTrack.classList.add("is-dragging");
-        }
+        if (event.button !== 0) return;
+
+        isDragging = true;
+        hasDragged = false;
+
+        startX = event.pageX;
+        scrollStart = filmStrip.scrollLeft;
 
     });
 
@@ -328,19 +335,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!isDragging) return;
 
-        event.preventDefault();
-
         const distance = event.pageX - startX;
 
-        filmTrack.scrollLeft = scrollStart - distance;
+        if (Math.abs(distance) > 5) {
+            hasDragged = true;
+        }
+
+        if (hasDragged) {
+            event.preventDefault();
+            filmStrip.scrollLeft = scrollStart - distance;
+        }
 
     });
 
     window.addEventListener("mouseup", () => {
 
-        isDragging = false;
-        filmTrack.classList.remove("is-dragging");
+        if (!isDragging) return;
 
+        isDragging = false;
+
+        filmStrip.classList.remove("is-dragging");
+
+    });
+
+    filmStrip.addEventListener("mousedown", () => {
+        filmStrip.classList.add("is-dragging");
     });
 
 
@@ -420,7 +439,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         frame.addEventListener("click", () => {
 
-            if (isDragging) return;
+            if (hasDragged) {
+                hasDragged = false;
+                return;
+            }
 
             openLightbox(index);
 
@@ -449,8 +471,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
-    /* Close when clicking background */
 
     if (lightbox) {
 
@@ -497,6 +517,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateFilmCounter();
 
 });
+
 
 
 /* =========================================
