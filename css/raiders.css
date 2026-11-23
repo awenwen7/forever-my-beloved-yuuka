@@ -2176,3 +2176,30 @@ button {
 .film-strip {
     padding-bottom: 12px;
 }
+/* =========================================
+   COLOR SNAPSHOTS - ORANGE SCROLLBAR
+========================================= */
+
+.snapshot-strip {
+    scrollbar-width: thin;
+    scrollbar-color: #F96611 #111111;
+}
+
+.snapshot-strip::-webkit-scrollbar {
+    height: 10px;
+}
+
+.snapshot-strip::-webkit-scrollbar-track {
+    background: #111111;
+    border-radius: 10px;
+}
+
+.snapshot-strip::-webkit-scrollbar-thumb {
+    background: #F96611;
+    border: 2px solid #111111;
+    border-radius: 10px;
+}
+
+.snapshot-strip::-webkit-scrollbar-thumb:hover {
+    background: #FF8738;
+}
