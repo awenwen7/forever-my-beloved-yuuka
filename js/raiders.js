@@ -709,3 +709,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 })();
+/* ========================================
+   ARCHIVE FADE UP OBSERVER
+======================================== */
+
+const archiveSections = document.querySelectorAll(
+    '.film-archive, .snapshot-archive'
+);
+
+const archiveObserver = new IntersectionObserver((entries, observer) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.classList.add('is-visible');
+
+            observer.unobserve(entry.target);
+
+        }
+
+    });
+
+}, {
+    threshold: 0.12
+});
+
+archiveSections.forEach(section => {
+    archiveObserver.observe(section);
+});
