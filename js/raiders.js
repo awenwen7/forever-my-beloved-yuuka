@@ -509,3 +509,182 @@ document.addEventListener("DOMContentLoaded", () => {
     updateHeader();
 
 });
+
+/* ========================================
+   COLOR SNAPSHOTS LIGHTBOX
+========================================= */
+
+(() => {
+
+    const snapshotTrack = document.getElementById("snapshotTrack");
+    const lightbox = document.getElementById("snapshotLightbox");
+
+    if (!snapshotTrack || !lightbox) return;
+
+    const frames = Array.from(
+        snapshotTrack.querySelectorAll(".snapshot-frame")
+    );
+
+    const closeButton = document.getElementById("snapshotLightboxClose");
+    const prevButton = document.getElementById("snapshotLightboxPrev");
+    const nextButton = document.getElementById("snapshotLightboxNext");
+
+    const image = document.getElementById("snapshotLightboxImage");
+    const video = document.getElementById("snapshotLightboxVideo");
+    const counter = document.getElementById("snapshotLightboxCounter");
+
+    let currentIndex = 0;
+
+    // OPEN LIGHTBOX
+
+    function openSnapshot(index) {
+
+        if (!frames.length) return;
+
+        currentIndex = (index + frames.length) % frames.length;
+
+        showSnapshot();
+
+        lightbox.classList.add("active");
+        lightbox.setAttribute("aria-hidden", "false");
+
+        document.body.style.overflow = "hidden";
+    }
+
+    // SHOW CURRENT SNAPSHOT
+
+    function showSnapshot() {
+
+        const frame = frames[currentIndex];
+
+        const frameImage = frame.querySelector("img");
+        const frameVideo = frame.querySelector("video");
+
+        // RESET MEDIA
+
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+
+        image.removeAttribute("src");
+
+        image.hidden = true;
+        video.hidden = true;
+
+        // IMAGE
+
+        if (frameImage) {
+
+            image.src = frameImage.getAttribute("src");
+            image.alt = frameImage.alt || "Color snapshot";
+
+            image.hidden = false;
+
+        }
+
+        // VIDEO
+
+        else if (frameVideo) {
+
+            video.src = frameVideo.getAttribute("src");
+            video.hidden = false;
+
+            video.load();
+
+            video.play().catch(() => {
+                // Playback can be started manually.
+            });
+
+        }
+
+        // FRAME COUNTER
+
+        counter.textContent =
+            `FRAME ${String(currentIndex + 1).padStart(3, "0")} / ${String(frames.length).padStart(3, "0")}`;
+
+    }
+
+    // CLOSE LIGHTBOX
+
+    function closeSnapshot() {
+
+        lightbox.classList.remove("active");
+        lightbox.setAttribute("aria-hidden", "true");
+
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+
+        image.removeAttribute("src");
+
+        document.body.style.overflow = "";
+
+    }
+
+    // PREVIOUS
+
+    function previousSnapshot() {
+
+        openSnapshot(currentIndex - 1);
+
+    }
+
+    // NEXT
+
+    function nextSnapshot() {
+
+        openSnapshot(currentIndex + 1);
+
+    }
+
+    // CLICK SNAPSHOT
+
+    frames.forEach((frame, index) => {
+
+        frame.addEventListener("click", () => {
+
+            openSnapshot(index);
+
+        });
+
+    });
+
+    // BUTTON EVENTS
+
+    closeButton.addEventListener("click", closeSnapshot);
+
+    prevButton.addEventListener("click", previousSnapshot);
+
+    nextButton.addEventListener("click", nextSnapshot);
+
+    // CLICK BACKGROUND TO CLOSE
+
+    lightbox.addEventListener("click", (event) => {
+
+        if (event.target === lightbox) {
+            closeSnapshot();
+        }
+
+    });
+
+    // KEYBOARD EVENTS
+
+    document.addEventListener("keydown", (event) => {
+
+        if (!lightbox.classList.contains("active")) return;
+
+        if (event.key === "Escape") {
+            closeSnapshot();
+        }
+
+        if (event.key === "ArrowLeft") {
+            previousSnapshot();
+        }
+
+        if (event.key === "ArrowRight") {
+            nextSnapshot();
+        }
+
+    });
+
+})();
