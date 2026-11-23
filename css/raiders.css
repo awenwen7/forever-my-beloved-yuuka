@@ -1461,3 +1461,31 @@ button {
         scroll-behavior: auto;
     }
 }
+/* =========================================
+   FILM ARCHIVE - FULL VIEWPORT WIDTH
+========================================= */
+
+.film-archive {
+    width: 100vw;
+    max-width: 100vw;
+    min-width: 0;
+
+    margin-left: calc(50% - 50vw);
+
+    box-sizing: border-box;
+}
+
+.film-strip {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* MOBILE */
+@media (max-width: 650px) {
+    .film-archive {
+        width: 100vw;
+        max-width: 100vw;
+        margin-left: calc(50% - 50vw);
+    }
+}
