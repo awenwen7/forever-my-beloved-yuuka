@@ -1,1465 +1,816 @@
-
 /* =========================================
    SPLATOON RAIDERS
    MAIN STYLESHEET
 ========================================= */
-
 
 /* =========================================
    01. ROOT & RESET
 ========================================= */
 
 :root {
-
     --raiders-cyan: #1ddfce;
     --raiders-green: #2fb87f;
     --raiders-orange: #f96611;
-
     --raiders-white: #f8f8f8;
     --raiders-black: #0e0e0e;
-
     --raiders-dark: #161616;
     --raiders-card: #1b1b1b;
     --raiders-border: #303030;
-
     --font-main: 'Noto Sans', sans-serif;
-
     --nav-height: 76px;
-
 }
-
 
 * {
-
     margin: 0;
     padding: 0;
-
     box-sizing: border-box;
-
 }
-
 
 html {
-
     scroll-behavior: smooth;
-
     scroll-padding-top: 100px;
-
 }
-
 
 body {
-
     font-family: var(--font-main);
-
     background: var(--raiders-black);
-
     color: var(--raiders-white);
-
     overflow-x: hidden;
-
     line-height: 1.6;
-
 }
-
 
 a {
-
     color: inherit;
-
     text-decoration: none;
-
 }
-
 
 button {
-
     font: inherit;
-
 }
-
 
 ::selection {
-
     background: var(--raiders-cyan);
-
     color: var(--raiders-black);
-
 }
-
-
 
 /* =========================================
    02. NAVIGATION
 ========================================= */
 
 .raiders-header {
-
     position: fixed;
-
     top: 0;
     left: 0;
-
     width: 100%;
-
     height: var(--nav-height);
-
     z-index: 1000;
-
     background: rgba(14, 14, 14, 0.88);
-
     backdrop-filter: blur(14px);
-
     border-bottom: 1px solid transparent;
-
-    transition:
-        background 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
-
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
-
 
 .raiders-header.scrolled {
-
     background: rgba(14, 14, 14, 0.97);
-
     border-color: var(--raiders-border);
-
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
-
 }
-
 
 .raiders-nav {
-
     max-width: 1440px;
-
     height: 100%;
-
     margin: 0 auto;
-
     padding: 0 5%;
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
 }
-
 
 .raiders-logo {
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     width: 46px;
     height: 46px;
-
     background: var(--raiders-cyan);
-
     color: var(--raiders-black);
-
     font-size: 21px;
-
     font-weight: 900;
-
     font-style: italic;
-
     transform: rotate(-5deg);
-
     transition: 0.3s ease;
-
 }
-
 
 .raiders-logo:hover {
-
     background: var(--raiders-orange);
-
     transform: rotate(5deg) scale(1.08);
-
 }
-
 
 .nav-links {
-
     display: flex;
-
     align-items: center;
-
     gap: 38px;
-
 }
-
 
 .nav-link {
-
     position: relative;
-
     padding: 8px 0;
-
     color: #aaaaaa;
-
     font-size: 11px;
-
     font-weight: 800;
-
     letter-spacing: 1.5px;
-
     transition: color 0.25s ease;
-
 }
-
 
 .nav-link::after {
-
     content: "";
-
     position: absolute;
-
     left: 0;
     bottom: 0;
-
     width: 0;
-
     height: 2px;
-
     background: var(--raiders-cyan);
-
     transition: width 0.25s ease;
-
 }
-
 
 .nav-link:hover,
 .nav-link.active {
-
     color: var(--raiders-cyan);
-
 }
-
 
 .nav-link:hover::after,
 .nav-link.active::after {
-
     width: 100%;
-
 }
-
 
 .menu-toggle {
-
     display: none;
-
     border: none;
-
     background: none;
-
     color: var(--raiders-cyan);
-
     font-size: 23px;
-
     cursor: pointer;
-
 }
-
-
 
 /* =========================================
    03. HERO SECTION
 ========================================= */
 
 .hero-section {
-
     position: relative;
-
-    min-height: 720px;
-
     min-height: min(900px, 100svh);
-
     padding: 150px 8% 90px;
-
     display: flex;
-
     align-items: center;
-
     overflow: hidden;
-
-        background:
-        linear-gradient(
-            rgba(14, 14, 14, 0.35),
-            rgba(14, 14, 14, 0.70)
-        ),
+    background:
+        linear-gradient(rgba(14, 14, 14, 0.35), rgba(14, 14, 14, 0.70)),
         url("../images/raiders/cover.jpg");
-
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
 }
-
 
 .hero-section::before {
-
     content: "RAIDERS";
-
     position: absolute;
-
     right: -2%;
-
     top: 50%;
-
     transform: translateY(-50%) rotate(-8deg);
-
     color: rgba(248, 248, 248, 0.025);
-
     font-size: clamp(130px, 22vw, 340px);
-
     font-weight: 900;
-
     letter-spacing: -15px;
-
     white-space: nowrap;
-
     pointer-events: none;
-
 }
-
 
 .hero-section::after {
-
     content: "";
-
     position: absolute;
-
     right: 12%;
-
     top: 22%;
-
     width: 240px;
     height: 240px;
-
     border: 2px solid rgba(29, 223, 206, 0.18);
-
     border-radius: 50%;
-
-    box-shadow:
-        0 0 0 30px rgba(29, 223, 206, 0.025),
-        0 0 0 60px rgba(29, 223, 206, 0.02);
-
+    box-shadow: 0 0 0 30px rgba(29, 223, 206, 0.025), 0 0 0 60px rgba(29, 223, 206, 0.02);
     pointer-events: none;
-
 }
-
 
 .hero-content {
-
     position: relative;
-
     z-index: 2;
-
     max-width: 850px;
-
 }
-
 
 .hero-eyebrow {
-
     display: inline-block;
-
     margin-bottom: 24px;
-
     color: var(--raiders-green);
-
     font-size: 12px;
-
     font-weight: 800;
-
     letter-spacing: 4px;
-
 }
-
-
-
-/* =========================================
-   HERO TITLE
-========================================= */
 
 .hero-title {
-
     display: flex;
-
     flex-direction: column;
-
     font-size: clamp(65px, 10vw, 145px);
-
     font-weight: 900;
-
     line-height: 0.85;
-
     letter-spacing: -7px;
-
 }
-
-/* SPLATOON：上方白色、不斜體 */
 
 .hero-title .splatoon-white {
-
     display: block;
-
     color: #ffffff;
-
     -webkit-text-fill-color: #ffffff;
-
     font-style: normal;
-
 }
 
-/* RAIDERS：下方橘色漸層至藍色、斜體 */
-
 .hero-title .raiders-gradient {
-
     display: block;
-
-    background: linear-gradient(
-        to bottom,
-        #f96611 0%,
-        #f96611 45%,
-        #1ddfce 100%
-    );
-
+    background: linear-gradient(to bottom, #f96611 0%, #f96611 45%, #1ddfce 100%);
     -webkit-background-clip: text;
-
     background-clip: text;
-
     -webkit-text-fill-color: transparent;
-
     color: transparent;
-
     font-style: italic;
-
 }
 
 .hero-description {
-
     margin-top: 34px;
-
     color: #aaaaaa;
-
     font-size: 13px;
-
     font-weight: 700;
-
     letter-spacing: 3px;
-
     line-height: 2;
-
 }
-
 
 .hero-button {
-
     display: inline-flex;
-
     align-items: center;
-
     gap: 18px;
-
     margin-top: 38px;
-
     padding: 16px 25px;
-
     background: var(--raiders-cyan);
-
     color: var(--raiders-black);
-
     font-size: 11px;
-
     font-weight: 900;
-
     letter-spacing: 1.5px;
-
     transition: 0.3s ease;
-
 }
-
 
 .hero-button:hover {
-
     background: var(--raiders-orange);
-
     transform: translateY(-4px);
-
 }
-
 
 .hero-bottom {
-
     position: absolute;
-
     bottom: 30px;
-
     left: 8%;
     right: 8%;
-
     display: flex;
-
     justify-content: space-between;
-
     color: #777777;
-
     font-size: 10px;
-
     font-weight: 800;
-
     letter-spacing: 2px;
-
 }
-
-
 
 /* =========================================
    04. GENERAL CONTENT
 ========================================= */
 
 .content-section {
-
     max-width: 1440px;
-
     margin: 0 auto;
-
     padding: 120px 8%;
-
 }
-
 
 .section-heading {
-
     margin-bottom: 55px;
-
 }
-
 
 .section-number {
-
     display: block;
-
     margin-bottom: 15px;
-
     color: var(--raiders-green);
-
     font-size: 11px;
-
     font-weight: 900;
-
     letter-spacing: 3px;
-
 }
-
 
 .section-heading h2 {
-
     color: var(--raiders-white);
-
     font-size: clamp(38px, 6vw, 72px);
-
     font-weight: 900;
-
     line-height: 1;
-
     letter-spacing: -2px;
-
 }
-
 
 .section-heading h2 span {
-
     color: var(--raiders-cyan);
-
 }
-
 
 .section-heading p {
-
     margin-top: 17px;
-
     color: #888888;
-
     font-size: 11px;
-
     font-weight: 700;
-
     letter-spacing: 2px;
-
 }
-
-
 
 /* =========================================
    05. GAME INFO CARDS
 ========================================= */
 
 .game-info-grid {
-
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-
     gap: 20px;
-
 }
-
 
 .info-card {
-
     position: relative;
-
     min-height: 260px;
-
     padding: 35px;
-
     overflow: hidden;
-
     background: var(--raiders-card);
-
     border: 1px solid var(--raiders-border);
-
-    transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        background 0.3s ease;
-
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
-
 
 .info-card:hover {
-
     transform: translateY(-8px);
-
     background: #202727;
-
     border-color: var(--raiders-cyan);
-
 }
-
 
 .card-number {
-
     position: absolute;
-
     top: 22px;
     right: 25px;
-
     color: #555555;
-
     font-size: 12px;
-
     font-weight: 900;
-
 }
-
 
 .card-icon {
-
     display: block;
-
     margin-bottom: 48px;
-
     color: var(--raiders-cyan);
-
     font-size: 32px;
-
 }
-
 
 .info-card:nth-child(2) .card-icon {
-
     color: var(--raiders-green);
-
 }
-
 
 .info-card:nth-child(3) .card-icon {
-
     color: var(--raiders-orange);
-
 }
-
 
 .info-card h3 {
-
     margin-bottom: 8px;
-
     font-size: 21px;
-
     font-weight: 900;
-
     letter-spacing: 1px;
-
 }
-
 
 .info-card p {
-
     color: #888888;
-
     font-size: 10px;
-
     font-weight: 700;
-
     letter-spacing: 1px;
-
 }
-
-
 
 /* =========================================
    06. ADVENTURE SECTION
 ========================================= */
 
 .adventure-section {
-
     max-width: none;
-
     background: #141414;
-
     padding-left: max(8%, calc((100% - 1200px) / 2));
-
     padding-right: max(8%, calc((100% - 1200px) / 2));
-
 }
-
 
 .adventure-grid {
-
     display: grid;
-
     grid-template-columns: repeat(2, 1fr);
-
     gap: 22px;
-
 }
-
 
 .adventure-card {
-
     position: relative;
-
     min-height: 340px;
-
     display: flex;
-
     align-items: flex-end;
-
     padding: 35px;
-
     overflow: hidden;
-
-    background:
-
-        linear-gradient(
-            0deg,
-            rgba(0, 0, 0, 0.9),
-            rgba(0, 0, 0, 0.05)
-        ),
-
-        var(--raiders-card);
-
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.05)), var(--raiders-card);
     border: 1px solid var(--raiders-border);
-
     transition: border-color 0.3s ease;
-
 }
-
 
 .adventure-card::before {
-
     content: "";
-
     position: absolute;
-
     top: -35px;
     right: -35px;
-
     width: 160px;
     height: 160px;
-
     background: var(--raiders-cyan);
-
     opacity: 0.1;
-
     border-radius: 50%;
-
     transition: 0.4s ease;
-
 }
-
 
 .adventure-card:nth-child(2)::before {
-
     background: var(--raiders-orange);
-
 }
-
 
 .adventure-card:hover {
-
     border-color: var(--raiders-cyan);
-
 }
-
 
 .adventure-card:hover::before {
-
     transform: scale(1.6);
-
     opacity: 0.2;
-
 }
-
 
 .adventure-card-content {
-
     position: relative;
-
     z-index: 1;
-
 }
-
 
 .adventure-label {
     color: var(--raiders-orange);
     font-size: 10px;
     font-weight: 900;
     letter-spacing: 2px;
-
 }
-
 
 .adventure-card:nth-child(2) .adventure-label {
-
     color: var(--raiders-orange);
-
 }
-
 
 .adventure-card h3 {
-
     margin: 12px 0;
-
     font-size: clamp(24px, 3vw, 36px);
-
     font-weight: 900;
-
 }
-
 
 .adventure-card p {
-
     color: #aaaaaa;
-
     font-size: 11px;
-
     font-weight: 600;
-
     letter-spacing: 1px;
-
 }
-
-
 
 /* =========================================
    07. GALLERY
 ========================================= */
 
 .gallery-grid {
-
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-
     gap: 18px;
-
 }
-
 
 .gallery-card {
-
     min-width: 0;
-
     overflow: hidden;
-
     background: var(--raiders-card);
-
     border: 1px solid var(--raiders-border);
-
     transition: 0.3s ease;
-
 }
-
 
 .gallery-card:hover {
-
     transform: translateY(-6px);
-
     border-color: var(--raiders-orange);
-
 }
-
 
 .gallery-placeholder {
-
     aspect-ratio: 4 / 3;
-
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 15px;
-
     color: #777777;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            rgba(29, 223, 206, 0.06),
-            transparent 55%
-        ),
-
-        #191919;
-
+    background: linear-gradient(135deg, rgba(29, 223, 206, 0.06), transparent 55%), #191919;
 }
-
 
 .gallery-placeholder i {
-
     color: var(--raiders-cyan);
-
     font-size: 35px;
-
 }
-
 
 .gallery-card:nth-child(2) .gallery-placeholder i {
-
     color: var(--raiders-orange);
-
 }
-
 
 .gallery-card:nth-child(3) .gallery-placeholder i {
-
     color: var(--raiders-green);
-
 }
-
 
 .gallery-placeholder span {
-
     font-size: 10px;
-
     font-weight: 900;
-
     letter-spacing: 2px;
-
 }
-
-
 
 /* =========================================
    08. FOOTER
 ========================================= */
 
 .raiders-footer {
-
     padding: 65px 20px;
-
     text-align: center;
-
     background: #080808;
-
     border-top: 1px solid var(--raiders-border);
-
 }
-
 
 .footer-logo {
-
     color: var(--raiders-cyan);
-
     font-size: 25px;
-
     font-weight: 900;
-
     font-style: italic;
-
     letter-spacing: 2px;
-
 }
-
 
 .raiders-footer p {
-
     margin-top: 12px;
-
     color: var(--raiders-white);
-
     font-size: 12px;
-
     font-weight: 800;
-
     letter-spacing: 2px;
-
 }
-
 
 .raiders-footer > span {
-
     display: block;
-
     margin-top: 20px;
-
     color: #666666;
-
     font-size: 9px;
-
     font-weight: 700;
-
     letter-spacing: 2px;
-
 }
-
-
 
 /* =========================================
    09. SCROLL REVEAL
 ========================================= */
 
 .reveal {
-
     opacity: 0;
-
     transform: translateY(30px);
-
-    transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-
+    transition: opacity 0.7s ease, transform 0.7s ease;
 }
-
 
 .reveal.visible {
-
     opacity: 1;
-
     transform: translateY(0);
-
 }
-
-
 
 /* =========================================
    10. TABLET
 ========================================= */
 
 @media (max-width: 900px) {
-
     .nav-links {
-
         gap: 20px;
-
     }
-
 
     .content-section {
-
         padding: 90px 6%;
-
     }
-
 
     .game-info-grid {
-
         grid-template-columns: repeat(2, 1fr);
-
     }
-
 
     .gallery-grid {
-
         grid-template-columns: repeat(2, 1fr);
-
     }
-
 }
-
-
 
 /* =========================================
    11. MOBILE
 ========================================= */
 
 @media (max-width: 650px) {
-
-
     :root {
-
         --nav-height: 64px;
-
     }
-
 
     .raiders-nav {
-
         padding: 0 22px;
-
     }
-
 
     .raiders-logo {
-
         width: 40px;
         height: 40px;
-
         font-size: 18px;
-
     }
-
 
     .menu-toggle {
-
         display: block;
-
         width: 42px;
         height: 42px;
-
     }
-
 
     .nav-links {
-
         position: absolute;
-
         top: var(--nav-height);
-
         left: 0;
-
         width: 100%;
-
         padding: 12px 25px 25px;
-
         display: flex;
-
         flex-direction: column;
-
         align-items: stretch;
-
         gap: 0;
-
         background: rgba(14, 14, 14, 0.98);
-
         border-bottom: 1px solid var(--raiders-border);
-
         opacity: 0;
-
         visibility: hidden;
-
         transform: translateY(-10px);
-
         transition: 0.25s ease;
-
     }
-
 
     .nav-links.show {
-
         opacity: 1;
-
         visibility: visible;
-
         transform: translateY(0);
-
     }
-
 
     .nav-link {
-
         padding: 16px 0;
-
         border-bottom: 1px solid var(--raiders-border);
-
         font-size: 12px;
-
     }
-
 
     .nav-link::after {
-
         display: none;
-
     }
-
 
     .hero-section {
-
         min-height: 720px;
-
         padding: 130px 25px 100px;
-
     }
-
 
     .hero-section::before {
-
         right: -25%;
-
         font-size: 130px;
-
         letter-spacing: -8px;
-
     }
-
 
     .hero-section::after {
-
         right: -80px;
-
         top: 18%;
-
         width: 180px;
         height: 180px;
-
     }
-
 
     .hero-title {
-
         font-size: clamp(55px, 14vw, 88px);
-
         letter-spacing: -4px;
-
     }
-
 
     .hero-eyebrow {
-
         font-size: 9px;
-
         letter-spacing: 2px;
-
     }
-
 
     .hero-description {
-
         font-size: 10px;
-
         letter-spacing: 1.5px;
-
     }
-
 
     .hero-bottom {
-
         left: 25px;
         right: 25px;
-
         font-size: 8px;
-
         letter-spacing: 1px;
-
     }
-
 
     .content-section {
-
         padding: 80px 23px;
-
     }
-
 
     .section-heading {
-
         margin-bottom: 35px;
-
     }
-
 
     .section-heading h2 {
-
         font-size: 42px;
-
     }
-
 
     .section-heading p {
-
         font-size: 9px;
-
         letter-spacing: 1px;
-
     }
-
 
     .game-info-grid {
-
         grid-template-columns: 1fr;
-
         gap: 13px;
-
     }
-
 
     .info-card {
-
         min-height: 190px;
-
         padding: 25px;
-
     }
-
 
     .card-icon {
-
         margin-bottom: 28px;
-
         font-size: 27px;
-
     }
-
 
     .info-card h3 {
-
         font-size: 19px;
-
     }
-
 
     .adventure-grid {
-
         grid-template-columns: 1fr;
-
         gap: 15px;
-
     }
-
 
     .adventure-card {
-
         min-height: 250px;
-
         padding: 25px;
-
     }
-
 
     .adventure-card h3 {
-
         font-size: 26px;
-
     }
-
 
     .gallery-grid {
-
         grid-template-columns: repeat(2, 1fr);
-
         gap: 10px;
-
     }
-
 
     .gallery-placeholder {
-
         gap: 10px;
-
     }
-
 
     .gallery-placeholder i {
-
         font-size: 25px;
-
     }
-
 
     .gallery-placeholder span {
-
         font-size: 8px;
-
         letter-spacing: 1px;
-
         text-align: center;
-
     }
-
 
     .raiders-footer {
-
         padding: 50px 15px;
-
     }
-
 
     .footer-logo {
-
         font-size: 20px;
-
     }
-
 }
-
-
 
 /* =========================================
    12. REDUCED MOTION
 ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {
-
         scroll-behavior: auto !important;
-
         animation-duration: 0.01ms !important;
-
         transition-duration: 0.01ms !important;
-
     }
-
 }
 
 /* =========================================
    13. BLACK & WHITE FILM ARCHIVE
 ========================================= */
 
+/*
+   Keep the film archive inside its parent content width.
+   Do not use 100vw or negative viewport margins here:
+   those were causing the archive to shift left and get clipped.
+*/
+
 .film-archive {
     width: 100%;
     max-width: 100%;
     min-width: 0;
-
     margin-top: 55px;
     padding-top: 55px;
-
     box-sizing: border-box;
     border-top: 1px solid var(--raiders-border);
 }
 
 .film-heading {
     margin-bottom: 35px;
+    text-align: left;
 }
 
 .film-eyebrow {
@@ -1503,10 +854,7 @@ button {
     letter-spacing: 1.5px;
 }
 
-
-/* =========================================
-   FILM CONTROLS
-========================================= */
+/* FILM CONTROLS */
 
 .film-controls {
     display: flex;
@@ -1552,44 +900,25 @@ button {
     transform: none;
 }
 
-
-/* =========================================
-   FILM STRIP
-========================================= */
+/* FILM STRIP */
 
 .film-strip {
     position: relative;
     display: block;
-
     width: 100%;
     max-width: 100%;
     min-width: 0;
-
     box-sizing: border-box;
-
     overflow-x: auto;
     overflow-y: hidden;
-
+    padding-bottom: 12px;
     background:
-        radial-gradient(
-            ellipse at center,
-            #141414 0 45%,
-            transparent 50%
-        ) 0 0 / 28px 14px repeat-x,
-
-        radial-gradient(
-            ellipse at center,
-            #141414 0 45%,
-            transparent 50%
-        ) 0 100% / 28px 14px repeat-x,
-
+        radial-gradient(ellipse at center, #141414 0 45%, transparent 50%) 0 0 / 28px 14px repeat-x,
+        radial-gradient(ellipse at center, #141414 0 45%, transparent 50%) 0 100% / 28px 14px repeat-x,
         #080808;
-
     border: 1px solid #292929;
-
     scrollbar-width: thin;
     scrollbar-color: var(--raiders-cyan) #111111;
-
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
 }
@@ -1612,16 +941,12 @@ button {
     display: flex;
     flex-wrap: nowrap;
     align-items: stretch;
-
     width: max-content;
     min-width: 100%;
     max-width: none;
-
     gap: 14px;
     padding: 22px 20px;
-
     box-sizing: border-box;
-
     cursor: grab;
     user-select: none;
     -webkit-user-select: none;
@@ -1631,23 +956,18 @@ button {
     cursor: grabbing;
 }
 
-
-/* =========================================
-   INDIVIDUAL FILM FRAME
-========================================= */
+/* INDIVIDUAL FILM FRAME */
 
 .film-frame {
     flex: 0 0 clamp(240px, 32vw, 390px);
-
+    width: clamp(240px, 32vw, 390px);
+    aspect-ratio: 4 / 3;
     min-width: 0;
     padding: 10px;
-
+    overflow: hidden;
     background: #111111;
     border: 1px solid #303030;
-
-    transition:
-        border-color 0.25s ease,
-        transform 0.25s ease;
+    transition: border-color 0.25s ease, transform 0.25s ease;
 }
 
 .film-frame:hover {
@@ -1657,33 +977,25 @@ button {
 
 .film-frame img {
     display: block;
-
     width: 100%;
+    height: 100%;
     aspect-ratio: 4 / 3;
-
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
-
     background: #050505;
-
     cursor: zoom-in;
     -webkit-user-drag: none;
 }
 
 .film-frame span {
     display: block;
-
     padding-top: 12px;
-
     color: #999999;
-
     font-size: 9px;
     font-weight: 900;
     letter-spacing: 2px;
-
     text-align: center;
 }
-
 
 /* =========================================
    14. FILM LIGHTBOX
@@ -1693,24 +1005,17 @@ button {
     position: fixed;
     inset: 0;
     z-index: 2000;
-
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 25px;
-
     padding: 50px 35px;
-
     background: rgba(0, 0, 0, 0.96);
     backdrop-filter: blur(12px);
-
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-
-    transition:
-        opacity 0.3s ease,
-        visibility 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .film-lightbox.is-open {
@@ -1724,31 +1029,24 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     width: min(100%, 1100px);
     max-height: 100%;
 }
 
 .lightbox-image {
     display: block;
-
     max-width: 100%;
     max-height: 78vh;
-
     width: auto;
     height: auto;
-
     object-fit: contain;
-
     border: 1px solid #333333;
     background: #080808;
 }
 
 .lightbox-counter {
     margin-top: 20px;
-
     color: var(--raiders-cyan);
-
     font-size: 11px;
     font-weight: 900;
     letter-spacing: 3px;
@@ -1758,20 +1056,15 @@ button {
     position: absolute;
     top: 25px;
     right: 30px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     width: 45px;
     height: 45px;
-
     color: #ffffff;
     background: #1b1b1b;
     border: 1px solid #444444;
-
     font-size: 20px;
-
     cursor: pointer;
     transition: 0.25s ease;
 }
@@ -1786,16 +1079,12 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-
     flex: 0 0 45px;
-
     width: 45px;
     height: 45px;
-
     color: var(--raiders-cyan);
     background: #1b1b1b;
     border: 1px solid #444444;
-
     cursor: pointer;
     transition: 0.25s ease;
 }
@@ -1806,13 +1095,234 @@ button {
     border-color: var(--raiders-cyan);
 }
 
+/* ========================================
+   15. COLOR SNAPSHOTS
+========================================= */
+
+.snapshot-archive {
+    padding: 100px 0;
+    background: var(--raiders-black);
+    overflow: hidden;
+}
+
+.snapshot-heading {
+    text-align: left;
+    margin-bottom: 55px;
+    padding: 0 40px;
+}
+
+.snapshot-eyebrow {
+    display: block;
+    color: var(--raiders-orange);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.snapshot-heading h3 {
+    color: var(--raiders-white);
+    font-size: clamp(30px, 5vw, 48px);
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin: 0 0 15px;
+}
+
+.snapshot-heading h3 span {
+    color: var(--raiders-orange);
+}
+
+.snapshot-heading p {
+    color: #999999;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.snapshot-total {
+    display: inline-block;
+    margin-top: 18px;
+    color: var(--raiders-orange);
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+.snapshot-strip {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 20px 40px 35px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--raiders-orange) #111111;
+}
+
+.snapshot-strip::-webkit-scrollbar {
+    height: 10px;
+}
+
+.snapshot-strip::-webkit-scrollbar-track {
+    background: #111111;
+    border-radius: 10px;
+}
+
+.snapshot-strip::-webkit-scrollbar-thumb {
+    background: var(--raiders-orange);
+    border: 2px solid #111111;
+    border-radius: 10px;
+}
+
+.snapshot-strip::-webkit-scrollbar-thumb:hover {
+    background: #FF8738;
+}
+
+.snapshot-track {
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+    width: max-content;
+}
+
+.snapshot-frame {
+    width: 260px;
+    flex-shrink: 0;
+    padding: 12px 12px 42px;
+    background: #f8f7f3;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    transform: rotate(-1deg);
+    transition: transform 0.3s ease;
+}
+
+.snapshot-frame:nth-child(even) {
+    transform: rotate(1deg);
+}
+
+.snapshot-frame:hover {
+    transform: translateY(-8px) rotate(0deg);
+}
+
+.snapshot-frame img,
+.snapshot-frame video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    background: #222222;
+}
+
+.snapshot-frame span {
+    display: block;
+    margin-top: 15px;
+    color: #777777;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+/* ========================================
+   16. COLOR SNAPSHOTS LIGHTBOX
+========================================= */
+
+.snapshot-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.96);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.snapshot-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.snapshot-lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 35px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: white;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.snapshot-lightbox-close:hover {
+    color: var(--raiders-orange);
+    border-color: var(--raiders-orange);
+}
+
+.snapshot-lightbox-arrow {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    color: white;
+    background: transparent;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.snapshot-lightbox-arrow:hover {
+    color: var(--raiders-orange);
+    border-color: var(--raiders-orange);
+}
+
+.snapshot-lightbox-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: min(75vw, 1100px);
+    max-height: 85vh;
+    margin: 0 35px;
+}
+
+.snapshot-lightbox-media {
+    display: block;
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+}
+
+.snapshot-lightbox-media[hidden] {
+    display: none !important;
+}
+
+.snapshot-lightbox-counter {
+    margin-top: 22px;
+    color: var(--raiders-orange);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-align: center;
+}
 
 /* =========================================
-   15. FILM ARCHIVE MOBILE
+   17. ARCHIVE MOBILE
 ========================================= */
 
 @media (max-width: 650px) {
-
     .film-archive {
         margin-top: 65px;
         padding-top: 40px;
@@ -1852,6 +1362,7 @@ button {
 
     .film-frame {
         flex-basis: 78vw;
+        width: 78vw;
         padding: 8px;
     }
 
@@ -1883,246 +1394,36 @@ button {
         height: 38px;
     }
 
-}
-/* =========================================
-   FILM FRAME - UNIFORM IMAGE SIZE
-========================================= */
+    .snapshot-archive {
+        padding: 75px 0;
+    }
 
-.film-frame {
-    flex: 0 0 clamp(240px, 32vw, 390px);
-    width: clamp(240px, 32vw, 390px);
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-}
+    .snapshot-heading {
+        padding: 0 23px;
+        margin-bottom: 35px;
+    }
 
-.film-frame img {
-    width: 100%;
-    height: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    display: block;
-}
+    .snapshot-heading h3 {
+        font-size: 34px;
+        letter-spacing: 1px;
+    }
 
-/* ========================================
-   COLOR SNAPSHOTS
-========================================= */
+    .snapshot-heading p {
+        font-size: 9px;
+        line-height: 1.8;
+    }
 
-.snapshot-archive {
-    padding: 100px 0;
-    background: var(--raiders-black);
-    overflow: hidden;
-}
+    .snapshot-strip {
+        padding: 20px 23px 30px;
+    }
 
-.snapshot-heading {
-    text-align: center;
-    margin-bottom: 55px;
-    padding: 0 20px;
-}
+    .snapshot-track {
+        gap: 18px;
+    }
 
-.snapshot-eyebrow {
-    display: block;
-    color: var(--raiders-cyan);
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 3px;
-    margin-bottom: 15px;
-}
-
-.snapshot-heading h3 {
-    color: var(--raiders-white);
-    font-size: clamp(30px, 5vw, 48px);
-    font-weight: 900;
-    letter-spacing: 3px;
-    margin: 0 0 15px;
-}
-
-.snapshot-heading h3 span {
-    color: var(--raiders-cyan);
-}
-
-.snapshot-heading p {
-    color: #999;
-    font-size: 11px;
-    letter-spacing: 2px;
-}
-
-.snapshot-total {
-    display: inline-block;
-    margin-top: 18px;
-    color: var(--raiders-cyan);
-    font-size: 10px;
-    letter-spacing: 2px;
-    font-weight: 800;
-}
-
-.snapshot-strip {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 20px 40px 35px;
-}
-
-.snapshot-track {
-    display: flex;
-    align-items: flex-start;
-    gap: 28px;
-    width: max-content;
-}
-
-.snapshot-frame {
-    width: 260px;
-    flex-shrink: 0;
-    padding: 12px 12px 42px;
-    background: #f8f7f3;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
-    transform: rotate(-1deg);
-    transition: transform 0.3s ease;
-}
-
-.snapshot-frame:nth-child(even) {
-    transform: rotate(1deg);
-}
-
-.snapshot-frame:hover {
-    transform: translateY(-8px) rotate(0deg);
-}
-
-.snapshot-frame img,
-.snapshot-frame video {
-    display: block;
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    object-fit: cover;
-    background: #222;
-}
-
-.snapshot-frame span {
-    display: block;
-    margin-top: 15px;
-    color: #777;
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    text-align: center;
-}
-
-/* ========================================
-   COLOR SNAPSHOTS LIGHTBOX
-========================================= */
-
-.snapshot-lightbox {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 30px;
-    background: rgba(0, 0, 0, 0.96);
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
-    transition: opacity 0.3s ease,
-                visibility 0.3s ease;
-}
-
-.snapshot-lightbox.active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
-
-.snapshot-lightbox-close {
-    position: absolute;
-    top: 30px;
-    right: 35px;
-
-    width: 44px;
-    height: 44px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-
-    color: white;
-    background: transparent;
-
-    font-size: 20px;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.snapshot-lightbox-close:hover {
-    color: var(--raiders-cyan);
-    border-color: var(--raiders-cyan);
-}
-
-.snapshot-lightbox-arrow {
-    width: 48px;
-    height: 48px;
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 50%;
-
-    color: white;
-    background: transparent;
-
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.snapshot-lightbox-arrow:hover {
-    color: var(--raiders-cyan);
-    border-color: var(--raiders-cyan);
-}
-
-.snapshot-lightbox-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    width: min(75vw, 1100px);
-    max-height: 85vh;
-    margin: 0 35px;
-}
-
-.snapshot-lightbox-media {
-    display: block;
-
-    max-width: 100%;
-    max-height: 75vh;
-
-    object-fit: contain;
-}
-
-.snapshot-lightbox-counter {
-    margin-top: 22px;
-
-    color: var(--raiders-cyan);
-
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 3px;
-    text-align: center;
-}
-
-/* MOBILE */
-
-@media (max-width: 768px) {
+    .snapshot-frame {
+        width: 230px;
+    }
 
     .snapshot-lightbox {
         padding: 15px;
@@ -2148,143 +1449,15 @@ button {
         max-width: 100%;
         max-height: 65vh;
     }
+}
 
-}
-.snapshot-lightbox-media[hidden] {
-    display: none !important;
-}
 /* =========================================
-   DESKTOP FILM ARCHIVE WIDTH FIX
+   18. REDUCED MOTION - ARCHIVE
 ========================================= */
 
-@media (min-width: 651px) {
-
-    .film-archive {
-        width: 100%;
-        max-width: none;
-        min-width: 0;
-    }
-
-    .film-strip {
-        width: 100%;
-        max-width: none;
-    }
-
-}
-/* SPACE BETWEEN FILM AND SCROLLBAR */
-
-.film-strip {
-    padding-bottom: 12px;
-}
-/* =========================================
-   COLOR SNAPSHOTS - ORANGE SCROLLBAR
-========================================= */
-
-.snapshot-strip {
-    scrollbar-width: thin;
-    scrollbar-color: #F96611 #111111;
-}
-
-.snapshot-strip::-webkit-scrollbar {
-    height: 10px;
-}
-
-.snapshot-strip::-webkit-scrollbar-track {
-    background: #111111;
-    border-radius: 10px;
-}
-
-.snapshot-strip::-webkit-scrollbar-thumb {
-    background: #F96611;
-    border: 2px solid #111111;
-    border-radius: 10px;
-}
-
-.snapshot-strip::-webkit-scrollbar-thumb:hover {
-    background: #FF8738;
-}
-/* =========================================
-   MATCH FILM & SNAPSHOT WIDTH
-========================================= */
-
-.film-archive {
-    width: 100%;
-    max-width: 100%;
-}
-
-.film-strip {
-    width: 100%;
-    max-width: 100%;
-    padding-left: 40px;
-    padding-right: 40px;
-}
-
-.film-track {
-    min-width: 100%;
-}
-
-/* MOBILE */
-@media (max-width: 650px) {
-
-    .film-strip {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-}
-/* =========================================
-   COLOR SNAPSHOTS - RIGHT ALIGN & ORANGE
-========================================= */
-
-.snapshot-heading {
-    text-align: right;
-    padding-right: 40px;
-}
-
-.snapshot-eyebrow {
-    color: var(--raiders-orange);
-}
-
-.snapshot-heading h3 span {
-    color: var(--raiders-orange);
-}
-
-.snapshot-total {
-    color: var(--raiders-orange);
-}
-
-/* MOBILE */
-@media (max-width: 650px) {
-    .snapshot-heading {
-        padding-right: 23px;
-        padding-left: 23px;
-    }
-}
-/* =========================================
-   FILM ARCHIVE - FULL VIEWPORT WIDTH
-========================================= */
-
-.film-archive {
-    width: 100vw;
-    max-width: 100vw;
-    min-width: 0;
-
-    margin-left: calc(50% - 50vw);
-
-    box-sizing: border-box;
-}
-
-.film-strip {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
-/* MOBILE */
-@media (max-width: 650px) {
-    .film-archive {
-        width: 100vw;
-        max-width: 100vw;
-        margin-left: calc(50% - 50vw);
+@media (prefers-reduced-motion: reduce) {
+    .film-strip,
+    .snapshot-strip {
+        scroll-behavior: auto;
     }
 }
