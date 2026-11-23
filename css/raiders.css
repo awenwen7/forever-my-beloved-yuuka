@@ -1465,3 +1465,32 @@ button {
         scroll-behavior: auto;
     }
 }
+/* ========================================
+   ARCHIVE FADE UP ANIMATION
+======================================== */
+
+.film-archive,
+.snapshot-archive {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.film-archive.is-visible,
+.snapshot-archive.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Respect reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+    .film-archive,
+    .snapshot-archive {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
