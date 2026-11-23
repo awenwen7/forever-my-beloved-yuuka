@@ -1554,7 +1554,14 @@ button {
 
 .film-strip {
     position: relative;
+    display: block;
+
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    box-sizing: border-box;
+
     overflow-x: auto;
     overflow-y: hidden;
 
@@ -1583,7 +1590,7 @@ button {
 }
 
 .film-strip::-webkit-scrollbar {
-    height: 6px;
+    height: 10px;
 }
 
 .film-strip::-webkit-scrollbar-track {
@@ -1592,17 +1599,23 @@ button {
 
 .film-strip::-webkit-scrollbar-thumb {
     background: var(--raiders-cyan);
+    border: 2px solid #111111;
+    border-radius: 10px;
 }
 
 .film-track {
     display: flex;
+    flex-wrap: nowrap;
     align-items: stretch;
-    gap: 14px;
 
     width: max-content;
     min-width: 100%;
+    max-width: none;
 
+    gap: 14px;
     padding: 22px 20px;
+
+    box-sizing: border-box;
 
     cursor: grab;
     user-select: none;
@@ -2134,37 +2147,4 @@ button {
 }
 .snapshot-lightbox-media[hidden] {
     display: none !important;
-}
-/* =========================================
-   RESTORE BLACK & WHITE FILM SCROLLBAR
-========================================= */
-
-.film-strip {
-    overflow-x: scroll !important;
-    overflow-y: hidden !important;
-
-    scrollbar-width: auto;
-    scrollbar-color: var(--raiders-cyan) #111111;
-
-    scrollbar-gutter: stable;
-}
-
-.film-strip::-webkit-scrollbar {
-    height: 10px !important;
-    display: block !important;
-}
-
-.film-strip::-webkit-scrollbar-track {
-    background: #111111;
-    border-radius: 10px;
-}
-
-.film-strip::-webkit-scrollbar-thumb {
-    background: var(--raiders-cyan);
-    border: 2px solid #111111;
-    border-radius: 10px;
-}
-
-.film-strip::-webkit-scrollbar-thumb:hover {
-    background: var(--raiders-green);
 }
