@@ -1884,3 +1884,106 @@ button {
     object-fit: cover;
     display: block;
 }
+
+/* ========================================
+   COLOR SNAPSHOTS
+========================================= */
+
+.snapshot-archive {
+    padding: 100px 0;
+    background: var(--raiders-black);
+    overflow: hidden;
+}
+
+.snapshot-heading {
+    text-align: center;
+    margin-bottom: 55px;
+    padding: 0 20px;
+}
+
+.snapshot-eyebrow {
+    display: block;
+    color: var(--raiders-cyan);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.snapshot-heading h3 {
+    color: var(--raiders-white);
+    font-size: clamp(30px, 5vw, 48px);
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin: 0 0 15px;
+}
+
+.snapshot-heading h3 span {
+    color: var(--raiders-cyan);
+}
+
+.snapshot-heading p {
+    color: #999;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.snapshot-total {
+    display: inline-block;
+    margin-top: 18px;
+    color: var(--raiders-cyan);
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+.snapshot-strip {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 20px 40px 35px;
+}
+
+.snapshot-track {
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+    width: max-content;
+}
+
+.snapshot-frame {
+    width: 260px;
+    flex-shrink: 0;
+    padding: 12px 12px 42px;
+    background: #f8f7f3;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    transform: rotate(-1deg);
+    transition: transform 0.3s ease;
+}
+
+.snapshot-frame:nth-child(even) {
+    transform: rotate(1deg);
+}
+
+.snapshot-frame:hover {
+    transform: translateY(-8px) rotate(0deg);
+}
+
+.snapshot-frame img,
+.snapshot-frame video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    background: #222;
+}
+
+.snapshot-frame span {
+    display: block;
+    margin-top: 15px;
+    color: #777;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-align: center;
+}
