@@ -1101,7 +1101,10 @@ button {
 ========================================= */
 
 .snapshot-archive {
-    padding: 100px 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 100px 8%;
     background: var(--raiders-black);
     overflow: hidden;
 }
