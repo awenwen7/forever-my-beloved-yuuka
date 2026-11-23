@@ -2140,14 +2140,18 @@ button {
 ========================================= */
 
 .film-strip {
-    scrollbar-width: thin;
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+
+    scrollbar-width: auto;
     scrollbar-color: var(--raiders-cyan) #111111;
+
+    scrollbar-gutter: stable;
 }
 
 .film-strip::-webkit-scrollbar {
-    display: block;
-    width: auto;
-    height: 6px;
+    height: 10px !important;
+    display: block !important;
 }
 
 .film-strip::-webkit-scrollbar-track {
@@ -2157,6 +2161,7 @@ button {
 
 .film-strip::-webkit-scrollbar-thumb {
     background: var(--raiders-cyan);
+    border: 2px solid #111111;
     border-radius: 10px;
 }
 
