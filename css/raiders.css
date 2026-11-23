@@ -2132,3 +2132,6 @@ button {
     }
 
 }
+.snapshot-lightbox-media[hidden] {
+    display: none !important;
+}
