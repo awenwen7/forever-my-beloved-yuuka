@@ -1494,3 +1494,464 @@ button {
         transition: none;
     }
 }
+
+/* =========================================
+   19. VICTORY ALBUM WALL
+========================================= */
+
+.victory-card {
+    grid-column: span 2;
+    min-width: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    overflow: visible;
+}
+
+.victory-card:hover {
+    transform: none;
+    border-color: transparent;
+}
+
+.victory-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.victory-eyebrow {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--raiders-orange);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.victory-heading h3 {
+    color: var(--raiders-white);
+    font-size: clamp(38px, 5vw, 65px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -3px;
+}
+
+.victory-heading h3 span {
+    color: var(--raiders-orange);
+}
+
+.victory-total {
+    color: #888;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+    padding-bottom: 5px;
+}
+
+.victory-album-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-auto-rows: clamp(105px, 11vw, 155px);
+    gap: 12px;
+}
+
+.victory-album {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    min-width: 0;
+    padding: 22px;
+    overflow: hidden;
+    color: #17110d;
+    background: var(--raiders-orange);
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.35s ease, background 0.35s ease;
+}
+
+.victory-album::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    right: -65px;
+    top: -80px;
+    border: 22px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    transition: transform 0.5s ease;
+}
+
+.victory-album::after {
+    content: "";
+    position: absolute;
+    right: 20px;
+    bottom: 18px;
+    width: 45px;
+    height: 45px;
+    background: rgba(20,20,20,0.10);
+    transform: rotate(45deg);
+}
+
+.victory-album:hover {
+    transform: translateY(-5px);
+    background: #ff812f;
+}
+
+.victory-album:hover::before {
+    transform: scale(1.4) rotate(25deg);
+}
+
+.victory-album:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 4px;
+}
+
+.album-number {
+    position: relative;
+    z-index: 1;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.album-name {
+    position: relative;
+    z-index: 1;
+    font-size: clamp(15px, 2vw, 24px);
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.album-count {
+    position: relative;
+    z-index: 1;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+/* ALBUM COLORS */
+
+.album-02 { background: #ff7a26; }
+.album-03 { background: #f45c0b; }
+.album-04 { background: #ff8a38; }
+.album-05 { background: #e9560d; }
+.album-06 { background: #f9731b; }
+
+/* ALBUM LAYOUT */
+
+.album-01 {
+    grid-column: 1 / 7;
+    grid-row: span 2;
+}
+
+.album-02 {
+    grid-column: 7 / 13;
+}
+
+.album-03 {
+    grid-column: 7 / 10;
+}
+
+.album-04 {
+    grid-column: 10 / 13;
+}
+
+.album-05 {
+    grid-column: 1 / 5;
+}
+
+.album-06 {
+    grid-column: 5 / 13;
+}
+
+
+/* =========================================
+   20. VICTORY ALBUM LIGHTBOX
+========================================= */
+
+.victory-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 55px 6%;
+    background: rgba(8, 8, 8, 0.97);
+    backdrop-filter: blur(14px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.victory-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.victory-lightbox-close {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    color: white;
+    background: #222;
+    border: 1px solid #444;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.victory-lightbox-close:hover {
+    color: #111;
+    background: var(--raiders-orange);
+    border-color: var(--raiders-orange);
+}
+
+.victory-lightbox-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 30px;
+}
+
+.victory-lightbox-header > span {
+    color: var(--raiders-orange);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.victory-lightbox-header button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    color: #aaa;
+    background: #1b1b1b;
+    border: 1px solid #333;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.victory-lightbox-header button:hover {
+    color: var(--raiders-orange);
+    border-color: var(--raiders-orange);
+}
+
+.victory-lightbox-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.victory-photo-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(100%, 1000px);
+    min-width: 0;
+}
+
+.victory-photo-stage img {
+    display: block;
+    max-width: 100%;
+    max-height: 70vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border: 1px solid #333;
+    background: #111;
+}
+
+.victory-photo-stage > span {
+    margin-top: 20px;
+    color: var(--raiders-orange);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.victory-photo-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    color: var(--raiders-orange);
+    background: #1b1b1b;
+    border: 1px solid #444;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.victory-photo-arrow:hover {
+    color: #111;
+    background: var(--raiders-orange);
+    border-color: var(--raiders-orange);
+}
+
+.victory-lightbox-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 30px auto 0;
+    color: #666;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   21. VICTORY MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+
+    .victory-card {
+        grid-column: 1 / -1;
+    }
+
+    .victory-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .victory-heading h3 {
+        font-size: 45px;
+    }
+
+    .victory-album-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        grid-auto-rows: 110px;
+        gap: 8px;
+    }
+
+    .victory-album {
+        padding: 14px;
+    }
+
+    .album-01 {
+        grid-column: 1 / 7;
+        grid-row: span 2;
+    }
+
+    .album-02 {
+        grid-column: 1 / 7;
+    }
+
+    .album-03 {
+        grid-column: 1 / 4;
+    }
+
+    .album-04 {
+        grid-column: 4 / 7;
+    }
+
+    .album-05 {
+        grid-column: 1 / 4;
+    }
+
+    .album-06 {
+        grid-column: 4 / 7;
+    }
+
+    .album-number {
+        font-size: 30px;
+    }
+
+    .album-name {
+        font-size: 15px;
+    }
+
+    .album-count {
+        font-size: 8px;
+    }
+
+    .victory-lightbox {
+        padding: 75px 12px 25px;
+    }
+
+    .victory-lightbox-close {
+        top: 12px;
+        right: 12px;
+        width: 38px;
+        height: 38px;
+    }
+
+    .victory-lightbox-header {
+        gap: 6px;
+        margin-bottom: 20px;
+    }
+
+    .victory-lightbox-header button {
+        padding: 9px 7px;
+        gap: 5px;
+        font-size: 7px;
+        letter-spacing: 0;
+    }
+
+    .victory-lightbox-header > span {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    .victory-lightbox-content {
+        gap: 7px;
+    }
+
+    .victory-photo-arrow {
+        flex: 0 0 32px;
+        width: 32px;
+        height: 32px;
+        font-size: 11px;
+    }
+
+    .victory-photo-stage img {
+        max-height: 65vh;
+    }
+
+    .victory-lightbox-footer {
+        margin-top: 22px;
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+}
+
+
+/* =========================================
+   22. REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .victory-album,
+    .victory-lightbox {
+        transition: none;
+    }
+}
