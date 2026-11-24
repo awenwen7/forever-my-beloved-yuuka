@@ -2043,26 +2043,3 @@ button {
 .album-04 { --album-cover: url("../images/raiders/10.jpg"); }
 .album-05 { --album-cover: url("../images/raiders/11.jpg"); }
 .album-06 { --album-cover: url("../images/raiders/12.jpg"); }
-/* TEMPORARY STYLE RECOVERY TEST */
-
-body {
-    background-color: #0e0e0e;
-    color: #f8f8f8;
-    user-select: text;
-    -webkit-user-select: text;
-}
-
-.section-heading h2,
-.victory-heading h3,
-.film-heading h3,
-.snapshot-heading h3 {
-    color: #f8f8f8;
-}
-
-.section-heading h2 span {
-    color: #1ddfce;
-}
-
-.victory-heading h3 span {
-    color: #f96611;
-}
