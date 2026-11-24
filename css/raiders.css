@@ -1,4 +1,4 @@
-/* =========================================
+ =========================================
    SPLATOON RAIDERS
    MAIN STYLESHEET
 ========================================= */
@@ -2043,3 +2043,9 @@ button {
 .album-04 { --album-cover: url("../images/raiders/10.jpg"); }
 .album-05 { --album-cover: url("../images/raiders/11.jpg"); }
 .album-06 { --album-cover: url("../images/raiders/12.jpg"); }
+/* OUR MEMORIES DIVIDER */
+
+.gallery-section > .section-heading {
+    padding-bottom: 25px;
+    border-bottom: 1px solid var(--raiders-border);
+}
