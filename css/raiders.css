@@ -1955,3 +1955,90 @@ button {
         transition: none;
     }
 }
+
+/* =========================================
+   VICTORY ALBUM PHOTO COVERS
+========================================= */
+
+.victory-album {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ALBUM 01 */
+.album-01 {
+    background-image:
+        linear-gradient(
+            rgba(249, 102, 17, 0.52),
+            rgba(249, 102, 17, 0.68)
+        ),
+        url("../images/raiders/01.jpg");
+}
+
+/* ALBUM 02 */
+.album-02 {
+    background-image:
+        linear-gradient(
+            rgba(255, 122, 38, 0.52),
+            rgba(255, 122, 38, 0.68)
+        ),
+        url("../images/raiders/05.jpg");
+}
+
+/* ALBUM 03 */
+.album-03 {
+    background-image:
+        linear-gradient(
+            rgba(244, 92, 11, 0.52),
+            rgba(244, 92, 11, 0.68)
+        ),
+        url("../images/raiders/08.jpg");
+}
+
+/* ALBUM 04 */
+.album-04 {
+    background-image:
+        linear-gradient(
+            rgba(255, 138, 56, 0.52),
+            rgba(255, 138, 56, 0.68)
+        ),
+        url("../images/raiders/10.jpg");
+}
+
+/* ALBUM 05 */
+.album-05 {
+    background-image:
+        linear-gradient(
+            rgba(233, 86, 13, 0.52),
+            rgba(233, 86, 13, 0.68)
+        ),
+        url("../images/raiders/11.jpg");
+}
+
+/* ALBUM 06 */
+.album-06 {
+    background-image:
+        linear-gradient(
+            rgba(249, 115, 27, 0.52),
+            rgba(249, 115, 27, 0.68)
+        ),
+        url("../images/raiders/12.jpg");
+}
+
+/* KEEP IMAGE ON HOVER */
+.victory-album:hover {
+    background-image:
+        linear-gradient(
+            rgba(255, 129, 47, 0.42),
+            rgba(255, 129, 47, 0.62)
+        ),
+        var(--album-cover);
+}
+
+.album-01 { --album-cover: url("../images/raiders/01.jpg"); }
+.album-02 { --album-cover: url("../images/raiders/05.jpg"); }
+.album-03 { --album-cover: url("../images/raiders/08.jpg"); }
+.album-04 { --album-cover: url("../images/raiders/10.jpg"); }
+.album-05 { --album-cover: url("../images/raiders/11.jpg"); }
+.album-06 { --album-cover: url("../images/raiders/12.jpg"); }
