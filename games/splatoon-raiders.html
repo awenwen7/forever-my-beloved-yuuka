@@ -532,60 +532,134 @@
 </section>
 
 
-        <!-- ========================================
-             03. OUR GAME MEMORIES
-        ========================================= -->
 
-        <section class="content-section gallery-section" id="game-memories">
+<!-- ========================================
+     03. OUR GAME MEMORIES
+========================================= -->
 
-            <div class="section-heading">
+<section class="content-section gallery-section" id="game-memories">
 
-                <span class="section-number">02 / OUR MEMORIES</span>
+    <div class="section-heading">
 
-                <h2>OUR GAME MEMORIES<span>.</span></h2>
+        <span class="section-number">02 / OUR MEMORIES</span>
 
-                <p>
-                    EVERY GAME, EVERY VICTORY, EVERY MOMENT TOGETHER.
-                </p>
+        <h2>OUR GAME MEMORIES<span>.</span></h2>
 
-            </div>
+        <p>
+            EVERY GAME, EVERY VICTORY, EVERY MOMENT TOGETHER.
+        </p>
 
-            <div class="gallery-grid">
+    </div>
 
-                <!-- VICTORY -->
+    <div class="gallery-grid">
 
-                <article class="gallery-card">
+        <!-- VICTORY -->
 
-                    <div class="gallery-placeholder">
+        <article class="gallery-card victory-card">
 
-                        <i class="fa-solid fa-trophy"></i>
+            <div class="victory-heading">
 
-                        <span>VICTORY</span>
+                <div>
+                    <span class="victory-eyebrow">
+                        OUR GAME ARCHIVE / 01
+                    </span>
 
-                    </div>
+                    <h3>VICTORY<span>!</span></h3>
+                </div>
 
-                </article>
-
-
-                <!-- PLAY LOG -->
-
-                <article class="gallery-card">
-
-                    <div class="gallery-placeholder">
-
-                        <i class="fa-solid fa-gamepad"></i>
-
-                        <span>PLAY LOG</span>
-
-                    </div>
-
-                </article>
+                <span class="victory-total">
+                    06 ALBUMS · 12 PHOTOS
+                </span>
 
             </div>
 
-        </section>
 
-    </main>
+            <div class="victory-album-grid">
+
+                <button class="victory-album album-01"
+                    type="button" data-album="0">
+
+                    <span class="album-number">01</span>
+                    <span class="album-name">BATTLES</span>
+                    <span class="album-count">04 PHOTOS ↗</span>
+
+                </button>
+
+
+                <button class="victory-album album-02"
+                    type="button" data-album="1">
+
+                    <span class="album-number">02</span>
+                    <span class="album-name">BATTLES</span>
+                    <span class="album-count">03 PHOTOS ↗</span>
+
+                </button>
+
+
+                <button class="victory-album album-03"
+                    type="button" data-album="2">
+
+                    <span class="album-number">03</span>
+                    <span class="album-name">BATTLES</span>
+                    <span class="album-count">02 PHOTOS ↗</span>
+
+                </button>
+
+
+                <button class="victory-album album-04"
+                    type="button" data-album="3">
+
+                    <span class="album-number">04</span>
+                    <span class="album-name">BATTLES</span>
+                    <span class="album-count">01 PHOTO ↗</span>
+
+                </button>
+
+
+                <button class="victory-album album-05"
+                    type="button" data-album="4">
+
+                    <span class="album-number">05</span>
+                    <span class="album-name">BATTLES</span>
+                    <span class="album-count">01 PHOTO ↗</span>
+
+                </button>
+
+
+                <button class="victory-album album-06"
+                    type="button" data-album="5">
+
+                    <span class="album-number">06</span>
+                    <span class="album-name">BATTLES</span>
+                    <span class="album-count">01 PHOTO ↗</span>
+
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- PLAY LOG -->
+
+        <article class="gallery-card">
+
+            <div class="gallery-placeholder">
+
+                <i class="fa-solid fa-gamepad"></i>
+
+                <span>PLAY LOG</span>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+</main>
+
 
 
     <!-- ========================================
@@ -687,6 +761,78 @@
     </button>
 
 </div>
+<!-- ========================================
+     VICTORY ALBUM LIGHTBOX
+========================================= -->
+
+<div class="victory-lightbox" id="victoryLightbox"
+    aria-hidden="true">
+
+    <button class="victory-lightbox-close"
+        id="victoryLightboxClose"
+        type="button" aria-label="Close album">
+
+        <i class="fa-solid fa-xmark"></i>
+
+    </button>
+
+    <div class="victory-lightbox-header">
+
+        <button id="victoryPrevAlbum" type="button">
+            <i class="fa-solid fa-chevron-left"></i>
+            PREVIOUS ALBUM
+        </button>
+
+        <span id="victoryAlbumTitle">01 / BATTLES</span>
+
+        <button id="victoryNextAlbum" type="button">
+            NEXT ALBUM
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+    </div>
+
+    <div class="victory-lightbox-content">
+
+        <button class="victory-photo-arrow"
+            id="victoryPhotoPrev"
+            type="button" aria-label="Previous photo">
+
+            <i class="fa-solid fa-chevron-left"></i>
+
+        </button>
+
+        <div class="victory-photo-stage">
+
+            <img id="victoryLightboxImage"
+                src=""
+                alt="Victory memory">
+
+            <span id="victoryPhotoCounter">
+                PHOTO 01 / 04
+            </span>
+
+        </div>
+
+        <button class="victory-photo-arrow"
+            id="victoryPhotoNext"
+            type="button" aria-label="Next photo">
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </button>
+
+    </div>
+
+    <div class="victory-lightbox-footer">
+
+        <span>WEN & YUUKA ♡</span>
+
+        <span>EVERY MATCH HAS A STORY.</span>
+
+    </div>
+
+</div>
 
     <!-- ========================================
          FOOTER
@@ -709,7 +855,7 @@
     <!-- JavaScript -->
     <script src="../js/raiders.js"></script>
     <script src="../js/navigation.js"></script>
-
+    
 </body>
 
 </html>
