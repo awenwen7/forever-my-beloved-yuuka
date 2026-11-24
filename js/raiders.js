@@ -738,3 +738,249 @@ const archiveObserver = new IntersectionObserver((entries, observer) => {
 archiveSections.forEach(section => {
     archiveObserver.observe(section);
 });
+
+/* =========================================
+   9. VICTORY ALBUM LIGHTBOX
+========================================= */
+
+(() => {
+
+    const albumButtons = document.querySelectorAll(".victory-album");
+
+    const lightbox = document.getElementById("victoryLightbox");
+    const closeButton = document.getElementById("victoryLightboxClose");
+
+    const image = document.getElementById("victoryLightboxImage");
+    const albumTitle = document.getElementById("victoryAlbumTitle");
+    const photoCounter = document.getElementById("victoryPhotoCounter");
+
+    const prevPhotoButton = document.getElementById("victoryPhotoPrev");
+    const nextPhotoButton = document.getElementById("victoryPhotoNext");
+
+    const prevAlbumButton = document.getElementById("victoryPrevAlbum");
+    const nextAlbumButton = document.getElementById("victoryNextAlbum");
+
+    if (
+        !lightbox ||
+        !closeButton ||
+        !image ||
+        !albumTitle ||
+        !photoCounter ||
+        !prevPhotoButton ||
+        !nextPhotoButton ||
+        !prevAlbumButton ||
+        !nextAlbumButton
+    ) {
+        return;
+    }
+
+    /* ALBUM DATA */
+
+    const albums = [
+        {
+            title: "BATTLES",
+            photos: [
+                "../images/raiders/01.jpg",
+                "../images/raiders/02.jpg",
+                "../images/raiders/03.jpg",
+                "../images/raiders/04.jpg"
+            ]
+        },
+        {
+            title: "BATTLES",
+            photos: [
+                "../images/raiders/05.jpg",
+                "../images/raiders/06.jpg",
+                "../images/raiders/07.jpg"
+            ]
+        },
+        {
+            title: "BATTLES",
+            photos: [
+                "../images/raiders/08.jpg",
+                "../images/raiders/09.jpg"
+            ]
+        },
+        {
+            title: "BATTLES",
+            photos: [
+                "../images/raiders/10.jpg"
+            ]
+        },
+        {
+            title: "BATTLES",
+            photos: [
+                "../images/raiders/11.jpg"
+            ]
+        },
+        {
+            title: "BATTLES",
+            photos: [
+                "../images/raiders/12.jpg"
+            ]
+        }
+    ];
+
+    let currentAlbum = 0;
+    let currentPhoto = 0;
+
+
+    /* UPDATE LIGHTBOX */
+
+    function updateLightbox() {
+
+        const album = albums[currentAlbum];
+
+        image.src = album.photos[currentPhoto];
+
+        image.alt = `Victory memory ${currentAlbum + 1}-${currentPhoto + 1}`;
+
+        albumTitle.textContent =
+            `${String(currentAlbum + 1).padStart(2, "0")} / ${album.title}`;
+
+        photoCounter.textContent =
+            `PHOTO ${String(currentPhoto + 1).padStart(2, "0")} / ${String(album.photos.length).padStart(2, "0")}`;
+
+        prevPhotoButton.disabled = album.photos.length <= 1;
+        nextPhotoButton.disabled = album.photos.length <= 1;
+
+        prevPhotoButton.style.opacity = album.photos.length <= 1 ? "0.3" : "1";
+        nextPhotoButton.style.opacity = album.photos.length <= 1 ? "0.3" : "1";
+
+        prevPhotoButton.style.cursor = album.photos.length <= 1 ? "default" : "pointer";
+        nextPhotoButton.style.cursor = album.photos.length <= 1 ? "default" : "pointer";
+    }
+
+
+    /* OPEN ALBUM */
+
+    function openAlbum(index) {
+
+        currentAlbum = index;
+        currentPhoto = 0;
+
+        updateLightbox();
+
+        lightbox.classList.add("active");
+        lightbox.setAttribute("aria-hidden", "false");
+
+        document.body.style.overflow = "hidden";
+    }
+
+
+    /* CLOSE ALBUM */
+
+    function closeAlbum() {
+
+        lightbox.classList.remove("active");
+        lightbox.setAttribute("aria-hidden", "true");
+
+        document.body.style.overflow = "";
+
+        image.src = "";
+    }
+
+
+    /* OPEN ALBUM BUTTONS */
+
+    albumButtons.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const index = Number(button.dataset.album);
+
+            if (Number.isInteger(index) && albums[index]) {
+                openAlbum(index);
+            }
+
+        });
+
+    });
+
+
+    /* PREVIOUS PHOTO */
+
+    prevPhotoButton.addEventListener("click", () => {
+
+        const photos = albums[currentAlbum].photos;
+
+        if (photos.length <= 1) return;
+
+        currentPhoto =
+            (currentPhoto - 1 + photos.length) % photos.length;
+
+        updateLightbox();
+
+    });
+
+
+    /* NEXT PHOTO */
+
+    nextPhotoButton.addEventListener("click", () => {
+
+        const photos = albums[currentAlbum].photos;
+
+        if (photos.length <= 1) return;
+
+        currentPhoto =
+            (currentPhoto + 1) % photos.length;
+
+        updateLightbox();
+
+    });
+
+
+    /* PREVIOUS ALBUM */
+
+    prevAlbumButton.addEventListener("click", () => {
+
+        currentAlbum =
+            (currentAlbum - 1 + albums.length) % albums.length;
+
+        currentPhoto = 0;
+
+        updateLightbox();
+
+    });
+
+
+    /* NEXT ALBUM */
+
+    nextAlbumButton.addEventListener("click", () => {
+
+        currentAlbum =
+            (currentAlbum + 1) % albums.length;
+
+        currentPhoto = 0;
+
+        updateLightbox();
+
+    });
+
+
+    /* CLOSE BUTTON */
+
+    closeButton.addEventListener("click", closeAlbum);
+
+
+    /* KEYBOARD CONTROLS */
+
+    document.addEventListener("keydown", event => {
+
+        if (!lightbox.classList.contains("active")) return;
+
+        if (event.key === "Escape") {
+            closeAlbum();
+        }
+
+        if (event.key === "ArrowLeft") {
+            prevPhotoButton.click();
+        }
+
+        if (event.key === "ArrowRight") {
+            nextPhotoButton.click();
+        }
+
+    });
+
+})();
