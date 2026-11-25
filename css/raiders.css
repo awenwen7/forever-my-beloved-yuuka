@@ -2074,3 +2074,14 @@ button {
 .play-log-section {
     margin-top: 90px;
 }
+/* =========================================
+   PLAY LOG HEADING
+========================================= */
+
+.play-log-section .section-kicker {
+    color: var(--raiders-cyan);
+}
+
+.play-log-section .section-heading h2 {
+    color: var(--raiders-white);
+}
