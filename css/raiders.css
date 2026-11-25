@@ -2067,3 +2067,10 @@ button {
     grid-column: 1 / -1;
     width: 100%;
 }
+/* =========================================
+   PLAY LOG SECTION
+========================================= */
+
+.play-log-section {
+    margin-top: 90px;
+}
