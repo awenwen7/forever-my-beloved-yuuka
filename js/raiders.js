@@ -984,3 +984,160 @@ archiveSections.forEach(section => {
     });
 
 })();
+
+/* =========================================
+   PLAY LOG LIGHTBOX
+========================================= */
+
+const playLogItems = Array.from(
+    document.querySelectorAll('.play-log-frame')
+);
+
+const playLogLightbox = document.getElementById('playLogLightbox');
+const playLogImage = document.getElementById('playLogImage');
+const playLogVideo = document.getElementById('playLogVideo');
+const playLogCounter = document.getElementById('playLogCounter');
+
+const playLogClose = document.getElementById('playLogClose');
+const playLogPrev = document.getElementById('playLogPrev');
+const playLogNext = document.getElementById('playLogNext');
+
+let currentPlayLogIndex = 0;
+
+function showPlayLogItem(index) {
+
+    if (!playLogItems.length) return;
+
+    currentPlayLogIndex =
+        (index + playLogItems.length) % playLogItems.length;
+
+    const item = playLogItems[currentPlayLogIndex];
+
+    const image = item.querySelector('img');
+    const video = item.querySelector('video');
+
+    playLogVideo.pause();
+    playLogVideo.removeAttribute('src');
+    playLogVideo.load();
+
+    playLogImage.style.display = 'none';
+    playLogVideo.style.display = 'none';
+
+    if (image) {
+
+        playLogImage.src = image.src;
+        playLogImage.alt = image.alt;
+        playLogImage.style.display = 'block';
+
+    }
+
+    if (video) {
+
+        playLogVideo.src = video.src;
+        playLogVideo.style.display = 'block';
+
+        playLogVideo.currentTime = 0;
+
+        playLogVideo.play().catch(() => {});
+
+    }
+
+    playLogCounter.textContent =
+        `FRAME ${String(currentPlayLogIndex + 1).padStart(3, '0')} / ${String(playLogItems.length).padStart(3, '0')}`;
+
+}
+
+function openPlayLog(index) {
+
+    showPlayLogItem(index);
+
+    playLogLightbox.classList.add('is-open');
+
+    playLogLightbox.setAttribute('aria-hidden', 'false');
+
+    document.body.style.overflow = 'hidden';
+
+}
+
+function closePlayLog() {
+
+    playLogLightbox.classList.remove('is-open');
+
+    playLogLightbox.setAttribute('aria-hidden', 'true');
+
+    playLogVideo.pause();
+    playLogVideo.removeAttribute('src');
+    playLogVideo.load();
+
+    playLogImage.removeAttribute('src');
+
+    document.body.style.overflow = '';
+
+}
+
+/* CLICK PHOTO / VIDEO */
+
+playLogItems.forEach((item, index) => {
+
+    const image = item.querySelector('img');
+    const playButton = item.querySelector('.play-log-play');
+
+    if (image) {
+        image.addEventListener('click', () => {
+            openPlayLog(index);
+        });
+    }
+
+    if (playButton) {
+        playButton.addEventListener('click', () => {
+            openPlayLog(index);
+        });
+    }
+
+});
+
+/* CLOSE */
+
+playLogClose.addEventListener('click', closePlayLog);
+
+/* PREVIOUS */
+
+playLogPrev.addEventListener('click', () => {
+    showPlayLogItem(currentPlayLogIndex - 1);
+});
+
+/* NEXT */
+
+playLogNext.addEventListener('click', () => {
+    showPlayLogItem(currentPlayLogIndex + 1);
+});
+
+/* CLICK BACKGROUND TO CLOSE */
+
+playLogLightbox.addEventListener('click', (event) => {
+
+    if (event.target === playLogLightbox) {
+        closePlayLog();
+    }
+
+});
+
+/* KEYBOARD */
+
+document.addEventListener('keydown', (event) => {
+
+    if (!playLogLightbox.classList.contains('is-open')) return;
+
+    if (event.key === 'Escape') {
+        closePlayLog();
+    }
+
+    if (event.key === 'ArrowLeft') {
+        showPlayLogItem(currentPlayLogIndex - 1);
+    }
+
+    if (event.key === 'ArrowRight') {
+        showPlayLogItem(currentPlayLogIndex + 1);
+    }
+
+});
