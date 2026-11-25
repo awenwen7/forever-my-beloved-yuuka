@@ -2074,3 +2074,8 @@ button {
 .play-log-section {
     margin-top: 90px;
 }
+/* PLAY LOG - EYEBROW COLOR */
+
+.play-log-section .victory-eyebrow {
+    color: var(--raiders-cyan);
+}
