@@ -2084,3 +2084,8 @@ button {
 .play-log-section .victory-heading h3 span {
     color: var(--raiders-cyan);
 }
+/* BATTLES - PHOTO POSITION */
+
+.album-02 {
+    background-position: center 40%;
+}
