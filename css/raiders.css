@@ -2043,3 +2043,27 @@ button {
 .album-04 { --album-cover: url("../images/raiders/10.jpg"); }
 .album-05 { --album-cover: url("../images/raiders/11.jpg"); }
 .album-06 { --album-cover: url("../images/raiders/12.jpg"); }
+
+/* =========================================
+   23. FULL WIDTH GAME ARCHIVE
+========================================= */
+
+/* VICTORY & PLAY LOG 外層獨立佔滿寬度 */
+
+.gallery-section > .gallery-grid {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+/* VICTORY 外層 */
+
+.gallery-section > .gallery-grid > .victory-card {
+    grid-column: 1 / -1;
+    width: 100%;
+}
+
+/* PLAY LOG 外層 */
+
+.gallery-section > .gallery-grid > .play-log-card {
+    grid-column: 1 / -1;
+    width: 100%;
+}
