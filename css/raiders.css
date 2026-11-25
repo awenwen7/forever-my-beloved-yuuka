@@ -1533,7 +1533,7 @@ button {
 
 .victory-heading h3 {
     color: var(--raiders-white);
-    font-size: clamp(38px, 5vw, 65px);
+    font-size: clamp(30px, 5vw, 48px);
     font-weight: 900;
     line-height: 1;
     letter-spacing: -3px;
@@ -1845,7 +1845,7 @@ button {
     }
 
     .victory-heading h3 {
-        font-size: 45px;
+        font-size: 34px;
     }
 
     .victory-album-grid {
