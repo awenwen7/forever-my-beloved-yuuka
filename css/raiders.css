@@ -2089,3 +2089,320 @@ button {
 .album-02 {
     background-position: center 20%;
 }
+
+/* =========================================
+   PLAY LOG
+   FILM ARCHIVE
+========================================= */
+
+.play-log-section {
+    width: 100%;
+    margin-top: 90px;
+}
+
+.play-log-description {
+    margin-top: 13px;
+    color: #888888;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    line-height: 1.8;
+}
+
+.play-log-total {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 7px 12px;
+    color: var(--raiders-cyan);
+    background: rgba(29, 223, 206, 0.08);
+    border: 1px solid rgba(29, 223, 206, 0.25);
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+/* FILM STRIP */
+
+.play-log-strip {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 12px;
+
+    background:
+        radial-gradient(ellipse at center, #141414 0 45%, transparent 50%) 0 0 / 28px 14px repeat-x,
+        radial-gradient(ellipse at center, #141414 0 45%, transparent 50%) 0 100% / 28px 14px repeat-x,
+        #080808;
+
+    border: 1px solid #292929;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--raiders-cyan) #111111;
+
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.play-log-strip::-webkit-scrollbar {
+    height: 10px;
+}
+
+.play-log-strip::-webkit-scrollbar-track {
+    background: #111111;
+}
+
+.play-log-strip::-webkit-scrollbar-thumb {
+    background: var(--raiders-cyan);
+    border: 2px solid #111111;
+    border-radius: 10px;
+}
+
+/* FILM TRACK */
+
+.play-log-track {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    width: max-content;
+    min-width: 100%;
+    max-width: none;
+    gap: 14px;
+    padding: 22px 20px;
+    box-sizing: border-box;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.play-log-track:active {
+    cursor: grabbing;
+}
+
+/* FILM FRAME */
+
+.play-log-frame {
+    position: relative;
+    flex: 0 0 clamp(240px, 32vw, 390px);
+    width: clamp(240px, 32vw, 390px);
+    aspect-ratio: 4 / 3;
+    min-width: 0;
+    padding: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    background: #111111;
+    border: 1px solid #303030;
+
+    transition:
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.play-log-frame:hover {
+    border-color: var(--raiders-cyan);
+    transform: translateY(-3px);
+}
+
+.play-log-frame img,
+.play-log-frame video {
+    display: block;
+    width: 100%;
+    height: calc(100% - 25px);
+    object-fit: cover;
+    object-position: center;
+    background: #050505;
+}
+
+.play-log-frame img {
+    cursor: zoom-in;
+    -webkit-user-drag: none;
+}
+
+.play-log-frame video {
+    pointer-events: none;
+}
+
+.play-log-frame span {
+    display: block;
+    padding-top: 10px;
+    color: #999999;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+/* VIDEO PLAY BUTTON */
+
+.play-log-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+
+    transform: translate(-50%, -50%);
+
+    color: var(--raiders-cyan);
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--raiders-cyan);
+    border-radius: 50%;
+
+    font-size: 17px;
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.play-log-play:hover {
+    color: #000000;
+    background: var(--raiders-cyan);
+}
+
+/* =========================================
+   PLAY LOG LIGHTBOX
+========================================= */
+
+.play-log-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 25px;
+    padding: 50px 35px;
+    box-sizing: border-box;
+
+    background: rgba(0, 0, 0, 0.96);
+    backdrop-filter: blur(12px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.play-log-lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.play-log-lightbox-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 85%;
+    max-height: 85vh;
+}
+
+.play-log-lightbox-content img,
+.play-log-lightbox-content video {
+    display: none;
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+}
+
+#playLogCounter {
+    margin-top: 18px;
+    color: var(--raiders-cyan);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.play-log-close {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+
+    color: #ffffff;
+    background: none;
+    border: none;
+
+    font-size: 38px;
+    cursor: pointer;
+}
+
+.play-log-arrow {
+    flex-shrink: 0;
+
+    width: 45px;
+    height: 45px;
+
+    color: var(--raiders-cyan);
+    background: #151515;
+    border: 1px solid #444444;
+
+    font-size: 22px;
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.play-log-arrow:hover {
+    color: #000000;
+    background: var(--raiders-cyan);
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+    .play-log-section {
+        margin-top: 65px;
+    }
+
+    .play-log-frame {
+        flex-basis: 78vw;
+        width: 78vw;
+        padding: 8px;
+    }
+
+    .play-log-frame span {
+        font-size: 8px;
+    }
+
+    .play-log-lightbox {
+        gap: 8px;
+        padding: 55px 12px;
+    }
+
+    .play-log-lightbox-content {
+        width: 75%;
+    }
+
+    .play-log-lightbox-content img,
+    .play-log-lightbox-content video {
+        max-height: 70vh;
+    }
+
+    .play-log-arrow {
+        width: 34px;
+        height: 34px;
+        font-size: 17px;
+    }
+
+    .play-log-close {
+        top: 12px;
+        right: 15px;
+    }
+}
