@@ -2079,3 +2079,8 @@ button {
 .play-log-section .victory-eyebrow {
     color: var(--raiders-cyan);
 }
+/* PLAY LOG - TITLE DOT */
+
+.play-log-section .victory-heading h3 span {
+    color: var(--raiders-cyan);
+}
