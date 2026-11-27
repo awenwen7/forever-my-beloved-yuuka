@@ -274,5 +274,21 @@ const movies = [
         category: ["watched"],
         poster: "images/movie-posters/all-quiet-on-the-western-front.jpg",
         watchedDate: "2026.08.06"
+    },
+        {
+        id: "the-menu",
+
+        // 電影基本資料
+        title: "ザ・メニュー",
+        originalTitle: "The Menu",
+        year: 2022,
+        director: "マーク・マイロッド",
+        country: "アメリカ",
+        genre: ["ホラー", "スリラー", "コメディ"],
+        duration: 107,
+
+        // 電影收藏
+        category: ["wishlist"],
+        poster: "images/movie-posters/menu.jpg"
     }
 ];
