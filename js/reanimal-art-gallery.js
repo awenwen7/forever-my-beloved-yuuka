@@ -530,24 +530,47 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /* =========================================
-       12. CATEGORY BUTTON EVENTS
-    ========================================= */
+   /* =========================================
+   12. CATEGORY BUTTON EVENTS
+========================================= */
 
-    categoryButtons.forEach(button => {
+const gallerySection =
+    document.getElementById("gallery-section");
 
-        button.addEventListener("click", () => {
 
-            const category =
-                button.dataset.category;
+categoryButtons.forEach(button => {
 
-            if (category === currentCategory) return;
+    button.addEventListener("click", () => {
 
-            selectCategory(category);
+        const category =
+            button.dataset.category;
 
-        });
+        if (category === currentCategory) return;
+
+
+        /* SWITCH CATEGORY */
+
+        selectCategory(category);
+
+
+        /* RESET ANIMATION */
+
+        gallerySection.classList.remove(
+            "collection-reveal"
+        );
+
+        void gallerySection.offsetWidth;
+
+
+        /* PLAY ANIMATION */
+
+        gallerySection.classList.add(
+            "collection-reveal"
+        );
 
     });
+
+});
 
 
     /* =========================================
