@@ -464,26 +464,93 @@ body[data-nav-theme="reanimal"] {
 
 }
 /* =========================================
-   FULLSCREEN HERO & SCROLL BUTTON
+   FULLSCREEN HERO
+   Desktop & Mobile
 ========================================= */
 
 html {
     scroll-behavior: smooth;
 }
 
-/* 向下滑動按鈕 */
+.reanimal-hero {
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    min-height: 0;
+
+    padding: 0 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #000000;
+
+    text-align: center;
+    isolation: isolate;
+}
+
+.hero-background {
+    display: none;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 900px;
+}
+
+.hero-title {
+    color: var(--re-red);
+
+    font-family: var(--re-font);
+    font-size: clamp(38px, 11vw, 108px);
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    line-height: 1.05;
+}
+
+.hero-eyebrow,
+.hero-subtitle {
+    color: var(--re-white);
+}
+
+.hero-description {
+    display: none;
+}
+
+
+/* =========================================
+   SCROLL BUTTON
+========================================= */
 
 .hero-scroll {
+    position: absolute;
+
+    left: 50%;
+    bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+
+    transform: translateX(-50%);
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
     gap: 12px;
+    padding: 12px 20px;
 
     color: var(--re-white) !important;
 
+    font-family: var(--re-font);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+
     cursor: pointer;
+
+    transition: color 0.3s ease;
 }
 
 .hero-scroll i {
@@ -491,6 +558,10 @@ html {
     font-size: 20px;
 
     animation: scroll-down 2s ease-in-out infinite;
+}
+
+.hero-scroll:hover {
+    color: var(--re-red) !important;
 }
 
 @keyframes scroll-down {
@@ -507,47 +578,42 @@ html {
 
 
 /* =========================================
-   MOBILE FULLSCREEN HERO
+   MOBILE ADJUSTMENTS
 ========================================= */
 
 @media (max-width: 600px) {
 
     .reanimal-hero {
-        width: 100%;
-
-        height: 100vh;
-        height: 100svh;
-
-        min-height: 0;
-
         padding: 0 20px;
-
-        background: #000000;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .hero-background {
-        display: none;
-    }
-
-    .hero-content {
-        width: 100%;
-        max-width: 100%;
     }
 
     .hero-title {
-        font-size: clamp(38px, 11vw, 64px);
+        font-size: clamp(32px, 11vw, 64px);
     }
 
-    .hero-description {
-        display: none;
+    .hero-eyebrow {
+        font-size: 9px;
     }
 
-    .hero-scroll {
-        bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+    .hero-subtitle {
+        font-size: 10px;
+    }
+
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .hero-scroll i {
+        animation: none;
     }
 
 }
