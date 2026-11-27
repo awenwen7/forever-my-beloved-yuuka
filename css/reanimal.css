@@ -1,4 +1,3 @@
-
 /* =========================================
    REANIMAL — DESIGN SYSTEM
    Dark Navy / Black / Crimson Red
@@ -118,7 +117,7 @@ body[data-nav-theme="reanimal"] {
 .hero-eyebrow {
     margin-bottom: 28px;
 
-    color: var(--re-red-light);
+    color: var(--re-white);
 
     font-size: 11px;
     letter-spacing: 0.35em;
@@ -128,9 +127,9 @@ body[data-nav-theme="reanimal"] {
 .hero-title {
     margin: 0;
 
-    color: var(--re-white);
+    color: var(--re-red);
 
-    font-family: Arial, sans-serif;
+    font-family: var(--re-font);
     font-size: clamp(52px, 12vw, 108px);
     font-weight: 900;
     letter-spacing: 0.06em;
@@ -143,7 +142,7 @@ body[data-nav-theme="reanimal"] {
 .hero-subtitle {
     margin-top: 24px;
 
-    color: var(--re-red-light);
+    color: var(--re-white);
 
     font-size: 12px;
     letter-spacing: 0.28em;
@@ -165,7 +164,7 @@ body[data-nav-theme="reanimal"] {
 
     color: var(--re-gray) !important;
 
-    font-family: Arial, sans-serif;
+    font-family: var(--re-font);
     font-size: 9px;
     letter-spacing: 0.3em;
 
@@ -204,7 +203,7 @@ body[data-nav-theme="reanimal"] {
 .section-number {
     color: var(--re-red);
 
-    font-family: Arial, sans-serif;
+    font-family: var(--re-font);
     font-size: 54px;
     font-weight: 800;
     line-height: 1;
@@ -228,7 +227,7 @@ body[data-nav-theme="reanimal"] {
 
     color: var(--re-white);
 
-    font-family: Arial, sans-serif;
+    font-family: var(--re-font);
     font-size: clamp(27px, 5vw, 42px);
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -275,7 +274,7 @@ body[data-nav-theme="reanimal"] {
 .chapter-number {
     color: var(--re-red);
 
-    font-family: Arial, sans-serif;
+    font-family: var(--re-font);
     font-size: 24px;
     font-weight: 800;
 }
@@ -285,6 +284,7 @@ body[data-nav-theme="reanimal"] {
 
     color: var(--re-white);
 
+    font-family: var(--re-font);
     font-size: clamp(17px, 3vw, 23px);
     font-weight: 600;
     letter-spacing: 0.04em;
@@ -368,7 +368,7 @@ body[data-nav-theme="reanimal"] {
 
     color: var(--re-white);
 
-    font-family: Arial, sans-serif;
+    font-family: var(--re-font);
     font-size: 25px;
     font-weight: 900;
     letter-spacing: 0.15em;
@@ -392,7 +392,7 @@ body[data-nav-theme="reanimal"] {
 
     color: var(--re-red-light) !important;
 
-    font-family: Arial, sans-serif;
+    font-family: var(--re-font);
     font-size: 10px;
     letter-spacing: 0.2em;
 
@@ -408,6 +408,7 @@ body[data-nav-theme="reanimal"] {
 
     color: white !important;
 }
+
 
 /* =========================================
    RESPONSIVE
