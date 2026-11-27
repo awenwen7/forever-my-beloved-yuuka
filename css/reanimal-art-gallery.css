@@ -873,3 +873,74 @@ body {
     }
 
 }
+/* =========================================
+   18. BACKGROUND MUSIC
+========================================= */
+
+.reanimal-music-toggle {
+
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 900;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background: #000000;
+    color: #D41C2B;
+
+    border: 1px solid #D41C2B;
+    border-radius: 50%;
+
+    font-size: 16px;
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+
+}
+
+.reanimal-music-toggle:hover {
+
+    background: #D41C2B;
+    color: #000000;
+
+    transform: scale(1.08);
+
+}
+
+.reanimal-music-toggle:active {
+
+    transform: scale(0.95);
+
+}
+
+
+/* =========================================
+   MUSIC BUTTON — MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .reanimal-music-toggle {
+
+        right: 16px;
+        bottom: 16px;
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 14px;
+
+    }
+
+}
