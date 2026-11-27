@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#000000">
+
+    <title>Art Gallery | REANIMAL | Wen & Yuuka</title>
+
+    <meta name="description"
+        content="Our collection of artwork from the world of REANIMAL.">
+
+    <!-- Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Stylesheets -->
+
+    <link rel="stylesheet" href="../css/reanimal-art-gallery.css">
+
+    <link rel="stylesheet" href="../css/navigation.css">
+
+</head>
+
+<body data-nav-theme="reanimal"
+      data-nav-width="680px"
+      data-nav-root="/forever-my-beloved-yuuka/">
+
+    <!-- ========================================
+         NAVIGATION
+    ========================================= -->
+
+    <div id="navigation"></div>
+
+
+    <main class="art-gallery-page">
+
+
+        <!-- ========================================
+             01. PAGE HEADER
+        ========================================= -->
+
+        <header class="gallery-header">
+
+            <p class="gallery-eyebrow">
+                REANIMAL / 03
+            </p>
+
+            <h1 class="gallery-title">
+                ART GALLERY
+            </h1>
+
+            <p class="gallery-subtitle">
+                アートギャラリー
+            </p>
+
+        </header>
+
+
+        <!-- ========================================
+             02. CATEGORY NAVIGATION
+        ========================================= -->
+
+        <nav class="gallery-categories"
+             aria-label="アートギャラリーのカテゴリー">
+
+
+            <!-- MAIN STORY -->
+
+            <button
+                class="category-button active"
+                type="button"
+                data-category="main-story"
+                aria-pressed="true">
+
+                <span class="category-number">
+                    01
+                </span>
+
+                <span class="category-title">
+                    MAIN STORY
+                </span>
+
+                <span class="category-subtitle">
+                    本編
+                </span>
+
+            </button>
+
+
+            <!-- DLC -->
+
+            <button
+                class="category-button"
+                type="button"
+                data-category="dlc"
+                aria-pressed="false">
+
+                <span class="category-number">
+                    02
+                </span>
+
+                <span class="category-title">
+                    DLC
+                </span>
+
+                <span class="category-subtitle">
+                    追加コンテンツ
+                </span>
+
+            </button>
+
+        </nav>
+
+
+        <!-- ========================================
+             03. ARTWORK GALLERY
+        ========================================= -->
+
+        <section class="gallery-section"
+                 id="gallery-section">
+
+
+            <!-- COLLECTION HEADING -->
+
+            <div class="collection-heading">
+
+                <span class="collection-eyebrow">
+                    ART COLLECTION / 01
+                </span>
+
+                <h2 id="collection-title">
+                    MAIN STORY
+                </h2>
+
+                <p id="collection-subtitle">
+                    本編
+                </p>
+
+            </div>
+
+
+            <!-- ====================================
+                 MAIN ARTWORK VIEWER
+            ===================================== -->
+
+            <div class="gallery-content"
+                 id="gallery-content">
+
+                <div class="artwork-viewer">
+
+
+                    <!-- PREVIOUS BUTTON -->
+
+                    <button
+                        class="gallery-arrow previous-arrow"
+                        id="previous-artwork"
+                        type="button"
+                        aria-label="前の画像">
+
+                        <i class="fa-solid fa-chevron-left"
+                           aria-hidden="true"></i>
+
+                    </button>
+
+
+                    <!-- MAIN IMAGE -->
+
+                    <div class="artwork-stage"
+                         id="artwork-stage">
+
+                        <button
+                            class="artwork-image-button"
+                            id="open-artwork"
+                            type="button"
+                            aria-label="画像を拡大">
+
+                            <img
+                                id="main-artwork"
+                                class="main-artwork"
+                                src="../images/reanimal/artgallery-main-story01.webp"
+                                alt="REANIMAL 本編 アートワーク 01"
+                                draggable="false"
+                                fetchpriority="high">
+
+                        </button>
+
+
+                        <!-- FULLSCREEN BUTTON -->
+
+                        <button
+                            class="artwork-expand"
+                            id="expand-artwork"
+                            type="button"
+                            aria-label="画像を拡大">
+
+                            <i class="fa-solid fa-expand"
+                               aria-hidden="true"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- NEXT BUTTON -->
+
+                    <button
+                        class="gallery-arrow next-arrow"
+                        id="next-artwork"
+                        type="button"
+                        aria-label="次の画像">
+
+                        <i class="fa-solid fa-chevron-right"
+                           aria-hidden="true"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- ====================================
+                     ARTWORK INFORMATION
+                ===================================== -->
+
+                <div class="artwork-information">
+
+                    <p class="artwork-name"
+                       id="artwork-name">
+
+                        ARTWORK 01
+
+                    </p>
+
+                    <div class="artwork-counter"
+                         aria-live="polite">
+
+                        <span id="current-artwork">
+                            01
+                        </span>
+
+                        <span class="counter-divider">
+                            /
+                        </span>
+
+                        <span id="total-artworks">
+                            20
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ====================================
+                     THUMBNAIL GALLERY
+                ===================================== -->
+
+                <div class="thumbnail-gallery">
+
+
+                    <!-- THUMBNAIL SCROLL LEFT -->
+
+                    <button
+                        class="thumbnail-arrow"
+                        id="thumbnail-previous"
+                        type="button"
+                        aria-label="サムネイルを左にスクロール">
+
+                        <i class="fa-solid fa-chevron-left"
+                           aria-hidden="true"></i>
+
+                    </button>
+
+
+                    <!-- THUMBNAIL TRACK -->
+
+                    <div class="thumbnail-track"
+                         id="thumbnail-track"
+                         aria-label="アートワーク一覧">
+
+                        <!--
+                            JavaScript will automatically
+                            generate all artwork thumbnails.
+                        -->
+
+                    </div>
+
+
+                    <!-- THUMBNAIL SCROLL RIGHT -->
+
+                    <button
+                        class="thumbnail-arrow"
+                        id="thumbnail-next"
+                        type="button"
+                        aria-label="サムネイルを右にスクロール">
+
+                        <i class="fa-solid fa-chevron-right"
+                           aria-hidden="true"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ====================================
+                 DLC EMPTY STATE
+            ===================================== -->
+
+            <div class="gallery-empty"
+                 id="gallery-empty"
+                 hidden>
+
+                <i class="fa-regular fa-image"
+                   aria-hidden="true"></i>
+
+                <h3>COMING SOON</h3>
+
+                <p>準備中</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             04. BACK TO REANIMAL
+        ========================================= -->
+
+        <div class="gallery-back-section">
+
+            <a href="reanimal.html"
+               class="gallery-back-button">
+
+                <i class="fa-solid fa-arrow-left"
+                   aria-hidden="true"></i>
+
+                <span>BACK TO REANIMAL</span>
+
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- ========================================
+         05. FOOTER
+    ========================================= -->
+
+    <footer class="gallery-footer">
+
+        <h2 class="footer-title">
+            REANIMAL
+        </h2>
+
+        <p class="footer-description">
+            Our adventure, our memories.
+        </p>
+
+    </footer>
+
+
+    <!-- ========================================
+         06. FULLSCREEN LIGHTBOX
+    ========================================= -->
+
+    <dialog class="artwork-lightbox"
+            id="artwork-lightbox"
+            aria-label="アートワークの拡大表示">
+
+
+        <!-- CLOSE BUTTON -->
+
+        <button
+            class="lightbox-close"
+            id="lightbox-close"
+            type="button"
+            aria-label="閉じる">
+
+            <i class="fa-solid fa-xmark"
+               aria-hidden="true"></i>
+
+        </button>
+
+
+        <!-- PREVIOUS BUTTON -->
+
+        <button
+            class="lightbox-arrow lightbox-previous"
+            id="lightbox-previous"
+            type="button"
+            aria-label="前の画像">
+
+            <i class="fa-solid fa-chevron-left"
+               aria-hidden="true"></i>
+
+        </button>
+
+
+        <!-- FULLSCREEN IMAGE -->
+
+        <img
+            class="lightbox-image"
+            id="lightbox-image"
+            alt=""
+            draggable="false">
+
+
+        <!-- NEXT BUTTON -->
+
+        <button
+            class="lightbox-arrow lightbox-next"
+            id="lightbox-next"
+            type="button"
+            aria-label="次の画像">
+
+            <i class="fa-solid fa-chevron-right"
+               aria-hidden="true"></i>
+
+        </button>
+
+
+        <!-- FULLSCREEN COUNTER -->
+
+        <div class="lightbox-counter"
+             id="lightbox-counter">
+
+            01 / 20
+
+        </div>
+
+    </dialog>
+
+
+    <!-- ========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script src="../js/navigation.js"></script>
+
+    <script src="../js/reanimal-art-gallery.js"></script>
+
+</body>
+
+</html>
