@@ -383,7 +383,7 @@ body[data-nav-theme="reanimal"] {
     letter-spacing: 0.1em;
 }
 
-.back-home {
+.back-to-top {
     display: inline-block;
 
     padding: 12px 25px;
@@ -402,13 +402,12 @@ body[data-nav-theme="reanimal"] {
         border-color 0.3s ease;
 }
 
-.back-home:hover {
+.back-to-top:hover {
     background: var(--re-red);
     border-color: var(--re-red);
 
     color: white !important;
 }
-
 
 /* =========================================
    RESPONSIVE
