@@ -821,13 +821,13 @@ html {
 
 /* MENU IMAGE POSITION — DESKTOP */
 .reanimal-menu { background: #000000; }
-.main-story-card .menu-card-image img { object-position: 50% 85%; }
-.dlc-archive-card .menu-card-image img { object-position: 50% 80%; }
-.art-gallery-card .menu-card-image img { object-position: 50% 85%; }
+.main-story-card .menu-card-image img { object-position: 50% 50%; }
+.dlc-archive-card .menu-card-image img { object-position: 50% 15%; }
+.art-gallery-card .menu-card-image img { object-position: 50% 15%; }
 
 /* MENU IMAGE POSITION — MOBILE */
 @media (max-width: 600px) {
-    .main-story-card .menu-card-image img { object-position: 50% 10%; }
+    .main-story-card .menu-card-image img { object-position: 50% 20%; }
     .dlc-archive-card .menu-card-image img { object-position: 50% 40%; }
-    .art-gallery-card .menu-card-image img { object-position: 50% 90%; }
+    .art-gallery-card .menu-card-image img { object-position: 50% 25%; }
 }
