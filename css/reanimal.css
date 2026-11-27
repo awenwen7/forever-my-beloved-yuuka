@@ -21,7 +21,7 @@
 
     --re-border: rgba(174, 190, 207, 0.16);
 
-    --re-font: "Noto Serif JP", serif;
+    --re-font: Arial, sans-serif;
 }
 
 
@@ -463,15 +463,4 @@ body[data-nav-theme="reanimal"] {
         padding: 60px 20px 45px;
     }
 
-}
-
-/* =========================================
-   UNIFIED TYPOGRAPHY
-   統一頁面字體
-========================================= */
-
-h1, h2, h3, h4 {
-    font-family: Arial, sans-serif;
-    font-weight: 900;
-    letter-spacing: 0.06em;
 }
