@@ -286,27 +286,95 @@
 
 </audio>
 
+<!-- MUSIC BUTTON -->
+
+<button id="reanimal-music-toggle"
+        class="reanimal-music-toggle"
+        type="button"
+        aria-label="BGMを再生"
+        aria-pressed="false">
+
+    <i class="fa-solid fa-volume-xmark"
+       aria-hidden="true"></i>
+
+</button>
+
 <script>
 
+(() => {
+
     const bgm = document.getElementById("reanimal-bgm");
+    const button = document.getElementById("reanimal-music-toggle");
+    const icon = button.querySelector("i");
 
     bgm.volume = 0.3;
+
+    function updateButton() {
+
+        const playing = !bgm.paused;
+
+        icon.className = playing
+            ? "fa-solid fa-volume-high"
+            : "fa-solid fa-volume-xmark";
+
+        button.setAttribute("aria-pressed", playing);
+
+        button.setAttribute(
+            "aria-label",
+            playing ? "BGMを一時停止" : "BGMを再生"
+        );
+
+    }
 
     function startBGM() {
 
         bgm.play().then(() => {
 
-            document.removeEventListener("click", startBGM);
+            document.removeEventListener("click", firstInteraction);
 
-        }).catch(() => {});
+        }).catch(() => {
+            updateButton();
+        });
 
     }
 
-    document.addEventListener("click", startBGM);
+    function firstInteraction(event) {
+
+        if (button.contains(event.target)) return;
+
+        startBGM();
+
+    }
+
+    button.addEventListener("click", () => {
+
+        document.removeEventListener("click", firstInteraction);
+
+        if (bgm.paused) {
+
+            startBGM();
+
+        } else {
+
+            bgm.pause();
+
+        }
+
+    });
+
+    bgm.addEventListener("play", updateButton);
+    bgm.addEventListener("pause", updateButton);
+
+    document.addEventListener("click", firstInteraction);
+
+    updateButton();
 
     startBGM();
 
+})();
+
 </script>
+
 </body>
 
 </html>
