@@ -275,7 +275,38 @@
 
     <script src="../js/navigation.js"></script>
 
+<!-- ========================================
+     REANIMAL BACKGROUND MUSIC
+========================================= -->
 
+<audio id="reanimal-bgm" autoplay loop preload="auto">
+
+    <source src="../music/audio/reanimal-bgm1.mp3"
+            type="audio/mpeg">
+
+</audio>
+
+<script>
+
+    const bgm = document.getElementById("reanimal-bgm");
+
+    bgm.volume = 0.3;
+
+    function startBGM() {
+
+        bgm.play().then(() => {
+
+            document.removeEventListener("click", startBGM);
+
+        }).catch(() => {});
+
+    }
+
+    document.addEventListener("click", startBGM);
+
+    startBGM();
+
+</script>
 </body>
 
 </html>
