@@ -851,9 +851,11 @@ body {
         letter-spacing: 1px;
     }
 
-    .category-subtitle {
+       .category-subtitle {
         font-size: 10px;
     }
+
+}
 
 /* =========================================
    17. REDUCED MOTION
