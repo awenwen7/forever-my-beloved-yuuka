@@ -823,7 +823,7 @@ html {
 .reanimal-menu { background: #000000; }
 .main-story-card .menu-card-image img { object-position: 50% 35%; }
 .dlc-archive-card .menu-card-image img { object-position: 50% 30%; }
-.art-gallery-card .menu-card-image img { object-position: 50% 20%; }
+.art-gallery-card .menu-card-image img { object-position: 50% 22%; }
 
 /* MENU IMAGE POSITION — MOBILE */
 @media (max-width: 600px) {
@@ -838,7 +838,7 @@ html {
 /* 電腦版 */
 
 #collection {
-    scroll-margin-top: 120px;
+    scroll-margin-top: 90px;
 }
 
 /* 手機版 */
