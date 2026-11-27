@@ -675,7 +675,6 @@ body[data-nav-theme="raiders"] .side-menu * {
 }
 /* =========================================
    REANIMAL NAVIGATION THEME
-   BLACK / CRIMSON RED
 ========================================= */
 
 body[data-nav-theme="reanimal"] {
@@ -686,11 +685,11 @@ body[data-nav-theme="reanimal"] {
     --nav-blue: #D41C2B;
 
     --menu-bg: #000000;
-    --menu-text: #D41C2B;
-    --menu-muted: #D41C2B;
+    --menu-text: #E5E8EC;
+    --menu-muted: #E5E8EC;
     --menu-accent: #D41C2B;
-    --menu-border: #D41C2B;
-    --menu-card: rgba(212, 28, 43, 0.12);
+    --menu-border: #252525;
+    --menu-card: #161616;
 }
 
 
@@ -705,7 +704,6 @@ body[data-nav-theme="reanimal"] .site-header {
 
 body[data-nav-theme="reanimal"] .nav-title {
     color: #D41C2B;
-
     font-family: Arial, sans-serif;
     font-weight: 900;
 }
@@ -727,13 +725,12 @@ body[data-nav-theme="reanimal"] .language-button:hover {
 
 body[data-nav-theme="reanimal"] .language-menu {
     background: #000000;
-    border-color: #D41C2B;
+    border-color: #252525;
     box-shadow: none;
 }
 
 body[data-nav-theme="reanimal"] .language-option {
     color: #D41C2B;
-
     font-family: Arial, sans-serif;
     font-weight: 700;
 }
@@ -762,23 +759,19 @@ body[data-nav-theme="reanimal"] .menu-overlay {
 
 body[data-nav-theme="reanimal"] .side-menu {
     background: #000000;
-    color: #D41C2B;
-
+    color: #E5E8EC;
     font-family: Arial, sans-serif;
-
     box-shadow: none;
 }
 
 body[data-nav-theme="reanimal"] .menu-close {
-    color: #D41C2B;
-
+    color: #E5E8EC;
     font-family: Arial, sans-serif;
     font-weight: 900;
 }
 
 body[data-nav-theme="reanimal"] .menu-heading {
     color: #D41C2B;
-
     font-family: Arial, sans-serif;
     font-weight: 900;
 }
@@ -789,13 +782,12 @@ body[data-nav-theme="reanimal"] .menu-heading {
 ========================================= */
 
 body[data-nav-theme="reanimal"] .menu-social-icon {
-    color: #D41C2B;
+    color: #E5E8EC;
 }
 
 body[data-nav-theme="reanimal"] .menu-social-icon.notion-icon {
-    color: #D41C2B;
-    border-color: #D41C2B;
-
+    color: #E5E8EC;
+    border-color: #E5E8EC;
     font-family: Arial, sans-serif;
     font-weight: 900;
 }
@@ -806,7 +798,7 @@ body[data-nav-theme="reanimal"] .menu-social-icon.notion-icon {
 ========================================= */
 
 body[data-nav-theme="reanimal"] .menu-divider {
-    background: #D41C2B;
+    background: #252525;
 }
 
 
@@ -818,9 +810,7 @@ body[data-nav-theme="reanimal"] .menu-label,
 body[data-nav-theme="reanimal"] .menu-section-title,
 body[data-nav-theme="reanimal"] .menu-section.home-section .menu-section-title,
 body[data-nav-theme="reanimal"] .menu-section.memories-section .menu-section-title {
-
     color: #D41C2B;
-
     font-family: Arial, sans-serif;
     font-weight: 900;
 }
@@ -831,15 +821,14 @@ body[data-nav-theme="reanimal"] .menu-section.memories-section .menu-section-tit
 ========================================= */
 
 body[data-nav-theme="reanimal"] .menu-link {
-    color: #D41C2B;
-
+    color: #E5E8EC;
     font-family: Arial, sans-serif;
     font-weight: 700;
 }
 
 body[data-nav-theme="reanimal"] .menu-link:hover {
-    color: #D41C2B;
-    background: rgba(212, 28, 43, 0.12);
+    color: #E5E8EC;
+    background: #161616;
 }
 
 
@@ -850,11 +839,8 @@ body[data-nav-theme="reanimal"] .menu-link:hover {
 body[data-nav-theme="reanimal"] .menu-link.active,
 body[data-nav-theme="reanimal"] .menu-section.home-section .menu-link.active,
 body[data-nav-theme="reanimal"] .menu-section.memories-section .menu-link.active {
-
-    color: #D41C2B;
-
-    background: rgba(212, 28, 43, 0.18);
+    color: #E5E8EC;
+    background: #161616;
     border-left-color: #D41C2B;
-
-    font-weight: 900;
+    font-weight: 700;
 }
