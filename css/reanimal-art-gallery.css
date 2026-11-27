@@ -1,0 +1,1020 @@
+/* =========================================
+   REANIMAL — ART GALLERY
+   MAIN STYLESHEET
+========================================= */
+
+
+/* =========================================
+   01. ROOT & RESET
+========================================= */
+
+:root {
+
+    --ag-black: #000000;
+    --ag-dark: #080B10;
+    --ag-card: #10151D;
+    --ag-red: #D41C2B;
+    --ag-white: #E5E8EC;
+    --ag-muted: #777777;
+    --ag-border: #252525;
+
+    --ag-font: Arial, sans-serif;
+    --ag-max-width: 1100px;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--ag-black);
+    color: var(--ag-white);
+    font-family: var(--ag-font);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.art-gallery-page button,
+.artwork-lightbox button {
+    font-family: var(--ag-font);
+    cursor: pointer;
+}
+
+.art-gallery-page a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.art-gallery-page img {
+    display: block;
+    max-width: 100%;
+}
+
+.art-gallery-page [hidden] {
+    display: none !important;
+}
+
+.art-gallery-page button:focus-visible,
+.art-gallery-page a:focus-visible,
+.artwork-lightbox button:focus-visible {
+    outline: 2px solid var(--ag-red);
+    outline-offset: 4px;
+}
+
+
+/* =========================================
+   02. PAGE CONTAINER
+========================================= */
+
+.art-gallery-page {
+    width: 100%;
+    max-width: var(--ag-max-width);
+    margin: 0 auto;
+    padding: 100px 32px 0;
+}
+
+
+/* =========================================
+   03. PAGE HEADER
+========================================= */
+
+.gallery-header {
+    text-align: center;
+    padding: 70px 0 60px;
+}
+
+.gallery-eyebrow {
+    color: var(--ag-white);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 16px;
+}
+
+.gallery-title {
+    color: var(--ag-red);
+    font-size: clamp(40px, 8vw, 88px);
+    font-weight: 900;
+    letter-spacing: 2px;
+    line-height: 1.1;
+}
+
+.gallery-subtitle {
+    color: var(--ag-white);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-top: 20px;
+}
+
+
+/* =========================================
+   04. CATEGORY NAVIGATION
+========================================= */
+
+.gallery-categories {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 50px;
+}
+
+.category-button {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    min-height: 125px;
+    padding: 20px;
+
+    background: var(--ag-dark);
+    color: var(--ag-white);
+
+    border: 1px solid var(--ag-border);
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.category-number {
+    color: var(--ag-red);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.category-title {
+    color: var(--ag-red);
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.category-subtitle {
+    color: var(--ag-white);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.category-button:hover {
+    border-color: var(--ag-red);
+}
+
+.category-button.active {
+    background: var(--ag-red);
+    border-color: var(--ag-red);
+}
+
+.category-button.active .category-number,
+.category-button.active .category-title,
+.category-button.active .category-subtitle {
+    color: #FFFFFF;
+}
+
+
+/* =========================================
+   05. COLLECTION HEADING
+========================================= */
+
+.gallery-section {
+    padding-top: 35px;
+    border-top: 1px solid var(--ag-border);
+}
+
+.collection-heading {
+    margin-bottom: 28px;
+}
+
+.collection-eyebrow {
+    display: block;
+    color: var(--ag-red);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.collection-heading h2 {
+    color: var(--ag-white);
+    font-size: clamp(25px, 4vw, 42px);
+    font-weight: 900;
+    letter-spacing: 2px;
+    line-height: 1.2;
+}
+
+.collection-heading p {
+    color: var(--ag-white);
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-top: 8px;
+}
+
+
+/* =========================================
+   06. MAIN ARTWORK VIEWER
+========================================= */
+
+.artwork-viewer {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    align-items: center;
+    gap: 12px;
+}
+
+.artwork-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    background: var(--ag-dark);
+    border: 1px solid var(--ag-border);
+
+    overflow: hidden;
+    touch-action: pan-y;
+}
+
+.artwork-image-button {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    cursor: zoom-in !important;
+}
+
+.main-artwork {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    object-position: center;
+
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.main-artwork.fade-in {
+    animation: artworkFade 0.35s ease;
+}
+
+@keyframes artworkFade {
+
+    from {
+        opacity: 0.35;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================================
+   07. ARTWORK ARROWS
+========================================= */
+
+.gallery-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 60px;
+
+    background: transparent;
+    color: var(--ag-red);
+
+    border: none;
+    font-size: 26px;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.gallery-arrow:hover {
+    color: var(--ag-white);
+    transform: scale(1.12);
+}
+
+.gallery-arrow:active {
+    transform: scale(0.9);
+}
+
+
+/* =========================================
+   08. EXPAND BUTTON
+========================================= */
+
+.artwork-expand {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--ag-white);
+
+    border: 1px solid var(--ag-border);
+    font-size: 15px;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.artwork-expand:hover {
+    background: var(--ag-red);
+    border-color: var(--ag-red);
+}
+
+
+/* =========================================
+   09. ARTWORK INFORMATION
+========================================= */
+
+.artwork-information {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 20px 56px 24px;
+}
+
+.artwork-name {
+    color: var(--ag-white);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.artwork-counter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 14px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+#current-artwork {
+    color: var(--ag-red);
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.counter-divider {
+    color: var(--ag-muted);
+}
+
+#total-artworks {
+    color: var(--ag-white);
+}
+
+
+/* =========================================
+   10. THUMBNAIL GALLERY
+========================================= */
+
+.thumbnail-gallery {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr) 32px;
+    align-items: center;
+    gap: 12px;
+}
+
+.thumbnail-track {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-width: 0;
+    padding: 5px 0 12px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--ag-red) var(--ag-dark);
+}
+
+.thumbnail-track::-webkit-scrollbar {
+    height: 4px;
+}
+
+.thumbnail-track::-webkit-scrollbar-track {
+    background: var(--ag-dark);
+}
+
+.thumbnail-track::-webkit-scrollbar-thumb {
+    background: var(--ag-red);
+}
+
+.thumbnail-button {
+    position: relative;
+    flex: 0 0 120px;
+
+    width: 120px;
+    aspect-ratio: 16 / 9;
+
+    padding: 0;
+    background: var(--ag-dark);
+
+    border: 2px solid var(--ag-border);
+    overflow: hidden;
+
+    opacity: 0.55;
+
+    transition:
+        opacity 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.thumbnail-button img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    pointer-events: none;
+}
+
+.thumbnail-button:hover {
+    opacity: 1;
+    border-color: var(--ag-white);
+}
+
+.thumbnail-button.active {
+    opacity: 1;
+    border-color: var(--ag-red);
+}
+
+.thumbnail-number {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+
+    padding: 2px 5px;
+
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--ag-white);
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.thumbnail-button.active .thumbnail-number {
+    background: var(--ag-red);
+    color: #FFFFFF;
+}
+
+.thumbnail-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 42px;
+
+    padding: 0;
+    background: transparent;
+    color: var(--ag-red);
+
+    border: none;
+    font-size: 17px;
+
+    transition: color 0.25s ease;
+}
+
+.thumbnail-arrow:hover {
+    color: var(--ag-white);
+}
+
+
+/* =========================================
+   11. DLC EMPTY STATE
+========================================= */
+
+.gallery-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 380px;
+    padding: 40px 20px;
+
+    background: var(--ag-dark);
+    border: 1px solid var(--ag-border);
+}
+
+.gallery-empty i {
+    color: var(--ag-red);
+    font-size: 38px;
+    margin-bottom: 24px;
+}
+
+.gallery-empty h3 {
+    color: var(--ag-red);
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 4px;
+}
+
+.gallery-empty p {
+    color: var(--ag-white);
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-top: 12px;
+}
+
+
+/* =========================================
+   12. BACK TO REANIMAL
+========================================= */
+
+.gallery-back-section {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 60px;
+    padding: 45px 0;
+
+    border-top: 1px solid var(--ag-border);
+}
+
+.gallery-back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 14px 28px;
+
+    background: transparent;
+    color: var(--ag-red) !important;
+
+    border: 1px solid var(--ag-red);
+
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+.gallery-back-button:hover {
+    background: var(--ag-red);
+    color: #FFFFFF !important;
+}
+
+
+/* =========================================
+   13. FOOTER
+========================================= */
+
+.gallery-footer {
+    background: var(--ag-black);
+    text-align: center;
+    padding: 45px 20px 60px;
+}
+
+.gallery-footer .footer-title {
+    color: var(--ag-red);
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.gallery-footer .footer-description {
+    color: var(--ag-muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+
+/* =========================================
+   14. FULLSCREEN LIGHTBOX
+========================================= */
+
+.artwork-lightbox {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    max-width: none;
+    max-height: none;
+
+    margin: 0;
+    padding: 0;
+
+    background: var(--ag-black);
+    color: var(--ag-white);
+
+    border: none;
+    overflow: hidden;
+}
+
+.artwork-lightbox:not([open]) {
+    display: none;
+}
+
+.artwork-lightbox[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.artwork-lightbox::backdrop {
+    background: #000000;
+}
+
+.lightbox-image {
+    display: block;
+
+    width: calc(100% - 140px);
+    height: calc(100% - 130px);
+
+    object-fit: contain;
+    object-position: center;
+
+    user-select: none;
+    -webkit-user-drag: none;
+    touch-action: pan-y;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    background: transparent;
+    color: var(--ag-red);
+
+    border: none;
+    font-size: 28px;
+
+    transition: color 0.25s ease;
+}
+
+.lightbox-close:hover {
+    color: var(--ag-white);
+}
+
+.lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;
+    height: 60px;
+
+    background: transparent;
+    color: var(--ag-red);
+
+    border: none;
+    font-size: 30px;
+
+    transform: translateY(-50%);
+
+    transition: color 0.25s ease;
+}
+
+.lightbox-arrow:hover {
+    color: var(--ag-white);
+}
+
+.lightbox-previous {
+    left: 15px;
+}
+
+.lightbox-next {
+    right: 15px;
+}
+
+.lightbox-counter {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+
+    color: var(--ag-white);
+
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+
+    transform: translateX(-50%);
+}
+
+
+/* =========================================
+   15. TABLET RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .art-gallery-page {
+        padding: 85px 24px 0;
+    }
+
+    .gallery-header {
+        padding: 50px 0 45px;
+    }
+
+    .gallery-categories {
+        gap: 12px;
+        margin-bottom: 35px;
+    }
+
+    .category-button {
+        min-height: 110px;
+    }
+
+    .category-title {
+        font-size: 19px;
+    }
+
+    .artwork-viewer {
+        grid-template-columns: 30px minmax(0, 1fr) 30px;
+        gap: 8px;
+    }
+
+    .gallery-arrow {
+        width: 30px;
+        font-size: 21px;
+    }
+
+    .artwork-information {
+        margin-left: 38px;
+        margin-right: 38px;
+    }
+
+    .thumbnail-button {
+        flex-basis: 100px;
+        width: 100px;
+    }
+
+}
+
+
+/* =========================================
+   16. MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .art-gallery-page {
+        padding: 75px 16px 0;
+    }
+
+    .gallery-header {
+        padding: 40px 0;
+    }
+
+    .gallery-eyebrow {
+        font-size: 10px;
+        letter-spacing: 3px;
+        margin-bottom: 12px;
+    }
+
+    .gallery-title {
+        font-size: clamp(32px, 10vw, 48px);
+        letter-spacing: 1px;
+    }
+
+    .gallery-subtitle {
+        font-size: 12px;
+        letter-spacing: 2px;
+        margin-top: 12px;
+    }
+
+    .gallery-categories {
+        gap: 8px;
+        margin-bottom: 28px;
+    }
+
+    .category-button {
+        min-height: 90px;
+        padding: 12px 6px;
+    }
+
+    .category-number {
+        font-size: 9px;
+    }
+
+    .category-title {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+
+    .category-subtitle {
+        font-size: 10px;
+    }
+
+    .gallery-section {
+        padding-top: 25px;
+    }
+
+    .collection-heading {
+        margin-bottom: 20px;
+    }
+
+    .collection-eyebrow {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .collection-heading h2 {
+        font-size: 25px;
+    }
+
+    .collection-heading p {
+        font-size: 11px;
+    }
+
+    .artwork-viewer {
+        grid-template-columns: 22px minmax(0, 1fr) 22px;
+        gap: 4px;
+    }
+
+    .gallery-arrow {
+        width: 22px;
+        height: 45px;
+        font-size: 17px;
+    }
+
+    .artwork-expand {
+        width: 28px;
+        height: 28px;
+        right: 7px;
+        bottom: 7px;
+        font-size: 12px;
+    }
+
+    .artwork-information {
+        margin: 14px 26px 18px;
+    }
+
+    .artwork-name {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    .artwork-counter {
+        font-size: 12px;
+        gap: 6px;
+    }
+
+    #current-artwork {
+        font-size: 17px;
+    }
+
+    .thumbnail-gallery {
+        grid-template-columns: 20px minmax(0, 1fr) 20px;
+        gap: 6px;
+    }
+
+    .thumbnail-track {
+        gap: 7px;
+    }
+
+    .thumbnail-button {
+        flex-basis: 78px;
+        width: 78px;
+    }
+
+    .thumbnail-number {
+        font-size: 8px;
+        right: 2px;
+        bottom: 2px;
+    }
+
+    .thumbnail-arrow {
+        width: 20px;
+        font-size: 13px;
+    }
+
+    .gallery-empty {
+        min-height: 240px;
+    }
+
+    .gallery-empty h3 {
+        font-size: 21px;
+    }
+
+    .gallery-back-section {
+        margin-top: 35px;
+        padding: 30px 0;
+    }
+
+    .gallery-back-button {
+        font-size: 10px;
+        padding: 12px 20px;
+    }
+
+    .gallery-footer {
+        padding: 30px 16px 45px;
+    }
+
+    .gallery-footer .footer-title {
+        font-size: 24px;
+    }
+
+    .gallery-footer .footer-description {
+        font-size: 10px;
+    }
+
+    .lightbox-image {
+        width: calc(100% - 56px);
+        height: calc(100% - 120px);
+    }
+
+    .lightbox-close {
+        top: 15px;
+        right: 15px;
+        font-size: 24px;
+    }
+
+    .lightbox-arrow {
+        width: 28px;
+        font-size: 19px;
+    }
+
+    .lightbox-previous {
+        left: 0;
+    }
+
+    .lightbox-next {
+        right: 0;
+    }
+
+    .lightbox-counter {
+        bottom: 25px;
+        font-size: 12px;
+    }
+
+}
+
+
+/* =========================================
+   17. REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html,
+    .thumbnail-track {
+        scroll-behavior: auto;
+    }
+
+    .art-gallery-page *,
+    .artwork-lightbox * {
+        animation: none !important;
+        transition: none !important;
+    }
+
+}
