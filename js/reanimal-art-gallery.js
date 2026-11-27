@@ -219,10 +219,10 @@ document.addEventListener("DOMContentLoaded", () => {
             "ART COLLECTION / " + data.number;
 
         collectionTitle.textContent =
-            data.title;
+            data.subtitle;
 
         collectionSubtitle.textContent =
-            data.subtitle;
+            data.title;
 
 
         /* RESET THUMBNAILS */
