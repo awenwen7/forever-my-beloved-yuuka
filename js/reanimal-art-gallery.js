@@ -830,3 +830,127 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 });
+/* =========================================
+   17. BACKGROUND MUSIC
+========================================= */
+
+(() => {
+
+    const bgm =
+        document.getElementById("reanimal-bgm");
+
+    const button =
+        document.getElementById("reanimal-music-toggle");
+
+    if (!bgm || !button) return;
+
+    const icon =
+        button.querySelector("i");
+
+
+    /* DEFAULT VOLUME */
+
+    bgm.volume = 0.3;
+
+
+    /* UPDATE MUSIC BUTTON */
+
+    function updateButton() {
+
+        const playing = !bgm.paused;
+
+        icon.className = playing
+
+            ? "fa-solid fa-volume-high"
+
+            : "fa-solid fa-volume-xmark";
+
+
+        button.setAttribute(
+            "aria-pressed",
+            String(playing)
+        );
+
+        button.setAttribute(
+            "aria-label",
+            playing ? "BGMを一時停止" : "BGMを再生"
+        );
+
+    }
+
+
+    /* PLAY BACKGROUND MUSIC */
+
+    function startBGM() {
+
+        bgm.play().then(() => {
+
+            document.removeEventListener(
+                "click",
+                firstInteraction
+            );
+
+        }).catch(() => {
+
+            updateButton();
+
+        });
+
+    }
+
+
+    /* FIRST USER INTERACTION */
+
+    function firstInteraction(event) {
+
+        if (button.contains(event.target)) return;
+
+        startBGM();
+
+    }
+
+
+    /* MUSIC BUTTON CLICK */
+
+    button.addEventListener("click", () => {
+
+        document.removeEventListener(
+            "click",
+            firstInteraction
+        );
+
+        if (bgm.paused) {
+
+            startBGM();
+
+        } else {
+
+            bgm.pause();
+
+        }
+
+    });
+
+
+    /* MUSIC EVENTS */
+
+    bgm.addEventListener("play", updateButton);
+
+    bgm.addEventListener("pause", updateButton);
+
+
+    /* AUTOPLAY FALLBACK */
+
+    document.addEventListener(
+        "click",
+        firstInteraction
+    );
+
+
+    /* INITIALIZE MUSIC */
+
+    updateButton();
+
+    startBGM();
+
+})();
