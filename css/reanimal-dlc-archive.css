@@ -1,0 +1,1600 @@
+
+/* =========================================
+   REANIMAL: THE EXPANDED WORLD
+   MAIN STYLESHEET
+========================================= */
+
+
+/* =========================================
+   01. ROOT & RESET
+========================================= */
+
+:root {
+    --dlc-black: #000000;
+    --dlc-dark: #080B10;
+    --dlc-card: #10151D;
+
+    --dlc-red: #D41C2B;
+    --dlc-white: #E5E8EC;
+    --dlc-muted: #777777;
+    --dlc-border: #252525;
+
+    --dlc-font: Arial, sans-serif;
+    --dlc-max-width: 1100px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    background: var(--dlc-black);
+    color: var(--dlc-white);
+
+    font-family: var(--dlc-font);
+    line-height: 1.6;
+
+    overflow-x: hidden;
+}
+
+button {
+    font-family: inherit;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.dlc-page [hidden],
+.media-lightbox [hidden],
+.reanimal-music-toggle[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================
+   02. MAIN CONTAINER
+========================================= */
+
+.dlc-page {
+    width: 100%;
+    max-width: var(--dlc-max-width);
+
+    margin: 0 auto;
+    padding: 100px 32px 0;
+}
+
+
+/* =========================================
+   03. PAGE HEADER
+========================================= */
+
+.dlc-header {
+    padding: 130px 0 110px;
+    text-align: center;
+}
+
+.dlc-eyebrow {
+    color: var(--dlc-white);
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+
+    margin-bottom: 18px;
+}
+
+.dlc-title {
+    color: var(--dlc-red);
+
+    font-size: clamp(42px, 7.5vw, 92px);
+    font-weight: 900;
+    letter-spacing: 2px;
+    line-height: 1.1;
+}
+
+.dlc-subtitle {
+    color: var(--dlc-white);
+
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 4px;
+
+    margin-top: 22px;
+}
+
+
+/* =========================================
+   04. DLC CATEGORY BUTTONS
+========================================= */
+
+.dlc-categories {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+    margin-bottom: 65px;
+}
+
+.dlc-category {
+    position: relative;
+    isolation: isolate;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 115px;
+
+    padding: 15px;
+
+    background: var(--dlc-dark);
+    border: 1px solid var(--dlc-border);
+
+    overflow: hidden;
+    cursor: pointer;
+
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* CATEGORY IMAGE */
+
+.dlc-category-image {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+}
+
+.dlc-category-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform 0.6s ease;
+}
+
+
+/* DARK OVERLAY */
+
+.dlc-category::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    transition: background 0.3s ease;
+}
+
+
+/* CATEGORY CONTENT */
+
+.dlc-category-content {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    position: relative;
+    z-index: 1;
+}
+
+.dlc-category-number {
+    color: var(--dlc-red);
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.dlc-category-title {
+    color: var(--dlc-red);
+
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.dlc-category-subtitle {
+    color: var(--dlc-white);
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+
+/* ACTIVE CATEGORY */
+
+.dlc-category.active {
+    border-color: var(--dlc-red);
+
+    box-shadow:
+        inset 0 -3px 0 var(--dlc-red);
+}
+
+.dlc-category.active::before {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+
+/* UNRELEASED DLC */
+
+.dlc-category.coming-soon {
+    background: var(--dlc-dark);
+}
+
+.dlc-category.coming-soon
+.dlc-category-subtitle {
+    color: var(--dlc-muted);
+}
+
+
+/* HOVER */
+
+@media (hover: hover) {
+
+    .dlc-category:hover {
+        border-color: var(--dlc-red);
+
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 0 18px rgba(212, 28, 43, 0.15);
+    }
+
+    .dlc-category:hover::before {
+        background: rgba(0, 0, 0, 0.35);
+    }
+
+    .dlc-category:hover img {
+        transform: scale(1.08);
+    }
+
+}
+
+.dlc-category:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================
+   05. ADVENTURE SECTION
+========================================= */
+
+.adventure-section {
+    padding-top: 35px;
+
+    border-top: 1px solid var(--dlc-border);
+}
+
+.section-heading {
+    position: relative;
+    z-index: 2;
+
+    margin-bottom: 30px;
+}
+
+.section-eyebrow {
+    color: var(--dlc-white);
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+
+    margin-bottom: 12px;
+}
+
+.section-title {
+    color: var(--dlc-red);
+
+    font-size: clamp(32px, 5vw, 58px);
+    font-weight: 900;
+    letter-spacing: 2px;
+    line-height: 1.2;
+}
+
+.section-subtitle {
+    color: var(--dlc-white);
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+
+    margin-top: 10px;
+}
+
+
+/* =========================================
+   06. GRADIENT STORY COVER
+========================================= */
+
+.story-introduction {
+    position: relative;
+    isolation: isolate;
+
+    min-height: 420px;
+
+    padding: 20px 0 45px;
+    overflow: hidden;
+}
+
+.story-cover {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 72%;
+
+    z-index: -1;
+    pointer-events: none;
+
+    overflow: hidden;
+}
+
+.story-cover img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    filter: brightness(0.8);
+}
+
+
+/* LEFT GRADIENT */
+
+.story-cover::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    background: linear-gradient(
+        to right,
+        #000000 0%,
+        rgba(0, 0, 0, 0.95) 12%,
+        rgba(0, 0, 0, 0.65) 32%,
+        rgba(0, 0, 0, 0.2) 60%,
+        transparent 100%
+    );
+}
+
+
+/* TOP & BOTTOM GRADIENT */
+
+.story-cover::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    background: linear-gradient(
+        to bottom,
+        #000000 0%,
+        transparent 18%,
+        transparent 65%,
+        #000000 100%
+    );
+}
+
+
+/* =========================================
+   07. CHAPTER LIST
+========================================= */
+
+.chapter-list {
+    position: relative;
+    z-index: 2;
+
+    width: 48%;
+    max-width: 460px;
+
+    margin-top: 35px;
+}
+
+.chapter-item {
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+    padding: 20px 0;
+
+    border-bottom:
+        1px solid rgba(229, 232, 236, 0.12);
+}
+
+.chapter-number {
+    flex-shrink: 0;
+
+    color: var(--dlc-red);
+
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.chapter-text {
+    min-width: 0;
+}
+
+.chapter-title {
+    color: var(--dlc-white);
+
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.chapter-subtitle {
+    color: #A3A7AD;
+
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================
+   08. MEDIA COLLECTION
+========================================= */
+
+.media-collection {
+    margin-top: 30px;
+}
+
+.collection-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.collection-label {
+    color: var(--dlc-white);
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.collection-count {
+    flex-shrink: 0;
+
+    color: var(--dlc-red);
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   09. MEDIA GRID
+========================================= */
+
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+.media-card {
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    padding: 0;
+
+    background: var(--dlc-dark);
+    border: 1px solid var(--dlc-border);
+
+    overflow: hidden;
+    cursor: pointer;
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.media-card img,
+.media-card video {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform 0.5s ease;
+}
+
+
+/* MEDIA NUMBER */
+
+.media-number {
+    position: absolute;
+
+    right: 8px;
+    bottom: 8px;
+
+    padding: 3px 7px;
+
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--dlc-white);
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+/* VIDEO PLAY ICON */
+
+.media-play-icon {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--dlc-white);
+
+    border: 1px solid var(--dlc-red);
+    border-radius: 50%;
+
+    font-size: 15px;
+}
+
+@media (hover: hover) {
+
+    .media-card:hover {
+        border-color: var(--dlc-red);
+
+        box-shadow:
+            0 0 15px rgba(212, 28, 43, 0.15);
+    }
+
+    .media-card:hover img,
+    .media-card:hover video {
+        transform: scale(1.06);
+    }
+
+}
+
+
+/* =========================================
+   10. VIEW ALL & CLOSE COLLECTION
+========================================= */
+
+.collection-toggle {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    width: 100%;
+
+    margin-top: 25px;
+    padding: 15px 20px;
+
+    background: transparent;
+    color: var(--dlc-red);
+
+    border: 1px solid var(--dlc-red);
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.collection-toggle i {
+    font-size: 12px;
+
+    transition: transform 0.3s ease;
+}
+
+.collection-toggle[aria-expanded="true"] i {
+    transform: rotate(180deg);
+}
+
+@media (hover: hover) {
+
+    .collection-toggle:hover {
+        background: var(--dlc-red);
+        color: var(--dlc-white);
+    }
+
+}
+
+.collection-toggle:active {
+    transform: scale(0.98);
+}
+
+.collection-progress {
+    color: var(--dlc-muted);
+
+    font-size: 11px;
+    letter-spacing: 2px;
+
+    text-align: center;
+
+    margin-top: 12px;
+}
+
+
+/* =========================================
+   11. EMPTY COLLECTION
+========================================= */
+
+.collection-empty,
+.dlc-empty {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    min-height: 260px;
+
+    padding: 35px 20px;
+
+    background: var(--dlc-dark);
+    border: 1px solid var(--dlc-border);
+
+    text-align: center;
+}
+
+.collection-empty i,
+.dlc-empty i {
+    color: var(--dlc-red);
+    font-size: 32px;
+}
+
+.collection-empty p,
+.dlc-empty h2 {
+    color: var(--dlc-red);
+
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.collection-empty span,
+.dlc-empty p {
+    color: var(--dlc-white);
+
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.dlc-empty {
+    min-height: 380px;
+}
+
+
+/* =========================================
+   12. LITTLE MEMORIES
+========================================= */
+
+.memories-section {
+    margin-top: 85px;
+    padding-top: 45px;
+
+    border-top: 1px solid var(--dlc-border);
+}
+
+
+/* =========================================
+   13. BACK BUTTON
+========================================= */
+
+.dlc-back-section {
+    margin-top: 65px;
+    padding: 45px 0;
+
+    border-top: 1px solid var(--dlc-border);
+
+    text-align: center;
+}
+
+.dlc-back-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    padding: 14px 25px;
+
+    border: 1px solid var(--dlc-red);
+
+    color: var(--dlc-red);
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.dlc-back-button i {
+    transition: transform 0.3s ease;
+}
+
+@media (hover: hover) {
+
+    .dlc-back-button:hover {
+        background: var(--dlc-red);
+        color: var(--dlc-white);
+    }
+
+    .dlc-back-button:hover i {
+        transform: translateX(-4px);
+    }
+
+}
+
+.dlc-back-button:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================================
+   14. FOOTER
+========================================= */
+
+.dlc-footer {
+    padding: 65px 24px 55px;
+
+    background: var(--dlc-black);
+    border-top: 1px solid var(--dlc-border);
+
+    text-align: center;
+}
+
+.dlc-footer .footer-title {
+    color: var(--dlc-red);
+
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+}
+
+.dlc-footer .footer-description {
+    color: var(--dlc-muted);
+
+    font-size: 11px;
+    letter-spacing: 0.1em;
+
+    margin: 18px 0 30px;
+}
+
+.dlc-footer .back-to-top {
+    display: inline-block;
+
+    padding: 12px 25px;
+
+    border: 1px solid var(--dlc-red);
+    color: var(--dlc-red);
+
+    font-size: 10px;
+    letter-spacing: 2px;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+.dlc-footer .back-to-top:hover {
+    background: var(--dlc-red);
+    color: var(--dlc-white);
+}
+
+
+/* =========================================
+   15. MEDIA LIGHTBOX
+========================================= */
+
+.media-lightbox {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    max-width: none;
+    max-height: none;
+
+    margin: 0;
+    padding: 0;
+
+    background: #000000;
+    border: none;
+
+    overflow: hidden;
+}
+
+.media-lightbox:not([open]) {
+    display: none;
+}
+
+.media-lightbox[open] {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.media-lightbox::backdrop {
+    background: #000000;
+}
+
+.lightbox-stage {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: calc(100% - 140px);
+    height: calc(100% - 130px);
+
+    touch-action: pan-y;
+}
+
+.lightbox-image,
+.lightbox-video {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    object-position: center;
+}
+
+
+/* CLOSE BUTTON */
+
+.lightbox-close {
+    position: absolute;
+
+    top: 25px;
+    right: 25px;
+
+    z-index: 5;
+
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+
+    background: transparent;
+    color: var(--dlc-red);
+
+    border: none;
+
+    font-size: 28px;
+    cursor: pointer;
+}
+
+
+/* LIGHTBOX ARROWS */
+
+.lightbox-arrow {
+    position: absolute;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    z-index: 5;
+
+    width: 50px;
+    height: 60px;
+
+    padding: 0;
+
+    background: transparent;
+    color: var(--dlc-red);
+
+    border: none;
+
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.lightbox-previous {
+    left: 15px;
+}
+
+.lightbox-next {
+    right: 15px;
+}
+
+
+/* LIGHTBOX COUNTER */
+
+.lightbox-counter {
+    position: absolute;
+
+    bottom: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: var(--dlc-red);
+
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* =========================================
+   16. BACKGROUND MUSIC
+========================================= */
+
+.reanimal-music-toggle {
+    position: fixed;
+
+    right: 24px;
+    bottom: 24px;
+
+    z-index: 900;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+
+    background: #000000;
+    color: var(--dlc-red);
+
+    border: 1px solid var(--dlc-red);
+    border-radius: 50%;
+
+    font-size: 16px;
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.reanimal-music-toggle:hover {
+    background: var(--dlc-red);
+    color: #000000;
+
+    transform: scale(1.08);
+}
+
+.reanimal-music-toggle:active {
+    transform: scale(0.95);
+}
+
+
+/* =========================================
+   17. ANIMATION KEYFRAMES
+========================================= */
+
+@keyframes dlcFadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes dlcTitleReveal {
+
+    from {
+        opacity: 0;
+        filter: blur(7px);
+
+        transform:
+            translateY(15px) scale(1.06);
+    }
+
+    to {
+        opacity: 1;
+        filter: blur(0);
+
+        transform:
+            translateY(0) scale(1);
+    }
+
+}
+
+@keyframes storyCoverReveal {
+
+    from {
+        opacity: 0;
+        transform: scale(1.06);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+@keyframes dlcCollectionReveal {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================
+   18. PAGE ENTRANCE ANIMATION
+========================================= */
+
+.dlc-eyebrow {
+    animation:
+        dlcFadeUp 0.8s ease backwards;
+}
+
+.dlc-title {
+    animation:
+        dlcTitleReveal 1.1s 0.15s ease backwards;
+}
+
+.dlc-subtitle {
+    animation:
+        dlcFadeUp 0.9s 0.4s ease backwards;
+}
+
+.dlc-category:nth-child(1) {
+    animation:
+        dlcFadeUp 0.8s 0.65s ease backwards;
+}
+
+.dlc-category:nth-child(2) {
+    animation:
+        dlcFadeUp 0.8s 0.8s ease backwards;
+}
+
+.dlc-category:nth-child(3) {
+    animation:
+        dlcFadeUp 0.8s 0.95s ease backwards;
+}
+
+.dlc-content {
+    animation:
+        dlcFadeUp 0.9s 1.1s ease backwards;
+}
+
+
+/* =========================================
+   19. STORY COVER & CHAPTER ANIMATION
+========================================= */
+
+.story-cover {
+    animation:
+        storyCoverReveal 2s 0.2s ease backwards;
+}
+
+.chapter-item:nth-child(1) {
+    animation:
+        dlcFadeUp 0.8s 0.2s ease backwards;
+}
+
+.chapter-item:nth-child(2) {
+    animation:
+        dlcFadeUp 0.8s 0.35s ease backwards;
+}
+
+.chapter-item:nth-child(3) {
+    animation:
+        dlcFadeUp 0.8s 0.5s ease backwards;
+}
+
+
+/* DLC SWITCH ANIMATION */
+
+.dlc-content.content-reveal,
+.dlc-empty.content-reveal {
+    animation:
+        dlcCollectionReveal 0.4s ease backwards;
+}
+
+
+/* COLLECTION EXPAND ANIMATION */
+
+.media-grid.collection-reveal {
+    animation:
+        dlcCollectionReveal 0.4s ease backwards;
+}
+
+
+/* KEYBOARD FOCUS */
+
+.dlc-page button:focus-visible,
+.dlc-page a:focus-visible,
+.media-lightbox button:focus-visible,
+.reanimal-music-toggle:focus-visible {
+    outline: 2px solid var(--dlc-red);
+    outline-offset: 4px;
+}
+
+
+/* =========================================
+   20. TABLET RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .dlc-page {
+        padding: 85px 24px 0;
+    }
+
+    .dlc-header {
+        padding: 100px 0 85px;
+    }
+
+    .dlc-categories {
+        gap: 10px;
+        margin-bottom: 45px;
+    }
+
+    .dlc-category {
+        min-height: 95px;
+        padding: 10px;
+    }
+
+    .dlc-category-title {
+        font-size: 19px;
+    }
+
+    .dlc-category-subtitle {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    .story-introduction {
+        min-height: 380px;
+    }
+
+    .story-cover {
+        width: 80%;
+    }
+
+    .chapter-list {
+        width: 60%;
+    }
+
+    .chapter-number {
+        font-size: 27px;
+    }
+
+    .chapter-title {
+        font-size: 17px;
+    }
+
+    .media-grid {
+        gap: 10px;
+    }
+
+}
+
+
+/* =========================================
+   21. MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .dlc-page {
+        padding: 75px 16px 0;
+    }
+
+
+    /* PAGE HEADER */
+
+    .dlc-header {
+        padding: 85px 0 75px;
+    }
+
+    .dlc-eyebrow {
+        font-size: 10px;
+        letter-spacing: 3px;
+
+        margin-bottom: 12px;
+    }
+
+    .dlc-title {
+        font-size: clamp(32px, 9vw, 50px);
+        letter-spacing: 1px;
+    }
+
+    .dlc-subtitle {
+        font-size: 12px;
+        letter-spacing: 2px;
+
+        margin-top: 15px;
+    }
+
+
+    /* DLC BUTTONS */
+
+    .dlc-categories {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+        margin-bottom: 40px;
+    }
+
+    .dlc-category {
+        min-height: 75px;
+        padding: 10px 15px;
+    }
+
+    .dlc-category-content {
+        gap: 1px;
+    }
+
+    .dlc-category-number {
+        font-size: 9px;
+    }
+
+    .dlc-category-title {
+        font-size: 18px;
+    }
+
+    .dlc-category-subtitle {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+
+    /* ADVENTURE SECTION */
+
+    .adventure-section {
+        padding-top: 25px;
+    }
+
+    .section-heading {
+        margin-bottom: 22px;
+    }
+
+    .section-eyebrow {
+        font-size: 10px;
+        letter-spacing: 2px;
+
+        margin-bottom: 10px;
+    }
+
+    .section-title {
+        font-size: 32px;
+    }
+
+    .section-subtitle {
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+
+
+    /* STORY COVER */
+
+    .story-introduction {
+        min-height: 340px;
+        padding: 10px 0 25px;
+    }
+
+    .story-cover {
+        width: 90%;
+    }
+
+    .story-cover img {
+        object-position: 65% center;
+
+        filter: brightness(0.55);
+    }
+
+    .story-cover::before {
+        background: linear-gradient(
+            to right,
+            #000000 0%,
+            rgba(0, 0, 0, 0.85) 20%,
+            rgba(0, 0, 0, 0.4) 55%,
+            transparent 100%
+        );
+    }
+
+
+    /* CHAPTER LIST */
+
+    .chapter-list {
+        width: 85%;
+
+        margin-top: 25px;
+    }
+
+    .chapter-item {
+        gap: 14px;
+        padding: 15px 0;
+    }
+
+    .chapter-number {
+        font-size: 25px;
+    }
+
+    .chapter-title {
+        font-size: 15px;
+        letter-spacing: 0.5px;
+    }
+
+    .chapter-subtitle {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+
+    /* MEDIA COLLECTION */
+
+    .media-collection {
+        margin-top: 20px;
+    }
+
+    .collection-heading {
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+
+    .collection-label {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    .collection-count {
+        font-size: 10px;
+    }
+
+
+    /* TWO COLUMN MEDIA GRID */
+
+    .media-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 8px;
+    }
+
+    .media-number {
+        right: 4px;
+        bottom: 4px;
+
+        font-size: 8px;
+    }
+
+    .media-play-icon {
+        width: 32px;
+        height: 32px;
+
+        font-size: 12px;
+    }
+
+
+    /* COLLECTION TOGGLE */
+
+    .collection-toggle {
+        margin-top: 18px;
+        padding: 12px 10px;
+
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    .collection-progress {
+        font-size: 10px;
+    }
+
+
+    /* EMPTY COLLECTION */
+
+    .collection-empty {
+        min-height: 180px;
+    }
+
+    .dlc-empty {
+        min-height: 250px;
+    }
+
+    .collection-empty p,
+    .dlc-empty h2 {
+        font-size: 20px;
+    }
+
+
+    /* LITTLE MEMORIES */
+
+    .memories-section {
+        margin-top: 50px;
+        padding-top: 30px;
+    }
+
+
+    /* BACK BUTTON */
+
+    .dlc-back-section {
+        margin-top: 40px;
+        padding: 30px 0;
+    }
+
+    .dlc-back-button {
+        font-size: 10px;
+        padding: 12px 20px;
+    }
+
+
+    /* FOOTER */
+
+    .dlc-footer {
+        padding: 40px 16px 45px;
+    }
+
+    .dlc-footer .footer-title {
+        font-size: 24px;
+    }
+
+    .dlc-footer .footer-description {
+        font-size: 10px;
+    }
+
+
+    /* LIGHTBOX */
+
+    .lightbox-stage {
+        width: calc(100% - 56px);
+        height: calc(100% - 120px);
+    }
+
+    .lightbox-close {
+        top: 15px;
+        right: 15px;
+
+        font-size: 24px;
+    }
+
+    .lightbox-arrow {
+        width: 28px;
+
+        font-size: 19px;
+    }
+
+    .lightbox-previous {
+        left: 0;
+    }
+
+    .lightbox-next {
+        right: 0;
+    }
+
+    .lightbox-counter {
+        bottom: 25px;
+
+        font-size: 12px;
+    }
+
+
+    /* BACKGROUND MUSIC */
+
+    .reanimal-music-toggle {
+        right: 16px;
+        bottom: 16px;
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 14px;
+    }
+
+}
+
+
+/* =========================================
+   22. REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .dlc-page *,
+    .dlc-footer *,
+    .media-lightbox *,
+    .reanimal-music-toggle {
+
+        animation: none !important;
+        transition: none !important;
+
+    }
+
+}
