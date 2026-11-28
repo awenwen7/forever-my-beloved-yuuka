@@ -2406,3 +2406,69 @@ button {
         right: 15px;
     }
 }
+/* =========================================
+   BACKGROUND MUSIC
+========================================= */
+
+.bgm-toggle {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(14, 14, 14, 0.85);
+    color: #1ddfce;
+
+    border: 1px solid #1ddfce;
+    border-radius: 50%;
+
+    font-size: 17px;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    cursor: pointer;
+    z-index: 9999;
+
+    transition: all 0.3s ease;
+}
+
+
+/* HOVER */
+
+.bgm-toggle:hover {
+    background: #1ddfce;
+    color: #0e0e0e;
+
+    transform: scale(1.08);
+}
+
+
+/* PLAYING */
+
+.bgm-toggle.is-playing {
+    box-shadow: 0 0 15px rgba(29, 223, 206, 0.3);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .bgm-toggle {
+        right: 18px;
+        bottom: 18px;
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 15px;
+    }
+
+}
