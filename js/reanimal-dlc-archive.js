@@ -70,9 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             available: false,
 
-            title: "DLC 02",
+            title: "赤い旗",
 
-            subtitle: "COMING SOON",
+            subtitle: "RED FLAGS",
 
             cover: "",
 
