@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             subtitle: "THE PRISONER",
 
-            cover: "dlc-archive.webp",
+            cover: "dlc01-cover.webp",
 
             music: "reanimal-bgm2.mp3",
 
@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             subtitle: "RED FLAGS",
 
-            cover: "",
+            cover: "dlc02-cover.webp",
 
             music: "reanimal-bgm2.mp3",
 
@@ -378,7 +378,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const lightboxCounter =
         document.getElementById("lightbox-counter");
+/* LIGHTBOX CHAPTER */
 
+const lightboxChapter =
+    document.getElementById("lightbox-chapter");
+
+const lightboxChapterNumber =
+    document.getElementById("lightbox-chapter-number");
+
+const lightboxChapterTitle =
+    document.getElementById("lightbox-chapter-title");
+
+const lightboxChapterSubtitle =
+    document.getElementById("lightbox-chapter-subtitle");
+
+
+/* LIGHTBOX MEMORY NOTE */
+
+const lightboxNote =
+    document.getElementById("lightbox-note");
+
+const lightboxNoteText =
+    document.getElementById("lightbox-note-text");
+
+
+/* LIGHTBOX MUSIC BUTTON */
+
+const lightboxMusic =
+    document.getElementById("lightbox-music");
+
+const lightboxMusicIcon =
+    lightboxMusic.querySelector("i");
 
     /* BACKGROUND MUSIC */
 
@@ -991,80 +1021,129 @@ if (media.type === "video") {
     }
 
 
-    function showLightboxMedia(index) {
+function showLightboxMedia(index) {
 
-        const total =
-            currentLightboxList.length;
+    const total =
+        currentLightboxList.length;
 
-        if (!total) return;
-
-
-        /* LOOP NAVIGATION */
-
-        currentLightboxIndex =
-            ((index % total) + total) % total;
+    if (!total) return;
 
 
-        const media =
-            currentLightboxList[currentLightboxIndex];
+    /* LOOP NAVIGATION */
+
+    currentLightboxIndex =
+        ((index % total) + total) % total;
 
 
-        /* RESET PREVIOUS MEDIA */
-
-        lightboxVideo.pause();
-
-        lightboxVideo.removeAttribute("src");
-
-        lightboxVideo.load();
-
-        lightboxVideo.hidden = true;
-
-        lightboxImage.hidden = true;
+    const media =
+        currentLightboxList[currentLightboxIndex];
 
 
-        /* VIDEO */
+    /* RESET PREVIOUS MEDIA */
 
-        if (media.type === "video") {
+    lightboxVideo.pause();
 
-    lightboxVideo.src =
-        imagePath + media.file;
-
-    lightboxVideo.hidden = false;
+    lightboxVideo.removeAttribute("src");
 
     lightboxVideo.load();
 
-}
+    lightboxVideo.hidden = true;
+
+    lightboxImage.hidden = true;
 
 
-        /* PHOTO */
+    /* VIDEO */
 
-        else {
+    if (media.type === "video") {
 
-            lightboxImage.src =
-                imagePath + media.file;
+        lightboxVideo.src =
+            imagePath + media.file;
 
-            lightboxImage.alt =
-                media.alt || "REANIMAL";
+        lightboxVideo.hidden = false;
 
-            lightboxImage.hidden = false;
-
-        }
-
-
-        /* UPDATE COUNTER */
-
-        lightboxCounter.textContent =
-
-            `${formatNumber(currentLightboxIndex + 1)} / ${formatNumber(total)}`;
-
-
-        /* HIDE ARROWS IF ONLY ONE ITEM */
-
-        lightboxPrevious.hidden = total <= 1;
-
-        lightboxNext.hidden = total <= 1;
+        lightboxVideo.load();
 
     }
+
+
+    /* PHOTO */
+
+    else {
+
+        lightboxImage.src =
+            imagePath + media.file;
+
+        lightboxImage.alt =
+            media.alt || "REANIMAL";
+
+        lightboxImage.hidden = false;
+
+    }
+
+
+    /* CHAPTER INFORMATION */
+
+    const chapter =
+        dlcData[currentDLC].chapters[media.chapter - 1];
+
+    if (chapter) {
+
+        lightboxChapter.hidden = false;
+
+        lightboxChapterNumber.textContent =
+            `CHAPTER ${formatNumber(media.chapter)}`;
+
+        lightboxChapterTitle.textContent =
+            chapter.title;
+
+        lightboxChapterSubtitle.textContent =
+            chapter.subtitle;
+
+    } else {
+
+        lightboxChapter.hidden = true;
+
+        lightboxChapterNumber.textContent = "";
+
+        lightboxChapterTitle.textContent = "";
+
+        lightboxChapterSubtitle.textContent = "";
+
+    }
+
+
+    /* MEMORY NOTE */
+
+    const note =
+        typeof media.note === "string"
+            ? media.note.trim()
+            : "";
+
+    lightboxNoteText.textContent = note;
+
+    lightboxNote.hidden = !note;
+
+    lightboxNote.scrollTop = 0;
+
+
+    /* UPDATE COUNTER */
+
+    lightboxCounter.textContent =
+        `${formatNumber(currentLightboxIndex + 1)} / ${formatNumber(total)}`;
+
+
+    /* HIDE ARROWS IF ONLY ONE ITEM */
+
+    lightboxPrevious.hidden = total <= 1;
+
+    lightboxNext.hidden = total <= 1;
+
+
+    /* UPDATE MUSIC BUTTON */
+
+    updateMusicButton();
+
+}
 
 
     /* =========================================
@@ -1299,30 +1378,23 @@ if (media.type === "video") {
 
 
     function updateMusicButton() {
-
         const playing = !bgm.paused;
-
-        musicIcon.className = playing
+        const iconClass = playing
             ? "fa-solid fa-volume-high"
             : "fa-solid fa-volume-xmark";
+        const buttonLabel = playing
+            ? "BGMを一時停止"
+            : "BGMを再生";
 
-        musicButton.setAttribute(
-            "aria-pressed",
-            String(playing)
-        );
+        musicIcon.className = iconClass;
+        musicButton.setAttribute("aria-pressed", String(playing));
+        musicButton.setAttribute("aria-label", buttonLabel);
 
-        musicButton.setAttribute(
-
-            "aria-label",
-
-            playing
-                ? "BGMを一時停止"
-                : "BGMを再生"
-
-        );
-
+        lightboxMusicIcon.className = iconClass;
+        lightboxMusic.setAttribute("aria-pressed", String(playing));
+        lightboxMusic.setAttribute("aria-label", buttonLabel);
+        lightboxMusic.hidden = !bgm.getAttribute("src");
     }
-
 
 function startMusic() {
 
@@ -1390,66 +1462,38 @@ function startMusic() {
 
     musicButton.hidden = false;
 
+    updateMusicButton();
     startMusic();
 
 }
 
-   /* =========================================
-   17. MUSIC CONTROLS
-========================================= */
+    /* =========================================
+       17. MUSIC CONTROLS
+    ========================================= */
 
-/* MUSIC BUTTON */
-
-musicButton.addEventListener("click", () => {
-
-    if (bgm.paused) {
-
-        musicEnabled = true;
-
-        startMusic();
-
-    } else {
-
-        musicEnabled = false;
-
-        bgm.pause();
-
+    function toggleMusic() {
+        if (bgm.paused) {
+            musicEnabled = true;
+            startMusic();
+        } else {
+            musicEnabled = false;
+            bgm.pause();
+        }
     }
 
-});
+    musicButton.addEventListener("click", toggleMusic);
+    lightboxMusic.addEventListener("click", toggleMusic);
 
+    document.addEventListener("click", event => {
+        if (musicButton.contains(event.target)) return;
+        if (lightboxMusic.contains(event.target)) return;
+        if (!musicEnabled) return;
+        if (!bgm.getAttribute("src")) return;
+        if (bgm.paused) startMusic();
+    });
 
-/* AUTOPLAY FALLBACK */
-
-document.addEventListener("click", event => {
-
-    if (musicButton.contains(event.target)) return;
-
-    if (!musicEnabled) return;
-
-    if (!bgm.getAttribute("src")) return;
-
-    if (bgm.paused) {
-
-        startMusic();
-
-    }
-
-});
-
-
-/* UPDATE MUSIC BUTTON */
-
-bgm.addEventListener(
-    "play",
-    updateMusicButton
-);
-
-bgm.addEventListener(
-    "pause",
-    updateMusicButton
-);
-
+    bgm.addEventListener("play", updateMusicButton);
+    bgm.addEventListener("pause", updateMusicButton);
 
     /* =========================================
        18. BACK TO TOP
