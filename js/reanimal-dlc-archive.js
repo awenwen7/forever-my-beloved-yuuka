@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             cover: "dlc-archive.webp",
 
-            music: "",
+            music: "reanimal-bgm2.mp3",
 
             chapters: [
 
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             cover: "",
 
-            music: "",
+            music: "reanimal-bgm2.mp3",
 
             chapters: [],
 
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             cover: "",
 
-            music: "",
+            music: "reanimal-bgm2.mp3",
 
             chapters: [],
 
@@ -1136,42 +1136,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateMusic(file) {
 
-        bgm.pause();
-
-        bgm.removeAttribute("src");
-
-        bgm.load();
-
-        resumeMusicAfterVideo = false;
-
-        musicPausedForVideo = false;
+    const nextSource = file
+        ? new URL(musicPath + file, document.baseURI).href
+        : "";
 
 
-        /* NO MUSIC FILE */
+    /* SAME MUSIC — KEEP PLAYING */
 
-        if (!file) {
-
-            musicButton.hidden = true;
-
-            updateMusicButton();
-
-            return;
-
-        }
-
-
-        /* LOAD MUSIC */
-
-        bgm.src = musicPath + file;
-
-        bgm.preload = "auto";
+    if (
+        nextSource &&
+        bgm.getAttribute("src") &&
+        bgm.src === nextSource
+    ) {
 
         musicButton.hidden = false;
 
-        startMusic();
+        updateMusicButton();
+
+        return;
 
     }
 
+
+    /* CHANGE MUSIC */
+
+    bgm.pause();
+
+    bgm.removeAttribute("src");
+
+    bgm.load();
+
+    resumeMusicAfterVideo = false;
+
+    musicPausedForVideo = false;
+
+
+    /* NO MUSIC FILE */
+
+    if (!file) {
+
+        musicButton.hidden = true;
+
+        updateMusicButton();
+
+        return;
+
+    }
+
+
+    /* LOAD MUSIC */
+
+    bgm.src = nextSource;
+
+    bgm.preload = "auto";
+
+    musicButton.hidden = false;
+
+    startMusic();
+
+}
 
     /* =========================================
        17. MUSIC & VIDEO COORDINATION
