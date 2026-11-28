@@ -55,11 +55,203 @@ document.addEventListener("DOMContentLoaded", () => {
 
             ],
 
-           adventure: [
+          adventure: [
 
-    // OUR ADVENTURE 照片及影片
+    /* ========================================
+       CHAPTER 01 — THE SLOW DESCENT
+       緩やかな下降
+    ========================================= */
 
-        ]
+    {
+        type: "video",
+        file: "1the-prisoner01.mp4",
+        chapter: 1,
+        note: ""
+    },
+    {
+        type: "video",
+        file: "1the-prisoner02.mp4",
+        chapter: 1,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "1the-prisoner03.webp",
+        chapter: 1,
+        note: ""
+    },
+    {
+        type: "video",
+        file: "1the-prisoner04.mp4",
+        chapter: 1,
+        note: ""
+    },
+    {
+        type: "video",
+        file: "1the-prisoner05.mp4",
+        chapter: 1,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "1the-prisoner06.webp",
+        chapter: 1,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "1the-prisoner07.webp",
+        chapter: 1,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "1the-prisoner08.webp",
+        chapter: 1,
+        note: ""
+    },
+
+
+    /* ========================================
+       CHAPTER 02 — SCORCHED EARTH
+       焼け焦げた大地
+    ========================================= */
+
+    {
+        type: "image",
+        file: "2the-prisoner0.webp",
+        chapter: 2,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "2the-prisoner01.webp",
+        chapter: 2,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "2the-prisoner02.webp",
+        chapter: 2,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "2the-prisoner03.webp",
+        chapter: 2,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "2the-prisoner04.webp",
+        chapter: 2,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "2the-prisoner05.webp",
+        chapter: 2,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "2the-prisoner06.webp",
+        chapter: 2,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "2the-prisoner07.webp",
+        chapter: 2,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "2the-prisoner08.webp",
+        chapter: 2,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "2the-prisoner09.webp",
+        chapter: 2,
+        note: ""
+    },
+
+
+    /* ========================================
+       CHAPTER 03 — BY YOUR SIDE
+       君のそばに
+    ========================================= */
+
+    {
+        type: "image",
+        file: "3the-prisoner01.webp",
+        chapter: 3,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "3the-prisoner02.webp",
+        chapter: 3,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "3the-prisoner03.webp",
+        chapter: 3,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "3the-prisoner04.webp",
+        chapter: 3,
+        note: ""
+    },
+    {
+        type: "video",
+        file: "3the-prisoner05.mp4",
+        chapter: 3,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "3the-prisoner06.webp",
+        chapter: 3,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "3the-prisoner07.webp",
+        chapter: 3,
+        note: ""
+    },
+    {
+        type: "video",
+        file: "3the-prisoner08.mp4",
+        chapter: 3,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "3the-prisoner09.webp",
+        chapter: 3,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "3the-prisoner10.webp",
+        chapter: 3,
+        note: ""
+    },
+    {
+        type: "image",
+        file: "3the-prisoner11.webp",
+        chapter: 3,
+        note: ""
+    }
+
+]
 
         },
 
@@ -103,8 +295,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             adventure: [],
 
-            memories: []
-
         }
 
     };
@@ -120,11 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let currentLightboxIndex = 0;
 
-    let resumeMusicAfterVideo = false;
-
     let musicEnabled = true;
-
-    let musicPausedForVideo = false;
 
     const collectionState = {
 
@@ -592,40 +778,68 @@ document.addEventListener("DOMContentLoaded", () => {
 
         /* VIDEO */
 
-        if (media.type === "video") {
+if (media.type === "video") {
 
-            if (media.poster) {
+    /* VIDEO THUMBNAIL */
 
-                const image =
-                    document.createElement("img");
+    if (media.poster) {
 
-                image.src =
-                    imagePath + media.poster;
+        const image =
+            document.createElement("img");
 
-                image.alt = "";
+        image.src =
+            imagePath + media.poster;
 
-                image.loading = "lazy";
+        image.alt = "";
 
-                image.decoding = "async";
+        image.loading = "lazy";
 
-                card.appendChild(image);
+        image.decoding = "async";
 
-            }
+        card.appendChild(image);
+
+    } else {
+
+        const video =
+            document.createElement("video");
+
+        video.src =
+            imagePath + media.file + "#t=0.1";
+
+        video.preload = "metadata";
+
+        video.muted = true;
+
+        video.playsInline = true;
+
+        video.controls = false;
+
+        video.autoplay = false;
+
+        video.draggable = false;
+
+        video.style.pointerEvents = "none";
+
+        video.setAttribute("aria-hidden", "true");
+
+        card.appendChild(video);
+
+    }
 
 
-            /* PLAY ICON */
+    /* PLAY ICON */
 
-            const playIcon =
-                document.createElement("span");
+    const playIcon =
+        document.createElement("span");
 
-            playIcon.className = "media-play-icon";
+    playIcon.className = "media-play-icon";
 
-            playIcon.innerHTML =
-                '<i class="fa-solid fa-play" aria-hidden="true"></i>';
+    playIcon.innerHTML =
+        '<i class="fa-solid fa-play" aria-hidden="true"></i>';
 
-            card.appendChild(playIcon);
+    card.appendChild(playIcon);
 
-        }
+}
 
 
         /* PHOTO */
@@ -812,23 +1026,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (media.type === "video") {
 
-            pauseMusicForVideo();
+    lightboxVideo.src =
+        imagePath + media.file;
 
-            lightboxVideo.src =
-                imagePath + media.file;
+    lightboxVideo.hidden = false;
 
-            lightboxVideo.hidden = false;
+    lightboxVideo.load();
 
-            lightboxVideo.load();
-
-        }
+}
 
 
         /* PHOTO */
 
         else {
-
-            restoreMusicAfterVideo();
 
             lightboxImage.src =
                 imagePath + media.file;
@@ -910,20 +1120,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     lightbox.addEventListener("close", () => {
 
-        lightboxVideo.pause();
+    lightboxVideo.pause();
 
-        lightboxVideo.removeAttribute("src");
+    lightboxVideo.removeAttribute("src");
 
-        lightboxVideo.load();
+    lightboxVideo.load();
 
-        lightboxImage.removeAttribute("src");
+    lightboxImage.removeAttribute("src");
 
-        document.body.style.overflow = "";
+    document.body.style.overflow = "";
 
-        restoreMusicAfterVideo();
-
-    });
-
+});
 
     /* =========================================
        14. KEYBOARD CONTROLS
@@ -1117,23 +1324,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    function startMusic() {
+function startMusic() {
 
-        if (!bgm.getAttribute("src")) return;
+    if (!bgm.getAttribute("src")) return;
 
-        if (!musicEnabled) return;
+    if (!musicEnabled) return;
 
-        if (musicPausedForVideo) return;
+    bgm.play().catch(() => {
 
-        bgm.play().catch(() => {
+        updateMusicButton();
 
-            updateMusicButton();
+    });
 
-        });
-
-    }
-
-
+}
     function updateMusic(file) {
 
     const nextSource = file
@@ -1166,11 +1369,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     bgm.load();
 
-    resumeMusicAfterVideo = false;
-
-    musicPausedForVideo = false;
-
-
     /* NO MUSIC FILE */
 
     if (!file) {
@@ -1196,95 +1394,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
 }
 
-    /* =========================================
-       17. MUSIC & VIDEO COORDINATION
-    ========================================= */
+   /* =========================================
+   17. MUSIC CONTROLS
+========================================= */
 
-    function pauseMusicForVideo() {
+/* MUSIC BUTTON */
 
-        if (musicPausedForVideo) return;
+musicButton.addEventListener("click", () => {
 
-        resumeMusicAfterVideo = !bgm.paused;
+    if (bgm.paused) {
 
-        musicPausedForVideo = true;
+        musicEnabled = true;
+
+        startMusic();
+
+    } else {
+
+        musicEnabled = false;
 
         bgm.pause();
 
     }
 
+});
 
-    function restoreMusicAfterVideo() {
 
-        if (!musicPausedForVideo) return;
+/* AUTOPLAY FALLBACK */
 
-        const shouldResume =
-            resumeMusicAfterVideo;
+document.addEventListener("click", event => {
 
-        musicPausedForVideo = false;
+    if (musicButton.contains(event.target)) return;
 
-        resumeMusicAfterVideo = false;
+    if (!musicEnabled) return;
 
-        if (shouldResume && musicEnabled) {
+    if (!bgm.getAttribute("src")) return;
 
-            startMusic();
+    if (bgm.paused) {
 
-        }
+        startMusic();
 
     }
 
-
-    /* MUSIC BUTTON */
-
-    musicButton.addEventListener("click", () => {
-
-        if (bgm.paused) {
-
-            musicEnabled = true;
-
-            startMusic();
-
-        } else {
-
-            musicEnabled = false;
-
-            bgm.pause();
-
-        }
-
-    });
+});
 
 
-    /* AUTOPLAY FALLBACK */
+/* UPDATE MUSIC BUTTON */
 
-    document.addEventListener("click", event => {
+bgm.addEventListener(
+    "play",
+    updateMusicButton
+);
 
-        if (musicButton.contains(event.target)) return;
-
-        if (lightbox.open) return;
-
-        if (!musicEnabled) return;
-
-        if (!bgm.getAttribute("src")) return;
-
-        if (bgm.paused) {
-
-            startMusic();
-
-        }
-
-    });
-
-
-    bgm.addEventListener(
-        "play",
-        updateMusicButton
-    );
-
-
-    bgm.addEventListener(
-        "pause",
-        updateMusicButton
-    );
+bgm.addEventListener(
+    "pause",
+    updateMusicButton
+);
 
 
     /* =========================================
