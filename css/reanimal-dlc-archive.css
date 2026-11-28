@@ -196,7 +196,7 @@ a {
     align-items: center;
     justify-content: center;
 
-    gap: 3px;
+    gap: 2px;
 
     position: relative;
     z-index: 1;
@@ -1597,4 +1597,11 @@ a {
 
     }
 
+}
+/* =========================================
+   23. NAVIGATION SPACING
+========================================= */
+
+body[data-nav-theme="reanimal"] .side-menu {
+    line-height: normal;
 }
