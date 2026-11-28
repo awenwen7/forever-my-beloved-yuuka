@@ -1141,3 +1141,119 @@ document.addEventListener('keydown', (event) => {
     }
 
 });
+/* =========================================
+   BACKGROUND MUSIC
+========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const bgm = document.getElementById("bgm");
+    const toggle = document.getElementById("bgm-toggle");
+
+    if (!bgm || !toggle) return;
+
+    const icon = toggle.querySelector("i");
+
+    bgm.volume = 0.3;
+    bgm.loop = true;
+
+    let userPaused = false;
+
+
+    /* UPDATE BUTTON */
+
+    function updateButton() {
+
+        const playing = !bgm.paused;
+
+        icon.className = playing
+            ? "fa-solid fa-volume-high"
+            : "fa-solid fa-volume-xmark";
+
+        toggle.classList.toggle("is-playing", playing);
+
+        toggle.setAttribute(
+            "aria-pressed",
+            String(playing)
+        );
+
+        toggle.setAttribute(
+            "aria-label",
+            playing
+                ? "背景音楽を一時停止"
+                : "背景音楽を再生"
+        );
+
+    }
+
+
+    /* PLAY MUSIC */
+
+    async function playMusic() {
+
+        if (userPaused) return;
+
+        try {
+            await bgm.play();
+        } catch (error) {
+            updateButton();
+        }
+
+    }
+
+
+    /* MUSIC BUTTON */
+
+    toggle.addEventListener("click", async () => {
+
+        if (bgm.paused) {
+
+            userPaused = false;
+            await playMusic();
+
+        } else {
+
+            userPaused = true;
+            bgm.pause();
+
+        }
+
+    });
+
+
+    /* FIRST INTERACTION */
+
+    function firstInteraction(event) {
+
+        if (toggle.contains(event.target)) return;
+
+        if (!userPaused && bgm.paused) {
+            playMusic();
+        }
+
+        document.removeEventListener(
+            "click",
+            firstInteraction
+        );
+
+    }
+
+    document.addEventListener(
+        "click",
+        firstInteraction
+    );
+
+
+    /* AUDIO EVENTS */
+
+    bgm.addEventListener("play", updateButton);
+    bgm.addEventListener("pause", updateButton);
+    bgm.addEventListener("error", updateButton);
+
+
+    /* INITIALIZE */
+
+    updateButton();
+    playMusic();
+
+});
