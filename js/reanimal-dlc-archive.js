@@ -1,4 +1,4 @@
-
+    
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================================
@@ -55,17 +55,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             ],
 
-            adventure: [
+           adventure: [
 
-                // OUR ADVENTURE 照片及影片
+    // OUR ADVENTURE 照片及影片
 
-            ],
-
-            memories: [
-
-                // LITTLE MEMORIES 照片及影片
-
-            ]
+        ]
 
         },
 
@@ -87,8 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
             chapters: [],
 
             adventure: [],
-
-            memories: []
 
         },
 
@@ -137,10 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const collectionState = {
 
         adventure: {
-            expanded: false
-        },
-
-        memories: {
             expanded: false
         }
 
@@ -297,9 +285,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         collectionState.adventure.expanded = false;
 
-        collectionState.memories.expanded = false;
-
-
         /* UPDATE CATEGORY BUTTONS */
 
         categoryButtons.forEach(button => {
@@ -391,9 +376,6 @@ document.addEventListener("DOMContentLoaded", () => {
         /* UPDATE COLLECTIONS */
 
         renderCollection("adventure");
-
-        renderCollection("memories");
-
 
         /* UPDATE MUSIC */
 
@@ -751,15 +733,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .addEventListener("click", () => {
 
             toggleCollection("adventure");
-
-        });
-
-
-    document
-        .getElementById("memories-toggle")
-        .addEventListener("click", () => {
-
-            toggleCollection("memories");
 
         });
 
