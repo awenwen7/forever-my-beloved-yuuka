@@ -446,58 +446,98 @@
     </footer>
 
 
-    <!-- ========================================
-         07. MEDIA LIGHTBOX
-    ========================================= -->
+   <!-- ========================================
+     07.MEDIA LIGHTBOX
+========================================= -->
 
-    <dialog class="media-lightbox"
+<dialog class="media-lightbox"
         id="media-lightbox"
         aria-label="写真・動画の拡大表示">
 
+    <!-- CHAPTER & CONTROLS -->
 
-        <!-- CLOSE -->
+    <header class="lightbox-header">
 
-        <button class="lightbox-close"
-            id="lightbox-close"
-            type="button"
-            aria-label="閉じる">
+        <div class="lightbox-chapter"
+             id="lightbox-chapter">
 
-            <i class="fa-solid fa-xmark"
-                aria-hidden="true"></i>
+            <p class="lightbox-chapter-number"
+               id="lightbox-chapter-number"></p>
 
-        </button>
+            <h2 class="lightbox-chapter-title"
+                id="lightbox-chapter-title"></h2>
 
+            <p class="lightbox-chapter-subtitle"
+               id="lightbox-chapter-subtitle"></p>
+
+        </div>
+
+        <div class="lightbox-header-controls">
+
+            <!-- MUSIC BUTTON -->
+
+            <button class="lightbox-music"
+                    id="lightbox-music"
+                    type="button"
+                    aria-label="BGMを再生"
+                    aria-pressed="false">
+
+                <i class="fa-solid fa-volume-xmark"
+                   aria-hidden="true"></i>
+
+            </button>
+
+            <!-- CLOSE BUTTON -->
+
+            <button class="lightbox-close"
+                    id="lightbox-close"
+                    type="button"
+                    aria-label="閉じる">
+
+                <i class="fa-solid fa-xmark"
+                   aria-hidden="true"></i>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- MEDIA VIEWER -->
+
+    <div class="lightbox-viewer">
 
         <!-- PREVIOUS -->
 
         <button class="lightbox-arrow lightbox-previous"
-            id="lightbox-previous"
-            type="button"
-            aria-label="前の画像・動画">
+                id="lightbox-previous"
+                type="button"
+                aria-label="前の画像・動画">
 
             <i class="fa-solid fa-chevron-left"
-                aria-hidden="true"></i>
+               aria-hidden="true"></i>
 
         </button>
 
 
-        <!-- MEDIA STAGE -->
+        <!-- PHOTO & VIDEO -->
 
         <div class="lightbox-stage"
-            id="lightbox-stage">
+             id="lightbox-stage">
 
             <img class="lightbox-image"
-                id="lightbox-image"
-                alt=""
-                draggable="false"
-                hidden>
+                 id="lightbox-image"
+                 alt=""
+                 draggable="false"
+                 hidden>
 
             <video class="lightbox-video"
-                id="lightbox-video"
-                controls
-                playsinline
-                preload="metadata"
-                hidden>
+                   id="lightbox-video"
+                   controls
+                   playsinline
+                   preload="metadata"
+                   hidden>
             </video>
 
         </div>
@@ -506,12 +546,12 @@
         <!-- NEXT -->
 
         <button class="lightbox-arrow lightbox-next"
-            id="lightbox-next"
-            type="button"
-            aria-label="次の画像・動画">
+                id="lightbox-next"
+                type="button"
+                aria-label="次の画像・動画">
 
             <i class="fa-solid fa-chevron-right"
-                aria-hidden="true"></i>
+               aria-hidden="true"></i>
 
         </button>
 
@@ -519,15 +559,31 @@
         <!-- COUNTER -->
 
         <div class="lightbox-counter"
-            id="lightbox-counter"
-            aria-live="polite">
+             id="lightbox-counter"
+             aria-live="polite">
 
             00 / 00
 
         </div>
 
-    </dialog>
+    </div>
 
+
+    <!-- MEMORY NOTE -->
+
+    <div class="lightbox-note"
+         id="lightbox-note"
+         hidden>
+
+        <i class="fa-solid fa-pencil"
+           aria-hidden="true"></i>
+
+        <p class="lightbox-note-text"
+           id="lightbox-note-text"></p>
+
+    </div>
+
+</dialog>
 
     <!-- ========================================
          08. BACKGROUND MUSIC
