@@ -1,4 +1,3 @@
-    
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================================
@@ -32,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             subtitle: "THE PRISONER",
 
-            cover: "dlc01-cover.webp",
+            cover: "dlc-archive.webp",
 
             music: "reanimal-bgm2.mp3",
 
