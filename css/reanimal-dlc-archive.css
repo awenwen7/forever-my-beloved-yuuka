@@ -731,19 +731,6 @@ a {
     min-height: 380px;
 }
 
-
-/* =========================================
-   12. LITTLE MEMORIES
-========================================= */
-
-.memories-section {
-    margin-top: 85px;
-    padding-top: 45px;
-
-    border-top: 1px solid var(--dlc-border);
-}
-
-
 /* =========================================
    13. BACK BUTTON
 ========================================= */
@@ -1490,15 +1477,6 @@ a {
         font-size: 20px;
     }
 
-
-    /* LITTLE MEMORIES */
-
-    .memories-section {
-        margin-top: 50px;
-        padding-top: 30px;
-    }
-
-
     /* BACK BUTTON */
 
     .dlc-back-section {
@@ -1597,11 +1575,4 @@ a {
 
     }
 
-}
-/* =========================================
-   23. NAVIGATION SPACING
-========================================= */
-
-body[data-nav-theme="reanimal"] .side-menu {
-    line-height: normal;
 }
