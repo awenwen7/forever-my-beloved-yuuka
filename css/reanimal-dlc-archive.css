@@ -849,20 +849,18 @@ a {
 .media-lightbox {
     position: fixed;
     inset: 0;
-
     width: 100%;
     height: 100%;
-
+    height: 100dvh;
     max-width: none;
     max-height: none;
-
     margin: 0;
-    padding: 0;
-
+    padding: 24px 40px;
     background: #000000;
+    color: var(--dlc-white);
     border: none;
-
     overflow: hidden;
+    font-family: Arial, sans-serif;
 }
 
 .media-lightbox:not([open]) {
@@ -871,116 +869,259 @@ a {
 
 .media-lightbox[open] {
     display: flex;
-
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 18px;
 }
 
 .media-lightbox::backdrop {
     background: #000000;
 }
 
-.lightbox-stage {
-    display: flex;
 
+/* =========================================
+   LIGHTBOX HEADER
+========================================= */
+
+.lightbox-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-shrink: 0;
+    gap: 20px;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.lightbox-chapter {
+    flex: 1;
+    min-width: 0;
+}
+
+.lightbox-chapter-number {
+    color: var(--dlc-red);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+}
+
+.lightbox-chapter-title {
+    color: var(--dlc-white);
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    line-height: 1.3;
+}
+
+.lightbox-chapter-subtitle {
+    color: #999999;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-top: 6px;
+}
+
+
+/* =========================================
+   HEADER CONTROLS
+========================================= */
+
+.lightbox-header-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.lightbox-music,
+.lightbox-close {
+    position: static;
+    display: flex;
     align-items: center;
     justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    background: transparent;
+    color: var(--dlc-red);
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
 
-    width: calc(100% - 140px);
-    height: calc(100% - 130px);
+.lightbox-close {
+    font-size: 28px;
+}
 
+.lightbox-music:hover,
+.lightbox-close:hover {
+    color: var(--dlc-white);
+    transform: scale(1.1);
+}
+
+.lightbox-music:active,
+.lightbox-close:active {
+    transform: scale(0.9);
+}
+
+
+/* =========================================
+   MEDIA VIEWER
+========================================= */
+
+.lightbox-viewer {
+    display: grid;
+    grid-template-columns:
+        44px minmax(0, 1fr) 44px;
+
+    grid-template-rows:
+        minmax(0, 1fr) auto;
+
+    grid-template-areas:
+        "previous stage next"
+        ". counter .";
+
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.lightbox-stage {
+    grid-area: stage;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
     touch-action: pan-y;
 }
 
 .lightbox-image,
 .lightbox-video {
     display: block;
-
     width: 100%;
     height: 100%;
-
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
     object-position: center;
 }
 
-
-/* CLOSE BUTTON */
-
-.lightbox-close {
-    position: absolute;
-
-    top: 25px;
-    right: 25px;
-
-    z-index: 5;
-
-    width: 44px;
-    height: 44px;
-
-    padding: 0;
-
-    background: transparent;
-    color: var(--dlc-red);
-
-    border: none;
-
-    font-size: 28px;
-    cursor: pointer;
+.lightbox-image {
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 
-/* LIGHTBOX ARROWS */
+/* =========================================
+   PREVIOUS & NEXT BUTTONS
+========================================= */
 
 .lightbox-arrow {
-    position: absolute;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    z-index: 5;
-
-    width: 50px;
+    position: static;
+    transform: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
     height: 60px;
-
     padding: 0;
-
     background: transparent;
     color: var(--dlc-red);
-
     border: none;
-
-    font-size: 30px;
+    font-size: 28px;
     cursor: pointer;
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
 }
 
 .lightbox-previous {
-    left: 15px;
+    grid-area: previous;
+    justify-self: center;
 }
 
 .lightbox-next {
-    right: 15px;
+    grid-area: next;
+    justify-self: center;
+}
+
+.lightbox-arrow:hover {
+    color: var(--dlc-white);
+    transform: scale(1.12);
+}
+
+.lightbox-arrow:active {
+    transform: scale(0.9);
 }
 
 
-/* LIGHTBOX COUNTER */
+/* =========================================
+   MEDIA COUNTER
+========================================= */
 
 .lightbox-counter {
-    position: absolute;
-
-    bottom: 25px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
+    grid-area: counter;
+    position: static;
+    transform: none;
     color: var(--dlc-red);
-
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 3px;
-
+    text-align: center;
     font-variant-numeric: tabular-nums;
 }
 
+
+/* =========================================
+   MEMORY NOTE
+========================================= */
+
+.lightbox-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    max-width: 1200px;
+    max-height: 22vh;
+    flex-shrink: 0;
+    padding: 18px 4px 4px;
+    border-top: 1px solid var(--dlc-border);
+    overflow-y: auto;
+}
+
+.lightbox-note i {
+    color: var(--dlc-red);
+    font-size: 15px;
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+
+.lightbox-note-text {
+    flex: 1;
+    min-width: 0;
+    color: var(--dlc-white);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.media-lightbox [hidden] {
+    display: none !important;
+}
 
 /* =========================================
    16. BACKGROUND MUSIC
@@ -1270,7 +1411,6 @@ a {
     .dlc-eyebrow {
         font-size: 10px;
         letter-spacing: 3px;
-
         margin-bottom: 12px;
     }
 
@@ -1282,7 +1422,6 @@ a {
     .dlc-subtitle {
         font-size: 12px;
         letter-spacing: 2px;
-
         margin-top: 15px;
     }
 
@@ -1291,7 +1430,6 @@ a {
 
     .dlc-categories {
         grid-template-columns: 1fr;
-
         gap: 10px;
         margin-bottom: 40px;
     }
@@ -1332,7 +1470,6 @@ a {
     .section-eyebrow {
         font-size: 10px;
         letter-spacing: 2px;
-
         margin-bottom: 10px;
     }
 
@@ -1359,7 +1496,6 @@ a {
 
     .story-cover img {
         object-position: 65% center;
-
         filter: brightness(0.55);
     }
 
@@ -1378,7 +1514,6 @@ a {
 
     .chapter-list {
         width: 85%;
-
         margin-top: 25px;
     }
 
@@ -1435,14 +1570,12 @@ a {
     .media-number {
         right: 4px;
         bottom: 4px;
-
         font-size: 8px;
     }
 
     .media-play-icon {
         width: 32px;
         height: 32px;
-
         font-size: 12px;
     }
 
@@ -1452,7 +1585,6 @@ a {
     .collection-toggle {
         margin-top: 18px;
         padding: 12px 10px;
-
         font-size: 10px;
         letter-spacing: 1px;
     }
@@ -1476,6 +1608,7 @@ a {
     .dlc-empty h2 {
         font-size: 20px;
     }
+
 
     /* BACK BUTTON */
 
@@ -1505,38 +1638,113 @@ a {
     }
 
 
-    /* LIGHTBOX */
+    /* =========================================
+       MOBILE LIGHTBOX
+    ========================================= */
 
-    .lightbox-stage {
-        width: calc(100% - 56px);
-        height: calc(100% - 120px);
+    .media-lightbox {
+        padding: 18px 12px;
     }
 
-    .lightbox-close {
-        top: 15px;
-        right: 15px;
-
-        font-size: 24px;
+    .media-lightbox[open] {
+        gap: 12px;
     }
 
-    .lightbox-arrow {
-        width: 28px;
 
+    /* LIGHTBOX HEADER */
+
+    .lightbox-header {
+        gap: 10px;
+    }
+
+    .lightbox-chapter-number {
+        font-size: 10px;
+        letter-spacing: 2px;
+        margin-bottom: 5px;
+    }
+
+    .lightbox-chapter-title {
         font-size: 19px;
     }
 
-    .lightbox-previous {
-        left: 0;
+    .lightbox-chapter-subtitle {
+        font-size: 9px;
+        letter-spacing: 1px;
+        margin-top: 5px;
     }
 
-    .lightbox-next {
-        right: 0;
+
+    /* LIGHTBOX HEADER CONTROLS */
+
+    .lightbox-header-controls {
+        gap: 4px;
+    }
+
+    .lightbox-music,
+    .lightbox-close {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+
+    .lightbox-close {
+        font-size: 24px;
+    }
+
+
+    /* LIGHTBOX MEDIA VIEWER */
+
+    .lightbox-viewer {
+        grid-template-columns:
+            44px minmax(0, 1fr) 44px;
+
+        grid-template-rows:
+            minmax(0, 1fr) 44px;
+
+        grid-template-areas:
+            "stage stage stage"
+            "previous counter next";
+
+        gap: 8px;
+    }
+
+    .lightbox-stage {
+        width: 100%;
+        height: 100%;
+    }
+
+
+    /* LIGHTBOX NAVIGATION */
+
+    .lightbox-arrow {
+        width: 44px;
+        height: 44px;
+        font-size: 21px;
     }
 
     .lightbox-counter {
-        bottom: 25px;
-
         font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+
+    /* LIGHTBOX MEMORY NOTE */
+
+    .lightbox-note {
+        gap: 10px;
+        padding: 14px 4px 4px;
+        max-height: 25vh;
+    }
+
+    .lightbox-note i {
+        font-size: 13px;
+        margin-top: 4px;
+    }
+
+    .lightbox-note-text {
+        font-size: 13px;
+        line-height: 1.8;
+        letter-spacing: 0.3px;
     }
 
 
@@ -1553,7 +1761,6 @@ a {
     }
 
 }
-
 
 /* =========================================
    22. REDUCED MOTION
